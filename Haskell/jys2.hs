@@ -1,14 +1,19 @@
-﻿-- jys.hs
+﻿-- jys2.hs
 
 import Data.Map (fromListWith, toAscList)
 import Data.List (intersperse)
 
+(|>) x f = f x
 sortAndGroupBy f xs = fromListWith (++) [(f x, [x]) | x <- xs]
-    
-verticalWriting text offset =
-    let xxs = toAscList . sortAndGroupBy ((`mod` offset) . fst) $ zip [0..] text
-    in  unlines [intersperse '|' [x | (_, x) <- xs] | (_, xs) <- xxs]
 
+verticalWriting text offset = zip [0..] text
+    |> sortAndGroupBy ((`mod` offset) . fst)
+    |> toAscList
+    |> map snd
+    |> map (map snd)
+    |> map (intersperse '|')
+    |> unlines
+    
 main = putStr $ verticalWriting "床前明月光疑是地上霜举头望明月低头思故乡" 5
 
 --低|举|疑|床
