@@ -3,11 +3,9 @@
 import Data.Map (fromListWith, toAscList)
 import Data.List (intersperse)
 
-sortAndGroupBy f xs = fromListWith (++) [(f x, [x]) | x <- xs]
-    
 verticalWriting text offset =
-    let xxs = toAscList . sortAndGroupBy ((`mod` offset) . fst) $ zip [0..] text
-    in  unlines [intersperse '|' [x | (_, x) <- xs] | (_, xs) <- xxs]
+    let xxs = toAscList $ fromListWith (++) [(x `mod` offset, [y]) | (x, y) <- zip [0..] text]
+    in  unlines [intersperse '|' xs | (_, xs) <- xxs]
 
 main = putStr $ verticalWriting "床前明月光疑是地上霜举头望明月低头思故乡" 5
 
