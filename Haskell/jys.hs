@@ -4,7 +4,8 @@ import Data.Map (fromListWith, toAscList)
 import Data.List (intersperse)
 
 verticalWriting text offset =
-    let xxs = toAscList $ fromListWith (++) [(x `mod` offset, [y]) | (x, y) <- zip [0..] text]
+--  let xxs = toAscList $ fromListWith (++) [(x `mod` offset, [y]) | (x, y) <- zip [0..] text]
+    let xxs = toAscList $ fromListWith (++) $ zipWith (\x y -> (x `mod` offset, [y])) [0..] text
     in  unlines [intersperse '|' xs | (_, xs) <- xxs]
 
 main = putStr $ verticalWriting "床前明月光疑是地上霜举头望明月低头思故乡" 5
