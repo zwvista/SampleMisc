@@ -1,17 +1,14 @@
 // Main.scala
 
 object Main {
-    def print(txt:String, offset:Int) : Unit = {
+    def print(txt:String, offset:Int) =
         txt.zipWithIndex
         .groupBy(_._2 % offset)
-        .foreach({case (_, kvs) => println(
+        .foreach{case (_, kvs) => println(
             kvs.map(_._1.toString).reverse.mkString("|")
-        )});
-    }
-    def main(args:Array[String]) = {
+        )}
+    def main(args:Array[String]) =
         print("床前明月光疑是地上霜举头望明月低头思故乡", 5)
-    }
-  
 }
 
 //低|举|疑|床
