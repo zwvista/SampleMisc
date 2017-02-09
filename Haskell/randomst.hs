@@ -1,4 +1,5 @@
 import System.Random
+import Control.Applicative
 import Control.Monad.State
 
 randomSt :: (RandomGen g, Random a) => State g a
@@ -10,5 +11,8 @@ threeCoins = do
     b <- randomSt
     c <- randomSt
     return (a,b,c)
+    
+threeCoins2 :: State StdGen (Bool,Bool,Bool)
+threeCoins2 = liftA3 (,,) randomSt randomSt randomSt
 
-main = print $ runState threeCoins (mkStdGen 100)
+main = print $ evalState threeCoins2 (mkStdGen 100)
