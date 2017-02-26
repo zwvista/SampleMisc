@@ -2,17 +2,17 @@
 
 import Data.Map (fromListWith, toAscList)
 import Data.List (intersperse)
+import Data.Function ((&))
 
-(|>) x f = f x
 sortAndGroupBy f xs = fromListWith (++) [(f x, [x]) | x <- xs]
 
 verticalWriting text offset = zip [0..] text
-    |> sortAndGroupBy ((`mod` offset) . fst)
-    |> toAscList
-    |> map snd
-    |> map (map snd)
-    |> map (intersperse '|')
-    |> unlines
+    & sortAndGroupBy ((`mod` offset) . fst)
+    & toAscList
+    & map snd
+    & map (map snd)
+    & map (intersperse '|')
+    & unlines
     
 main = putStr $ verticalWriting "床前明月光疑是地上霜举头望明月低头思故乡" 5
 
