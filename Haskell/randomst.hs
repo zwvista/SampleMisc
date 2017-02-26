@@ -13,5 +13,13 @@ threeCoins = do
     
 threeCoins2 :: State StdGen (Bool,Bool,Bool)
 threeCoins2 = liftM3 (,,) randomSt randomSt randomSt
+    
+threeCoins3 :: IO (Bool, Bool, Bool)
+threeCoins3 = liftM3 (,,) randomIO randomIO randomIO
 
-main = print $ evalState threeCoins2 (mkStdGen 100)
+main = do
+    gen <- newStdGen
+    print $ evalState threeCoins gen
+    gen <- newStdGen
+    print $ evalState threeCoins2 gen
+    threeCoins3
