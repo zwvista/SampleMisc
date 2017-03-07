@@ -20,11 +20,19 @@ testTree = Node 5
             )
 
 main = do
-    print $ F.foldl (+) 0 testTree
-    print $ F.foldl (*) 1 testTree
+    -- print $ F.foldl (+) 0 testTree
+    print $ F.sum testTree
+    -- print $ F.foldl (*) 1 testTree
+    print $ F.product testTree
     print $ getAny $ F.foldMap (\x -> Any $ x == 3) testTree
     print $ getAny $ F.foldMap (\x -> Any $ x > 15) testTree
-    print $ F.foldMap (\x -> [x]) testTree
+    -- print $ F.foldMap (\x -> [x]) testTree
+    print $ F.toList testTree
+    print $ F.length testTree
+    print $ F.maximum testTree
+    print $ F.minimum testTree
+    print $ 3 `F.elem` testTree
+    print $ F.null testTree
       
 {-
 42
@@ -32,4 +40,6 @@ main = do
 True
 False
 [1,3,6,5,8,9,10]
+True
+False
 -}
