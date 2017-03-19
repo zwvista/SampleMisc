@@ -22,9 +22,8 @@ main1 = do
 
 main2 = do
     line <- getLine
-    if null line then
-        return ()
-    else do
+    --when (not $ null line) $ do
+    unless (null line) $ do
         putStrLn $ reverseWords line
         main2
 

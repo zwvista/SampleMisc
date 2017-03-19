@@ -40,6 +40,9 @@ main = do
 True
 False
 [1,3,6,5,8,9,10]
+7
+10
+1
 True
 False
 -}
