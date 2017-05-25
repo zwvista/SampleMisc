@@ -1,3 +1,5 @@
+package SampleKotlin
+
 /**
  * Created by zwvista on 2017/05/20.
  */
@@ -22,4 +24,8 @@ fun main(args: Array<String>) {
     for (i in 1..4 step 2) print(i); println() // prints "13"
     for (i in 4 downTo 1 step 2) print(i); println() // prints "42"
     for (i in 1 until 10) print(i); println() // prints "123456789"
+
+    val x = 3
+    if (x in 1..10) print(x)
+    if (x !in 1..10) print(x)
 }
