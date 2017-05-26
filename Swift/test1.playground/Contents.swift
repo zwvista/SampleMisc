@@ -23,8 +23,11 @@ for i in 1...4 {print(i, terminator: "")}; print()
 // for i in 4...1 {print(i, terminator: "")}; print() // error
 for i in (1...4).reversed() {print(i, terminator: "")}; print()
 for i in stride(from: 4, through: 1, by: -1) {print(i, terminator: "")}; print()
+for i in stride(from: 4, to: 0, by: -1) {print(i, terminator: "")}; print()
 for i in stride(from: 1, through: 4, by: 2) {print(i, terminator: "")}; print()
+for i in stride(from: 1, to: 4, by: 2) {print(i, terminator: "")}; print()
 for i in stride(from: 4, through: 1, by: -2) {print(i, terminator: "")}; print()
+for i in stride(from: 4, to: 1, by: -2) {print(i, terminator: "")}; print()
 for i in 1..<10 {print(i, terminator: "")}; print()
 
 let c = 1

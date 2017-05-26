@@ -1,5 +1,7 @@
 package SampleKotlin
 
+import describe
+
 /**
  * Created by zwvista on 2017/05/20.
  */
@@ -10,15 +12,6 @@ fun f4(n: Int): Unit {println(n)}
 fun f5(n: Int) {println(n)}
 fun f6(n: Int): Unit = println(n)
 fun f7(n: Int) = println(n)
-
-fun describe(obj: Any): String =
-    when (obj) {
-        1          -> "One"
-        "Hello"    -> "Greeting"
-        is Long    -> "Long"
-        !is String -> "Not a string"
-        else       -> "Unknown"
-    }
 
 fun outside() {
     var a = 1
@@ -65,10 +58,11 @@ ${'$'}9.99
 """
     println(price)
 
-    println(describe(1));
-    println(describe(2L));
-    println(describe(3.0));
-    println(describe("abc"));
+    val a = 3; val b = 4
+    val m1: Int
+    if (a < b) m1 = a else m1 = b
+    val m2 = if (a < b) a else b
+    val m3 = if (a < b) {println("a"); a} else {println("b"); b}
 
     outside()
 
