@@ -17,7 +17,7 @@
         <entry file="file://$PROJECT_DIR$/src/ABC.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="444">
-              <caret line="25" column="67" lean-forward="true" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
+              <caret line="80" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -28,6 +28,13 @@
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/ABC.kt" />
+      </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -612,12 +619,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1495682822553</updated>
-      <workItem from="1495682825776" duration="145000" />
+      <workItem from="1495682825776" duration="5304000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="145000" />
+    <option name="totallyTimeSpent" value="5304000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1924" height="1056" extended-state="0" />
@@ -626,7 +633,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -672,7 +679,7 @@
     <entry file="file://$PROJECT_DIR$/src/ABC.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
-          <caret line="25" column="67" lean-forward="true" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
+          <caret line="80" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding />
         </state>
       </provider>
