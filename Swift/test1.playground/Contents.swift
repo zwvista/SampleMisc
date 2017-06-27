@@ -90,4 +90,5 @@ if 1 == 1 {
 
 let row = 3, col = 4, rows = 6, cols = 6
 if row == 3 && 1..<rows - 1 ~= row && 1..<cols - 1 ~= col {print("ok")}
+if row == 3, 1..<rows - 1 ~= row, 1..<cols - 1 ~= col {print("ok")}
 
