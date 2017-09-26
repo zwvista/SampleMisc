@@ -15,6 +15,8 @@ fun toFizzBuzzWhen(n: Int) =
         else -> n.toString()
     }
 
+var sum: (Int, Int) -> Unit = fun(a, b) = println(a + b)
+
 fun main(args: Array<String>) {
     println((1..100).map(::toFizzBuzzIf))
     println((1..100).map(::toFizzBuzzWhen))

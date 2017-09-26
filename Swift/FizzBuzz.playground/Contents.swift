@@ -2,7 +2,7 @@ func toFizzBuzzExpr(n: Int) -> String {
     return n % 3 == 0 && n % 5 == 0 ? "FizzBuzz" :
         n % 3 == 0 ? "Fizz" :
         n % 5 == 0 ? "Buzz" :
-        String(n);
+        String(n)
 }
 func toFizzBuzzIf(n: Int) -> String {
     if n % 3 == 0 && n % 5 == 0 {
