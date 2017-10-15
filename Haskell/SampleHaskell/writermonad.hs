@@ -32,8 +32,8 @@ gcd'' a b
         return result
 
 main = do
-    mapM_ putStrLn . snd . runWriter $ gcd' 8 3
-    mapM_ putStrLn . fromDiffList . snd . runWriter $ gcd'' 8 3
+    mapM_ putStrLn . execWriter $ gcd' 8 3
+    mapM_ putStrLn . fromDiffList . execWriter $ gcd'' 8 3
 
 {--
 8 mod 3 = 2
