@@ -18,3 +18,4 @@ main = mapM_ putStrLn $ verticalWriting "床前明月光疑是地上霜举头望
 故|明|上|月
 乡|月|霜|光
 -}
+

@@ -23,3 +23,4 @@ main = do
     gen <- newStdGen
     print $ evalState threeCoins2 gen
     threeCoins3
+

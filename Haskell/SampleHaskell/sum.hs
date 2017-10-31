@@ -9,3 +9,4 @@ sum3 l = sum3Helper l 0
   where
     sum3Helper [] a = a
     sum3Helper (x:xs) a = x + sum3Helper xs a
+

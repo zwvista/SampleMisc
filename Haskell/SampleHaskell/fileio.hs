@@ -23,4 +23,6 @@ readWriteUTF8File = do
     outputHandle <- openFile outputPath WriteMode
     hSetEncoding outputHandle utf8
     hPutStr outputHandle $ map toUpper theInput
+    hClose inputHandle
     hClose outputHandle
+
