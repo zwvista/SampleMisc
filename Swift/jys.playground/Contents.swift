@@ -1,24 +1,9 @@
-// https://stackoverflow.com/questions/31220002/how-to-group-by-the-elements-of-an-array-in-swift
-extension Sequence {
-    func group<GroupingType: Hashable>(by key: (Iterator.Element) -> GroupingType) -> [[Iterator.Element]] {
-        var groups: [GroupingType: [Iterator.Element]] = [:]
-        var groupsOrder: [GroupingType] = []
-        forEach { element in
-            let key = key(element)
-            if case nil = groups[key]?.append(element) {
-                groups[key] = [element]
-                groupsOrder.append(key)
-            }
-        }
-        return groupsOrder.map { groups[$0]! }
-    }
-}
 
 func verticalWriting(txt:String, offset:Int) {
-    txt.characters.enumerated()
-        .group(by: {(i, c) in i % offset})
+    Dictionary(grouping: txt.enumerated(), by: {$0.0 % offset})
+        .sorted{$0.0 < $1.0}
         .forEach{print(
-            $0.map({String($0.element)}).reversed().joined(separator: "|")
+            $0.1.map{String($0.element)}.reversed().joined(separator: "|")
         )}
 }
 
