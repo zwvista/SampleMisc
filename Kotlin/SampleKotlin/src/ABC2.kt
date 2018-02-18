@@ -18,6 +18,8 @@ fun describe(obj: Any): String =
 fun Int.isOdd() = this % 2 == 1
 fun Int.isEven() = this % 2 == 0
 
+var sum: (Int, Int) -> Unit = fun(a, b) = println(a + b)
+
 fun main(args: Array<String>) {
     println(describe(1));
     println(describe(2));
