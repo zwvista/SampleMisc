@@ -36,4 +36,8 @@ fun main(args: Array<String>) {
         else -> print("x is funny")
     }
 
+    var (a, b) = 1 to 2 // a == 1, b == 2
+    run { val temp = a; a = b; b = temp } // a == 2, b == 1
+
+
 }
