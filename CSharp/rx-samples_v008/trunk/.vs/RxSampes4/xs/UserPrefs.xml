@@ -1,0 +1,20 @@
+﻿<Properties StartupConfiguration="{5968817B-025C-49F1-8856-2B31D13D0FD6}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/RxSamples.ConsoleApp/07_HotAndColdExamples.cs">
+    <Files>
+      <File FileName="src/RxSamples.ConsoleApp/01_SubjectExamples.cs" Line="1" Column="1" />
+      <File FileName="src/RxSamples.ConsoleApp/02_StaticAndExtensionMethodsExamples.cs" Line="1" Column="1" />
+      <File FileName="src/RxSamples.ConsoleApp/07_HotAndColdExamples.cs" Line="1" Column="1" />
+      <File FileName="src/RxSamples.ConsoleApp/06_SchedulingExamples.cs" Line="1" Column="1" />
+      <File FileName="src/RxSamples.ConsoleApp/03_LifetimeManagementExamples.cs" Line="1" Column="1" />
+      <File FileName="src/RxSamples.ConsoleApp/04_FlowControlExamples.cs" Line="1" Column="1" />
+      <File FileName="src/RxSamples.ConsoleApp/05_CombiningObservableExamples.cs" Line="1" Column="1" />
+      <File FileName="src/RxSamples.Testing/08_MyPresenterFixture.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

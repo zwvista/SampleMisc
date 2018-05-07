@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.22823.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleQueries", "SampleQueries.csproj", "{77EC7459-0B99-4142-AFC0-95E75A2DED78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49C07710-51B9-43FF-9EB2-80D16F666ADC}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\USERS\80957\APPDATA\LOCAL\MICROSOFT\VISUALSTUDIO\14.0\EXTENSIONS\AW0I1VZ3.ZMW\description.html = ..\..\..\USERS\80957\APPDATA\LOCAL\MICROSOFT\VISUALSTUDIO\14.0\EXTENSIONS\AW0I1VZ3.ZMW\description.html
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{77EC7459-0B99-4142-AFC0-95E75A2DED78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77EC7459-0B99-4142-AFC0-95E75A2DED78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77EC7459-0B99-4142-AFC0-95E75A2DED78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77EC7459-0B99-4142-AFC0-95E75A2DED78}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
