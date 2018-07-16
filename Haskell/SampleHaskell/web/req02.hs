@@ -9,18 +9,10 @@ import GHC.Generics
 import Network.HTTP.Req
 import qualified Data.ByteString.Char8 as B
 
-main1 :: IO ()
-main1 = runReq def $ do
-  bs <- req GET (https "jsonplaceholder.typicode.com" /: "posts" /: "1") NoReqBody bsResponse mempty
+showPostAsString :: Int -> IO ()
+showPostAsString n = runReq def $ do
+  bs <- req GET (https "jsonplaceholder.typicode.com" /: "posts" /~ n) NoReqBody bsResponse mempty
   liftIO $ B.putStrLn (responseBody bs)
-{-
-{
-  "userId": 1,
-  "id": 1,
-  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
-  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
-}
--}
 
 data Post = Post
   { userId  :: Int
@@ -32,23 +24,18 @@ data Post = Post
 instance ToJSON Post
 instance FromJSON Post
 
-main2 :: IO ()
-main2 = runReq def $ do
-  v <- req GET (https "jsonplaceholder.typicode.com" /: "posts" /: "1") NoReqBody jsonResponse mempty
+showPostAsJson :: Int -> IO ()
+showPostAsJson n = runReq def $ do
+  v <- req GET (https "jsonplaceholder.typicode.com" /: "posts" /~ n) NoReqBody jsonResponse mempty
   liftIO $ print (responseBody v :: Post)
--- Post {userId = 1, id = 1, title = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit", body = "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"}
 
-main3 :: IO ()
-main3 = runReq def $ do
+showPosts :: Int -> IO ()
+showPosts n = runReq def $ do
   v <- req GET (https "jsonplaceholder.typicode.com" /: "posts") NoReqBody jsonResponse mempty
-  liftIO $ mapM_ print $ take 2 (responseBody v :: [Post])
-{-
-Post {userId = 1, id = 1, title = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit", body = "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"}
-Post {userId = 1, id = 2, title = "qui est esse", body = "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"}
--}
+  liftIO $ mapM_ print $ take n (responseBody v :: [Post])
 
-main4 :: IO ()
-main4 = runReq def $ do
+createPost :: IO ()
+createPost = runReq def $ do
   let myPost = Post {
     userId = 101,
     Main.id = 102,
@@ -56,23 +43,41 @@ main4 = runReq def $ do
     body = "test body"
     }
   v <- req POST (https "jsonplaceholder.typicode.com" /: "posts") (ReqBodyJson myPost) jsonResponse mempty
-  liftIO $ print (responseBody v :: Value)
--- Object (fromList [("body",String "test body"),("userId",Number 101.0),("id",Number 1.0),("title",String "test title")])
+  liftIO $ print (responseBody v :: Post)
 
-main5 :: IO ()
-main5 = runReq def $ do
+updatePost :: Int -> IO ()
+updatePost n = runReq def $ do
   let myPost = Post {
     userId = 101,
-    Main.id = 102,
+    Main.id = 0, -- unused
     title = "test title",
     body = "test body"
     }
-  v <- req PUT (https "jsonplaceholder.typicode.com" /: "posts" /: "1") (ReqBodyJson myPost) jsonResponse mempty
-  liftIO $ print (responseBody v :: Value)
--- Object (fromList [("body",String "test body"),("userId",Number 101.0),("id",Number 1.0),("title",String "test title")])
+  v <- req PUT (https "jsonplaceholder.typicode.com" /: "posts" /~ n) (ReqBodyJson myPost) jsonResponse mempty
+  liftIO $ print (responseBody v :: Post)
 
-main6 :: IO ()
-main6 = runReq def $ do
-  v <- req DELETE (https "jsonplaceholder.typicode.com" /: "posts" /: "2") NoReqBody jsonResponse mempty
+deletePost :: Int -> IO ()
+deletePost n = runReq def $ do
+  v <- req DELETE (https "jsonplaceholder.typicode.com" /: "posts" /~ n) NoReqBody jsonResponse mempty
   liftIO $ print (responseBody v :: Value)
--- Object (fromList [])
+
+{-
+*Main> showPostAsString 1
+{
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+*Main> showPostAsJson 1
+Post {userId = 1, id = 1, title = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit", body = "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"}
+*Main> showPosts 2
+Post {userId = 1, id = 1, title = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit", body = "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"}
+Post {userId = 1, id = 2, title = "qui est esse", body = "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"}
+*Main> createPost
+Post {userId = 101, id = 102, title = "test title", body = "test body"}
+*Main> updatePost 1
+Post {userId = 101, id = 1, title = "test title", body = "test body"}
+*Main> deletePost 1
+Object (fromList [])
+-}
