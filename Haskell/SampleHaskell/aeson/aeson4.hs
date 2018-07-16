@@ -1,31 +1,27 @@
-{-# LANGUAGE DeriveGeneric, OverloadedStrings #-}
+{-# LANGUAGE DeriveGeneric #-}
 
 import GHC.Generics
 import Data.Aeson
-import Data.Text
+import Data.Text (Text)
 
 data Person = Person {
-      name :: Text
-    , age  :: Int
+      field_NAME :: Text
+    , field_AGE  :: Int
     } deriving (Generic, Show)
 
-data Persons = Persons {
-      persons :: [Person]
-    } deriving (Generic, Show)
-
-instance ToJSON Persons where
-    toEncoding = genericToEncoding defaultOptions
-
-instance FromJSON Persons
+customOptions = defaultOptions
+                { fieldLabelModifier = drop $ length ("field_" :: String)
+                }
 
 instance ToJSON Person where
-    toEncoding = genericToEncoding defaultOptions
-
-instance FromJSON Person
+    toJSON = genericToJSON customOptions
+instance FromJSON Person where
+    parseJSON = genericParseJSON customOptions
 
 {-
->>> encode (Persons {persons = [Person {name = "Joe", age = 12}]})
-"{\"persons\":[{\"name\":\"Joe\",\"age\":12}]}"
->>> decode "{\"persons\":[{\"name\":\"Joe\",\"age\":12}]}" :: Maybe Persons
-Just (Persons {persons = [Person {name = "Joe", age = 12}]})
+*Main> :set -XOverloadedStrings
+*Main> encode (Person {field_NAME = "Joe", field_AGE = 12})
+"{\"NAME\":\"Joe\",\"AGE\":12}"
+*Main> decode "{\"NAME\":\"Joe\",\"AGE\":12}" :: Maybe Person
+Just (Person {field_NAME = "Joe", field_AGE = 12})
 -}
