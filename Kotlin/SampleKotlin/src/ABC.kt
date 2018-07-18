@@ -1,7 +1,3 @@
-package SampleKotlin
-
-import describe
-
 /**
  * Created by zwvista on 2017/05/20.
  */

@@ -21,7 +21,7 @@ instance FromJSON Person where
 {-
 *Main> :set -XOverloadedStrings
 *Main> encode (Person {field_NAME = "Joe", field_AGE = 12})
-"{\"NAME\":\"Joe\",\"AGE\":12}"
+"{\"AGE\":12,\"NAME\":\"Joe\"}"
 *Main> decode "{\"NAME\":\"Joe\",\"AGE\":12}" :: Maybe Person
 Just (Person {field_NAME = "Joe", field_AGE = 12})
 -}

@@ -13,7 +13,10 @@ namespace RxSamples
             var singleValue = Observable.Return<string>("Value");
             var empty = Observable.Empty<string>();
             var never = Observable.Never<string>();
-            var throws = Observable.Throw<string>(new Exception()); 
+            var throws = Observable.Throw<string>(new Exception());
+            singleValue.Subscribe(
+                Console.WriteLine,
+                () => Console.WriteLine("completed"));
         }
 
         private static void OnTimerElapsed(object sender, ElapsedEventArgs e)

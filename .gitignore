@@ -5,6 +5,8 @@
 *.suo
 *.user
 *.sln.docstates
+.vs/
+xcuserdata/
 
 # Build results
 [Dd]ebug/
@@ -16,6 +18,9 @@ bld/
 [Bb]in/
 [Oo]bj/
 out/
+lib/
+target/
+
 
 # NuGet Packages
 *.nupkg
@@ -210,3 +215,4 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+

@@ -32,6 +32,7 @@ namespace RxSamples
 
         public static void TestCreation()
         {
+            Creation.ReturnEmptyNeverThrow();
             Creation.Create();
             Creation.Range();
             Creation.Interval();
