@@ -63,8 +63,8 @@ namespace RxSamples
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var timer = Observable.Timer(TimeSpan.FromSeconds(1));
             timer.Subscribe(
-            Console.WriteLine,
-            () => Console.WriteLine("completed"));
+                Console.WriteLine,
+                () => Console.WriteLine("completed"));
             Console.ReadLine();
         }
 

@@ -30,9 +30,7 @@ namespace RxSamples
             {
                 Console.WriteLine("--Buffered values");
                 foreach (var value in buffer)
-                {
                     Console.WriteLine(value);
-                }
             }, () => Console.WriteLine("Completed"));
             source.Buffer(TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(1))
             .Subscribe(
@@ -40,9 +38,7 @@ namespace RxSamples
             {
                 Console.WriteLine("--Buffered values");
                 foreach (var value in buffer)
-                {
                     Console.WriteLine(value);
-                }
             }, () => Console.WriteLine("Completed"));
             Console.ReadLine();
         }
@@ -57,9 +53,7 @@ namespace RxSamples
             {
                 Console.WriteLine("--Buffered values");
                 foreach (var value in buffer)
-                {
                     Console.WriteLine(value);
-                }
             }, () => Console.WriteLine("Completed"));
             source.Buffer(TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(3))
             .Subscribe(
@@ -67,9 +61,7 @@ namespace RxSamples
             {
                 Console.WriteLine("--Buffered values");
                 foreach (var value in buffer)
-                {
                     Console.WriteLine(value);
-                }
             }, () => Console.WriteLine("Completed"));
             Console.ReadLine();
         }
@@ -84,9 +76,7 @@ namespace RxSamples
             {
                 Console.WriteLine("--Buffered values");
                 foreach (var value in buffer)
-                {
                     Console.WriteLine(value);
-                }
             }, () => Console.WriteLine("Completed"));
             source.Buffer(TimeSpan.FromSeconds(3), TimeSpan.FromSeconds(5))
             .Subscribe(
@@ -94,9 +84,7 @@ namespace RxSamples
             {
                 Console.WriteLine("--Buffered values");
                 foreach (var value in buffer)
-                {
                     Console.WriteLine(value);
-                }
             }, () => Console.WriteLine("Completed"));
             Console.ReadLine();
         }

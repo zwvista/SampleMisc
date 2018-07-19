@@ -10,18 +10,12 @@ namespace RxSamples
         public static void Select()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
-            var source = Observable.Range(0, 5);
-            source.Select(i => i + 3)
-            .Dump("+3");
-            Observable.Range(1, 5)
-            .Select(i => (char)(i + 64))
-            .Dump("char");
-            Observable.Range(1, 5)
-            .Select(
-            i => new { Number = i, Character = (char)(i + 64) })
-            .Dump("anon");
-            var query = from i in Observable.Range(1, 5)
-            select new { Number = i, Character = (char)(i + 64) };
+            var source = Observable.Range(0, 3);
+            source.Select(i => i + 3).Dump("+3");
+            source.Select(i => (char)(i + 64)).Dump("char");
+            source.Select(i => new { Number = i, Character = (char)(i + 64) }).Dump("anon");
+            var query = from i in source
+                        select new { Number = i, Character = (char)(i + 64) };
             query.Dump("anon");
         }
 
