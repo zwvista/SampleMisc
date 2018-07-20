@@ -20,8 +20,8 @@
       <file leaf-file-name="Creation.kt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/rx/Creation.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="26" lean-forward="true" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+            <state relative-caret-position="375">
+              <caret line="25" column="14" lean-forward="true" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
               <folding>
                 <element signature="e#12#79#0" expanded="true" />
               </folding>
@@ -29,11 +29,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../../.gitignore">
+      <file leaf-file-name="Filter.kt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/rx/Filter.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+            <state relative-caret-position="224">
+              <caret line="19" selection-start-line="16" selection-end-line="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Transformation.kt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/rx/Transformation.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -56,8 +65,10 @@
         <option value="$PROJECT_DIR$/src/RegexTest.kt" />
         <option value="$PROJECT_DIR$/src/ABC.kt" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/rx/Creation.kt" />
         <option value="$PROJECT_DIR$/../../.gitignore" />
+        <option value="$PROJECT_DIR$/src/rx/Creation.kt" />
+        <option value="$PROJECT_DIR$/src/rx/Transformation.kt" />
+        <option value="$PROJECT_DIR$/src/rx/Filter.kt" />
       </list>
     </option>
   </component>
@@ -66,6 +77,13 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
@@ -215,6 +233,11 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Kotlin" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/rx" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -227,7 +250,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Kotlin.rx.CreationKt">
+  <component name="RunManager" selected="Kotlin.rx.FilterKt">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -260,16 +283,6 @@
       <option name="MAIN_CLASS_NAME" value="ABCKt" />
       <option name="WORKING_DIRECTORY" />
     </configuration>
-    <configuration name="FizzBuzzKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
-      <module name="SampleKotlin" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" value="FizzBuzzKt" />
-      <option name="WORKING_DIRECTORY" />
-    </configuration>
     <configuration name="JysKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <module name="SampleKotlin" />
       <option name="VM_PARAMETERS" />
@@ -280,16 +293,6 @@
       <option name="MAIN_CLASS_NAME" value="JysKt" />
       <option name="WORKING_DIRECTORY" />
     </configuration>
-    <configuration name="RegexTestKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
-      <module name="SampleKotlin" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" value="RegexTestKt" />
-      <option name="WORKING_DIRECTORY" />
-    </configuration>
     <configuration name="rx.CreationKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <module name="SampleKotlin" />
       <option name="VM_PARAMETERS" />
@@ -298,6 +301,26 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="MAIN_CLASS_NAME" value="rx.CreationKt" />
+      <option name="WORKING_DIRECTORY" />
+    </configuration>
+    <configuration name="rx.FilterKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="SampleKotlin" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="rx.FilterKt" />
+      <option name="WORKING_DIRECTORY" />
+    </configuration>
+    <configuration name="rx.TransformationKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
+      <module name="SampleKotlin" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="rx.TransformationKt" />
       <option name="WORKING_DIRECTORY" />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -323,19 +346,19 @@
       <listeners />
     </configuration>
     <list>
-      <item itemvalue="Kotlin.FizzBuzzKt" />
       <item itemvalue="Kotlin.JysKt" />
-      <item itemvalue="Kotlin.RegexTestKt" />
       <item itemvalue="Kotlin.ABCKt" />
       <item itemvalue="Kotlin.rx.CreationKt" />
+      <item itemvalue="Kotlin.rx.TransformationKt" />
+      <item itemvalue="Kotlin.rx.FilterKt" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.rx.FilterKt" />
+        <item itemvalue="Kotlin.rx.TransformationKt" />
         <item itemvalue="Kotlin.rx.CreationKt" />
         <item itemvalue="Kotlin.JysKt" />
         <item itemvalue="Kotlin.ABCKt" />
-        <item itemvalue="Kotlin.RegexTestKt" />
-        <item itemvalue="Kotlin.FizzBuzzKt" />
       </list>
     </recent_temporary>
   </component>
@@ -370,12 +393,12 @@
       <workItem from="1524887862355" duration="26000" />
       <workItem from="1525699062215" duration="599000" />
       <workItem from="1531894504468" duration="908000" />
-      <workItem from="1531895441674" duration="6323000" />
+      <workItem from="1531895441674" duration="16156000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17253000" />
+    <option name="totallyTimeSpent" value="27086000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="55" width="1400" height="763" extended-state="0" />
@@ -383,19 +406,19 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49142858" weight="0.3280116" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.47714287" weight="0.3280116" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50857145" side_tool="true" visible="true" weight="0.3280116" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5214286" side_tool="true" visible="true" weight="0.3280116" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49142858" visible="true" weight="0.3280116" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.47857141" visible="true" weight="0.3280116" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27857143" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27857143" />
       <window_info anchor="bottom" id="Problems" order="7" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -418,6 +441,11 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/ABC.kt">
@@ -594,30 +622,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/io/reactivex/rxjava2/rxjava/2.1.16/rxjava-2.1.16.jar!/io/reactivex/Observable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="530" column="36" selection-start-line="530" selection-start-column="36" selection-end-line="530" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../.gitattributes">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rx/Transformation.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/rx/Creation.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="26" lean-forward="true" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+        <state relative-caret-position="375">
+          <caret line="25" column="14" lean-forward="true" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
           <folding>
             <element signature="e#12#79#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../.gitignore">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/reactivex/rxjava2/rxjava/2.1.16/rxjava-2.1.16.jar!/io/reactivex/CompletableObserver.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+        <state relative-caret-position="90">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/reactivex/rxjava2/rxjava/2.1.16/rxjava-2.1.16.jar!/io/reactivex/Completable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="680" column="44" selection-start-line="680" selection-start-column="44" selection-end-line="680" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/reactivex/rxjava2/rxjava/2.1.16/rxjava-2.1.16.jar!/io/reactivex/Observable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="2345" column="22" lean-forward="true" selection-start-line="2345" selection-start-column="22" selection-end-line="2345" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/rx/Filter.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="19" selection-start-line="16" selection-end-line="19" />
         </state>
       </provider>
     </entry>
