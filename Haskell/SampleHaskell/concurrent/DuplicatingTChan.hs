@@ -10,6 +10,7 @@ nonDuplicatedTest = do
     messages <- atomically newTChan
     forkIO $ messageReader messages "First"
     forkIO $ messageReader messages "Second"
+    sleepMs 1
     atomically $ writeTChan messages "Hi!"
 
 messageReader channel name = do
