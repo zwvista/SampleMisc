@@ -6,27 +6,29 @@ namespace RxSamples
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("0: Creation");
-            Console.WriteLine("1: Reduction");
-            Console.WriteLine("2: Inspection");
-            Console.WriteLine("3: Aggregation");
-            Console.WriteLine("4: Transformation");
-            Console.WriteLine("5: Combining");
-            Console.WriteLine("6: TimeShifted");
-            Console.WriteLine("7: Leaving");
-            Console.WriteLine("8: Scheduling");
+            Console.WriteLine("0: Aggregation");
+            Console.WriteLine("1: Coincidence");
+            Console.WriteLine("2: Combining");
+            Console.WriteLine("3: Creation");
+            Console.WriteLine("4: Inspection");
+            Console.WriteLine("5: Leaving");
+            Console.WriteLine("6: Reduction");
+            Console.WriteLine("7: Scheduling");
+            Console.WriteLine("8: TimeShifted");
+            Console.WriteLine("9: Transformation");
             switch (Console.ReadLine())
             {
-                case "0": TestCreation(); break;
-                case "1": TestReduction(); break;
-                case "2": TestInspection(); break;
-                case "3": TestAggregation(); break;
-                case "4": TestTransformation(); break;
-                case "5": TestCombining(); break;
-                case "6": TestTimeShifted(); break;
-                case "7": TestLeaving(); break;
-                case "8": TestScheduling(); break;
-                default: TestScheduling(); break;
+                case "0": TestAggregation(); break;
+                case "1": TestCoincidence(); break;
+                case "2": TestCombining(); break;
+                case "3": TestCreation(); break;
+                case "4": TestInspection(); break;
+                case "5": TestLeaving(); break;
+                case "6": TestReduction(); break;
+                case "7": TestTimeShifted(); break;
+                case "8": TestTransformation(); break;
+                case "9": TestScheduling(); break;
+                default: TestCoincidence(); break;
             }
         }
 
@@ -123,6 +125,12 @@ namespace RxSamples
         {
             Scheduling.Subscribe();
             Scheduling.SubscribeOn();
+        }
+
+        public static void TestCoincidence()
+        {
+            Coincidence.Window1();
+            Coincidence.Window2();
         }
     }
 }
