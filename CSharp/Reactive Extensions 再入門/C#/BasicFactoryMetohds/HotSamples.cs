@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Reactive.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace BasicFactoryMetohds
 {
@@ -159,11 +160,12 @@ namespace BasicFactoryMetohds
             //         // do something
             //     },
             //     null);
-            var asyncPattern = Observable.FromAsyncPattern<int, int, int>(
-                asyncProcess.BeginInvoke,
-                asyncProcess.EndInvoke);
+            //var asyncPattern = Observable.FromAsyncPattern<int, int, int>(
+            //    asyncProcess.BeginInvoke,
+            //    asyncProcess.EndInvoke);
 
-            var source = asyncPattern(10, 2);
+            //var source = asyncPattern(10, 2);
+            var source = Observable.FromAsync(() => Task.FromResult(asyncProcess(10, 2)));
 
             // 処理中に購読開始
             Console.WriteLine("subscribe2");

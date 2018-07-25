@@ -97,7 +97,7 @@ namespace BasicFactoryMetohds
             // 1, 2, 3と順番に値を発行して終了するIObservable<int>を生成する
             var source = Observable.Defer<int>(() =>
             {
-                Console.WriteLine("# Defar method called.");
+                Console.WriteLine("# Defer method called.");
                 // ReplaySubject<T>はSubject<T>の亜種でSubscribeされると
                 // 今まで行われた操作を全てリプレイする。
                 var s = new ReplaySubject<int>();

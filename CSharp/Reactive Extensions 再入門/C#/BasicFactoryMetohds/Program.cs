@@ -16,14 +16,14 @@ namespace BasicFactoryMetohds
             //ColdSamples.RepeatSample();
             //ColdSamples.RangeSample();
             //ColdSamples.RepeatExSample();
-            //ColdSamples.GenerateSample();
+            ColdSamples.GenerateSample();
             //ColdSamples.DeferSample();
             //ColdSamples.CreateSample();
             //ColdSamples.ThrowSample();
             //ColdSamples.TimerSample();
             //ColdSamples.IntervalSample();
-            //ColdSamples.GenerateSampleWithTimespan();
-            ColdSamples.UsingSample();
+            ColdSamples.GenerateSampleWithTimespan();
+            //ColdSamples.UsingSample();
 
             //HotSamples.FromEventSample();
             //HotSamples.StartSample();
