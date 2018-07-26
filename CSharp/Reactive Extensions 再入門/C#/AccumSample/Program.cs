@@ -17,7 +17,7 @@ namespace AccumSample
             ToLookupSample();
             MaxAndMinAndAvgSample();
             MaxAndMinComparerSample();
-            MaxByAndMinByAndAverageBySample();
+            MaxByAndMinBySample();
             AggregateMaxSample();
             AggregateInitialValueSample();
             AggregateNoInitialValueSample();
@@ -25,6 +25,7 @@ namespace AccumSample
             ScanInitialValueSample();
             ScanNoInitialValueSample();
             CountSample();
+            SumSample();
             AnySample();
             AllSample();
         }
@@ -232,9 +233,9 @@ namespace AccumSample
             }
         }
 
-        static void MaxByAndMinByAndAverageBySample()
+        static void MaxByAndMinBySample()
         {
-            Console.WriteLine("#MaxByAndMinByAndAverageBySample");
+            Console.WriteLine("#MaxByAndMinBySample");
             var s = new Subject<Tuple<int, int>>();
             // 最大値を求めて表示, 比較はタプルのItem1を使用する
             s.MaxBy(t => t.Item1).Subscribe(max =>
@@ -510,6 +511,29 @@ namespace AccumSample
                 .Subscribe(
                     i => Console.WriteLine("All(i => i <= 1000) OnNext({0})", i),
                     () => Console.WriteLine("All(i => i <= 1000) OnCompleted()"));
+
+            // 値の発行～完了通知
+            Console.WriteLine("OnNext(1)");
+            s.OnNext(1);
+            Console.WriteLine("OnNext(10)");
+            s.OnNext(10);
+            Console.WriteLine("OnNext(100)");
+            s.OnNext(100);
+            Console.WriteLine("OnCompleted()");
+            s.OnCompleted();
+            Console.WriteLine("------------------------");
+        }
+
+        static void SumSample()
+        {
+            Console.WriteLine("#SumSample");
+            var s = new Subject<int>();
+            // 数を合計する
+            s.Sum()
+                // 購読
+                .Subscribe(
+                    i => Console.WriteLine("Sum OnNext({0})", i),
+                    () => Console.WriteLine("Sum OnCompleted()"));
 
             // 値の発行～完了通知
             Console.WriteLine("OnNext(1)");
