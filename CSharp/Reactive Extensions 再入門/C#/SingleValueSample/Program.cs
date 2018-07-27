@@ -24,8 +24,8 @@
             //ElementAtOrDefaultSample();
             //ElementAtOrDefaultNoElementSample();
 
-            //SingleSample();
-            //SinglePredicateSample();
+            SingleSample();
+            SinglePredicateSample();
             SingleOrDefaultSample();
         }
 
@@ -34,16 +34,23 @@
             Console.WriteLine("#FirstSample");
             // Observableを作成前のタイムスタンプを表示
             Console.WriteLine("Timestamp {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-            var firstResult = Observable
+            Observable
                 // 5秒間隔で値を発行する
                 .Interval(TimeSpan.FromSeconds(5))
                 .Select(i => "value is " + i)
                 // 最初の値を取得
-                .First();
-            // Firstの実行が終わった後のタイムスタンプを表示
-            Console.WriteLine("Timestamp {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-            // 取得した値を表示
-            Console.WriteLine("firstResult: {0}", firstResult);
+                .FirstAsync().Subscribe(
+                    firstResult => {
+                        // Firstの実行が終わった後のタイムスタンプを表示
+                        Console.WriteLine("Timestamp {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
+                        // 取得した値を表示
+                        Console.WriteLine("firstResult: {0}", firstResult);
+                    },
+                    // 例外が発生した場合は例外のメッセージを表示する
+                    ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                    // 完了を示すメッセージを表示する
+                    () => Console.WriteLine("OnCompleted"));
+            Console.ReadLine();
             Console.WriteLine("-------------------------------");
         }
 
@@ -53,17 +60,13 @@
             // 1つも要素の無いIObservable
             var noElementsSequence = new Subject<string>();
             noElementsSequence.OnCompleted();
-
-            try
-            {
-                // 要素が無いものに対して最初の要素を要求
-                var firstResult = noElementsSequence.First();
-            }
-            catch (InvalidOperationException e)
-            {
-                // 何もないので例外が発生する
-                Console.WriteLine("Exception: {0}", e.Message);
-            }
+            noElementsSequence.FirstAsync().Subscribe(
+                // 値を表示する（nullの場合はnullと表示する）
+                i => Console.WriteLine("firstResult: {0}", i ?? "null"),
+                // 例外が発生した場合は例外のメッセージを表示する
+                ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                // 完了を示すメッセージを表示する
+                () => Console.WriteLine("OnCompleted"));
             Console.WriteLine("-------------------------------");
         }
 
@@ -72,16 +75,23 @@
             Console.WriteLine("#FirstOrDefaultSample");
             // Observableを作成前のタイムスタンプを表示
             Console.WriteLine("Timestamp {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-            var firstResult = Observable
+            Observable
                 // 5秒間隔で値を発行する
                 .Interval(TimeSpan.FromSeconds(5))
                 .Select(i => "value is " + i)
                 // 最初の値を取得
-                .FirstOrDefault();
-            // Firstの実行が終わった後のタイムスタンプを表示
-            Console.WriteLine("Timestamp {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-            // 取得した値を表示
-            Console.WriteLine("firstResult: {0}", firstResult);
+                .FirstOrDefaultAsync().Subscribe(
+                    firstResult => {
+                        // Firstの実行が終わった後のタイムスタンプを表示
+                        Console.WriteLine("Timestamp {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
+                        // 取得した値を表示
+                        Console.WriteLine("firstResult: {0}", firstResult);
+                    },
+                    // 例外が発生した場合は例外のメッセージを表示する
+                    ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                    // 完了を示すメッセージを表示する
+                    () => Console.WriteLine("OnCompleted"));
+            Console.ReadLine();
             Console.WriteLine("-------------------------------");
         }
 
@@ -93,9 +103,13 @@
             noElementsSequence.OnCompleted();
 
             // 最初の値 or デフォルト値を取得
-            var firstResult = noElementsSequence.FirstOrDefault();
-            // 結果を出力。この場合はnullが表示される。
-            Console.WriteLine("firstResult: {0}", firstResult ?? "null");
+            noElementsSequence.FirstOrDefaultAsync().Subscribe(
+                // 結果を出力。この場合はnullが表示される。
+                i => Console.WriteLine("firstResult: {0}", i ?? "null"),
+                // 例外が発生した場合は例外のメッセージを表示する
+                ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                // 完了を示すメッセージを表示する
+                () => Console.WriteLine("OnCompleted"));
             Console.WriteLine("-------------------------------");
         }
 
@@ -104,15 +118,22 @@
             Console.WriteLine("#LastSample");
             // Observableを作成前のタイムスタンプを表示
             Console.WriteLine("Timestamp {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-            var lastResult = Observable
+            Observable
                 // 1秒間隔で値を5つ発行するIObservable
                 .Generate(0, i => i < 5, i => ++i, i => "value is " + i, i => TimeSpan.FromSeconds(1))
                 // 最後の値を取得
-                .Last();
-            // Lastの実行が終わった後のタイムスタンプを表示
-            Console.WriteLine("Timestamp {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-            // Lastの実行結果を取得
-            Console.WriteLine("lastResult: {0}", lastResult);
+                .LastAsync().Subscribe(
+                    lastResult => {
+                        // Lastの実行が終わった後のタイムスタンプを表示
+                        Console.WriteLine("Timestamp {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
+                        // Lastの実行結果を取得
+                        Console.WriteLine("lastResult: {0}", lastResult);
+                    },
+                    // 例外が発生した場合は例外のメッセージを表示する
+                    ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                    // 完了を示すメッセージを表示する
+                    () => Console.WriteLine("OnCompleted"));
+            Console.ReadLine();
             Console.WriteLine("-------------------------------");
         }
 
@@ -122,17 +143,14 @@
             // 1つも要素の無いIObservable
             var noElementsSequence = new Subject<string>();
             noElementsSequence.OnCompleted();
-
-            try
-            {
-                // 最後の要素の取得
-                var lastResult = noElementsSequence.Last();
-            }
-            catch (InvalidOperationException e)
-            {
-                // 何もないので例外が発生する
-                Console.WriteLine("Exception: {0}", e.Message);
-            }
+            // 最後の要素の取得
+            noElementsSequence.LastAsync().Subscribe(
+                // 値を表示する（nullの場合はnullと表示する）
+                i => Console.WriteLine("lastResult: {0}", i ?? "null"),
+                // 例外が発生した場合は例外のメッセージを表示する
+                ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                // 完了を示すメッセージを表示する
+                () => Console.WriteLine("OnCompleted"));
             Console.WriteLine("-------------------------------");
         }
 
@@ -141,14 +159,22 @@
             Console.WriteLine("#LastOrDefaultSample");
             // Observableを作成前のタイムスタンプを表示
             Console.WriteLine("Timestamp {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-            var lastResult = Observable
+            Observable
                 // 1秒間隔で値を5つ発行するIObservable
                 .Generate(0, i => i < 5, i => ++i, i => "value is " + i, i => TimeSpan.FromSeconds(1))
                 // 最後の値を取得
-                .LastOrDefault();
-            Console.WriteLine("Timestamp {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-            // LastOrDefaultの実行結果を取得
-            Console.WriteLine("lastResult: {0}", lastResult);
+                .LastOrDefaultAsync().Subscribe(
+                    lastResult => {
+                        // LastOrDefaultの実行が終わった後のタイムスタンプを表示
+                        Console.WriteLine("Timestamp {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
+                        // LastOrDefaultの実行結果を取得
+                        Console.WriteLine("lastResult: {0}", lastResult);
+                    },
+                    // 例外が発生した場合は例外のメッセージを表示する
+                    ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                    // 完了を示すメッセージを表示する
+                    () => Console.WriteLine("OnCompleted"));
+            Console.ReadLine();
             Console.WriteLine("-------------------------------");
         }
 
@@ -158,11 +184,14 @@
             // 1つも要素の無いIObservable
             var noElementsSequence = new Subject<string>();
             noElementsSequence.OnCompleted();
-
             // 最後の値 or デフォルト値を取得
-            var lastResult = noElementsSequence.LastOrDefault();
-            // 結果を出力。この場合はnullが表示される。
-            Console.WriteLine("lastResult: {0}", lastResult ?? "null");
+            noElementsSequence.LastOrDefaultAsync().Subscribe(
+                // 結果を出力。この場合はnullが表示される。
+                i => Console.WriteLine("lastResult: {0}", i ?? "null"),
+                // 例外が発生した場合は例外のメッセージを表示する
+                ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                // 完了を示すメッセージを表示する
+                () => Console.WriteLine("OnCompleted"));
             Console.WriteLine("-------------------------------");
         }
 
@@ -296,41 +325,39 @@
             {
                 // 実行開始時間を出力
                 Console.WriteLine("Start {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-                var singleResult = Observable
+                Observable
                     // 1秒後に1つだけ値を発行する
                     .Generate(1, i => i == 1, i => ++i, i => i, _ => TimeSpan.FromSeconds(1))
                     // 発行された値をダンプ
                     .Do(i => Console.WriteLine("Dump {0:yyyy/MM/dd HH:mm:ss.FFF}, Value = {1}", DateTime.Now, i))
                     // 単一の値を取得する
-                    .Single();
-                // 結果の出力
-                Console.WriteLine("singleResult: {0}", singleResult);
-                // 終了時の時間を出力
-                Console.WriteLine("End {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
+                    .SingleAsync().Subscribe(
+                        // Singleの実行結果を取得
+                        singleResult => Console.WriteLine("singleResult: {0}", singleResult),
+                        // 例外が発生した場合は例外のメッセージを表示する
+                        ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                        // 完了を示すメッセージを表示する
+                        () => Console.WriteLine("OnCompleted"));
+                Console.ReadLine();
             }
             Console.WriteLine("-------------------------------");
             {
                 // 実行開始時間を出力
                 Console.WriteLine("Start {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-                try
-                {
-                    var singleResult = Observable
-                        // 1秒間隔で2つの値を出力
-                        .Generate(0, i => i < 2, i => ++i, i => i, i => TimeSpan.FromSeconds(1))
-                        // 発行された値を出力
-                        .Do(i => Console.WriteLine("Dump {0:yyyy/MM/dd HH:mm:ss.FFF}, Value = {1}", DateTime.Now, i))
-                        // 単一の値を取得する
-                        .Single();
-                    // 結果を出力
-                    Console.WriteLine("singleResult: {0}", singleResult);
-                }
-                catch (InvalidOperationException ex)
-                {
-                    // 単一の値を取得しようとしたら2つ以上値が流れてきたので例外になる
-                    Console.WriteLine("{0}: {1}", ex.GetType().Name, ex.Message);
-                }
-                // 終了時の時間を出力
-                Console.WriteLine("End {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
+                Observable
+                    // 1秒間隔で2つの値を出力
+                    .Generate(0, i => i < 2, i => ++i, i => i, i => TimeSpan.FromSeconds(1))
+                    // 発行された値を出力
+                    .Do(i => Console.WriteLine("Dump {0:yyyy/MM/dd HH:mm:ss.FFF}, Value = {1}", DateTime.Now, i))
+                    // 単一の値を取得する
+                    .SingleAsync().Subscribe(
+                        // Singleの実行結果を取得
+                        singleResult => Console.WriteLine("singleResult: {0}", singleResult),
+                        // 単一の値を取得しようとしたら2つ以上値が流れてきたので例外になる
+                        ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                        // 完了を示すメッセージを表示する
+                        () => Console.WriteLine("OnCompleted"));
+                Console.ReadLine();
             }
             Console.WriteLine("-------------------------------");
         }
@@ -341,43 +368,41 @@
             {
                 // 実行開始時間を出力
                 Console.WriteLine("Start {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-                var singleResult = Observable
+                Observable
                     // 1秒間隔で0～4の値を発行する
                     .Generate(
                         0, i => i < 5, i => ++i, i => i, i => TimeSpan.FromSeconds(1))
                     // 発行された値を出力
                     .Do(i => Console.WriteLine("Dump {0:yyyy/MM/dd HH:mm:ss.FFF}, Value = {1}", DateTime.Now, i))
                     // 値が3のものを1つだけ取得したい
-                    .Single(i => i == 3);
-                // 結果を出力
-                Console.WriteLine("singleResult: {0}", singleResult);
-                // 終了時の時間を出力
-                Console.WriteLine("End {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
+                    .SingleAsync(i => i == 3).Subscribe(
+                        // Singleの実行結果を取得
+                        singleResult => Console.WriteLine("singleResult: {0}", singleResult),
+                        // 例外が発生した場合は例外のメッセージを表示する
+                        ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                        // 完了を示すメッセージを表示する
+                        () => Console.WriteLine("OnCompleted"));
+                Console.ReadLine();
             }
             Console.WriteLine("-------------------------------");
             {
                 // 実行開始時間を出力
                 Console.WriteLine("Start {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-                try
-                {
-                    var singleResult = Observable
-                        // 1秒間隔で0～4の値を発行する
-                        .Generate(
-                            0, i => i < 5, i => ++i, i => i, i => TimeSpan.FromSeconds(1))
-                        // 発行された値を出力
-                        .Do(i => Console.WriteLine("Dump {0:yyyy/MM/dd HH:mm:ss.FFF}, Value = {1}", DateTime.Now, i))
-                        // 値が10より大きいものを1つだけ取得したい
-                       .Single(i => i > 10);
-                    // 結果を出力
-                    Console.WriteLine("singleResult: {0}", singleResult);
-                }
-                catch (InvalidOperationException ex)
-                {
-                    // 単一の値を取得しようとしたら1つも値が無かったのでエラー
-                    Console.WriteLine("{0}: {1}", ex.GetType().Name, ex.Message);
-                }
-                // 終了時の時間を出力
-                Console.WriteLine("End {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
+                Observable
+                    // 1秒間隔で0～4の値を発行する
+                    .Generate(
+                        0, i => i < 5, i => ++i, i => i, i => TimeSpan.FromSeconds(1))
+                    // 発行された値を出力
+                    .Do(i => Console.WriteLine("Dump {0:yyyy/MM/dd HH:mm:ss.FFF}, Value = {1}", DateTime.Now, i))
+                    // 値が10より大きいものを1つだけ取得したい
+                    .SingleAsync(i => i > 10).Subscribe(
+                        // Singleの実行結果を取得
+                        singleResult => Console.WriteLine("singleResult: {0}", singleResult),
+                        // 単一の値を取得しようとしたら1つも値が無かったのでエラー
+                        ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                        // 完了を示すメッセージを表示する
+                        () => Console.WriteLine("OnCompleted"));
+                Console.ReadLine();
             }
             Console.WriteLine("-------------------------------");
         }
@@ -388,7 +413,7 @@
             {
                 // 実行開始時間を出力
                 Console.WriteLine("Start {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-                var singleResult = Observable
+                Observable
                     // 1秒間隔で0～4の値を発行する
                     .Generate(
                         0, i => i < 5, i => ++i, i => i, i => TimeSpan.FromSeconds(1))
@@ -397,11 +422,14 @@
                     // 発行された値を出力
                     .Do(i => Console.WriteLine("Dump {0:yyyy/MM/dd HH:mm:ss.FFF}, Value = {1}", DateTime.Now, i))
                     // 値が”3"のものを1つだけ取得したい
-                    .SingleOrDefault(i => i == "3");
-                // 結果を出力
-                Console.WriteLine("singleResult: {0}", singleResult ?? "null");
-                // 終了時の時間を出力
-                Console.WriteLine("End {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
+                    .SingleOrDefaultAsync(i => i == "3").Subscribe(
+                        // Singleの実行結果を取得
+                        singleResult => Console.WriteLine("singleResult: {0}", singleResult ?? "null"),
+                        // 例外が発生した場合は例外のメッセージを表示する
+                        ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                        // 完了を示すメッセージを表示する
+                        () => Console.WriteLine("OnCompleted"));
+                Console.ReadLine();
             }
             Console.WriteLine("-------------------------------");
             {
@@ -410,36 +438,35 @@
                 s.OnCompleted();
 
                 // 1つも値が取得できない場合はnullが返る
-                var singleResult = s.SingleOrDefault();
-                // 結果を出力
-                Console.WriteLine("singleResult: {0}", singleResult ?? "null");
+                s.SingleOrDefaultAsync().Subscribe(
+                    // Singleの実行結果を取得
+                    singleResult => Console.WriteLine("singleResult: {0}", singleResult ?? "null"),
+                    // 単一の値を取得しようとしたら1つも値が無かったのでエラー
+                    ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                    // 完了を示すメッセージを表示する
+                    () => Console.WriteLine("OnCompleted"));
             }
             Console.WriteLine("-------------------------------");
             {
                 // 実行開始時間を出力
                 Console.WriteLine("Start {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
-                try
-                {
-                    var singleResult = Observable
-                        // 1秒間隔で0～4の値を発行する
-                        .Generate(
-                            0, i => i < 5, i => ++i, i => i, i => TimeSpan.FromSeconds(1))
-                        // デフォルト値をnullにしたいのでstring型に変換
-                        .Select(i => i.ToString())
-                        // 発行された値を出力
-                        .Do(i => Console.WriteLine("Dump {0:yyyy/MM/dd HH:mm:ss.FFF}, Value = {1}", DateTime.Now, i))
-                        // 値を1つだけ取得したい
-                        .SingleOrDefault();
-                    // 結果を出力
-                    Console.WriteLine("singleResult: {0}", singleResult ?? "null");
-                }
-                catch (InvalidOperationException ex)
-                {
-                    // SingleOrDefaultメソッドを使っても複数の値が取得できてしまうケースでは例外になる
-                    Console.WriteLine("{0}: {1}", ex.GetType().Name, ex.Message);
-                }
-                // 終了時の時間を出力
-                Console.WriteLine("End {0:yyyy/MM/dd HH:mm:ss.FFF}", DateTime.Now);
+                Observable
+                    // 1秒間隔で0～4の値を発行する
+                    .Generate(
+                        0, i => i < 5, i => ++i, i => i, i => TimeSpan.FromSeconds(1))
+                    // デフォルト値をnullにしたいのでstring型に変換
+                    .Select(i => i.ToString())
+                    // 発行された値を出力
+                    .Do(i => Console.WriteLine("Dump {0:yyyy/MM/dd HH:mm:ss.FFF}, Value = {1}", DateTime.Now, i))
+                    // 値を1つだけ取得したい
+                    .SingleOrDefaultAsync().Subscribe(
+                        // Singleの実行結果を取得
+                        singleResult => Console.WriteLine("singleResult: {0}", singleResult ?? "null"),
+                        // SingleOrDefaultメソッドを使っても複数の値が取得できてしまうケースでは例外になる
+                        ex => Console.WriteLine("Exception: {0}, {1}", ex.GetType().Name, ex.Message),
+                        // 完了を示すメッセージを表示する
+                        () => Console.WriteLine("OnCompleted"));
+                Console.ReadLine();
             }
             Console.WriteLine("-------------------------------");
         }

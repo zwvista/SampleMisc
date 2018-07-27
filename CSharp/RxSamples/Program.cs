@@ -25,9 +25,9 @@ namespace RxSamples
                 case "4": TestInspection(); break;
                 case "5": TestLeaving(); break;
                 case "6": TestReduction(); break;
-                case "7": TestTimeShifted(); break;
-                case "8": TestTransformation(); break;
-                case "9": TestScheduling(); break;
+                case "7": TestScheduling(); break;
+                case "8": TestTimeShifted(); break;
+                case "9": TestTransformation(); break;
                 default: TestCoincidence(); break;
             }
         }

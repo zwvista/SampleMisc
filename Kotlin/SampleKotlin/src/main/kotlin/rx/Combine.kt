@@ -12,6 +12,27 @@ import io.reactivex.rxkotlin.Flowables
 
 fun main(args: Array<String>) {
     run {
+        val colors = Flowables.zip(Flowable.just("red", "green", "blue"),
+            Flowable.interval(3, TimeUnit.SECONDS))
+        val numbers = Flowable.interval(1, TimeUnit.SECONDS)
+            .take(4)
+        Flowables.combineLatest(colors, numbers)
+            .subscribe({ println("onNext: " + it) }, { throwable -> println("onError") }, { println("onComplete") })
+        readLine()
+    }
+    run {
+        val colors = Flowables.zip(Flowable.just("red", "green", "blue"),
+            Flowable.interval(2, TimeUnit.SECONDS))
+        val numbers = Flowable.interval(1, TimeUnit.SECONDS)
+            .take(5)
+        Flowable.merge(colors, numbers)
+            .subscribe({ println("onNext: " + it) }, { throwable -> println("onError") }, { println("onComplete") })
+        readLine()
+    }
+    Observable.range(0, 3)
+        .startWith(listOf(-3, -2, -1))
+        .subscribe({ println("onNext: " + it) }, { throwable -> println("onError") }, { println("onComplete") })
+    run {
         val isUserBlockedStream = Single.fromFuture(CompletableFuture.supplyAsync {
             Thread.sleep(200)
             false
@@ -28,24 +49,6 @@ fun main(args: Array<String>) {
         val colors = Flowable.just("red", "green", "blue")
         val timer = Flowable.interval(2, TimeUnit.SECONDS)
         Flowables.zip(colors, timer)
-            .subscribe({ println("onNext: " + it) }, { throwable -> println("onError") }, { println("onComplete") })
-        readLine()
-    }
-    run {
-        val colors = Flowables.zip(Flowable.just("red", "green", "blue"),
-            Flowable.interval(2, TimeUnit.SECONDS))
-        val numbers = Flowable.interval(1, TimeUnit.SECONDS)
-            .take(5)
-        Flowable.merge(colors, numbers)
-            .subscribe({ println("onNext: " + it) }, { throwable -> println("onError") }, { println("onComplete") })
-        readLine()
-    }
-    run {
-        val colors = Flowables.zip(Flowable.just("red", "green", "blue"),
-            Flowable.interval(3, TimeUnit.SECONDS))
-        val numbers = Flowable.interval(1, TimeUnit.SECONDS)
-            .take(4)
-        Flowables.combineLatest(colors, numbers)
             .subscribe({ println("onNext: " + it) }, { throwable -> println("onError") }, { println("onComplete") })
         readLine()
     }
