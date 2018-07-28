@@ -8,6 +8,21 @@ namespace RxSamples
 {
     public static class Reduction
     {
+        public static void Test()
+        {
+            Where();
+            Distinct();
+            DistinctUntilChanged();
+            IgnoreElements();
+            SkipAndTake();
+            SkipWhile();
+            TakeWhile();
+            SkipLast();
+            TakeLast();
+            SkipUntil();
+            TakeUntil();
+        }
+
         public static void Where() {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var oddNumbers = Observable.Range(0, 10)

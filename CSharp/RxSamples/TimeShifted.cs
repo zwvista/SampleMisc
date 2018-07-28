@@ -6,6 +6,18 @@ namespace RxSamples
 {
     public static class TimeShifted
     {
+        public static void Test()
+        {
+            Buffer1();
+            Buffer2();
+            Buffer3();
+            Buffer4();
+            Delay();
+            Sample();
+            Timeout1();
+            Timeout2();
+        }
+
         public static void Buffer1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);

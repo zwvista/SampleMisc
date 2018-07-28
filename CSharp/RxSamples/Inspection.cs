@@ -7,6 +7,18 @@ namespace RxSamples
 {
     public static class Inspection
     {
+        public static void Test()
+        {
+            Any1();
+            Any2();
+            All();
+            Contains();
+            DefaultIfEmpty1();
+            DefaultIfEmpty2();
+            ElementAt();
+            SequenceEqual();
+        }
+
         public static void Any1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);

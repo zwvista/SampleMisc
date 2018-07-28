@@ -9,6 +9,12 @@ namespace RxSamples
 {
     public class Scheduling
     {
+        public static void Test()
+        {
+            Subscribe();
+            SubscribeOn();
+        }
+
         public static void Subscribe()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);

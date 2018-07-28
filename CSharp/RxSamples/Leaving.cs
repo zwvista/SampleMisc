@@ -6,6 +6,12 @@ namespace RxSamples
 {
     public static class Leaving
     {
+        public static void Test()
+        {
+            ToEnumerable();
+            ToArray();
+        }
+
         public static void ToEnumerable()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
