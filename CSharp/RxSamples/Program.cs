@@ -6,64 +6,34 @@ namespace RxSamples
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("0: Aggregation");
-            Console.WriteLine("1: Coincidence");
-            Console.WriteLine("2: Combining");
-            Console.WriteLine("3: Creation");
-            Console.WriteLine("4: Inspection");
-            Console.WriteLine("5: Leaving");
-            Console.WriteLine("6: Reduction");
-            Console.WriteLine("7: Scheduling");
-            Console.WriteLine("8: TimeShifted");
-            Console.WriteLine("9: Transformation");
+            Console.WriteLine("a: Aggregation");
+            Console.WriteLine("c1: Coincidence");
+            Console.WriteLine("c2: Combining");
+            Console.WriteLine("c3: Creation");
+            Console.WriteLine("e: Error Handling");
+            Console.WriteLine("i: Inspection");
+            Console.WriteLine("l: Leaving");
+            Console.WriteLine("r: Reduction");
+            Console.WriteLine("s1: Scheduling");
+            Console.WriteLine("s2: Side Effects");
+            Console.WriteLine("t1: TimeShifted");
+            Console.WriteLine("t2: Transformation");
             switch (Console.ReadLine())
             {
-                case "0": TestAggregation(); break;
-                case "1": TestCoincidence(); break;
-                case "2": TestCombining(); break;
-                case "3": TestCreation(); break;
-                case "4": TestInspection(); break;
-                case "5": TestLeaving(); break;
-                case "6": TestReduction(); break;
-                case "7": TestTimeShifted(); break;
-                case "8": TestTransformation(); break;
-                case "9": TestScheduling(); break;
-                default: TestCoincidence(); break;
+                case "a": Aggregation.Test(); break;
+                case "c1": Coincidence.Test(); break;
+                case "c2": Combining.Test(); break;
+                case "c3": Creation.Test(); break;
+                case "e": ErrorHandling.Test(); break;
+                case "i": Inspection.Test(); break;
+                case "l": Leaving.Test(); break;
+                case "r": Reduction.Test(); break;
+                case "s1": Scheduling.Test(); break;
+                case "s2": SideEffects.Test(); break;
+                case "t1": TimeShifted.Test(); break;
+                case "t2": Transformation.Test(); break;
+                default: SideEffects.Test(); break;
             }
-        }
-
-        public static void TestCreation()
-        {
-            Creation.ReturnEmptyNeverThrow();
-            Creation.Create();
-            Creation.Range();
-            Creation.Interval();
-            Creation.Timer();
-        }
-
-        public static void TestReduction() {
-            Reduction.Where();
-            Reduction.Distinct();
-            Reduction.DistinctUntilChanged();
-            Reduction.IgnoreElements();
-            Reduction.SkipAndTake();
-            Reduction.SkipWhile();
-            Reduction.TakeWhile();
-            Reduction.SkipLast();
-            Reduction.TakeLast();
-            Reduction.SkipUntil();
-            Reduction.TakeUntil();
-        }
-
-        public static void TestInspection() {
-            Inspection.Any1();
-            Inspection.Any2();
-            Inspection.All();
-            Inspection.Contains();
-            Inspection.DefaultIfEmpty1();
-            Inspection.DefaultIfEmpty2();
-            Inspection.ElementAt();
-            Inspection.SequenceEqual();
         }
 
         public static void TestAggregation()
@@ -75,15 +45,10 @@ namespace RxSamples
             Aggregation.GroupBy2();
         }
 
-        public static void TestTransformation()
+        public static void TestCoincidence()
         {
-            Transformation.Select();
-            Transformation.Cast1();
-            Transformation.Cast2();
-            Transformation.OfType();
-            Transformation.Timestamp();
-            Transformation.TimeInterval();
-            Transformation.SelectMany();
+            Coincidence.Window1();
+            Coincidence.Window2();
         }
 
         public static void TestCombining()
@@ -103,6 +68,64 @@ namespace RxSamples
             Combining.AndThenWhen();
         }
 
+        public static void TestCreation()
+        {
+            Creation.ReturnEmptyNeverThrow();
+            Creation.Create();
+            Creation.Range();
+            Creation.Interval();
+            Creation.Timer();
+        }
+
+        public static void TestErrorHandling()
+        {
+            ErrorHandling.Catch1();
+            ErrorHandling.Catch2();
+            ErrorHandling.Catch3();
+            ErrorHandling.Finally1();
+            ErrorHandling.Finally2();
+            // ErrorHandling.Finally3();
+            ErrorHandling.Using();
+        }
+
+        public static void TestInspection()
+        {
+            Inspection.Any1();
+            Inspection.Any2();
+            Inspection.All();
+            Inspection.Contains();
+            Inspection.DefaultIfEmpty1();
+            Inspection.DefaultIfEmpty2();
+            Inspection.ElementAt();
+            Inspection.SequenceEqual();
+        }
+
+        public static void TestLeaving()
+        {
+            Leaving.ToEnumerable();
+            Leaving.ToArray();
+        }
+
+        public static void TestReduction() {
+            Reduction.Where();
+            Reduction.Distinct();
+            Reduction.DistinctUntilChanged();
+            Reduction.IgnoreElements();
+            Reduction.SkipAndTake();
+            Reduction.SkipWhile();
+            Reduction.TakeWhile();
+            Reduction.SkipLast();
+            Reduction.TakeLast();
+            Reduction.SkipUntil();
+            Reduction.TakeUntil();
+        }
+
+        public static void TestScheduling()
+        {
+            Scheduling.Subscribe();
+            Scheduling.SubscribeOn();
+        }
+
         public static void TestTimeShifted()
         {
             TimeShifted.Buffer1();
@@ -115,22 +138,15 @@ namespace RxSamples
             TimeShifted.Timeout2();
         }
 
-        public static void TestLeaving()
+        public static void TestTransformation()
         {
-            Leaving.ToEnumerable();
-            Leaving.ToArray();
-        }
-
-        public static void TestScheduling()
-        {
-            Scheduling.Subscribe();
-            Scheduling.SubscribeOn();
-        }
-
-        public static void TestCoincidence()
-        {
-            Coincidence.Window1();
-            Coincidence.Window2();
+            Transformation.Select();
+            Transformation.Cast1();
+            Transformation.Cast2();
+            Transformation.OfType();
+            Transformation.Timestamp();
+            Transformation.TimeInterval();
+            Transformation.SelectMany();
         }
     }
 }
