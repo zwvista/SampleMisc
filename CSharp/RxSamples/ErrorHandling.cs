@@ -7,6 +7,17 @@ namespace RxSamples
 {
     public static class ErrorHandling
     {
+        public static void Test()
+        {
+            Catch1();
+            Catch2();
+            Catch3();
+            Finally1();
+            Finally2();
+            // Finally3();
+            Using();
+        }
+
         /*
             S1--1--2--3--X
             S2            -|

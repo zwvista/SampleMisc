@@ -7,6 +7,12 @@ namespace RxSamples
 {
     public static class Coincidence
     {
+        public static void Test()
+        {
+            Window1();
+            Window2();
+        }
+
         /*
             source |-0-1-2-3-4-5-6-7-8-9|
             window0|-0-1-|

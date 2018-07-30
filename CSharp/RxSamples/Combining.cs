@@ -9,6 +9,23 @@ namespace RxSamples
 {
     public static class Combining
     {
+        public static void Test()
+        {
+            Concat1();
+            Concat2();
+            Repeat();
+            StartWith();
+            Amb1();
+            Amb2();
+            Amb3();
+            Merge1();
+            Merge2();
+            Zip1();
+            Zip2();
+            Zip3();
+            AndThenWhen();
+        }
+
         /*
             s1 --0--1--2-|
             s2           -5--6--7--8--|

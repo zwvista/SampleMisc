@@ -7,6 +7,21 @@ namespace RxSamples
 {
     public static class Transformation
     {
+
+        public static void Test()
+        {
+            Select();
+            Cast1();
+            Cast2();
+            OfType();
+            Timestamp();
+            TimeInterval();
+            SelectMany();
+            Materialize1();
+            Materialize2();
+            Dematerialize();
+        }
+
         public static void Select()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
@@ -78,6 +93,35 @@ namespace RxSamples
             Observable.Range(1, 3)
             .SelectMany(i => Observable.Range(1, i))
             .Dump("SelectMany");
+        }
+
+        public static void Materialize1()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Observable.Range(1, 3)
+            .Materialize()
+            .Dump("Materialize");
+        }
+
+        public static void Materialize2()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var source = new Subject<int>();
+            source.Materialize()
+            .Dump("Materialize");
+            source.OnNext(1);
+            source.OnNext(2);
+            source.OnNext(3);
+            source.OnError(new Exception("Fail?"));
+        }
+
+        public static void Dematerialize()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Observable.Range(1, 3)
+            .Materialize()
+            .Dematerialize()
+            .Dump("Dematerialize");
         }
     }
 }

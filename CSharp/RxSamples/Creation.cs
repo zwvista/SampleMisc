@@ -7,6 +7,15 @@ namespace RxSamples
 {
     public static class Creation
     {
+        public static void Test()
+        {
+            ReturnEmptyNeverThrow();
+            Create();
+            Range();
+            Interval();
+            Timer();
+        }
+
         public static void ReturnEmptyNeverThrow()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);

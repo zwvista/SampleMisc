@@ -7,6 +7,15 @@ namespace RxSamples
 {
     public class Aggregation
     {
+        public static void Test()
+        {
+            Count();
+            MinMaxSumAvg();
+            Scan();
+            GroupBy1();
+            GroupBy2();
+        }
+
         public static void Count()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
