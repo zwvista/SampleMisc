@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+
 namespace RxSamples
 {
     public static class SampleExtentions
@@ -18,6 +20,21 @@ namespace RxSamples
         public override string ToString()
         {
             return string.Format("{0},{1}", X, Y);
+        }
+    }
+    public class TimeIt : IDisposable
+    {
+        private readonly string _name;
+        private readonly Stopwatch _watch;
+        public TimeIt(string name)
+        {
+            _name = name;
+            _watch = Stopwatch.StartNew();
+        }
+        public void Dispose()
+        {
+            _watch.Stop();
+            Console.WriteLine("{0} took {1}", _name, _watch.Elapsed);
         }
     }
 }

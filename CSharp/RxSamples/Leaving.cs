@@ -9,12 +9,22 @@ namespace RxSamples
     {
         public static void Test()
         {
+            ForEachAsync();
             ToEnumerable();
             ToArray();
             Wait1();
             Wait2();
             ToEvent();
             ToEventPattern();
+        }
+
+        public static void ForEachAsync()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var source = Observable.Interval(TimeSpan.FromSeconds(1))
+                .Take(5);
+            source.ForEachAsync(i => Console.WriteLine("received {0} @ {1}", i, DateTime.Now)).Wait();
+            Console.WriteLine("completed @ {0}", DateTime.Now);
         }
 
         public static void ToEnumerable()

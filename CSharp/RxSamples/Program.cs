@@ -11,6 +11,7 @@ namespace RxSamples
             Console.WriteLine("c2: Combining");
             Console.WriteLine("c3: Creation");
             Console.WriteLine("e: Error Handling");
+            Console.WriteLine("h: Hot & Cold");
             Console.WriteLine("i: Inspection");
             Console.WriteLine("l: Leaving");
             Console.WriteLine("r: Reduction");
@@ -25,6 +26,7 @@ namespace RxSamples
                 case "c2": Combining.Test(); break;
                 case "c3": Creating.Test(); break;
                 case "e": ErrorHandling.Test(); break;
+                case "h": HotAndCold.Test(); break;
                 case "i": Inspection.Test(); break;
                 case "l": Leaving.Test(); break;
                 case "r": Reducing.Test(); break;
@@ -32,7 +34,7 @@ namespace RxSamples
                 case "s2": SideEffects.Test(); break;
                 case "t1": TimeShifted.Test(); break;
                 case "t2": Transformation.Test(); break;
-                default: SideEffects.Test(); break;
+                default: HotAndCold.Test(); break;
             }
         }
     }

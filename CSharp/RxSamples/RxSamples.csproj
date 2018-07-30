@@ -38,6 +38,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HotAndCold.cs" />
     <Compile Include="SideEffects.cs" />
     <Compile Include="Coincidence.cs" />
     <Compile Include="ErrorHandling.cs" />
@@ -47,7 +48,6 @@
     <Compile Include="Inspection.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Aggregation.cs" />
-    <Compile Include="TimeIt.cs" />
     <Compile Include="Transformation.cs" />
     <Compile Include="Creating.cs" />
     <Compile Include="Combining.cs" />

@@ -2,6 +2,7 @@
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using System.Reflection;
 
 namespace RxSamples
 {
@@ -22,6 +23,7 @@ namespace RxSamples
         */
         public static void Window1()
         {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var windowIdx = 0;
             var source = Observable.Interval(TimeSpan.FromSeconds(1)).Take(10);
             source.Window(3)
@@ -41,6 +43,7 @@ namespace RxSamples
 
         public static void Window2()
         {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var windowIdx = 0;
             var source = Observable.Interval(TimeSpan.FromSeconds(1)).Take(10);
             var closer = new Subject<Unit>();
