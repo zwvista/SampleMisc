@@ -83,7 +83,7 @@ namespace RxSamples
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             GetSequences().Concat().Dump("Concat");
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         public static void Repeat()
@@ -171,7 +171,7 @@ namespace RxSamples
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             GetSequences().Amb().Dump("Amb");
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         /*
@@ -193,7 +193,7 @@ namespace RxSamples
             .Subscribe(
             Console.WriteLine,
             () => Console.WriteLine("Completed"));
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         /*
@@ -206,7 +206,7 @@ namespace RxSamples
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             GetSequences().Merge().Dump("Merge");
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         /*
@@ -228,7 +228,7 @@ namespace RxSamples
             //Zip values together
             nums.Zip(chars, (lhs, rhs) => new { Left = lhs, Right = rhs })
             .Dump("Zip");
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         /*
@@ -272,7 +272,7 @@ namespace RxSamples
             zippedSequence.Subscribe(
             Console.WriteLine,
             () => Console.WriteLine("Completed"));
-            Console.ReadLine();
+            Console.ReadKey();
         }
         public static void AndThenWhen()
         {
@@ -293,7 +293,7 @@ namespace RxSamples
             zippedSequence.Subscribe(
             Console.WriteLine,
             () => Console.WriteLine("Completed"));
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }

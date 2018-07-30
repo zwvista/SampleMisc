@@ -29,7 +29,7 @@ namespace RxSamples
             .Subscribe(
             buffer => Console.WriteLine("Buffer of {1} @ {0}", DateTime.Now, buffer.Count),
             () => Console.WriteLine("Completed"));
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         public static void Buffer2()
@@ -52,7 +52,7 @@ namespace RxSamples
                 foreach (var value in buffer)
                     Console.WriteLine(value);
             }, () => Console.WriteLine("Completed"));
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         public static void Buffer3()
@@ -75,7 +75,7 @@ namespace RxSamples
                 foreach (var value in buffer)
                     Console.WriteLine(value);
             }, () => Console.WriteLine("Completed"));
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         public static void Buffer4()
@@ -98,7 +98,7 @@ namespace RxSamples
                 foreach (var value in buffer)
                     Console.WriteLine(value);
             }, () => Console.WriteLine("Completed"));
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         public static void Delay()
@@ -114,7 +114,7 @@ namespace RxSamples
             delay.Subscribe(
             value => Console.WriteLine("delay : {0}", value),
             () => Console.WriteLine("delay Completed"));
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         /*
@@ -148,7 +148,7 @@ namespace RxSamples
             var interval = Observable.Interval(TimeSpan.FromMilliseconds(150));
             using (interval.Sample(TimeSpan.FromSeconds(1))
                    .Subscribe(Console.WriteLine))
-                Console.ReadLine();
+                Console.ReadKey();
         }
 
         public static void Timeout1()
@@ -161,7 +161,7 @@ namespace RxSamples
             Console.WriteLine,
             Console.WriteLine,
             () => Console.WriteLine("Completed"));
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         public static void Timeout2()
@@ -174,7 +174,7 @@ namespace RxSamples
             Console.WriteLine,
             Console.WriteLine,
             () => Console.WriteLine("Completed"));
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }

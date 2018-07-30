@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace RxSamples
 {
-    public static class Reduction
+    public static class Reducing
     {
         public static void Test()
         {

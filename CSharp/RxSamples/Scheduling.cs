@@ -67,7 +67,7 @@ namespace RxSamples
             () => Console.WriteLine("OnCompleted on threadId:{0}",
             Thread.CurrentThread.ManagedThreadId));
             Console.WriteLine("Subscribed on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }

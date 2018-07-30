@@ -36,7 +36,7 @@ namespace RxSamples
                 () => Console.WriteLine("{0} Completed", windowName));
             },
             () => Console.WriteLine("Completed"));
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         public static void Window2()

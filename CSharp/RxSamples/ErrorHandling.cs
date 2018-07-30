@@ -100,7 +100,7 @@ namespace RxSamples
             () => new TimeIt("Subscription Timer"),
             timeIt => source);
             result.Take(5).Dump("Using");
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }

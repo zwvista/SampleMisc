@@ -78,7 +78,7 @@ namespace RxSamples
             var source = Observable.Interval(TimeSpan.FromSeconds(1)).Take(5);
             var result = source.ToEvent();
             result.OnNext += val => Console.WriteLine(val);
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         public class MyEventArgs : EventArgs 
@@ -101,7 +101,7 @@ namespace RxSamples
             .Select(i => new EventPattern<MyEventArgs>(null, new MyEventArgs(i)));
             var result = source.ToEventPattern();
             result.OnNext += (e, val) => Console.WriteLine(val.Value);
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
     }

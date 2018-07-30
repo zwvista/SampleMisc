@@ -74,7 +74,7 @@ namespace RxSamples
             .Take(3)
             .Timestamp()
             .Dump("TimeStamp");
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         public static void TimeInterval()
@@ -84,7 +84,7 @@ namespace RxSamples
             .Take(3)
             .TimeInterval()
             .Dump("TimeInterval");
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         public static void SelectMany()

@@ -63,7 +63,7 @@ namespace RxSamples
             minValue =>
             Console.WriteLine("{0} min value = {1}", grp.Key, minValue)),
             () => Console.WriteLine("Completed"));
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
         public static void GroupBy2()
@@ -76,7 +76,7 @@ namespace RxSamples
             grp.Max()
             .Select(value => new { grp.Key, value }))
             .Dump("group");
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }

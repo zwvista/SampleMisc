@@ -23,11 +23,11 @@ namespace RxSamples
                 case "a": Aggregation.Test(); break;
                 case "c1": Coincidence.Test(); break;
                 case "c2": Combining.Test(); break;
-                case "c3": Creation.Test(); break;
+                case "c3": Creating.Test(); break;
                 case "e": ErrorHandling.Test(); break;
                 case "i": Inspection.Test(); break;
                 case "l": Leaving.Test(); break;
-                case "r": Reduction.Test(); break;
+                case "r": Reducing.Test(); break;
                 case "s1": Scheduling.Test(); break;
                 case "s2": SideEffects.Test(); break;
                 case "t1": TimeShifted.Test(); break;

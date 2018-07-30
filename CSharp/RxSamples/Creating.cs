@@ -5,7 +5,7 @@ using System.Timers;
 
 namespace RxSamples
 {
-    public static class Creation
+    public static class Creating
     {
         public static void Test()
         {
@@ -47,7 +47,7 @@ namespace RxSamples
                 return timer;
             });
             using (ob.Subscribe(Console.WriteLine))
-                Console.ReadLine();
+                Console.ReadKey();
         }
 
         public static void Range()
@@ -64,7 +64,7 @@ namespace RxSamples
             using (interval.Subscribe(
                 Console.WriteLine,
                 () => Console.WriteLine("completed")))
-                Console.ReadLine();
+                Console.ReadKey();
         }
 
         public static void Timer()
@@ -74,7 +74,7 @@ namespace RxSamples
             timer.Subscribe(
                 Console.WriteLine,
                 () => Console.WriteLine("completed"));
-            Console.ReadLine();
+            Console.ReadKey();
         }
 
     }
