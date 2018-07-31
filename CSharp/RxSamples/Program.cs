@@ -34,7 +34,7 @@ namespace RxSamples
                 case "s2": SideEffects.Test(); break;
                 case "t1": TimeShifted.Test(); break;
                 case "t2": Transformation.Test(); break;
-                default: HotAndCold.Test(); break;
+                default: Scheduling.Test(); break;
             }
         }
     }

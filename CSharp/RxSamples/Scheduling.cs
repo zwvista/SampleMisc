@@ -13,6 +13,8 @@ namespace RxSamples
         {
             Subscribe();
             SubscribeOn();
+            ObserveOn();
+            SubscribeOnObserveOn();
         }
 
         public static void Subscribe()
@@ -32,7 +34,6 @@ namespace RxSamples
                 return Disposable.Empty;
             });
             source
-            //.SubscribeOn(Scheduler.ThreadPool)
             .Subscribe(
             o => Console.WriteLine("Received {1} on threadId:{0}",
             Thread.CurrentThread.ManagedThreadId,
@@ -60,6 +61,63 @@ namespace RxSamples
             });
             source
             .SubscribeOn(Scheduler.Default)
+            .Subscribe(
+            o => Console.WriteLine("Received {1} on threadId:{0}",
+            Thread.CurrentThread.ManagedThreadId,
+            o),
+            () => Console.WriteLine("OnCompleted on threadId:{0}",
+            Thread.CurrentThread.ManagedThreadId));
+            Console.WriteLine("Subscribed on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
+            Console.ReadKey();
+        }
+
+        public static void ObserveOn()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine("Starting on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
+            var source = Observable.Create<int>(
+            o =>
+            {
+                Console.WriteLine("Invoked on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
+                o.OnNext(1);
+                o.OnNext(2);
+                o.OnNext(3);
+                o.OnCompleted();
+                Console.WriteLine("Finished on threadId:{0}",
+                Thread.CurrentThread.ManagedThreadId);
+                return Disposable.Empty;
+            });
+            source
+            .ObserveOn(Scheduler.Default)
+            .Subscribe(
+            o => Console.WriteLine("Received {1} on threadId:{0}",
+            Thread.CurrentThread.ManagedThreadId,
+            o),
+            () => Console.WriteLine("OnCompleted on threadId:{0}",
+            Thread.CurrentThread.ManagedThreadId));
+            Console.WriteLine("Subscribed on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
+            Console.ReadKey();
+        }
+
+        public static void SubscribeOnObserveOn()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine("Starting on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
+            var source = Observable.Create<int>(
+            o =>
+            {
+                Console.WriteLine("Invoked on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
+                o.OnNext(1);
+                o.OnNext(2);
+                o.OnNext(3);
+                o.OnCompleted();
+                Console.WriteLine("Finished on threadId:{0}",
+                Thread.CurrentThread.ManagedThreadId);
+                return Disposable.Empty;
+            });
+            source
+            .SubscribeOn(Scheduler.Default)
+            .ObserveOn(Scheduler.Default)
             .Subscribe(
             o => Console.WriteLine("Received {1} on threadId:{0}",
             Thread.CurrentThread.ManagedThreadId,
