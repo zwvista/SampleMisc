@@ -30,7 +30,13 @@ namespace RxSamples
             ScheduleCancel1();
             ScheduleCancel2();
 
-            Recursion();
+            // Recursion();
+
+            CurrentThreadExample();
+            ImmediateExample();
+            NewThreadExample();
+            ThreadPoolExample();
+            TaskPoolExample();
         }
 
         private static void Subscribe()
@@ -142,7 +148,7 @@ namespace RxSamples
         private static void ScheduleState2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
-            var scheduler = ImmediateScheduler.Instance;
+            var scheduler = Scheduler.Immediate;
             var myName = "Lee";
             scheduler.Schedule(
             () => Console.WriteLine("myName = {0}", myName));
@@ -168,7 +174,7 @@ namespace RxSamples
         private static void ScheduleState4()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
-            var scheduler = ImmediateScheduler.Instance;
+            var scheduler = Scheduler.Immediate;
             var myName = "Lee";
             scheduler.Schedule(myName,
             (_, state) =>
@@ -198,7 +204,7 @@ namespace RxSamples
         private static void ScheduleState6()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
-            var scheduler = ImmediateScheduler.Instance;
+            var scheduler = Scheduler.Immediate;
             var list = new List<int>();
             scheduler.Schedule(list,
             (innerScheduler, state) =>
@@ -213,7 +219,7 @@ namespace RxSamples
         private static void ScheduleTime()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
-            var scheduler = ImmediateScheduler.Instance;
+            var scheduler = Scheduler.Immediate;
             var delay = TimeSpan.FromSeconds(1);
             Console.WriteLine("Before schedule at {0:o}", DateTime.Now);
             scheduler.Schedule(delay,
@@ -271,6 +277,7 @@ namespace RxSamples
             Console.WriteLine("Cancelling...");
             token.Dispose();
             Console.WriteLine("Cancelled");
+            Console.ReadLine();
         }
 
         private static void Recursion()
@@ -289,6 +296,105 @@ namespace RxSamples
             Console.WriteLine("Cancelling");
             token.Dispose();
             Console.WriteLine("Cancelled");
+        }
+
+        private static void ScheduleTasks(IScheduler scheduler)
+        {
+            Action leafAction = () => Console.WriteLine("----leafAction.");
+            Action innerAction = () =>
+            {
+                Console.WriteLine("--innerAction start.");
+                scheduler.Schedule(leafAction);
+                Console.WriteLine("--innerAction end.");
+            };
+            Action outerAction = () =>
+            {
+                Console.WriteLine("outer start.");
+                scheduler.Schedule(innerAction);
+                Console.WriteLine("outer end.");
+            };
+            scheduler.Schedule(outerAction);
+        }
+        private static void CurrentThreadExample()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            ScheduleTasks(Scheduler.CurrentThread);
+            /*Output: 
+            outer start. 
+            outer end. 
+            --innerAction start. 
+            --innerAction end. 
+            ----leafAction. 
+            */
+        }
+        private static void ImmediateExample()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            ScheduleTasks(Scheduler.Immediate);
+            /*Output: 
+            outer start. 
+            --innerAction start. 
+            ----leafAction. 
+            --innerAction end. 
+            outer end. 
+            */
+        }
+
+        private static IDisposable OuterAction(IScheduler scheduler, string state)
+        {
+            Console.WriteLine("{0} start. ThreadId:{1}",
+            state,
+            Thread.CurrentThread.ManagedThreadId);
+            scheduler.Schedule(state + ".inner", InnerAction);
+            Console.WriteLine("{0} end. ThreadId:{1}",
+            state,
+            Thread.CurrentThread.ManagedThreadId);
+            return Disposable.Empty;
+        }
+        private static IDisposable InnerAction(IScheduler scheduler, string state)
+        {
+            Console.WriteLine("{0} start. ThreadId:{1}",
+            state,
+            Thread.CurrentThread.ManagedThreadId);
+            scheduler.Schedule(state + ".Leaf", LeafAction);
+            Console.WriteLine("{0} end. ThreadId:{1}",
+            state,
+            Thread.CurrentThread.ManagedThreadId);
+            return Disposable.Empty;
+        }
+        private static IDisposable LeafAction(IScheduler scheduler, string state)
+        {
+            Console.WriteLine("{0}. ThreadId:{1}",
+            state,
+            Thread.CurrentThread.ManagedThreadId);
+            return Disposable.Empty;
+        }
+
+        private static void NewThreadExample()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine("Starting on thread :{0}", Thread.CurrentThread.ManagedThreadId);
+            NewThreadScheduler.Default.Schedule("A", OuterAction);
+            NewThreadScheduler.Default.Schedule("B", OuterAction);
+            Console.ReadKey();
+        }
+
+        private static void ThreadPoolExample()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine("Starting on thread :{0}", Thread.CurrentThread.ManagedThreadId);
+            ThreadPoolScheduler.Instance.Schedule("A", OuterAction);
+            ThreadPoolScheduler.Instance.Schedule("B", OuterAction);
+            Console.ReadKey();
+        }
+
+        private static void TaskPoolExample()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine("Starting on thread :{0}", Thread.CurrentThread.ManagedThreadId);
+            TaskPoolScheduler.Default.Schedule("A", OuterAction);
+            TaskPoolScheduler.Default.Schedule("B", OuterAction);
+            Console.ReadKey();
         }
 
     }

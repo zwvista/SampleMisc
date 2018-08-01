@@ -36,7 +36,7 @@ namespace RxSamples
                 case "t1": Testing.Test(); break;
                 case "t2": TimeShifted.Test(); break;
                 case "t3": Transformation.Test(); break;
-                default: Testing.Test(); break;
+                default: Scheduling.Test(); break;
             }
         }
     }

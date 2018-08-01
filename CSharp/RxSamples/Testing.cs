@@ -13,7 +13,7 @@ namespace RxSamples
     {
         public static void Test()
         {
-            Test1();
+            Tick();
             AdvanceTo();
             AdvanceBy();
             Start1();
@@ -28,7 +28,7 @@ namespace RxSamples
             CreateHotObservable();
         }
 
-        private static void Test1()
+        private static void Tick()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var scheduler = new TestScheduler();
