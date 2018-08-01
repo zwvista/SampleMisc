@@ -18,7 +18,7 @@ namespace RxSamples
             Timeout2();
         }
 
-        public static void Buffer1()
+        private static void Buffer1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var idealBatchSize = 15;
@@ -32,7 +32,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void Buffer2()
+        private static void Buffer2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Interval(TimeSpan.FromSeconds(1)).Take(10);
@@ -55,7 +55,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void Buffer3()
+        private static void Buffer3()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Interval(TimeSpan.FromSeconds(1)).Take(10);
@@ -78,7 +78,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void Buffer4()
+        private static void Buffer4()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Interval(TimeSpan.FromSeconds(1)).Take(10);
@@ -101,7 +101,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void Delay()
+        private static void Delay()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Interval(TimeSpan.FromSeconds(1))
@@ -142,7 +142,7 @@ namespace RxSamples
             2850                18  
             3000                19              19
          */
-        public static void Sample()
+        private static void Sample()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var interval = Observable.Interval(TimeSpan.FromMilliseconds(150));
@@ -151,7 +151,7 @@ namespace RxSamples
                 Console.ReadKey();
         }
 
-        public static void Timeout1()
+        private static void Timeout1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Interval(TimeSpan.FromMilliseconds(100)).Take(10)
@@ -164,7 +164,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void Timeout2()
+        private static void Timeout2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var dueDate = DateTimeOffset.UtcNow.AddSeconds(4);

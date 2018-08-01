@@ -31,7 +31,7 @@ namespace RxSamples
             s2           -5--6--7--8--|
             r  --0--1--2--5--6--7--8--|
         */
-        public static void Concat1()
+        private static void Concat1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             //Generate values 0,1,2 
@@ -79,14 +79,14 @@ namespace RxSamples
             s3          -3|
             rs-----1---2-3|
         */
-        public static void Concat2()
+        private static void Concat2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             GetSequences().Concat().Dump("Concat");
             Console.ReadKey();
         }
 
-        public static void Repeat()
+        private static void Repeat()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Range(0, 3);
@@ -96,7 +96,7 @@ namespace RxSamples
             () => Console.WriteLine("Completed"));
         }
 
-        public static void StartWith()
+        private static void StartWith()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             //Generate values 0,1,2 
@@ -113,7 +113,7 @@ namespace RxSamples
             s3 ---3--3--|
             r  -1--1--|
         */
-        public static void Amb1()
+        private static void Amb1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var s1 = new Subject<int>();
@@ -140,7 +140,7 @@ namespace RxSamples
             s3 --3--3--|
             r  -2--2--|
         */
-        public static void Amb2()
+        private static void Amb2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var s1 = new Subject<int>();
@@ -167,7 +167,7 @@ namespace RxSamples
             s3-3|
             rs-3|
         */
-        public static void Amb3()
+        private static void Amb3()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             GetSequences().Amb().Dump("Amb");
@@ -179,7 +179,7 @@ namespace RxSamples
             s2 --0--0--0--0--0|
             sR --0-00--00-0--00|
         */
-        public static void Merge1()
+        private static void Merge1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             //Generate values 0,1,2 
@@ -202,7 +202,7 @@ namespace RxSamples
             s3          -3|
             rs---2-1-----3|
         */
-        public static void Merge2()
+        private static void Merge2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             GetSequences().Merge().Dump("Merge");
@@ -215,7 +215,7 @@ namespace RxSamples
             result----0----1----2|
                       a    b    c|
         */
-        public static void Zip1()
+        private static void Zip1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             //Generate values 0,1,2 
@@ -237,7 +237,7 @@ namespace RxSamples
             Zip   --1--2--3--4
                     2  3  4  5
         */
-        public static void Zip2()
+        private static void Zip2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var mm = new Subject<Coord>();
@@ -258,7 +258,7 @@ namespace RxSamples
             mm.OnCompleted();
         }
 
-        public static void Zip3()
+        private static void Zip3()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var one = Observable.Interval(TimeSpan.FromSeconds(1)).Take(5);
@@ -274,7 +274,7 @@ namespace RxSamples
             () => Console.WriteLine("Completed"));
             Console.ReadKey();
         }
-        public static void AndThenWhen()
+        private static void AndThenWhen()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var one = Observable.Interval(TimeSpan.FromSeconds(1)).Take(5);

@@ -22,7 +22,7 @@ namespace RxSamples
             Replay();
         }
 
-        public static void SimpleColdSample()
+        private static void SimpleColdSample()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var observable = Observable.Interval(TimeSpan.FromSeconds(1));
@@ -43,7 +43,7 @@ namespace RxSamples
             */
         }
 
-        public static void Publish1()
+        private static void Publish1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var observable = Observable.Interval(TimeSpan.FromSeconds(1)).Publish();
@@ -56,7 +56,7 @@ namespace RxSamples
             }
         }
 
-        public static void Publish2()
+        private static void Publish2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var period = TimeSpan.FromSeconds(1);
@@ -72,7 +72,7 @@ namespace RxSamples
             }
         }
 
-        public static void Publish3()
+        private static void Publish3()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var period = TimeSpan.FromSeconds(1);
@@ -97,7 +97,7 @@ namespace RxSamples
             }
         }
 
-        public static void Publish4()
+        private static void Publish4()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var period = TimeSpan.FromSeconds(1);
@@ -116,7 +116,7 @@ namespace RxSamples
             subscription2.Dispose();
         }
 
-        public static void RefCount()
+        private static void RefCount()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var period = TimeSpan.FromSeconds(1);
@@ -135,7 +135,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void PublishLast()
+        private static void PublishLast()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var period = TimeSpan.FromSeconds(1);
@@ -154,7 +154,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void Replay()
+        private static void Replay()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var hot = Observable.Interval(TimeSpan.FromSeconds(1))

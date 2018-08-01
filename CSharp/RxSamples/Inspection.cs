@@ -19,7 +19,7 @@ namespace RxSamples
             SequenceEqual();
         }
 
-        public static void Any1()
+        private static void Any1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var subject = new Subject<int>();
@@ -30,7 +30,7 @@ namespace RxSamples
             subject.OnCompleted();
         }
 
-        public static void Any2()
+        private static void Any2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var subject = new Subject<int>();
@@ -44,7 +44,7 @@ namespace RxSamples
             subject.OnError(new Exception());
         }
 
-        public static void All()
+        private static void All()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var subject = new Subject<int>();
@@ -59,7 +59,7 @@ namespace RxSamples
             subject.OnCompleted();
         }
 
-        public static void Contains()
+        private static void Contains()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var subject = new Subject<int>();
@@ -76,7 +76,7 @@ namespace RxSamples
             subject.OnCompleted();
         }
 
-        public static void DefaultIfEmpty1()
+        private static void DefaultIfEmpty1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var subject = new Subject<int>();
@@ -93,7 +93,7 @@ namespace RxSamples
             subject.OnCompleted();
         }
 
-        public static void DefaultIfEmpty2()
+        private static void DefaultIfEmpty2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var subject = new Subject<int>();
@@ -111,7 +111,7 @@ namespace RxSamples
             subject.OnCompleted();
         }
 
-        public static void ElementAt()
+        private static void ElementAt()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var subject = new Subject<int>();
@@ -128,7 +128,7 @@ namespace RxSamples
             subject.OnCompleted();
         }
 
-        public static void SequenceEqual()
+        private static void SequenceEqual()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var subject1 = new Subject<int>();

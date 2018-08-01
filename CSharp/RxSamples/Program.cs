@@ -17,8 +17,9 @@ namespace RxSamples
             Console.WriteLine("r: Reduction");
             Console.WriteLine("s1: Scheduling");
             Console.WriteLine("s2: Side Effects");
-            Console.WriteLine("t1: TimeShifted");
-            Console.WriteLine("t2: Transformation");
+            Console.WriteLine("t1: Testing");
+            Console.WriteLine("t2: TimeShifted");
+            Console.WriteLine("t3: Transformation");
             switch (Console.ReadLine())
             {
                 case "a": Aggregation.Test(); break;
@@ -32,9 +33,10 @@ namespace RxSamples
                 case "r": Reducing.Test(); break;
                 case "s1": Scheduling.Test(); break;
                 case "s2": SideEffects.Test(); break;
-                case "t1": TimeShifted.Test(); break;
-                case "t2": Transformation.Test(); break;
-                default: Scheduling.Test(); break;
+                case "t1": Testing.Test(); break;
+                case "t2": TimeShifted.Test(); break;
+                case "t3": Transformation.Test(); break;
+                default: Testing.Test(); break;
             }
         }
     }

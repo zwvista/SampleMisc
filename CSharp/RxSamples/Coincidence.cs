@@ -21,7 +21,7 @@ namespace RxSamples
             window2           -5-6-|
             window3                7-8-9|
         */
-        public static void Window1()
+        private static void Window1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var windowIdx = 0;
@@ -41,7 +41,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void Window2()
+        private static void Window2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var windowIdx = 0;

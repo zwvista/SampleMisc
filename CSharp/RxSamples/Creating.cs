@@ -16,7 +16,7 @@ namespace RxSamples
             Timer();
         }
 
-        public static void ReturnEmptyNeverThrow()
+        private static void ReturnEmptyNeverThrow()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var singleValue = Observable.Return<string>("Value");
@@ -33,7 +33,7 @@ namespace RxSamples
             Console.WriteLine(e.SignalTime);
         }
 
-        public static void Create()
+        private static void Create()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var ob = Observable.Create<string>(
@@ -50,14 +50,14 @@ namespace RxSamples
                 Console.ReadKey();
         }
 
-        public static void Range()
+        private static void Range()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var range = Observable.Range(10, 15);
             range.Subscribe(Console.WriteLine, () => Console.WriteLine("Completed"));
         }
 
-        public static void Interval()
+        private static void Interval()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var interval = Observable.Interval(TimeSpan.FromMilliseconds(250));
@@ -67,7 +67,7 @@ namespace RxSamples
                 Console.ReadKey();
         }
 
-        public static void Timer()
+        private static void Timer()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var timer = Observable.Timer(TimeSpan.FromSeconds(1));

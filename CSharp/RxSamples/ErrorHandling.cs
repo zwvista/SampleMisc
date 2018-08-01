@@ -23,7 +23,7 @@ namespace RxSamples
             S2            -|
             R --1--2--3----|
         */
-        public static void Catch1()
+        private static void Catch1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = new Subject<int>();
@@ -34,7 +34,7 @@ namespace RxSamples
             source.OnError(new Exception("Fail!"));
         }
 
-        public static void Catch2()
+        private static void Catch2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = new Subject<int>();
@@ -45,7 +45,7 @@ namespace RxSamples
             source.OnError(new TimeoutException());
         }
 
-        public static void Catch3()
+        private static void Catch3()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = new Subject<int>();
@@ -56,7 +56,7 @@ namespace RxSamples
             source.OnError(new ArgumentException("Fail!"));
         }
 
-        public static void Finally1()
+        private static void Finally1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = new Subject<int>();
@@ -68,7 +68,7 @@ namespace RxSamples
             source.OnCompleted();
         }
 
-        public static void Finally2()
+        private static void Finally2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = new Subject<int>();
@@ -83,7 +83,7 @@ namespace RxSamples
             subscription.Dispose();
         }
 
-        public static void Finally3()
+        private static void Finally3()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = new Subject<int>();
@@ -99,7 +99,7 @@ namespace RxSamples
             source.OnError(new Exception("Fail"));
         }
 
-        public static void Using()
+        private static void Using()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Interval(TimeSpan.FromSeconds(1));

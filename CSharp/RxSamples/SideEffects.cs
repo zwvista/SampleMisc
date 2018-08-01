@@ -17,7 +17,7 @@ namespace RxSamples
             AsObservable();
         }
 
-        public static void SideEffects1()
+        private static void SideEffects1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Range(0, 3);
@@ -35,7 +35,7 @@ namespace RxSamples
                 () => Console.WriteLine("2nd completed"));
         }
 
-        public static void SideEffects2()
+        private static void SideEffects2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Range(0, 3);
@@ -71,7 +71,7 @@ namespace RxSamples
             Console.WriteLine("Logging OnCompleted()@ {0}", DateTime.Now);
         }
 
-        public static void Do1()
+        private static void Do1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable
@@ -93,7 +93,7 @@ namespace RxSamples
             .Do(i => Console.WriteLine("pushing {0} from GetNumbers", i));
         }
 
-        public static void Do2()
+        private static void Do2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = GetNumbers();
@@ -122,7 +122,7 @@ namespace RxSamples
             }
         }
 
-        public static void AsObservable()
+        private static void AsObservable()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var repo = new LetterRepo();

@@ -18,7 +18,7 @@ namespace RxSamples
             ToEventPattern();
         }
 
-        public static void ForEachAsync()
+        private static void ForEachAsync()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Interval(TimeSpan.FromSeconds(1))
@@ -27,7 +27,7 @@ namespace RxSamples
             Console.WriteLine("completed @ {0}", DateTime.Now);
         }
 
-        public static void ToEnumerable()
+        private static void ToEnumerable()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var period = TimeSpan.FromMilliseconds(200);
@@ -41,7 +41,7 @@ namespace RxSamples
             Console.WriteLine("done");
         }
 
-        public static void ToArray()
+        private static void ToArray()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var period = TimeSpan.FromMilliseconds(200); 
@@ -60,7 +60,7 @@ namespace RxSamples
             Console.WriteLine("Subscribed");
         }
 
-        public static void Wait1()
+        private static void Wait1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Interval(TimeSpan.FromSeconds(1)).Take(3);
@@ -68,7 +68,7 @@ namespace RxSamples
             Console.WriteLine(result);
         }
 
-        public static void Wait2()
+        private static void Wait2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Throw<long>(new Exception("Fail!"));
@@ -82,7 +82,7 @@ namespace RxSamples
             }
         }
 
-        public static void ToEvent()
+        private static void ToEvent()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Interval(TimeSpan.FromSeconds(1)).Take(5);
@@ -104,7 +104,7 @@ namespace RxSamples
             }
         } 
 
-        public static void ToEventPattern()
+        private static void ToEventPattern()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Interval(TimeSpan.FromSeconds(1))

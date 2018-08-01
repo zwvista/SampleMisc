@@ -22,7 +22,7 @@ namespace RxSamples
             Dematerialize();
         }
 
-        public static void Select()
+        private static void Select()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = Observable.Range(0, 3);
@@ -34,7 +34,7 @@ namespace RxSamples
             query.Dump("anon");
         }
 
-        public static void Cast1()
+        private static void Cast1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var objects = new Subject<object>();
@@ -45,7 +45,7 @@ namespace RxSamples
             objects.OnCompleted();
         }
 
-        public static void Cast2()
+        private static void Cast2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var objects = new Subject<object>();
@@ -55,7 +55,7 @@ namespace RxSamples
             objects.OnNext("3");//Fail
         }
 
-        public static void OfType()
+        private static void OfType()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var objects = new Subject<object>();
@@ -67,7 +67,7 @@ namespace RxSamples
             objects.OnCompleted();
         }
 
-        public static void Timestamp()
+        private static void Timestamp()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Observable.Interval(TimeSpan.FromSeconds(1))
@@ -77,7 +77,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void TimeInterval()
+        private static void TimeInterval()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Observable.Interval(TimeSpan.FromSeconds(1))
@@ -87,7 +87,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void SelectMany()
+        private static void SelectMany()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Observable.Range(1, 3)
@@ -95,7 +95,7 @@ namespace RxSamples
             .Dump("SelectMany");
         }
 
-        public static void Materialize1()
+        private static void Materialize1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Observable.Range(1, 3)
@@ -103,7 +103,7 @@ namespace RxSamples
             .Dump("Materialize");
         }
 
-        public static void Materialize2()
+        private static void Materialize2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var source = new Subject<int>();
@@ -115,7 +115,7 @@ namespace RxSamples
             source.OnError(new Exception("Fail?"));
         }
 
-        public static void Dematerialize()
+        private static void Dematerialize()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Observable.Range(1, 3)

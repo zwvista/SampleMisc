@@ -5,6 +5,7 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace RxSamples
 {
@@ -25,10 +26,14 @@ namespace RxSamples
             ScheduleState6();
 
             ScheduleTime();
+
             ScheduleCancel1();
+            ScheduleCancel2();
+
+            Recursion();
         }
 
-        public static void Subscribe()
+        private static void Subscribe()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Console.WriteLine("Starting on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
@@ -50,7 +55,7 @@ namespace RxSamples
             Console.WriteLine("Subscribed on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
         }
 
-        public static void SubscribeOn()
+        private static void SubscribeOn()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Console.WriteLine("Starting on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
@@ -74,7 +79,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void ObserveOn()
+        private static void ObserveOn()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Console.WriteLine("Starting on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
@@ -98,7 +103,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void SubscribeOnObserveOn()
+        private static void SubscribeOnObserveOn()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Console.WriteLine("Starting on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
@@ -123,7 +128,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void ScheduleState1()
+        private static void ScheduleState1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var scheduler = NewThreadScheduler.Default;
@@ -134,7 +139,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void ScheduleState2()
+        private static void ScheduleState2()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var scheduler = ImmediateScheduler.Instance;
@@ -145,7 +150,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void ScheduleState3()
+        private static void ScheduleState3()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var scheduler = NewThreadScheduler.Default;
@@ -160,7 +165,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void ScheduleState4()
+        private static void ScheduleState4()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var scheduler = ImmediateScheduler.Instance;
@@ -175,7 +180,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void ScheduleState5()
+        private static void ScheduleState5()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var scheduler = NewThreadScheduler.Default;
@@ -190,7 +195,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void ScheduleState6()
+        private static void ScheduleState6()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var scheduler = ImmediateScheduler.Instance;
@@ -205,7 +210,7 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void ScheduleTime()
+        private static void ScheduleTime()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var scheduler = ImmediateScheduler.Instance;
@@ -217,10 +222,10 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        public static void ScheduleCancel1()
+        private static void ScheduleCancel1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
-            var scheduler = ImmediateScheduler.Instance;
+            var scheduler = NewThreadScheduler.Default;
             var delay = TimeSpan.FromSeconds(1);
             Console.WriteLine("Before schedule at {0:o}", DateTime.Now);
             var token = scheduler.Schedule(delay,
@@ -229,5 +234,62 @@ namespace RxSamples
             token.Dispose();
             Console.ReadKey();
         }
+
+        public static IDisposable Work(IScheduler scheduler, List<int> list)
+        {
+            var tokenSource = new CancellationTokenSource();
+            var cancelToken = tokenSource.Token;
+            var task = new Task(() =>
+            {
+                Console.WriteLine();
+                for (int i = 0; i < 1000; i++)
+                {
+                    var sw = new SpinWait();
+                    for (int j = 0; j < 3000; j++) sw.SpinOnce();
+                    Console.Write(".");
+                    list.Add(i);
+                    if (cancelToken.IsCancellationRequested)
+                    {
+                        Console.WriteLine("Cancelation requested");
+                        //cancelToken.ThrowIfCancellationRequested();
+                        return;
+                    }
+                }
+            }, cancelToken);
+            task.Start();
+            return Disposable.Create(tokenSource.Cancel);
+        }
+
+        private static void ScheduleCancel2()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var scheduler = NewThreadScheduler.Default;
+            var list = new List<int>();
+            Console.WriteLine("Enter to quit:");
+            var token = scheduler.Schedule(list, Work);
+            Console.ReadLine();
+            Console.WriteLine("Cancelling...");
+            token.Dispose();
+            Console.WriteLine("Cancelled");
+        }
+
+        private static void Recursion()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var scheduler = NewThreadScheduler.Default;
+            Action<Action> work = (Action self)
+            =>
+            {
+                Console.WriteLine("Running");
+                self();
+            };
+            Console.WriteLine("Enter to quit:");
+            var token = scheduler.Schedule(work);
+            Console.ReadLine();
+            Console.WriteLine("Cancelling");
+            token.Dispose();
+            Console.WriteLine("Cancelled");
+        }
+
     }
 }
