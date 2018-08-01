@@ -5,17 +5,22 @@ import io.reactivex.functions.BiPredicate
 import java.util.concurrent.TimeUnit
 
 
-fun main(args: Array<String>) {
-    exampleAmb()
-    exampleAmbArray()
-    exampleAmbWith()
 
+
+fun main(args: Array<String>) {
     exampleAll()
     exampleAllEarlyFalse()
     exampleAllError()
     //exampleAllErrorAfterComplete()
 
+    exampleAmb()
+    exampleAmbArray()
+    exampleAmbWith()
+
     exampleContains()
+    exampleAnyFalse()
+    exampleAnyTrue()
+    exampleIsEmpty()
 
     exampleDefaultIfEmpty()
     exampleDefaultIfEmptyError()
@@ -28,44 +33,6 @@ fun main(args: Array<String>) {
     exampleSkipWhile()
     exampleTakeUntil()
     exampleTakeWhile()
-}
-
-private fun exampleAmb() {
-    println(object{}.javaClass.enclosingMethod.name)
-    Observable.amb(listOf(
-        Observable.timer(100, TimeUnit.MILLISECONDS).map { i -> "First" },
-        Observable.timer(50, TimeUnit.MILLISECONDS).map { i -> "Second" },
-        Observable.timer(70, TimeUnit.MILLISECONDS).map { i -> "Third" }))
-        .dump()
-    readLine()
-
-    // Second
-    // Completed
-}
-
-private fun exampleAmbArray() {
-    println(object{}.javaClass.enclosingMethod.name)
-    Observable.ambArray(
-        Observable.timer(100, TimeUnit.MILLISECONDS).map { i -> "First" },
-        Observable.timer(50, TimeUnit.MILLISECONDS).map { i -> "Second" },
-        Observable.timer(70, TimeUnit.MILLISECONDS).map { i -> "Third" })
-        .dump()
-    readLine()
-
-    // Second
-    // Completed
-}
-
-private fun exampleAmbWith() {
-    println(object{}.javaClass.enclosingMethod.name)
-    Observable.timer(100, TimeUnit.MILLISECONDS).map { i -> "First" }
-        .ambWith(Observable.timer(50, TimeUnit.MILLISECONDS).map { i -> "Second" })
-        .ambWith(Observable.timer(70, TimeUnit.MILLISECONDS).map { i -> "Third" })
-        .dump()
-    readLine()
-
-    // Second
-    // Completed
 }
 
 private fun exampleAll() {
@@ -136,6 +103,44 @@ private fun exampleAllErrorAfterComplete() {
     // Completed
 }
 
+private fun exampleAmb() {
+    println(object{}.javaClass.enclosingMethod.name)
+    Observable.amb(listOf(
+        Observable.timer(100, TimeUnit.MILLISECONDS).map { i -> "First" },
+        Observable.timer(50, TimeUnit.MILLISECONDS).map { i -> "Second" },
+        Observable.timer(70, TimeUnit.MILLISECONDS).map { i -> "Third" }))
+        .dump()
+    readLine()
+
+    // Second
+    // Completed
+}
+
+private fun exampleAmbArray() {
+    println(object{}.javaClass.enclosingMethod.name)
+    Observable.ambArray(
+        Observable.timer(100, TimeUnit.MILLISECONDS).map { i -> "First" },
+        Observable.timer(50, TimeUnit.MILLISECONDS).map { i -> "Second" },
+        Observable.timer(70, TimeUnit.MILLISECONDS).map { i -> "Third" })
+        .dump()
+    readLine()
+
+    // Second
+    // Completed
+}
+
+private fun exampleAmbWith() {
+    println(object{}.javaClass.enclosingMethod.name)
+    Observable.timer(100, TimeUnit.MILLISECONDS).map { i -> "First" }
+        .ambWith(Observable.timer(50, TimeUnit.MILLISECONDS).map { i -> "Second" })
+        .ambWith(Observable.timer(70, TimeUnit.MILLISECONDS).map { i -> "Third" })
+        .dump()
+    readLine()
+
+    // Second
+    // Completed
+}
+
 private fun exampleContains() {
     println(object{}.javaClass.enclosingMethod.name)
     val values = Observable.interval(100, TimeUnit.MILLISECONDS)
@@ -145,6 +150,40 @@ private fun exampleContains() {
     readLine()
     subscription.dispose()
     // true
+    // Completed
+}
+
+private fun exampleAnyFalse() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val values = Observable.range(0, 2)
+    values
+        .any { i -> i > 2 }
+        .dump()
+
+    // false
+    // Completed
+}
+
+private fun exampleAnyTrue() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val values = Observable.range(0, 4)
+    values
+        .any { i -> i > 2 }
+        .dump()
+
+    // true
+    // Completed
+}
+
+fun exampleIsEmpty() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val values = Observable.timer(1000, TimeUnit.MILLISECONDS)
+    values
+        .isEmpty
+        .dump()
+    readLine()
+
+    // false
     // Completed
 }
 

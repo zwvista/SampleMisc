@@ -80,6 +80,10 @@ fun main(args: Array<String>) {
     exampleMap()
     exampleMap2()
 
+    exampleCast()
+    exampleCastFail()
+    exampleTypeOf()
+
     exampleRunningSum()
     exampleRunningMin()
 
@@ -365,6 +369,47 @@ private fun exampleMap2() {
     // Map: 3
     // Map: Completed
 }
+
+private fun exampleCast() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val values = Observable.just<Int>(0, 1, 2, 3)
+    values
+        .cast(java.lang.Integer::class.java)
+        .dump()
+
+    // Map: 0
+    // Map: 1
+    // Map: 2
+    // Map: 3
+    // Map: Completed
+}
+
+private fun exampleCastFail() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val values = Observable.just(0, 1, 2, "3")
+    values
+        .cast(java.lang.Integer::class.java)
+        .dump()
+
+    // Map: 0
+    // Map: 1
+    // Map: 2
+    // Map: Error: java.lang.ClassCastException: Cannot cast java.lang.String to java.lang.Integer
+}
+
+private fun exampleTypeOf() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val values = Observable.just(0, 1, "2", 3)
+    values
+        .ofType(java.lang.Integer::class.java)
+        .dump()
+
+    // Map: 0
+    // Map: 1
+    // Map: 3
+    // Map: Completed
+}
+
 
 private fun exampleRunningSum() {
     println(object{}.javaClass.enclosingMethod.name)

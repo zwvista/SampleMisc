@@ -1,7 +1,6 @@
 package rx
 
 import io.reactivex.Observable
-import io.reactivex.rxkotlin.toObservable
 import java.util.*
 import java.util.concurrent.FutureTask
 import java.util.concurrent.TimeUnit
@@ -120,7 +119,7 @@ private fun exampleFromFutureTimeout() {
 private fun exampleFromArray() {
     println(object{}.javaClass.enclosingMethod.name)
     val `is` = arrayOf(1, 2, 3)
-    val values = `is`.toObservable()
+    val values = Observable.fromArray(*`is`)
     values.dump()
 
     // Received: 1
@@ -132,7 +131,7 @@ private fun exampleFromArray() {
 private fun exampleFromIterable() {
     println(object{}.javaClass.enclosingMethod.name)
     val input = Arrays.asList(1, 2, 3)
-    val values = input.toObservable()
+    val values = Observable.fromIterable(input)
     values.dump()
 
     // Received: 1

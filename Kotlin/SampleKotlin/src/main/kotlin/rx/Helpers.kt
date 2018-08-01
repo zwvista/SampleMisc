@@ -1,9 +1,26 @@
 package rx
 
-import io.reactivex.Completable
-import io.reactivex.Maybe
-import io.reactivex.Observable
-import io.reactivex.Single
+import io.reactivex.*
+import io.reactivex.disposables.Disposable
+
+
+class PrintSubscriber<T>(private val name: String) : Observer<T> {
+    override fun onSubscribe(d: Disposable) {
+
+    }
+
+    override fun onComplete() {
+        println("$name: onComplete")
+    }
+
+    override fun onError(e: Throwable) {
+        println("$name: onError: $e")
+    }
+
+    override fun onNext(t: T) {
+        println("$name: onNext: $t")
+    }
+}
 
 fun <T> Observable<T>.dump() =
     this.subscribe({ println("onNext: $it") },
