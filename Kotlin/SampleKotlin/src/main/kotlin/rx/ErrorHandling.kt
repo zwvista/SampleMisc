@@ -83,7 +83,7 @@ private fun exampleOnExceptionResumeNext() {
     // hard
 }
 
-fun exampleOnExceptionResumeNextNoException() {
+private fun exampleOnExceptionResumeNextNoException() {
     println(object{}.javaClass.enclosingMethod.name)
     val values = Observable.create<String> { o ->
         o.onNext("Rx")

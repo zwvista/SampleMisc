@@ -75,6 +75,10 @@ fun main(args: Array<String>) {
     exampleConcatMap()
     exampleSwitchMap()
 
+    exampleFlatMapIterable()
+    exampleFlatMapIterableWithSelector()
+    exampleFlatMapLazyIterable()
+
     exampleGroupBy()
 
     exampleMap()
@@ -322,6 +326,52 @@ private fun exampleSwitchMap() {
     // 2
     // 2
     // 2
+}
+
+private fun exampleFlatMapIterable() {
+    println(object{}.javaClass.enclosingMethod.name)
+    Observable.range(1, 3)
+        .flatMapIterable { i -> 1..i }
+        .dump()
+
+    // 1
+    // 1
+    // 2
+    // 1
+    // 2
+    // 3
+}
+
+private fun exampleFlatMapIterableWithSelector() {
+    println(object{}.javaClass.enclosingMethod.name)
+    Observable.range(1, 3)
+        .flatMapIterable<Int, Int>(
+            { i -> 1..i },
+            { ori, rv -> ori * rv })
+        .dump()
+
+    // 1
+    // 2
+    // 4
+    // 3
+    // 6
+    // 9
+}
+
+private fun exampleFlatMapLazyIterable() {
+    println(object{}.javaClass.enclosingMethod.name)
+    Observable.range(1, 3)
+        .flatMapIterable<Int, Int>(
+            { i -> generateSequence(1) { (it + 1).takeIf { it <= i } }.asIterable() },
+            { ori, rv -> ori * rv })
+        .dump()
+
+    // 1
+    // 2
+    // 4
+    // 3
+    // 6
+    // 9
 }
 
 private fun exampleGroupBy() {

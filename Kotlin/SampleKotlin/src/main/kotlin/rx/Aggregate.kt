@@ -1,6 +1,9 @@
 package rx
 
 import io.reactivex.Observable
+import java.util.*
+
+
 
 
 fun main(args: Array<String>) {
@@ -12,6 +15,7 @@ fun main(args: Array<String>) {
 
     exampleReduce()
     exampleReduceWithAccumulator()
+    exampleCollect()
 }
 
 private fun exampleConcat() {
@@ -110,4 +114,16 @@ private fun exampleReduceWithAccumulator() {
 
     // Count: 3
     // Count: Completed
+}
+
+private fun exampleCollect() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val values = Observable.range(10, 5)
+    values
+        .collect(
+            { ArrayList<Int>() },
+            { acc, value -> acc.add(value) })
+        .dump()
+
+    // [10, 11, 12, 13, 14]
 }

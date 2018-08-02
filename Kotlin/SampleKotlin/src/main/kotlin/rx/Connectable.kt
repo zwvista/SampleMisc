@@ -6,14 +6,44 @@ import java.util.concurrent.TimeUnit
 
 
 fun main(args: Array<String>) {
-//    exampleConnect()
-//    exampleDisconnect()
-//    exampleDispose()
-//    exampleRefcount()
+
+    exampleCold()
+
+    exampleConnect()
+    exampleDisconnect()
+    exampleDispose()
+    exampleRefcount()
+
     exampleReplay()
     exampleReplayWithBufferSize()
     exampleReplayWithTime()
+
+    exampleCache()
+    exampleCacheDispose()
 }
+
+private fun exampleCold() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val cold = Observable
+        .interval(200, TimeUnit.MILLISECONDS)
+        .take(5)
+    cold.dump("First")
+    Thread.sleep(500)
+    cold.dump("Second")
+    readLine()
+
+    // First: 0
+    // First: 1
+    // First: 2
+    // Second: 0
+    // First: 3
+    // Second: 1
+    // First: 4
+    // Second: 2
+    // Second: 3
+    // Second: 4
+}
+
 
 private fun exampleConnect() {
     println(object{}.javaClass.enclosingMethod.name)
@@ -179,6 +209,51 @@ private fun exampleReplayWithTime() {
     source.dump()
     readLine()
 
+    // 2
+    // 3
+    // 4
+}
+
+private fun exampleCache() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val obs = Observable.interval(100, TimeUnit.MILLISECONDS)
+        .take(5)
+        .cache()
+    Thread.sleep(500)
+    obs.dump("First")
+    Thread.sleep(300)
+    obs.dump("Second")
+    readLine()
+
+    // First: 0
+    // First: 1
+    // First: 2
+    // Second: 0
+    // Second: 1
+    // Second: 2
+    // First: 3
+    // Second: 3
+    // First: 4
+    // Second: 4
+}
+
+private fun exampleCacheDispose() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val obs = Observable.interval(100, TimeUnit.MILLISECONDS)
+        .take(5)
+        .doOnNext { println(it) }
+        .cache()
+        .doOnSubscribe { println("Subscribed") }
+        .doOnDispose { println("Disposed") }
+    val subscription = obs.subscribe()
+    Thread.sleep(150)
+    subscription.dispose()
+    readLine()
+
+    // Subscribed
+    // 0
+    // Unsubscribed
+    // 1
     // 2
     // 3
     // 4

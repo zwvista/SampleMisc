@@ -18,6 +18,8 @@ fun main(args: Array<String>) {
 
     exampleMerge()
     exampleMergeWith()
+    exampleMergeDelayError1()
+    exampleMergeDelayError2()
 
     exampleStartWith()
     exampleSwitchOnNext()
@@ -180,6 +182,52 @@ private fun exampleMergeWith() {
     // Second
     // Second
     // First
+}
+
+private fun exampleMergeDelayError1() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val failAt200 = Observable.concat(
+        Observable.interval(100, TimeUnit.MILLISECONDS).take(2),
+        Observable.error(Exception("Failed")))
+    val completeAt400 = Observable.interval(100, TimeUnit.MILLISECONDS)
+        .take(4)
+    Observable.mergeDelayError(failAt200, completeAt400)
+        .dump()
+    readLine()
+
+    // 0
+    // 0
+    // 1
+    // 1
+    // 2
+    // 3
+    // java.lang.Exception: Failed
+}
+
+private fun exampleMergeDelayError2() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val failAt200 = Observable.concat(
+        Observable.interval(100, TimeUnit.MILLISECONDS).take(2),
+        Observable.error(Exception("Failed")))
+    val failAt300 = Observable.concat(
+        Observable.interval(100, TimeUnit.MILLISECONDS).take(3),
+        Observable.error(Exception("Failed")))
+    val completeAt400 = Observable.interval(100, TimeUnit.MILLISECONDS)
+        .take(4)
+    Observable.mergeDelayError(failAt200, failAt300, completeAt400)
+        .dump()
+    readLine()
+
+    // 0
+    // 0
+    // 0
+    // 1
+    // 1
+    // 1
+    // 2
+    // 2
+    // 3
+    // rx.exceptions.CompositeException: 2 exceptions occurred.
 }
 
 private fun exampleStartWith() {

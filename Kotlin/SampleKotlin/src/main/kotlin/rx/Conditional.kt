@@ -175,7 +175,7 @@ private fun exampleAnyTrue() {
     // Completed
 }
 
-fun exampleIsEmpty() {
+private fun exampleIsEmpty() {
     println(object{}.javaClass.enclosingMethod.name)
     val values = Observable.timer(1000, TimeUnit.MILLISECONDS)
     values
