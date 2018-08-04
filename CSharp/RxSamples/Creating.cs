@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reactive.Linq;
 using System.Reflection;
 using System.Timers;
@@ -14,6 +15,7 @@ namespace RxSamples
             Range();
             Interval();
             Timer();
+            ToObservable();
         }
 
         private static void ReturnEmptyNeverThrow()
@@ -63,7 +65,7 @@ namespace RxSamples
             var interval = Observable.Interval(TimeSpan.FromMilliseconds(250));
             using (interval.Subscribe(
                 Console.WriteLine,
-                () => Console.WriteLine("completed")))
+                () => Console.WriteLine("Completed")))
                 Console.ReadKey();
         }
 
@@ -73,7 +75,17 @@ namespace RxSamples
             var timer = Observable.Timer(TimeSpan.FromSeconds(1));
             timer.Subscribe(
                 Console.WriteLine,
-                () => Console.WriteLine("completed"));
+                () => Console.WriteLine("Completed"));
+            Console.ReadKey();
+        }
+
+        private static void ToObservable()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var values = new List<string> { "Rx", "is", "easy" };
+            values.ToObservable().Subscribe(
+                Console.WriteLine,
+                () => Console.WriteLine("Completed"));
             Console.ReadKey();
         }
 

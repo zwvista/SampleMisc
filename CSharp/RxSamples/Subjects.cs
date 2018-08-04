@@ -22,6 +22,12 @@ namespace RxSamples
             AsyncSubject1();
             AsyncSubject2();
             SubjectInvalidUsageExample();
+
+            // OnError1();
+            OnError2();
+            Unsubscribe1();
+            Dispose1();
+            Dispose2();
         }
 
         //Takes an IObservable<string> as its parameter. 
@@ -156,5 +162,89 @@ namespace RxSamples
             subject.OnCompleted();
             subject.OnNext("c");
         }
+
+        private static void OnError1()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var values = new Subject<int>();
+            try
+            {
+                values.Subscribe(value => Console.WriteLine("1st subscription received {0}", value));
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Won't catch anything here!");
+            }
+            values.OnNext(0);
+            //Exception will be thrown here causing the app to fail.
+            values.OnError(new Exception("Dummy exception"));
+        }
+
+        private static void OnError2()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var values = new Subject<int>();
+            values.Subscribe(
+            value => Console.WriteLine("1st subscription received {0}", value),
+            ex => Console.WriteLine("Caught an exception : {0}", ex));
+            values.OnNext(0);
+            values.OnError(new Exception("Dummy exception"));
+        }
+
+        private static void Unsubscribe1()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var values = new Subject<int>();
+            var firstSubscription = values.Subscribe(value =>
+            Console.WriteLine("1st subscription received {0}", value));
+            var secondSubscription = values.Subscribe(value =>
+            Console.WriteLine("2nd subscription received {0}", value));
+            values.OnNext(0);
+            values.OnNext(1);
+            values.OnNext(2);
+            values.OnNext(3);
+            firstSubscription.Dispose();
+            Console.WriteLine("Disposed of 1st subscription");
+            values.OnNext(4);
+            values.OnNext(5);
+        }
+
+        private static void Dispose1()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Action<string> DoSomeWork = s =>
+            {
+                Thread.Sleep(TimeSpan.FromSeconds(.5));
+                Console.WriteLine(s);
+            };
+            using (new TimeIt("Outer scope"))
+            {
+                using (new TimeIt("Inner scope A"))
+                {
+                    DoSomeWork("A");
+                }
+                using (new TimeIt("Inner scope B"))
+                {
+                    DoSomeWork("B");
+                }
+            }
+        }
+
+
+        private static void Dispose2()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine("Normal color");
+            using (new ConsoleColor(System.ConsoleColor.Red))
+            {
+                Console.WriteLine("Now I am Red");
+                using (new ConsoleColor(System.ConsoleColor.Green))
+                {
+                    Console.WriteLine("Now I am Green");
+                }
+                Console.WriteLine("and back to Red");
+            }
+        }
+
     }
 }

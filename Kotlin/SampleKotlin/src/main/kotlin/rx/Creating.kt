@@ -1,13 +1,17 @@
 package rx
 
 import io.reactivex.Observable
+import io.reactivex.functions.BiFunction
+import io.reactivex.functions.Consumer
 import java.util.*
+import java.util.concurrent.Callable
 import java.util.concurrent.FutureTask
 import java.util.concurrent.TimeUnit
 
 
 fun main(args: Array<String>) {
     exampleCreate()
+    exampleGenerate()
 
     exampleShouldDefer()
     exampleDefer()
@@ -20,6 +24,7 @@ fun main(args: Array<String>) {
     exampleFromFutureTimeout()
     exampleFromArray()
     exampleFromIterable()
+    exampleFromCallable()
     
     exampleInterval()
     exampleJust()
@@ -41,6 +46,27 @@ private fun exampleCreate() {
 
     // Received: Hello
     // Completed
+}
+
+private fun exampleGenerate() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val values = Observable.generate<Int, Int>(Callable { 0 }, BiFunction { i, o ->
+        if (i < 10) {
+            o.onNext(i * i); i + 1
+        } else {
+            o.onComplete(); i
+        }
+    }, Consumer { i -> println(i) } )
+    values.dump()
+
+    // 0
+    // 1
+    // 4
+    // 9
+    // ...
+    // 81
+    // Completed
+    // 10
 }
 
 private fun exampleShouldDefer() {
@@ -120,6 +146,7 @@ private fun exampleFromArray() {
     println(object{}.javaClass.enclosingMethod.name)
     val `is` = arrayOf(1, 2, 3)
     val values = Observable.fromArray(*`is`)
+    // val values = `is`.toObservable()
     values.dump()
 
     // Received: 1
@@ -128,10 +155,22 @@ private fun exampleFromArray() {
     // Completed
 }
 
+private fun exampleFromCallable() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val now = Observable.fromCallable { System.currentTimeMillis() }
+    now.dump()
+    Thread.sleep(1000)
+    now.dump()
+
+    // 1431444107854
+    // 1431444108858
+}
+
 private fun exampleFromIterable() {
     println(object{}.javaClass.enclosingMethod.name)
     val input = Arrays.asList(1, 2, 3)
     val values = Observable.fromIterable(input)
+    // val values = input.toObservable()
     values.dump()
 
     // Received: 1
@@ -143,9 +182,9 @@ private fun exampleFromIterable() {
 private fun exampleInterval() {
     println(object{}.javaClass.enclosingMethod.name)
     val values = Observable.interval(1000, TimeUnit.MILLISECONDS)
-    val d = values.dump()
+    val s = values.dump()
     readLine()
-    d.dispose()
+    s.dispose()
 
     // Received: 0
     // Received: 1
