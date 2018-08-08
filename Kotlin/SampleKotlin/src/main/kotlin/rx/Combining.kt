@@ -97,7 +97,7 @@ private fun exampleJoin2Way() {
     left
         .join<String, Long, Long, String>(
             right,
-            Function {  i -> Observable.timer(150, TimeUnit.MILLISECONDS) },
+            Function { i -> Observable.timer(150, TimeUnit.MILLISECONDS) },
             Function { i -> Observable.timer(0, TimeUnit.MILLISECONDS) },
             BiFunction { l, r -> "$l - $r" }
         )
