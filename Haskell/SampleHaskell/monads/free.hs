@@ -1,15 +1,24 @@
+{-# LANGUAGE DeriveFunctor #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE FlexibleContexts #-}
+
 import Control.Monad.Free
+import Control.Monad.Free.TH
 
 data Toy b next =
     Output b next
   | Bell next
   | Done
-
+  deriving (Functor)
+  
+{-
 instance Functor (Toy b) where
     fmap f (Output x next) = Output x (f next)
     fmap f (Bell     next) = Bell     (f next)
     fmap f  Done           = Done
+-}
 
+{-
 output :: a -> Free (Toy a) ()
 -- output x = Free (Output x (Pure ()))
 output x = liftF (Output x ())
@@ -21,6 +30,9 @@ bell     = liftF (Bell     ())
 done :: Free (Toy a) r
 -- done = Free Done
 done     = liftF  Done
+-}
+
+makeFree ''Toy
 
 subroutine :: Free (Toy Char) ()
 subroutine = output 'A'
