@@ -3,13 +3,25 @@
 import Data.Map.Strict (fromListWith, elems)
 import Data.List (intercalate, groupBy, sortOn)
 import Data.Function (on)
+import GHC.Exts (groupWith)
 
 verticalWriting text offset =
     let indexedChars = zipWith (\x y -> (x `mod` offset, [y])) [0..] text
     in elems $ fromListWith (\a b -> a ++ "|" ++ b) indexedChars
-    -- in map (intercalate "|" . reverse . map snd) $ groupBy ((==) `on` fst) $ sortOn fst $ indexedChars
+    
+verticalWriting2 text offset =
+    let indexedChars = zipWith (\x y -> (x `mod` offset, [y])) [0..] text
+    in map (intercalate "|" . reverse . map snd) $ groupBy ((==) `on` fst) $ sortOn fst $ indexedChars
+    
+verticalWriting3 text offset =
+    let indexedChars = zipWith (\x y -> (x `mod` offset, [y])) [0..] text
+    in map (intercalate "|" . reverse . map snd)  $ groupWith fst indexedChars
 
-main = mapM_ putStrLn $ verticalWriting "床前明月光疑是地上霜举头望明月低头思故乡" 5
+main = do
+    mapM_ putStrLn $ verticalWriting "床前明月光疑是地上霜举头望明月低头思故乡" 5
+    mapM_ putStrLn $ verticalWriting2 "床前明月光疑是地上霜举头望明月低头思故乡" 5
+    mapM_ putStrLn $ verticalWriting3 "床前明月光疑是地上霜举头望明月低头思故乡" 5
+
 
 {-
 低|举|疑|床
