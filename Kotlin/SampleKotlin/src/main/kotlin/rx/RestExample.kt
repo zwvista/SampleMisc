@@ -7,14 +7,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.*
 
-data class Post(var userId: Int, var id: Int, var title: String, var body: String) {
+data class Post(val userId: Int, val id: Int, val title: String, val body: String) {
     override fun toString(): String {
         fun f(str: String) = "\"${str.replace("\n", "\\n")}\""
         return "Post {userId = $userId, id = $id, title = ${f(title)}, body = ${f(body)}}"
     }
 }
 
-interface RestJsonPlaceHolder {
+interface RestPost {
     @GET
     fun getPostAsString(@Url url: String): Observable<String>
     @GET("posts/{id}")
@@ -37,37 +37,40 @@ interface RestJsonPlaceHolder {
     fun deletePost(@Path("id") id: Int): Observable<String>
 }
 
-var retrofitJson = Retrofit.Builder().baseUrl("https://jsonplaceholder.typicode.com/")
+val retrofitJson: Retrofit = Retrofit.Builder()
+    .baseUrl("https://jsonplaceholder.typicode.com/")
     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
     .addConverterFactory(GsonConverterFactory.create())
     .build()
-var retrofitString = Retrofit.Builder().baseUrl("https://jsonplaceholder.typicode.com/")
+val retrofitString: Retrofit = Retrofit.Builder()
+    .baseUrl("https://jsonplaceholder.typicode.com/")
     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
     .addConverterFactory(ScalarsConverterFactory.create())
     .build()
 
 fun getPostAsString(): Observable<String> =
-    retrofitString.create(RestJsonPlaceHolder::class.java)
+    retrofitString.create(RestPost::class.java)
         .getPostAsString("posts/1")
 
 fun getPostAsJson(): Observable<Post> =
-    retrofitJson.create(RestJsonPlaceHolder::class.java)
+    retrofitJson.create(RestPost::class.java)
         .getPostAsJson(1)
 
+// https://stackoverflow.com/questions/29672705/convert-observablelistcar-to-a-sequence-of-observablecar-in-rxjava
 fun getPosts(n: Long): Observable<Post> =
-    retrofitJson.create(RestJsonPlaceHolder::class.java)
+    retrofitJson.create(RestPost::class.java)
         .getPosts().flatMapIterable { x -> x }.take(n)
 
 fun createPost(): Observable<Post> =
-    retrofitJson.create(RestJsonPlaceHolder::class.java)
+    retrofitJson.create(RestPost::class.java)
         .createPost(101, 102, "test title", "test body")
 
 fun updatePost(): Observable<Post> =
-    retrofitJson.create(RestJsonPlaceHolder::class.java)
+    retrofitJson.create(RestPost::class.java)
         .updatePost(101, 1, "test title", "test body")
 
 fun deletePost(): Observable<String> =
-    retrofitString.create(RestJsonPlaceHolder::class.java)
+    retrofitString.create(RestPost::class.java)
         .deletePost(1)
 
 fun main(args: Array<String>) {
