@@ -39,6 +39,19 @@ namespace RxSamples
             BaseAddress = new Uri("https://jsonplaceholder.typicode.com/")
         };
 
+        public async Task<string> GetPostAsString(int id) =>
+        !CrossConnectivity.Current.IsConnected ? null : await client.GetStringAsync($"posts/{id}");
+
+        public async Task<Post> GetPostAsJson(int id)
+        {
+            if (!CrossConnectivity.Current.IsConnected) return null;
+
+            var json = await client.GetStringAsync($"posts/{id}");
+            var item = await Task.Run(() => JsonConvert.DeserializeObject<Post>(json));
+
+            return item;
+        }
+
         public async Task<IEnumerable<Post>> GetPosts(int n)
         {
             IEnumerable<Post> items = new List<Post>();
@@ -50,23 +63,14 @@ namespace RxSamples
             return items.Take(n);
         }
 
-        public async Task<Post> GetPost(int id)
-        {
-            if (!CrossConnectivity.Current.IsConnected) return null;
-
-            var json = await client.GetStringAsync($"posts/{id}");
-            var item = await Task.Run(() => JsonConvert.DeserializeObject<Post>(json));
-
-            return item;
-        }
+        private StringContent GetStringContent(Post item) =>
+        new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
 
         public async Task<Post> CreatePost(Post item)
         {
             if (item == null || !CrossConnectivity.Current.IsConnected) return null;
 
-            var serializedItem = JsonConvert.SerializeObject(item);
-
-            var response = await client.PostAsync("posts", new StringContent(serializedItem, Encoding.UTF8, "application/json"));
+            var response = await client.PostAsync("posts", GetStringContent(item));
             if (!response.IsSuccessStatusCode) return null;
 
             var json = await response.Content.ReadAsStringAsync();
@@ -79,9 +83,7 @@ namespace RxSamples
         {
             if (item == null || !CrossConnectivity.Current.IsConnected) return null;
 
-            var serializedItem = JsonConvert.SerializeObject(item);
-
-            var response = await client.PutAsync($"posts/{item.Id}", new StringContent(serializedItem, Encoding.UTF8, "application/json"));
+            var response = await client.PutAsync($"posts/{item.Id}", GetStringContent(item));
             if (!response.IsSuccessStatusCode) return null;
 
             var json = await response.Content.ReadAsStringAsync();
@@ -109,16 +111,20 @@ namespace RxSamples
             BaseAddress = new Uri("https://jsonplaceholder.typicode.com/")
         };
 
+        public IObservable<string> GetPostAsString(int id) =>
+        !CrossConnectivity.Current.IsConnected ? Observable.Empty<string>() :
+            client.GetStringAsync($"posts/{id}").ToObservable();
+
+        public IObservable<Post> GetPostAsJson(int id) =>
+        !CrossConnectivity.Current.IsConnected? Observable.Empty<Post>() :
+            client.GetStringAsync($"posts/{id}").ToObservable()
+            .Select(json => JsonConvert.DeserializeObject<Post>(json));
+
         public IObservable<Post> GetPosts(int n) =>
         !CrossConnectivity.Current.IsConnected ? Observable.Empty<Post>() :
             client.GetStringAsync("posts").ToObservable()
             .SelectMany(json => JsonConvert.DeserializeObject<IEnumerable<Post>>(json))
             .Take(n);
-
-        public IObservable<Post> GetPost(int id) =>
-        !CrossConnectivity.Current.IsConnected? Observable.Empty<Post>() :
-            client.GetStringAsync($"posts/{id}").ToObservable()
-            .Select(json => JsonConvert.DeserializeObject<Post>(json));
 
         private StringContent GetStringContent(Post item) =>
         new StringContent(JsonConvert.SerializeObject(item), Encoding.UTF8, "application/json");
@@ -150,7 +156,8 @@ namespace RxSamples
         {
             {
                 var dataStore = new PostDataStoreByTask();
-                Console.WriteLine(dataStore.GetPost(1).Result);
+                Console.WriteLine(dataStore.GetPostAsString(1).Result);
+                Console.WriteLine(dataStore.GetPostAsJson(1).Result);
                 dataStore.GetPosts(2).Result.ToList().ForEach(Console.WriteLine);
                 Console.WriteLine(dataStore.CreatePost(new Post
                 {
@@ -170,7 +177,8 @@ namespace RxSamples
             }
             {
                 var dataStore = new PostDataStoreByRx();
-                dataStore.GetPost(1).Subscribe(Console.WriteLine);
+                dataStore.GetPostAsString(1).Subscribe(Console.WriteLine);
+                dataStore.GetPostAsJson(1).Subscribe(Console.WriteLine);
                 dataStore.GetPosts(2).Do(Console.WriteLine).Subscribe();
                 dataStore.CreatePost(new Post
                 {
@@ -178,7 +186,7 @@ namespace RxSamples
                     Id = 102,
                     Title = "test title",
                     Body = "test body"
-                }).Subscribe(Console.WriteLine);;
+                }).Subscribe(Console.WriteLine);
                 dataStore.UpdatePost(new Post
                 {
                     UserId = 101,
