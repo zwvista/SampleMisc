@@ -1,6 +1,7 @@
 {-# LANGUAGE ParallelListComp #-}
 {-# LANGUAGE TransformListComp #-}
 {-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE MonadComprehensions #-}
 
 
 import GHC.Exts
@@ -23,13 +24,15 @@ main2 = print $ [ (x, y, map the v) | x <- [1 .. 10],
                                       then takeWhile by t < 3]
                                      
                                      
-parallelListComp :: Int
+parallelListComp :: [Int]
 parallelListComp = [ x + y * z
                    | x <- [0..10]
                    | y <- [10..20]
                    | z <- [20..30]
                    ]
-parallelListComp2 = zipWith3 (\(x, y, z) -> x + y * z) [0..10] [10..20] [20..30]
+                   
+parallelListComp2 :: [Int]
+parallelListComp2 = zipWith3 (\x y z -> x + y * z) [0..10] [10..20] [20..30]
 
 fibs :: [Int]
 fibs = 0 : 1 : zipWith (+) fibs (tail fibs)
@@ -82,4 +85,17 @@ bestBirthYears tbl = [ (the birthYear, firstName)
 main3 = do
     print $ oldest 2 friends
     print $ bestBirthYears friends
+    
+
+l :: [(String, Int)]
+l = [("a", 1), ("b", 2), ("c", 3)]
+
+main4 = print [ (x, y) | x <- lookup "a" l,
+                         y <- lookup "b" l,
+                         then (\f ->
+                                maybe Nothing
+                                      (\x -> if f x == 2
+                                                then Just x
+                                                else Nothing))
+                              by (x * y) ]
 
