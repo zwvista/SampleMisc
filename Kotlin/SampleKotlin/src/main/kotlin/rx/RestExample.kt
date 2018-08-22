@@ -1,5 +1,7 @@
 package rx
 
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -7,7 +9,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.*
 
-data class Post(val userId: Int, val id: Int, val title: String, val body: String) {
+data class Post(@SerializedName("userId") @Expose val userId: Int,
+                @SerializedName("id") @Expose val id: Int,
+                @SerializedName("title") @Expose val title: String,
+                @SerializedName("body") @Expose val body: String) {
     override fun toString(): String {
         fun f(str: String) = "\"${str.replace("\n", "\\n")}\""
         return "Post {userId = $userId, id = $id, title = ${f(title)}, body = ${f(body)}}"
