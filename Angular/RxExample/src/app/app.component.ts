@@ -7,6 +7,6 @@ import {PostService} from './post.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'RestExample';
+  title = 'RxExample';
   constructor(private postService: PostService) { }
 }
