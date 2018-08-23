@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
 import { PostService } from './post.service';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
