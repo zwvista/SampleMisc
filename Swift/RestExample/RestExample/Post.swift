@@ -33,7 +33,7 @@ struct Post : Codable {
         return RestApi.getArray(url: "\(url)posts").flatMap { Observable.from($0) }.take(n)
     }
     static func createPost() -> Observable<String> {
-        let post = Post(userId: 101, id: 102, title: "test title", body: "test body")
+        let post = Post(userId: 101, id: 0, title: "test title", body: "test body")
         return RestApi.create(url: "\(url)posts", body: try! post.toJSONString(prettyPrint: false)!)
     }
     static func updatePost() -> Observable<String> {

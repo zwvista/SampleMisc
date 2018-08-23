@@ -68,7 +68,6 @@ export class PostService {
     return this.http.post(url, {
         params: {
           userId: 101,
-          id: 102,
           title: 'test title',
           body: 'test body',
         }
@@ -84,8 +83,8 @@ export class PostService {
     const url = `${this.baseUrl}posts/1`;
     return this.http.put(url, {
         params: {
-          userId: 1,
-          id: 102,
+          userId: 101,
+          id: 1,
           title: 'test title',
           body: 'test body',
         }

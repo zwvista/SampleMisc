@@ -162,7 +162,7 @@ namespace RxSamples
                 Console.WriteLine(dataStore.CreatePost(new Post
                 {
                     UserId = 101,
-                    Id = 102,
+                    Id = 0,
                     Title = "test title",
                     Body = "test body"
                 }).Result);
@@ -183,7 +183,7 @@ namespace RxSamples
                 dataStore.CreatePost(new Post
                 {
                     UserId = 101,
-                    Id = 102,
+                    Id = 0,
                     Title = "test title",
                     Body = "test body"
                 }).Subscribe(Console.WriteLine);

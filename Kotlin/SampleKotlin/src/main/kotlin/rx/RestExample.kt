@@ -29,7 +29,6 @@ interface RestPost {
     @FormUrlEncoded
     @POST("posts")
     fun createPost(@Field("userId") userId: Int,
-                   @Field("id") id: Int,
                    @Field("title") title: String,
                    @Field("body") body: String): Observable<Post>
     @FormUrlEncoded
@@ -68,7 +67,7 @@ fun getPosts(n: Long): Observable<Post> =
 
 fun createPost(): Observable<Post> =
     retrofitJson.create(RestPost::class.java)
-        .createPost(101, 102, "test title", "test body")
+        .createPost(101, "test title", "test body")
 
 fun updatePost(): Observable<Post> =
     retrofitJson.create(RestPost::class.java)
