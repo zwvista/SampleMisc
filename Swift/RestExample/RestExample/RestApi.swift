@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 import Alamofire
 import RxSwift
 import RxAlamofire
@@ -54,3 +53,4 @@ class RestApi {
         return RxAlamofire.string(.get, url)
     }
 }
+

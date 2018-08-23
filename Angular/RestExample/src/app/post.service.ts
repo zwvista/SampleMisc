@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MessageService } from "./message.service";
-import {of, Observable, from} from "rxjs";
+import { MessageService } from './message.service';
+import {of, Observable, from} from 'rxjs';
 import {catchError, map, mergeAll, take, tap} from 'rxjs/operators';
-import { Post } from "./post";
+import { Post } from './post';
 
 @Injectable()
 export class PostService {
@@ -46,7 +46,7 @@ export class PostService {
     return this.http.get<Post>(url)
       .pipe(
         map(result => Object.assign(new Post(), result)),
-        tap(result => this.log("" + result)),
+        tap(result => this.log('' + result)),
         catchError(this.handleError('getPostAsJson', []))
       );
   }
@@ -58,7 +58,7 @@ export class PostService {
         mergeAll(),
         map(result => Object.assign(new Post(), result)),
         take(n),
-        tap(result => this.log("" + result)),
+        tap(result => this.log('' + result)),
         catchError(this.handleError('getPosts', []))
       );
   }
@@ -69,14 +69,14 @@ export class PostService {
         params: {
           userId: 101,
           id: 102,
-          title: "test title",
-          body: "test body",
+          title: 'test title',
+          body: 'test body',
         }
       })
       .pipe(
         map(result => JSON.stringify(result)),
         tap(result => this.log(result)),
-        catchError(this.handleError('getPostAsString', []))
+        catchError(this.handleError('createPost', []))
       );
   }
 
@@ -86,14 +86,14 @@ export class PostService {
         params: {
           userId: 1,
           id: 102,
-          title: "test title",
-          body: "test body",
+          title: 'test title',
+          body: 'test body',
         }
       })
       .pipe(
         map(result => JSON.stringify(result)),
         tap(result => this.log(result)),
-        catchError(this.handleError('getPostAsString', []))
+        catchError(this.handleError('updatePost', []))
       );
   }
 
@@ -103,7 +103,7 @@ export class PostService {
       .pipe(
         map(result => JSON.stringify(result)),
         tap(result => this.log(result)),
-        catchError(this.handleError('getPostAsString', []))
+        catchError(this.handleError('deletePost', []))
       );
   }
 }
