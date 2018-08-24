@@ -3,31 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import {of, Observable, from} from 'rxjs';
 import {map, mergeAll, take, tap} from 'rxjs/operators';
 import { Post } from './post';
+import {BaseService} from './base.service';
 
 @Injectable()
-export class PostService {
-  private baseUrl = 'http://jsonplaceholder.typicode.com/';
+export class PostService extends BaseService {
 
-  constructor(
-    private http: HttpClient) {
+  constructor(http: HttpClient) {
+    super(http);
     this.getPostAsString().subscribe();
     this.getPostAsJson().subscribe();
     this.getPosts(2).subscribe();
     this.createPost().subscribe();
     this.updatePost().subscribe();
     this.deletePost().subscribe();
-  }
-
-  private log(message: any) {
-    console.log(message);
-  }
-
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error); // log to console instead
-      this.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-    };
   }
 
   private getPostAsString(): Observable<string | any[]> {
