@@ -12,7 +12,7 @@ export class PostService extends BaseService {
     super(http);
   }
 
-  public restExample() {
+  restExample() {
     this.getPostAsString().subscribe();
     this.getPostAsJson().subscribe();
     this.getPosts(2).subscribe();

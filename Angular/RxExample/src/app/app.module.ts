@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { PostService } from './post.service';
 import { HttpClientModule } from '@angular/common/http';
+
+import { CreatingService } from './services/creating.service';
+import { PostService } from './services/post.service';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
   ],
   providers: [
+    CreatingService,
     PostService,
   ],
   bootstrap: [AppComponent]

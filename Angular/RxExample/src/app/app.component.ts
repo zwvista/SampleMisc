@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { PostService } from './post.service';
+import { PostService } from './services/post.service';
+import { CreatingService } from './services/creating.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,6 @@ import { PostService } from './post.service';
 })
 export class AppComponent {
   title = 'RxExample';
-  constructor(public postService: PostService) { }
+  constructor(public postService: PostService,
+              public creatingService: CreatingService) { }
 }
