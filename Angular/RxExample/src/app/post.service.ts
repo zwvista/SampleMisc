@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {of, Observable, from} from 'rxjs';
-import {map, mergeAll, take, tap} from 'rxjs/operators';
+import { Observable, from } from 'rxjs';
+import { map, mergeAll, take, tap } from 'rxjs/operators';
 import { Post } from './post';
-import {BaseService} from './base.service';
+import { BaseService } from './base.service';
 
 @Injectable()
 export class PostService extends BaseService {
 
   constructor(http: HttpClient) {
     super(http);
+  }
+
+  public restExample() {
     this.getPostAsString().subscribe();
     this.getPostAsJson().subscribe();
     this.getPosts(2).subscribe();

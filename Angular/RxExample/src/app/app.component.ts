@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {PostService} from './post.service';
+import { PostService } from './post.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +8,5 @@ import {PostService} from './post.service';
 })
 export class AppComponent {
   title = 'RxExample';
-  constructor(private postService: PostService) { }
+  constructor(public postService: PostService) { }
 }
