@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MessageService } from './message.service';
 import {of, Observable, from} from 'rxjs';
-import {catchError, map, mergeAll, take, tap} from 'rxjs/operators';
+import {map, mergeAll, take, tap} from 'rxjs/operators';
 import { Post } from './post';
 
 @Injectable()
@@ -10,8 +9,7 @@ export class PostService {
   private baseUrl = 'http://jsonplaceholder.typicode.com/';
 
   constructor(
-    private http: HttpClient,
-    private messageService: MessageService) {
+    private http: HttpClient) {
     this.getPostAsString().subscribe();
     this.getPostAsJson().subscribe();
     this.getPosts(2).subscribe();
@@ -20,8 +18,8 @@ export class PostService {
     this.deletePost().subscribe();
   }
 
-  private log(message: string) {
-    this.messageService.add('PostService: ' + message);
+  private log(message: any) {
+    console.log(message);
   }
 
   private handleError<T> (operation = 'operation', result?: T) {
@@ -37,7 +35,6 @@ export class PostService {
     return this.http.get(url, { responseType: 'text' })
       .pipe(
         tap(result => this.log(result)),
-        catchError(this.handleError('getPostAsString', []))
       );
   }
 
@@ -47,7 +44,6 @@ export class PostService {
       .pipe(
         map(result => Object.assign(new Post(), result)),
         tap(result => this.log('' + result)),
-        catchError(this.handleError('getPostAsJson', []))
       );
   }
 
@@ -59,7 +55,6 @@ export class PostService {
         map(result => Object.assign(new Post(), result)),
         take(n),
         tap(result => this.log('' + result)),
-        catchError(this.handleError('getPosts', []))
       );
   }
 
@@ -75,7 +70,6 @@ export class PostService {
       .pipe(
         map(result => JSON.stringify(result)),
         tap(result => this.log(result)),
-        catchError(this.handleError('createPost', []))
       );
   }
 
@@ -92,7 +86,6 @@ export class PostService {
       .pipe(
         map(result => JSON.stringify(result)),
         tap(result => this.log(result)),
-        catchError(this.handleError('updatePost', []))
       );
   }
 
@@ -102,7 +95,6 @@ export class PostService {
       .pipe(
         map(result => JSON.stringify(result)),
         tap(result => this.log(result)),
-        catchError(this.handleError('deletePost', []))
       );
   }
 }
