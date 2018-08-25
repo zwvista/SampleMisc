@@ -3,14 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
 import { map, mergeAll, take, tap } from 'rxjs/operators';
 import { Post } from './post';
-import { BaseService } from './base.service';
 
 @Injectable()
-export class PostService extends BaseService {
+export class PostService {
+  private baseUrl = 'http://jsonplaceholder.typicode.com/';
 
-  constructor(http: HttpClient) {
-    super(http);
-  }
+  constructor(private http: HttpClient) { }
 
   restExample() {
     this.getPostAsString().subscribe();
