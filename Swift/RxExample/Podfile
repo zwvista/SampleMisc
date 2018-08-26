@@ -6,4 +6,5 @@ target 'RxExample' do
 project 'RxExample'
 pod 'CodableAlamofire'
 pod 'RxAlamofire'
+pod 'RxCocoa'
 end
