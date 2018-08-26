@@ -23,7 +23,7 @@ export class PostService {
     const url = `${this.baseUrl}posts/1`;
     return this.http.get(url, { responseType: 'text' })
       .pipe(
-        tap(result => this.log(result)),
+        tap(result => console.log(result)),
       );
   }
 
@@ -32,7 +32,7 @@ export class PostService {
     return this.http.get<Post>(url)
       .pipe(
         map(result => Object.assign(new Post(), result)),
-        tap(result => this.log('' + result)),
+        tap(result => console.log('' + result)),
       );
   }
 
@@ -43,7 +43,7 @@ export class PostService {
         mergeAll(),
         map(result => Object.assign(new Post(), result)),
         take(n),
-        tap(result => this.log('' + result)),
+        tap(result => console.log('' + result)),
       );
   }
 
@@ -58,7 +58,7 @@ export class PostService {
       })
       .pipe(
         map(result => JSON.stringify(result)),
-        tap(result => this.log(result)),
+        tap(result => console.log(result)),
       );
   }
 
@@ -74,7 +74,7 @@ export class PostService {
       })
       .pipe(
         map(result => JSON.stringify(result)),
-        tap(result => this.log(result)),
+        tap(result => console.log(result)),
       );
   }
 
@@ -83,7 +83,7 @@ export class PostService {
     return this.http.delete(url)
       .pipe(
         map(result => JSON.stringify(result)),
-        tap(result => this.log(result)),
+        tap(result => console.log(result)),
       );
   }
 }

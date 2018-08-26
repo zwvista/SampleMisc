@@ -30,3 +30,12 @@ pub fn example22() {
     add_one_v4(1);
     add_one_v5(1);
 }
+
+pub fn example23() {
+    let x = 5;
+    let y = &x;
+    let z = Box::new(x);
+    assert_eq!(5, x);
+    assert_eq!(5, *y);
+    assert_eq!(5, *z);
+}

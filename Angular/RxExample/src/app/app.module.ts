@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { CreatingService } from './services/creating.service';
 import { PostService } from './services/post.service';
+import { TransformingService } from './services/transforming.service';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PostService } from './services/post.service';
   providers: [
     CreatingService,
     PostService,
+    TransformingService,
   ],
   bootstrap: [AppComponent]
 })

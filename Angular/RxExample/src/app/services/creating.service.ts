@@ -6,8 +6,7 @@ import { take } from 'rxjs/operators';
 @Injectable()
 export class CreatingService {
 
-  constructor() {
-  }
+  constructor() { }
 
   /*
     Create an observable that emits 'Hello' and 'World' on

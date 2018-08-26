@@ -1,8 +1,10 @@
 mod examples1;
 mod examples2;
+mod examples3;
 
 use examples1::*;
 use examples2::*;
+use examples3::*;
 
 fn main() {
     example11();
@@ -11,6 +13,13 @@ fn main() {
     example14();
 
     example21();
+    example22();
+    example23();
+
+    example31();
+    example32();
+    example33();
+    example34();
 }
 /*
 rect1 is Rectangle { width: 30, height: 50 }

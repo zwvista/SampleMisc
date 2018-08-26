@@ -1,7 +1,0 @@
-use_frameworks!
-
-target 'RestExample' do
-project 'RestExample'
-pod 'CodableAlamofire'
-pod 'RxAlamofire'
-end
