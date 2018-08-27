@@ -3,18 +3,23 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<div>
+<p>
+  Aggregate
+  <button (click)="aggregateService.concat1()">concat1</button>
+  <button (click)="aggregateService.concat2()">concat2</button>
+  <button (click)="aggregateService.concat3()">concat3</button>
+  <button (click)="aggregateService.concat4()">concat4</button>
+  <button (click)="aggregateService.concatAll1()">concatAll1</button>
+  <button (click)="aggregateService.concatAll2()">concatAll2</button>
+  <button (click)="aggregateService.concatAll3()">concatAll3</button>
+  <button (click)="aggregateService.reduce1()">reduce1</button>
+</p>
+<p>
+  Combining
   <button (click)="combiningService.combineAll1()">combineAll1</button>
   <button (click)="combiningService.combineLatest1()">combineLatest1</button>
   <button (click)="combiningService.combineLatest2()">combineLatest2</button>
   <button (click)="combiningService.combineLatest3()">combineLatest3</button>
-  <button (click)="combiningService.concat1()">concat1</button>
-  <button (click)="combiningService.concat2()">concat2</button>
-  <button (click)="combiningService.concat3()">concat3</button>
-  <button (click)="combiningService.concat4()">concat4</button>
-  <button (click)="combiningService.concatAll1()">concatAll1</button>
-  <button (click)="combiningService.concatAll2()">concatAll2</button>
-  <button (click)="combiningService.concatAll3()">concatAll3</button>
   <button (click)="combiningService.forkJoin1()">forkJoin1</button>
   <button (click)="combiningService.forkJoin2()">forkJoin2</button>
   <button (click)="combiningService.forkJoin3()">forkJoin3</button>
@@ -24,8 +29,6 @@
   <button (click)="combiningService.mergeAll1()">mergeAll1</button>
   <button (click)="combiningService.mergeAll2()">mergeAll2</button>
   <button (click)="combiningService.pairwise1()">pairwise1</button>
-  <button (click)="combiningService.race1()">race1</button>
-  <button (click)="combiningService.race2()">race2</button>
   <button (click)="combiningService.startWith1()">startWith1</button>
   <button (click)="combiningService.startWith2()">startWith2</button>
   <button (click)="combiningService.startWith3()">startWith3</button>
@@ -33,14 +36,24 @@
   <button (click)="combiningService.zip2()">zip2</button>
   <button (click)="combiningService.withLatestFrom1()">withLatestFrom1</button>
   <button (click)="combiningService.withLatestFrom2()">withLatestFrom2</button>
-</div>
-  <div>
-    <button (click)="conditionalService.defaultIfEmpty1()">defaultIfEmpty1</button>
-    <button (click)="conditionalService.defaultIfEmpty2()">defaultIfEmpty2</button>
-    <button (click)="conditionalService.every1()">every1</button>
-    <button (click)="conditionalService.every2()">every2</button>
-</div>
-<div>
+</p>
+<p>
+  Conditional
+  <button (click)="conditionalService.defaultIfEmpty1()">defaultIfEmpty1</button>
+  <button (click)="conditionalService.defaultIfEmpty2()">defaultIfEmpty2</button>
+  <button (click)="conditionalService.every1()">every1</button>
+  <button (click)="conditionalService.every2()">every2</button>
+  <button (click)="conditionalService.race1()">race1</button>
+  <button (click)="conditionalService.race2()">race2</button>
+  <button (click)="conditionalService.skipUntil1()">skipUntil1</button>
+  <button (click)="conditionalService.skipWhile1()">skipWhile1</button>
+  <button (click)="conditionalService.takeUntil1()">takeUntil1</button>
+  <button (click)="conditionalService.takeUntil2()">takeUntil2</button>
+  <button (click)="conditionalService.takeWhile1()">takeWhile1</button>
+  <button (click)="conditionalService.takeWhile2()">takeWhile2</button>
+</p>
+<p>
+  Connectable
   <button (click)="connectableService.publish1()">publish1</button>
   <button (click)="connectableService.multicast1()">multicast1</button>
   <button (click)="connectableService.multicast2()">multicast2</button>
@@ -49,8 +62,9 @@
   <button (click)="connectableService.shareReplay2()">shareReplay2</button>
   <button (click)="connectableService.shareReplay3()">shareReplay3</button>
   <button (click)="connectableService.shareReplay5()">shareReplay5</button>
-</div>
-<div>
+</p>
+<p>
+  Creating
   <button (click)="creatingService.create1()">create1</button>
   <button (click)="creatingService.create2()">create2</button>
   <button (click)="creatingService.empty1()">empty1</button>
@@ -67,14 +81,16 @@
   <button (click)="creatingService.throw1()">throw1</button>
   <button (click)="creatingService.timer1()">timer1</button>
   <button (click)="creatingService.timer2()">timer2</button>
-</div>
-<div>
+</p>
+<p>
+  Error Handling
   <button (click)="errorHandlingService.catch_catchError1()">catch_catchError1</button>
   <button (click)="errorHandlingService.catch_catchError2()">catch_catchError2</button>
   <button (click)="errorHandlingService.retry1()">retry1</button>
   <button (click)="errorHandlingService.retryWhen1()">retryWhen1</button>
-</div>
-<div>
+</p>
+<p>
+  Filtering
   <button (click)="filteringService.debounce1()">debounce1</button>
   <button (click)="filteringService.debounce2()">debounce2</button>
   <button (click)="filteringService.debounceTime1()">debounceTime1</button>
@@ -97,24 +113,20 @@
   <button (click)="filteringService.single1()">single1</button>
   <button (click)="filteringService.skip1()">skip1</button>
   <button (click)="filteringService.skip2()">skip2</button>
-  <button (click)="filteringService.skipUntil1()">skipUntil1</button>
-  <button (click)="filteringService.skipWhile1()">skipWhile1</button>
   <button (click)="filteringService.take1()">take1</button>
   <button (click)="filteringService.take2()">take2</button>
   <button (click)="filteringService.take3()">take3</button>
-  <button (click)="filteringService.takeUntil1()">takeUntil1</button>
-  <button (click)="filteringService.takeUntil2()">takeUntil2</button>
-  <button (click)="filteringService.takeWhile1()">takeWhile1</button>
-  <button (click)="filteringService.takeWhile2()">takeWhile2</button>
   <button (click)="filteringService.throttle1()">throttle1</button>
   <button (click)="filteringService.throttle2()">throttle2</button>
   <button (click)="filteringService.throttleTime1()">throttleTime1</button>
   <button (click)="filteringService.throttleTime2()">throttleTime2</button>
-</div>
-<div>
+</p>
+<p>
+  REST
   <button (click)="postService.restExample()">restExample</button>
-</div>
-<div>
+</p>
+<p>
+  Tranforming
   <button (click)="transformingService.buffer1()">buffer1</button>
   <button (click)="transformingService.bufferCount1()">bufferCount1</button>
   <button (click)="transformingService.bufferCount2()">bufferCount2</button>
@@ -143,7 +155,6 @@
   <button (click)="transformingService.mergeMap_flatMap4()">mergeMap_flatMap4</button>
   <button (click)="transformingService.pluck1()">pluck1</button>
   <button (click)="transformingService.pluck2()">pluck2</button>
-  <button (click)="transformingService.reduce1()">reduce1</button>
   <button (click)="transformingService.scan1()">scan1</button>
   <button (click)="transformingService.scan2()">scan2</button>
   <button (click)="transformingService.scan3()">scan3</button>
@@ -156,8 +167,9 @@
   <button (click)="transformingService.windowTime1()">windowTime1</button>
   <button (click)="transformingService.windowToggle1()">windowToggle1</button>
   <button (click)="transformingService.windowWhen1()">windowWhen1</button>
-</div>
-<div>
+</p>
+<p>
+  Utility
   <button (click)="utilityService.do_tap1()">do_tap1</button>
   <button (click)="utilityService.delay1()">delay1</button>
   <button (click)="utilityService.delayWhen1()">delayWhen1</button>
@@ -165,5 +177,5 @@
   <button (click)="utilityService.timeout1()">timeout1</button>
   <button (click)="utilityService.toPromise1()">toPromise1</button>
   <button (click)="utilityService.toPromise2()">toPromise2</button>
-</div>
+</p>
 

@@ -7,7 +7,7 @@ import {
   bufferToggle,
   bufferWhen, catchError, concatMap, concatMapTo, delay, distinctUntilChanged, exhaustMap, expand,
   groupBy, map, mapTo,
-  mergeAll, mergeMap, partition, pluck, reduce,
+  mergeAll, mergeMap, partition, pluck,
   scan, startWith, switchMap,
   take,
   takeWhile, tap, toArray, windowCount, windowTime, windowToggle,
@@ -520,13 +520,6 @@ export class TransformingService {
     const example = source.pipe(pluck('job', 'title'));
     // output: "Developer" , undefined
     const subscribe = example.subscribe(val => console.log(val));
-  }
-
-  reduce1() {
-    const source = of(1, 2, 3, 4);
-    const example = source.pipe(reduce((acc, val) => acc + val));
-    // output: Sum: 10'
-    const subscribe = example.subscribe(val => console.log('Sum:', val));
   }
 
   scan1() {
