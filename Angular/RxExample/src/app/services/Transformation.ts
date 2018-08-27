@@ -1,3 +1,19 @@
+  buffer1() {
+    // Create an observable that emits a value every second
+    const myInterval = interval(1000);
+    // Create an observable that emits every time document is clicked
+    const bufferBy = fromEvent(document, 'click');
+    /*
+    Collect all values emitted by our interval observable until we click document. This will cause the bufferBy Observable to emit a value, satisfying the buffer. Pass us all collected values since last buffer as an array.
+    */
+    const myBufferedInterval = myInterval.pipe(buffer(bufferBy));
+    // Print values to console
+    // ex. output: [1,2,3] ... [4,5,6,7,8]
+    const subscribe = myBufferedInterval.subscribe(val =>
+      console.log(' Buffered Values:', val)
+    );
+  }
+
   bufferCount1() {
     // Create an observable that emits a value every second
     const source = interval(1000);
@@ -37,19 +53,30 @@
     );
   }
 
-  buffer1() {
-    // Create an observable that emits a value every second
-    const myInterval = interval(1000);
-    // Create an observable that emits every time document is clicked
-    const bufferBy = fromEvent(document, 'click');
-    /*
-    Collect all values emitted by our interval observable until we click document. This will cause the bufferBy Observable to emit a value, satisfying the buffer. Pass us all collected values since last buffer as an array.
-    */
-    const myBufferedInterval = myInterval.pipe(buffer(bufferBy));
+  bufferTime1() {
+    // Create an observable that emits a value every 500ms
+    const source = interval(500);
+    // After 2 seconds have passed, emit buffered values as an array
+    const example = source.pipe(bufferTime(2000));
     // Print values to console
-    // ex. output: [1,2,3] ... [4,5,6,7,8]
-    const subscribe = myBufferedInterval.subscribe(val =>
-      console.log(' Buffered Values:', val)
+    // ex. output [0,1,2]...[3,4,5,6]
+    const subscribe = example.subscribe(val =>
+      console.log('Buffered with Time:', val)
+    );
+  }
+
+  bufferTime2() {
+    // Create an observable that emits a value every 500ms
+    const source = interval(500);
+    /*
+    bufferTime also takes second argument, when to start the next buffer (time in ms)
+    for instance, if we have a bufferTime of 2 seconds but second argument (bufferCreationInterval) of 1 second:
+    ex. output: [0,1,2]...[1,2,3,4,5]...[3,4,5,6,7]
+    */
+    const example = source.pipe(bufferTime(2000, 1000));
+    // Print values to console
+    const subscribe = example.subscribe(val =>
+      console.log('Start Buffer Every 1s:', val)
     );
   }
 
@@ -88,6 +115,56 @@
     // ex. output: [0,1,2,3]...[4,5,6,7,8]
     const subscribe = bufferWhenExample.subscribe(val =>
       console.log('Emitted Buffer: ', val)
+    );
+  }
+
+  concatMap1() {
+    // emit delay value
+    const source = of(2000, 1000);
+    //  map value from source into inner observable, when complete emit result and move to next
+    const example = source.pipe(
+      concatMap(val => of(`Delayed by: ${val}ms`).pipe(delay(val)))
+    );
+    // output: With concatMap: Delayed by: 2000ms, With concatMap: Delayed by: 1000ms
+    const subscribe = example.subscribe(val =>
+      console.log(`With concatMap: ${val}`)
+    );
+    
+    //  showing the difference between concatMap and mergeMap
+    const mergeMapExample = source
+      .pipe(
+        //  just so we can log this after the first example has run
+        delay(5000),
+        mergeMap(val => of(`Delayed by: ${val}ms`).pipe(delay(val)))
+      )
+      .subscribe(val => console.log(`With mergeMap: ${val}`));
+  }
+
+  concatMap2() {
+    // emit 'Hello' and 'Goodbye'
+    const source = of('Hello', 'Goodbye');
+    // example with promise
+    const examplePromise = val => new Promise(resolve => resolve(`${val} World!`));
+    //  map value from source into inner observable, when complete emit result and move to next
+    const example = source.pipe(concatMap(val => examplePromise(val)));
+    // output: 'Example w/ Promise: 'Hello World', Example w/ Promise: 'Goodbye World'
+    const subscribe = example.subscribe(val =>
+      console.log('Example w/ Promise:', val)
+    );
+  }
+
+  concatMap3() {
+    // emit 'Hello' and 'Goodbye'
+    const source = of('Hello', 'Goodbye');
+    // example with promise
+    const examplePromise = val => new Promise(resolve => resolve(`${val} World!`));
+    // result of first param passed to second param selector function before being  returned
+    const example = source.pipe(
+      concatMap(val => examplePromise(val), result => `${result} w/ selector!`)
+    );
+    // output: 'Example w/ Selector: 'Hello w/ Selector', Example w/ Selector: 'Goodbye w/ Selector'
+    const subscribe = example.subscribe(val =>
+      console.log('Example w/ Selector:', val)
     );
   }
 
@@ -263,6 +340,28 @@
     const subscribe = example.subscribe(val => console.log(`RESULT: ${val}`));
   }
 
+  map1() {
+    // emit (1,2,3,4,5)
+    const source = from([1, 2, 3, 4, 5]);
+    // add 10 to each value
+    const example = source.pipe(map(val => val + 10));
+    // output: 11,12,13,14,15
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
+  map2() {
+    // emit ({name: 'Joe', age: 30}, {name: 'Frank', age: 20},{name: 'Ryan', age: 50})
+    const source = from([
+      { name: 'Joe', age: 30 },
+      { name: 'Frank', age: 20 },
+      { name: 'Ryan', age: 50 }
+    ]);
+    // grab each persons name, could also use pluck for this scenario
+    const example = source.pipe(map(({ name }) => name));
+    // output: "Joe","Frank","Ryan"
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
   mapTo1() {
     // emit value every two seconds
     const source = interval(2000);
@@ -327,6 +426,75 @@
     ).subscribe(val => console.log(val));
   }
 
+  mergeMap_flatMap1() {
+    // emit 'Hello'
+    const source = of('Hello');
+    // map to inner observable and flatten
+    const example = source.pipe(mergeMap(val => of(`${val} World!`)));
+    // output: 'Hello World!'
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
+  mergeMap_flatMap2() {
+    // emit 'Hello'
+    const source = of('Hello');
+    // mergeMap also emits result of promise
+    const myPromise = val =>
+      new Promise(resolve => resolve(`${val} World From Promise!`));
+    // map to promise and emit result
+    const example = source.pipe(mergeMap(val => myPromise(val)));
+    // output: 'Hello World From Promise'
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
+  mergeMap_flatMap3() {
+    /*
+      you can also supply a second argument which receives the source value and emitted
+      value of inner observable or promise
+    */
+    // emit 'Hello'
+    const source = of('Hello');
+    // mergeMap also emits result of promise
+    const myPromise = val =>
+      new Promise(resolve => resolve(`${val} World From Promise!`));
+    const example = source.pipe(
+      mergeMap(
+        val => myPromise(val),
+        (valueFromSource, valueFromPromise) => {
+          return `Source: ${valueFromSource}, Promise: ${valueFromPromise}`;
+        }
+      )
+    );
+    // output: "Source: Hello, Promise: Hello World From Promise!"
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
+  mergeMap_flatMap4() {
+    // emit value every 1s
+    const source = interval(1000);
+    
+    const example = source.pipe(
+      mergeMap(
+        // project
+        val => interval(5000).pipe(take(2)),
+        // resultSelector
+        (oVal, iVal, oIndex, iIndex) => [oIndex, oVal, iIndex, iVal],
+        // concurrent
+        2
+      )
+    );
+    /*
+    		Output:
+    		[0, 0, 0, 0] 
+    		[1, 1, 0, 0] 
+    		[0, 0, 1, 1] 
+    		[1, 1, 1, 1] 
+    		[2, 2, 0, 0] 
+    		[3, 3, 0, 0] 
+    */
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
   pluck1() {
     const source = from([{ name: 'Joe', age: 30 }, { name: 'Sarah', age: 35 }]);
     // grab names
@@ -352,6 +520,110 @@
     const example = source.pipe(reduce((acc, val) => acc + val));
     // output: Sum: 10'
     const subscribe = example.subscribe(val => console.log('Sum:', val));
+  }
+
+  scan1() {
+    const source = of(1, 2, 3);
+    //  basic scan example, sum over time starting with zero
+    const example = source.pipe(scan((acc, curr) => acc + curr, 0));
+    //  log accumulated values
+    //  output: 1,3,6
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
+  scan2() {
+    const subject = new Subject();
+    // scan example building an object over time
+    const example = subject.pipe(
+      scan((acc, curr) => Object.assign({}, acc, curr), {})
+    );
+    // log accumulated values
+    const subscribe = example.subscribe(val =>
+      console.log('Accumulated object:', val)
+    );
+    // next values into subject, adding properties to object
+    //  {name: 'Joe'}
+    subject.next({ name: 'Joe' });
+    //  {name: 'Joe', age: 30}
+    subject.next({ age: 30 });
+    //  {name: 'Joe', age: 30, favoriteLanguage: 'JavaScript'}
+    subject.next({ favoriteLanguage: 'JavaScript' });
+  }
+
+  scan3() {
+    //  Accumulate values in an array, emit random values from this array.
+    const scanObs = interval(1000)
+      .pipe(
+        scan((a, c) => [...a, c], []),
+        map(r => r[Math.floor(Math.random() * r.length)]),
+        distinctUntilChanged()
+      )
+      .subscribe(console.log);
+  }
+
+  switchMap1() {
+    // emit immediately, then every 5s
+    const source = timer(0, 5000);
+    // switch to new inner observable when source emits, emit items that are emitted
+    const example = source.pipe(switchMap(() => interval(500)));
+    // output: 0,1,2,3,4,5,6,7,8,9...0,1,2,3,4,5,6,7,8
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
+  switchMap2() {
+    // emit every click
+    const source = fromEvent(document, 'click');
+    // if another click comes within 3s, message will not be emitted
+    const example = source.pipe(
+      switchMap(val => interval(3000).pipe(mapTo('Hello, I made it!')))
+    );
+    // (click)...3s...'Hello I made it!'...(click)...2s(click)...
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
+  switchMap3() {
+    // emit immediately, then every 5s
+    const source = timer(0, 5000);
+    // switch to new inner observable when source emits, invoke project function and emit values
+    const example = source.pipe(
+      switchMap(
+        _ => interval(2000),
+        (outerValue, innerValue, outerIndex, innerIndex) => ({
+          outerValue,
+          innerValue,
+          outerIndex,
+          innerIndex
+        })
+      )
+    );
+    /*
+    	Output:
+    	{outerValue: 0, innerValue: 0, outerIndex: 0, innerIndex: 0}
+    	{outerValue: 0, innerValue: 1, outerIndex: 0, innerIndex: 1}
+    	{outerValue: 1, innerValue: 0, outerIndex: 1, innerIndex: 0}
+    	{outerValue: 1, innerValue: 1, outerIndex: 1, innerIndex: 1}
+    */
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
+  switchMap4() {
+    const countdownSeconds = 10;
+    const setHTML = id => val => (document.getElementById(id).innerHTML = val);
+    const pauseButton = document.getElementById('pause');
+    const resumeButton = document.getElementById('resume');
+    const interval$ = interval(1000).pipe(mapTo(-1));
+    
+    const pause$ = fromEvent(pauseButton, 'click').pipe(mapTo(false));
+    const resume$ = fromEvent(resumeButton, 'click').pipe(mapTo(true));
+    
+    const timer$ = merge(pause$, resume$)
+      .pipe(
+        startWith(true),
+        switchMap(val => (val ? interval$ : empty())),
+        scan((acc, curr) => (curr ? curr + acc : acc), countdownSeconds),
+        takeWhile(v => v >= 0)
+      )
+      .subscribe(setHTML('remaining'));
   }
 
   window1() {

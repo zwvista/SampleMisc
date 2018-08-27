@@ -64,6 +64,38 @@
       .subscribe(setHTML('remaining'));
   }
 
+  from1() {
+    // emit array as a sequence of values
+    const arraySource = from([1, 2, 3, 4, 5]);
+    // output: 1,2,3,4,5
+    const subscribe = arraySource.subscribe(val => console.log(val));
+  }
+
+  from2() {
+    // emit result of promise
+    const promiseSource = from(new Promise(resolve => resolve('Hello World!')));
+    // output: 'Hello World'
+    const subscribe = promiseSource.subscribe(val => console.log(val));
+  }
+
+  from3() {
+    // works on js collections
+    const map = new Map();
+    map.set(1, 'Hi');
+    map.set(2, 'Bye');
+    
+    const mapSource = from(map);
+    // output: [1, 'Hi'], [2, 'Bye']
+    const subscribe = mapSource.subscribe(val => console.log(val));
+  }
+
+  from4() {
+    // emit string as a sequence
+    const source = from('Hello World');
+    // output: 'H','e','l','l','o',' ','W','o','r','l','d'
+    const subscribe = source.subscribe(val => console.log(val));
+  }
+
   fromEvent1() {
     // create observable that emits click events
     const source = fromEvent(document, 'click');
@@ -77,6 +109,22 @@
     // emit value in sequence every 1 second
     const source = interval(1000);
     // output: 0,1,2,3,4,5....
+    const subscribe = source.subscribe(val => console.log(val));
+  }
+
+  of1() {
+    // emits any number of provided values in sequence
+    const source = of(1, 2, 3, 4, 5);
+    // output: 1,2,3,4,5
+    const subscribe = source.subscribe(val => console.log(val));
+  }
+
+  of2() {
+    // emits values of any type
+    const source = of({ name: 'Brian' }, [1, 2, 3], function hello() {
+      return 'Hello';
+    });
+    // output: {name: 'Brian}, [1,2,3], function hello() { return 'Hello' }
     const subscribe = source.subscribe(val => console.log(val));
   }
 

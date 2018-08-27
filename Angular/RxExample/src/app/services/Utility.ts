@@ -1,3 +1,40 @@
+  do_tap1() {
+    const source = of(1, 2, 3, 4, 5);
+    // transparently log values from source with 'do'
+    const example = source.pipe(
+      tap(val => console.log(`BEFORE MAP: ${val}`)),
+      map(val => val + 10),
+      tap(val => console.log(`AFTER MAP: ${val}`))
+    );
+    
+    // 'do' does not transform values
+    // output: 11...12...13...14...15
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
+  delay1() {
+    // emit one item
+    const example = of(null);
+    // delay output of each by an extra second
+    const message = merge(
+      example.pipe(mapTo('Hello')),
+      example.pipe(
+        mapTo('World!'),
+        delay(1000)
+      ),
+      example.pipe(
+        mapTo('Goodbye'),
+        delay(2000)
+      ),
+      example.pipe(
+        mapTo('World!'),
+        delay(3000)
+      )
+    );
+    // output: 'Hello'...'World!'...'Goodbye'...'World!'
+    const subscribe = message.subscribe(val => console.log(val));
+  }
+
   delayWhen1() {
     // emit value every second
     const message = interval(1000);

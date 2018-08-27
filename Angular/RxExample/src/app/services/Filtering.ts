@@ -28,6 +28,85 @@
     );
   }
 
+  debounceTime1() {
+    const input = document.getElementById('example');
+    
+    // for every keyup, map to current input value
+    const example = fromEvent(input, 'keyup').pipe(map(i => i.currentTarget.value));
+    
+    // wait .5s between keyups to emit current value
+    // throw away all other values
+    const debouncedInput = example.pipe(debounceTime(500));
+    
+    // log values
+    const subscribe = debouncedInput.subscribe(val => {
+      console.log(`Debounced Input: ${val}`);
+    });
+  }
+
+  distinctUntilChanged1() {
+    // only output distinct values, based on the last emitted value
+    const myArrayWithDuplicatesInARow = from([1, 1, 2, 2, 3, 1, 2, 3]);
+    
+    const distinctSub = myArrayWithDuplicatesInARow
+      .pipe(distinctUntilChanged())
+      // output: 1,2,3,1,2,3
+      .subscribe(val => console.log('DISTINCT SUB:', val));
+    
+    const nonDistinctSub = myArrayWithDuplicatesInARow
+      // output: 1,1,2,2,3,1,2,3
+      .subscribe(val => console.log('NON DISTINCT SUB:', val));
+  }
+
+  distinctUntilChanged2() {
+    const sampleObject = { name: 'Test' };
+    // Objects must be same reference
+    const myArrayWithDuplicateObjects = from([
+      sampleObject,
+      sampleObject,
+      sampleObject
+    ]);
+    // only out distinct objects, based on last emitted value
+    const nonDistinctObjects = myArrayWithDuplicateObjects
+      .pipe(distinctUntilChanged())
+      // output: 'DISTINCT OBJECTS: {name: 'Test'}
+      .subscribe(val => console.log('DISTINCT OBJECTS:', val));
+  }
+
+  filter1() {
+    // emit (1,2,3,4,5)
+    const source = from([1, 2, 3, 4, 5]);
+    // filter out non-even numbers
+    const example = source.pipe(filter(num => num % 2 === 0));
+    // output: "Even number: 2", "Even number: 4"
+    const subscribe = example.subscribe(val => console.log(`Even number: ${val}`));
+  }
+
+  filter2() {
+    // emit ({name: 'Joe', age: 31}, {name: 'Bob', age:25})
+    const source = from([{ name: 'Joe', age: 31 }, { name: 'Bob', age: 25 }]);
+    // filter out people with age under 30
+    const example = source.pipe(filter(person => person.age >= 30));
+    // output: "Over 30: Joe"
+    const subscribe = example.subscribe(val => console.log(`Over 30: ${val.name}`));
+  }
+
+  filter3() {
+    // emit every second
+    const source = interval(1000);
+    // filter out all values until interval is greater than 5
+    const example = source.pipe(filter(num => num > 5));
+    /*
+      "Number greater than 5: 6"
+      "Number greater than 5: 7"
+      "Number greater than 5: 8"
+      "Number greater than 5: 9"
+    */
+    const subscribe = example.subscribe(val =>
+      console.log(`Number greater than 5: ${val}`)
+    );
+  }
+
   first1() {
     const source = from([1, 2, 3, 4, 5]);
     // no arguments, emit first value
@@ -117,15 +196,6 @@
     const subscribeTwo = exampleTwo.subscribe(val => console.log(val));
   }
 
-  single1() {
-    // emit (1,2,3,4,5)
-    const source = from([1, 2, 3, 4, 5]);
-    // emit one item that matches predicate
-    const example = source.pipe(single(val => val === 4));
-    // output: 4
-    const subscribe = example.subscribe(val => console.log(val));
-  }
-
   sample1() {
     // emit value every 1s
     const source = interval(1000);
@@ -157,6 +227,15 @@
       .subscribe(isDragging => {
         console.log('Were you dragging?', isDragging);
       });
+  }
+
+  single1() {
+    // emit (1,2,3,4,5)
+    const source = from([1, 2, 3, 4, 5]);
+    // emit one item that matches predicate
+    const example = source.pipe(single(val => val === 4));
+    // output: 4
+    const subscribe = example.subscribe(val => console.log(val));
   }
 
   skip1() {
@@ -197,6 +276,77 @@
     // skip emitted values from source while value is less than 5
     const example = source.pipe(skipWhile(val => val  5));
     // output: 5...6...7...8........
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
+  take1() {
+    // emit 1,2,3,4,5
+    const source = of(1, 2, 3, 4, 5);
+    // take the first emitted value then complete
+    const example = source.pipe(take(1));
+    // output: 1
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
+  take2() {
+    // emit value every 1s
+    const interval$ = interval(1000);
+    // take the first 5 emitted values
+    const example = interval$.pipe(take(5));
+    // output: 0,1,2,3,4
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
+  take3() {
+    const oneClickEvent = fromEvent(document, 'click').pipe(
+      take(1),
+      tap(v => {
+        document.getElementById(
+          'locationDisplay'
+        ).innerHTML = `Your first click was on location ${v.screenX}:${v.screenY}`;
+      })
+    );
+    
+    const subscribe = oneClickEvent.subscribe();
+  }
+
+  takeUntil1() {
+    // emit value every 1s
+    const source = interval(1000);
+    // after 5 seconds, emit value
+    const timer$ = timer(5000);
+    // when timer emits after 5s, complete source
+    const example = source.pipe(takeUntil(timer$));
+    // output: 0,1,2,3
+    const subscribe = example.subscribe(val => console.log(val));
+  }
+
+  takeUntil2() {
+    // emit value every 1s
+    const source = interval(1000);
+    // is number even?
+    const isEven = val => val % 2 === 0;
+    // only allow values that are even
+    const evenSource = source.pipe(filter(isEven));
+    // keep a running total of the number of even numbers out
+    const evenNumberCount = evenSource.pipe(scan((acc, _) => acc + 1, 0));
+    // do not emit until 5 even numbers have been emitted
+    const fiveEvenNumbers = evenNumberCount.pipe(filter(val => val > 5));
+    
+    const example = evenSource.pipe(
+      // also give me the current even number count for display
+      withLatestFrom(evenNumberCount),
+      map(([val, count]) => `Even number (${count}) : ${val}`),
+      // when five even numbers have been emitted, complete source observable
+      takeUntil(fiveEvenNumbers)
+    );
+    /*
+    	Even number (1) : 0,
+      Even number (2) : 2
+    	Even number (3) : 4
+    	Even number (4) : 6
+    	Even number (5) : 8
+    */
     const subscribe = example.subscribe(val => console.log(val));
   }
 
