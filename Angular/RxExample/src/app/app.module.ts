@@ -13,6 +13,7 @@ import { PostService } from './services/post.service';
 import { ErrorHandlingService } from './services/error-handling.service';
 import { FilteringService } from './services/filtering.service';
 import { TransformingService } from './services/transforming.service';
+import { ToService } from './services/to.service';
 import { UtilityService } from './services/utility.service';
 
 @NgModule({
@@ -33,6 +34,7 @@ import { UtilityService } from './services/utility.service';
     FilteringService,
     PostService,
     TransformingService,
+    ToService,
     UtilityService,
   ],
   bootstrap: [AppComponent]
