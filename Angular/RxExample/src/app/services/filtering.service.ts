@@ -5,14 +5,12 @@ import {
   ignoreElements, last, map,
   mapTo,
   mergeMap, sample,
-  scan, single,
+  single,
   skip,
-  skipUntil,
-  skipWhile, take, takeUntil,
-  takeWhile, tap,
-  throttle, throttleTime, withLatestFrom
+  take, tap,
+  throttle, throttleTime
 } from 'rxjs/operators';
-import {from, fromEvent, interval, merge, of, throwError, timer, zip} from 'rxjs';
+import { from, fromEvent, interval, merge, of, throwError, timer, zip } from 'rxjs';
 
 @Injectable()
 export class FilteringService {

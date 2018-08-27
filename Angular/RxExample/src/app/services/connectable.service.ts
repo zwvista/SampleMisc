@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {ConnectableObservable, interval, ReplaySubject, Subject, timer} from 'rxjs';
-import {mapTo, multicast, pluck, publish, refCount, share, shareReplay, take, tap, windowTime} from 'rxjs/operators';
+import { ConnectableObservable, interval, ReplaySubject, Subject, timer } from 'rxjs';
+import { mapTo, multicast, pluck, publish, refCount, share, shareReplay, take, tap, windowTime } from 'rxjs/operators';
 
 @Injectable()
 export class ConnectableService {

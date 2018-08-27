@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {concatAll, delay, map, reduce, take} from 'rxjs/operators';
-import {concat, interval, of} from 'rxjs';
+import { concatAll, delay, map, reduce, take } from 'rxjs/operators';
+import { concat, interval, of } from 'rxjs';
 
 @Injectable()
 export class AggregateService {

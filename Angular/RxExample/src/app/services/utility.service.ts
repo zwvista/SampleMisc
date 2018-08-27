@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {catchError, concatMap, delay, delayWhen, dematerialize, map, mapTo, tap, timeout} from 'rxjs/operators';
-import {from, interval, merge, of, timer, Notification} from 'rxjs';
+import { catchError, concatMap, delay, delayWhen, dematerialize, map, mapTo, tap, timeout } from 'rxjs/operators';
+import { from, interval, merge, of, timer, Notification } from 'rxjs';
 
 @Injectable()
 export class UtilityService {
@@ -15,7 +15,7 @@ export class UtilityService {
       map(val => val + 10),
       tap(val => console.log(`AFTER MAP: ${val}`))
     );
-    
+
     // 'do' does not transform values
     // output: 11...12...13...14...15
     const subscribe = example.subscribe(val => console.log(val));
@@ -65,7 +65,7 @@ export class UtilityService {
       // turn notification objects into notification values
       dematerialize()
     );
-    
+
     // output: 'NEXT VALUE: SUCCESS' 'ERROR VALUE: 'ERROR!'
     const subscription = source.subscribe({
       next: val => console.log(`NEXT VALUE: ${val}`),
@@ -78,7 +78,7 @@ export class UtilityService {
     function makeRequest(timeToDelay) {
       return of('Request Complete!').pipe(delay(timeToDelay));
     }
-    
+
     of(4000, 3000, 2000)
       .pipe(
         concatMap(duration =>
@@ -94,37 +94,6 @@ export class UtilityService {
           *  "Request Complete!"
           */
       .subscribe(val => console.log(val));
-  }
-
-  toPromise1() {
-    // return basic observable
-    const sample = val => of(val).pipe(delay(5000));
-    // convert basic observable to promise
-    const example = sample('First Example')
-      .toPromise()
-      // output: 'First Example'
-      .then(result => {
-        console.log('From Promise:', result);
-      });
-  }
-
-  toPromise2() {
-    // return basic observable
-    const sample = val => of(val).pipe(delay(5000));
-    /*
-      convert each to promise and use Promise.all
-      to wait for all to resolve
-    */
-    const example = () => {
-      return Promise.all([
-        sample('Promise 1').toPromise(),
-        sample('Promise 2').toPromise()
-      ]);
-    };
-    // output: ["Promise 1", "Promise 2"]
-    example().then(val => {
-      console.log('Promise.all Result:', val);
-    });
   }
 
 }

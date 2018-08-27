@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {EMPTY, interval, of, race, timer} from 'rxjs';
+import { EMPTY, interval, of, race, timer } from 'rxjs';
 import {
   defaultIfEmpty,
   delay,
