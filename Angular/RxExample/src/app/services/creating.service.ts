@@ -1,29 +1,31 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, from, interval, Observable, of, range, throwError, timer } from 'rxjs';
+import {EMPTY, from, fromEvent, interval, merge, Observable, of, range, throwError, timer} from 'rxjs';
 import '../helpers/extensions';
-import { take } from 'rxjs/operators';
+import {map, mapTo, scan, startWith, switchMap, takeWhile} from 'rxjs/operators';
 
 @Injectable()
 export class CreatingService {
 
   constructor() { }
 
-  /*
-    Create an observable that emits 'Hello' and 'World' on
-    subscription.
-  */
   create1() {
+    /*
+      Create an observable that emits 'Hello' and 'World' on
+      subscription.
+    */
     const hello = Observable.create(function(observer) {
       observer.next('Hello');
       observer.next('World');
     });
+
+    // output: 'Hello'...'World'
     const subscribe = hello.subscribe(val => console.log(val));
   }
 
-  /*
-    Increment value every 1s, emit even numbers.
-  */
   create2() {
+    /*
+      Increment value every 1s, emit even numbers.
+    */
     const evenNumbers = Observable.create(function(observer) {
       let value = 0;
       const interval = setInterval(() => {
@@ -32,6 +34,7 @@ export class CreatingService {
         }
         value++;
       }, 1000);
+
       return () => clearInterval(interval);
     });
     // output: 0...2...4...6...8
@@ -50,35 +53,66 @@ export class CreatingService {
     });
   }
 
-  fromArray() {
+  empty2() {
+    const countdownSeconds = 10;
+    const setHTML = id => val => (document.getElementById(id).innerHTML = val);
+    const pauseButton = document.getElementById('pause');
+    const resumeButton = document.getElementById('resume');
+    const interval$ = interval(1000).pipe(mapTo(-1));
+
+    const pause$ = fromEvent(pauseButton, 'click').pipe(mapTo(false));
+    const resume$ = fromEvent(resumeButton, 'click').pipe(mapTo(true));
+
+    const timer$ = merge(pause$, resume$)
+      .pipe(
+        startWith(true),
+        //  if timer is paused return empty observable
+        switchMap(val => (val ? interval$ : EMPTY)),
+        scan((acc, curr) => (curr ? curr + acc : acc), countdownSeconds),
+        takeWhile(v => v >= 0)
+      )
+      .subscribe(setHTML('remaining'));
+  }
+
+  from1() {
     // emit array as a sequence of values
     const arraySource = from([1, 2, 3, 4, 5]);
     // output: 1,2,3,4,5
     const subscribe = arraySource.subscribe(val => console.log(val));
   }
 
-  fromPromise() {
+  from2() {
     // emit result of promise
     const promiseSource = from(new Promise(resolve => resolve('Hello World!')));
     // output: 'Hello World'
     const subscribe = promiseSource.subscribe(val => console.log(val));
   }
 
-  fromCollection() {
+  from3() {
     // works on js collections
     const map = new Map();
     map.set(1, 'Hi');
     map.set(2, 'Bye');
+
     const mapSource = from(map);
     // output: [1, 'Hi'], [2, 'Bye']
     const subscribe = mapSource.subscribe(val => console.log(val));
   }
 
-  fromString() {
+  from4() {
     // emit string as a sequence
     const source = from('Hello World');
     // output: 'H','e','l','l','o',' ','W','o','r','l','d'
     const subscribe = source.subscribe(val => console.log(val));
+  }
+
+  fromEvent1() {
+    // create observable that emits click events
+    const source = fromEvent(document, 'click');
+    // map to string with given event timestamp
+    const example = source.pipe(map(event => `Event time: ${event.timeStamp}`));
+    // output (example): 'Event time: 7276.390000000001'
+    const subscribe = example.subscribe(val => console.log(val));
   }
 
   interval1() {
@@ -129,13 +163,13 @@ export class CreatingService {
     const subscribe = source.subscribe(val => console.log(val));
   }
 
-  /*
-    timer takes a second argument, how often to emit subsequent values
-    in this case we will emit first value after 1 second and subsequent
-    values every 2 seconds after
-  */
   timer2() {
-    const source = timer(1000, 2000).pipe(take(5));
+    /*
+      timer takes a second argument, how often to emit subsequent values
+      in this case we will emit first value after 1 second and subsequent
+      values every 2 seconds after
+    */
+    const source = timer(1000, 2000);
     // output: 0,1,2,3,4,5......
     const subscribe = source.subscribe(val => console.log(val));
   }

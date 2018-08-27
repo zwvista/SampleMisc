@@ -1,3 +1,12 @@
+import { Injectable } from '@angular/core';
+import {EMPTY, of} from 'rxjs';
+import {defaultIfEmpty, every} from 'rxjs/operators';
+
+@Injectable()
+export class ConditionalService {
+
+  constructor() { }
+
   defaultIfEmpty1() {
     // emit 'Observable.of() Empty!' when empty, else any values from source
     const exampleOne = of().pipe(defaultIfEmpty('Observable.of() Empty!'));
@@ -7,7 +16,7 @@
 
   defaultIfEmpty2() {
     // emit 'Observable.empty()!' when empty, else any values from source
-    const example = empty().pipe(defaultIfEmpty('Observable.empty()!'));
+    const example = EMPTY.pipe(defaultIfEmpty('Observable.empty()!'));
     // output: 'Observable.empty()!'
     const subscribe = example.subscribe(val => console.log(val));
   }
@@ -34,3 +43,4 @@
     const subscribe = example.subscribe(val => console.log(val));
   }
 
+}

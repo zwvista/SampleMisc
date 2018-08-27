@@ -1,3 +1,12 @@
+import {Component, Injectable, OnInit} from '@angular/core';
+import {from, interval, of, throwError, timer} from 'rxjs';
+import {catchError, delayWhen, finalize, map, mergeMap, retry, retryWhen, tap} from 'rxjs/operators';
+
+@Injectable()
+export class ErrorHandlingService {
+
+  constructor() { }
+
   catch_catchError1() {
     // emit error
     const source = throwError('This is an error!');
@@ -83,73 +92,4 @@
     */
     const subscribe = example.subscribe(val => console.log(val));
   }
-
-  retryWhen2() {
-    export const genericRetryStrategy = ({
-      maxRetryAttempts = 3,
-      scalingDuration = 1000,
-      excludedStatusCodes = []
-    }: {
-      maxRetryAttempts?: number,
-      scalingDuration?: number,
-      excludedStatusCodes?: number[]
-    } = {}) => (attempts: Observableany>) => {
-      return attempts.pipe(
-        mergeMap((error, i) => {
-          const retryAttempt = i + 1;
-          //  if maximum number of retries have been met
-          //  or response is a status code we don't wish to retry, throw error
-          if (
-            retryAttempt > maxRetryAttempts ||
-            excludedStatusCodes.find(e => e === error.status)
-          ) {
-            return _throw(error);
-          }
-          console.log(
-            `Attempt ${retryAttempt}: retrying in ${retryAttempt *
-              scalingDuration}ms`
-          );
-          //  retry after 1s, 2s, etc...
-          return timer(retryAttempt * scalingDuration);
-        }),
-        finalize(() => console.log('We are done!'))
-      );
-    };
-  }
-
-  retryWhen3() {
-    @Component({
-      selector: 'my-app',
-      templateUrl: './app.component.html',
-      styleUrls: [ './app.component.css' ]
-    })
-    export class AppComponent implements OnInit  {
-      constructor(private _appService: AppService) {}
-    
-      ngOnInit() {
-        this._appService
-          .getData(500)
-          .pipe(
-            retryWhen(genericRetryStrategy()),
-            catchError(error => of(error))
-          )
-          .subscribe(console.log);
-    
-        //  excluding status code, delay for logging clarity
-        setTimeout(() => {
-        this._appService
-          .getData(500)
-          .pipe(
-            retryWhen(genericRetryStrategy({
-              scalingDuration: 2000,
-              excludedStatusCodes: [500]
-            })),
-            catchError(error => of(error))
-          )
-          .subscribe(e => console.log('Exluded code:', e.status));
-    
-        }, 8000);
-      }
-    }
-  }
-
+}

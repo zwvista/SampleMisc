@@ -1,3 +1,24 @@
+import { Injectable } from '@angular/core';
+import {
+  debounce,
+  debounceTime, distinctUntilChanged, filter, first,
+  ignoreElements, last, map,
+  mapTo,
+  mergeMap, sample,
+  scan, single,
+  skip,
+  skipUntil,
+  skipWhile, take, takeUntil,
+  takeWhile, tap,
+  throttle, throttleTime, withLatestFrom
+} from 'rxjs/operators';
+import {from, fromEvent, interval, merge, of, throwError, timer, zip} from 'rxjs';
+
+@Injectable()
+export class FilteringService {
+
+  constructor() { }
+
   debounce1() {
     // emit four strings
     const example = of('WAIT', 'ONE', 'SECOND', 'Last will display');
@@ -30,14 +51,14 @@
 
   debounceTime1() {
     const input = document.getElementById('example');
-    
+
     // for every keyup, map to current input value
-    const example = fromEvent(input, 'keyup').pipe(map(i => i.currentTarget.value));
-    
+    const example = fromEvent<KeyboardEvent>(input, 'keyup').pipe(map(i => i.code));
+
     // wait .5s between keyups to emit current value
     // throw away all other values
     const debouncedInput = example.pipe(debounceTime(500));
-    
+
     // log values
     const subscribe = debouncedInput.subscribe(val => {
       console.log(`Debounced Input: ${val}`);
@@ -47,12 +68,12 @@
   distinctUntilChanged1() {
     // only output distinct values, based on the last emitted value
     const myArrayWithDuplicatesInARow = from([1, 1, 2, 2, 3, 1, 2, 3]);
-    
+
     const distinctSub = myArrayWithDuplicatesInARow
       .pipe(distinctUntilChanged())
       // output: 1,2,3,1,2,3
       .subscribe(val => console.log('DISTINCT SUB:', val));
-    
+
     const nonDistinctSub = myArrayWithDuplicatesInARow
       // output: 1,1,2,2,3,1,2,3
       .subscribe(val => console.log('NON DISTINCT SUB:', val));
@@ -128,7 +149,7 @@
   first3() {
     const source = from([1, 2, 3, 4, 5]);
     // no value will pass, emit default
-    const example = source.pipe(first(val => val > 5, 'Nothing'));
+    const example = source.pipe(first(val => val > 5, -1));
     // output: 'Nothing'
     const subscribe = example.subscribe(val => console.log(val));
   }
@@ -191,7 +212,7 @@
   last3() {
     const source = from([1, 2, 3, 4, 5]);
     // no values will pass given predicate, emit default
-    const exampleTwo = source.pipe(last(v => v > 5, 'Nothing!'));
+    const exampleTwo = source.pipe(last(v => v > 5, -1));
     // output: 'Nothing!'
     const subscribeTwo = exampleTwo.subscribe(val => console.log(val));
   }
@@ -249,15 +270,15 @@
 
   skip2() {
     const numArrayObs = from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-    
+
     //  3,4,5...
     const skipObs = numArrayObs.pipe(skip(2)).subscribe(console.log);
-    
+
     //  3,4,5...
     const filterObs = numArrayObs
       .pipe(filter((val, index) => index > 1))
       .subscribe(console.log);
-    
+
     // Same output!
   }
 
@@ -274,7 +295,7 @@
     // emit every 1s
     const source = interval(1000);
     // skip emitted values from source while value is less than 5
-    const example = source.pipe(skipWhile(val => val  5));
+    const example = source.pipe(skipWhile(val => val < 5));
     // output: 5...6...7...8........
     const subscribe = example.subscribe(val => console.log(val));
   }
@@ -298,7 +319,7 @@
   }
 
   take3() {
-    const oneClickEvent = fromEvent(document, 'click').pipe(
+    const oneClickEvent = fromEvent<MouseEvent>(document, 'click').pipe(
       take(1),
       tap(v => {
         document.getElementById(
@@ -306,7 +327,7 @@
         ).innerHTML = `Your first click was on location ${v.screenX}:${v.screenY}`;
       })
     );
-    
+
     const subscribe = oneClickEvent.subscribe();
   }
 
@@ -332,7 +353,7 @@
     const evenNumberCount = evenSource.pipe(scan((acc, _) => acc + 1, 0));
     // do not emit until 5 even numbers have been emitted
     const fiveEvenNumbers = evenNumberCount.pipe(filter(val => val > 5));
-    
+
     const example = evenSource.pipe(
       // also give me the current even number count for display
       withLatestFrom(evenNumberCount),
@@ -354,7 +375,7 @@
     // emit 1,2,3,4,5
     const source = of(1, 2, 3, 4, 5);
     // allow values until value from source is greater than 4, then complete
-    const example = source.pipe(takeWhile(val => val  4));
+    const example = source.pipe(takeWhile(val => val <= 4));
     // output: 1,2,3,4
     const subscribe = example.subscribe(val => console.log(val));
   }
@@ -362,13 +383,13 @@
   takeWhile2() {
     //  emit 3, 3, 3, 9, 1, 4, 5, 8, 96, 3, 66, 3, 3, 3
     const source = of(3, 3, 3, 9, 1, 4, 5, 8, 96, 3, 66, 3, 3, 3);
-    
+
     //  allow values until value from source equals 3, then complete
     //  output: [3, 3, 3]
     source
       .pipe(takeWhile(it => it === 3))
       .subscribe(val => console.log('takeWhile', val));
-    
+
     //  output: [3, 3, 3, 3, 3, 3, 3]
     source
       .pipe(filter(it => it === 3))
@@ -397,7 +418,7 @@
       throttle(promise),
       map(val => `Throttled off Promise: ${val}`)
     );
-    
+
     const subscribe = example.subscribe(val => console.log(val));
   }
 
@@ -426,3 +447,4 @@
     const subscribe = example.subscribe(val => console.log(val));
   }
 
+}
