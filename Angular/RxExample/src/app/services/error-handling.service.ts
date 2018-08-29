@@ -1,6 +1,6 @@
-import {Component, Injectable, OnInit} from '@angular/core';
-import {from, interval, of, throwError, timer} from 'rxjs';
-import {catchError, delayWhen, finalize, map, mergeMap, retry, retryWhen, tap} from 'rxjs/operators';
+import { Component, Injectable, OnInit } from '@angular/core';
+import { from, interval, of, throwError, timer } from 'rxjs';
+import { catchError, delayWhen, map, mergeMap, retry, retryWhen, tap } from 'rxjs/operators';
 
 @Injectable()
 export class ErrorHandlingService {

@@ -13,7 +13,7 @@ import {
   take,
   tap, withLatestFrom
 } from 'rxjs/operators';
-import {combineLatest, forkJoin, fromEvent, interval, merge, of, race, throwError, timer, zip} from 'rxjs';
+import { combineLatest, forkJoin, fromEvent, interval, merge, of, race, throwError, timer, zip } from 'rxjs';
 
 @Injectable()
 export class CombiningService {

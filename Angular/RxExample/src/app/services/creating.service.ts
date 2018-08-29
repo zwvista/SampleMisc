@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {EMPTY, from, fromEvent, interval, merge, Observable, of, range, throwError, timer} from 'rxjs';
+import { EMPTY, from, fromEvent, interval, merge, Observable, of, range, throwError, timer } from 'rxjs';
 import '../helpers/extensions';
-import {map, mapTo, scan, startWith, switchMap, takeWhile} from 'rxjs/operators';
+import { map, mapTo, scan, startWith, switchMap, takeWhile } from 'rxjs/operators';
 
 @Injectable()
 export class CreatingService {

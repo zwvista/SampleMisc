@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {EMPTY, from, fromEvent, interval, merge, of, Subject, timer} from 'rxjs';
+import { EMPTY, from, fromEvent, interval, merge, of, Subject, timer } from 'rxjs';
 import {
   buffer,
   bufferCount,
