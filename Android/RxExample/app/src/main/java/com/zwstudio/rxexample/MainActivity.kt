@@ -30,9 +30,9 @@ class MainActivity : AppCompatActivity() {
 //            }
 //
 //            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-//                val num1 = etNumber1.text.toString().toInt() ?: 0
-//                val num2 = etNumber2.text.toString().toInt() ?: 0
-//                val num3 = etNumber3.text.toString().toInt() ?: 0
+//                val num1 = etNumber1.text.toString().toIntOrNull() ?: 0
+//                val num2 = etNumber2.text.toString().toIntOrNull() ?: 0
+//                val num3 = etNumber3.text.toString().toIntOrNull() ?: 0
 //                tvResult.text = (num1 + num2 + num3).toString()
 //            }
 //
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 //        etNumber1.text = etNumber1.text
 
         Observables.combineLatest(RxTextView.textChanges(etNumber1), RxTextView.textChanges(etNumber2), RxTextView.textChanges(etNumber3))
-            {s1, s2, s3 -> ((s1.toString().toInt() ?: 0) + (s2.toString().toInt() ?: 0) + (s3.toString().toInt() ?: 0)).toString()}
+            {s1, s2, s3 -> ((s1.toString().toIntOrNull() ?: 0) + (s2.toString().toIntOrNull() ?: 0) + (s3.toString().toIntOrNull() ?: 0)).toString()}
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(RxTextView.text(tvResult))
