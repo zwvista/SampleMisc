@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { AggregateService } from './services/aggregate.service';
 import { CombiningService } from './services/combining.service';
 import { ConditionalService } from './services/conditional.service';
@@ -10,13 +10,26 @@ import { PostService } from './services/post.service';
 import { TransformingService } from './services/transforming.service';
 import { ToService } from './services/to.service';
 import { UtilityService } from './services/utility.service';
+import { combineLatest, fromEvent, Observable } from 'rxjs';
+import { map, pluck, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+
+  @ViewChild('number1Ref') number1Ref: ElementRef;
+  @ViewChild('number2Ref') number2Ref: ElementRef;
+  @ViewChild('number3Ref') number3Ref: ElementRef;
+  resultAsync: Observable<string>;
+
+  number1 = '1';
+  number2 = '2';
+  number3 = '3';
+  result: string;
+
   title = 'RxExample';
   constructor(public aggregateService: AggregateService,
               public combiningService: CombiningService,
@@ -29,4 +42,18 @@ export class AppComponent {
               public transformingService: TransformingService,
               public toService: ToService,
               public utilityService: UtilityService) { }
+
+  ngAfterViewInit() {
+    const f = elemRef => fromEvent(elemRef.nativeElement, 'input')
+      .pipe(pluck('target', 'value'), startWith((elemRef.nativeElement as HTMLInputElement).value));
+    const g = s => Number(s) || 0;
+    this.resultAsync = combineLatest(f(this.number1Ref), f(this.number2Ref), f(this.number3Ref))
+      .pipe(map(results => String(g(results[0]) + g(results[1]) + g(results[2]))));
+    this.onChangeNumber();
+  }
+
+  onChangeNumber() {
+    const g = s => Number(s) || 0;
+    this.result = String(g(this.number1) + g(this.number2) + g(this.number3));
+  }
 }
