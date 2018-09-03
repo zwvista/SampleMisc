@@ -175,14 +175,14 @@
 </p>
 <p>
   UI
-  <input style="width:50px;text-align:right;" [(ngModel)]="number1" (ngModelChange)="onChangeNumber()"> +
-  <input style="width:50px;text-align:right;" [(ngModel)]="number2" (ngModelChange)="onChangeNumber()"> +
-  <input style="width:50px;text-align:right;" [(ngModel)]="number3" (ngModelChange)="onChangeNumber()"> =
+  <input class="number" [(ngModel)]="number1" (ngModelChange)="onChangeNumber()"> +
+  <input class="number" [(ngModel)]="number2" (ngModelChange)="onChangeNumber()"> +
+  <input class="number" [(ngModel)]="number3" (ngModelChange)="onChangeNumber()"> =
   <label>{{result}}</label><br>
   UI
-  <input #number1Ref style="width:50px;text-align:right;" value="1"> +
-  <input #number2Ref style="width:50px;text-align:right;" value="2"> +
-  <input #number3Ref style="width:50px;text-align:right;" value="3"> =
+  <input #number1Ref class="number" value="1"> +
+  <input #number2Ref class="number" value="2"> +
+  <input #number3Ref class="number" value="3"> =
   <label>{{resultAsync | async}}</label>
 </p>
 <p>
