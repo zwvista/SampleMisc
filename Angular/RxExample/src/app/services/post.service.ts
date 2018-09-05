@@ -67,7 +67,6 @@ export class PostService {
     return this.http.put(url, {
         params: {
           userId: 101,
-          id: 1,
           title: 'test title',
           body: 'test body',
         }

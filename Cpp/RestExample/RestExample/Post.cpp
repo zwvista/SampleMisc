@@ -20,9 +20,10 @@ void from_json(const json& j, Post& p) {
     p.body = boost::algorithm::replace_all_copy(j.at("body").get<string>(), "\n", "\\n");
 }
 std::ostream& operator<<(std::ostream& out, Post& p) {
-    out << "userId: " << p.userId << endl
-        << "id: " << p.id << endl
-        << "title: " << p.title << endl
-        << "body: " << p.body << endl;
+    cout << "Post {userId = " << p.userId
+        << ", id = " << p.id
+        << ", title = \"" << p.title
+        << "\", body = \"" << p.body
+        << "\"}";
     return out;
 }
