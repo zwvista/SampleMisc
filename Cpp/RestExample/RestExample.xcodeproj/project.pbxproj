@@ -11,6 +11,7 @@
 		954D8B6F213E6E1A00651A80 /* httpclient1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B6E213E6E1A00651A80 /* httpclient1.cpp */; };
 		954D8B71213E7E1300651A80 /* json1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B70213E7E1300651A80 /* json1.cpp */; };
 		954D8B73213EDD0100651A80 /* rx1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B72213EDD0100651A80 /* rx1.cpp */; };
+		954D8B75213FAE5C00651A80 /* json2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B74213FAE5C00651A80 /* json2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		954D8B6E213E6E1A00651A80 /* httpclient1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = httpclient1.cpp; sourceTree = "<group>"; };
 		954D8B70213E7E1300651A80 /* json1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = json1.cpp; sourceTree = "<group>"; };
 		954D8B72213EDD0100651A80 /* rx1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rx1.cpp; sourceTree = "<group>"; };
+		954D8B74213FAE5C00651A80 /* json2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = json2.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				954D8B6E213E6E1A00651A80 /* httpclient1.cpp */,
 				954D8B70213E7E1300651A80 /* json1.cpp */,
 				954D8B72213EDD0100651A80 /* rx1.cpp */,
+				954D8B74213FAE5C00651A80 /* json2.cpp */,
 			);
 			path = RestExample;
 			sourceTree = "<group>";
@@ -128,6 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				954D8B71213E7E1300651A80 /* json1.cpp in Sources */,
+				954D8B75213FAE5C00651A80 /* json2.cpp in Sources */,
 				954D8B6F213E6E1A00651A80 /* httpclient1.cpp in Sources */,
 				954D8B68213D757000651A80 /* main.cpp in Sources */,
 				954D8B73213EDD0100651A80 /* rx1.cpp in Sources */,
@@ -270,6 +274,7 @@
 					/usr/local/Cellar/boost/1.67.0_1/include,
 					/usr/local/Cellar/libressl/2.7.4/include,
 					/Users/zhaowei/Documents/Programs/OSS/RxCpp/Rx/v2/src,
+					/usr/local/Cellar/nlohmann_json/3.1.2/include,
 				);
 			};
 			name = Debug;
@@ -298,6 +303,7 @@
 					/usr/local/Cellar/boost/1.67.0_1/include,
 					/usr/local/Cellar/libressl/2.7.4/include,
 					/Users/zhaowei/Documents/Programs/OSS/RxCpp/Rx/v2/src,
+					/usr/local/Cellar/nlohmann_json/3.1.2/include,
 				);
 			};
 			name = Release;
