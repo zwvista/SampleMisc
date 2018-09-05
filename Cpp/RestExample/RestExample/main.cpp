@@ -8,10 +8,20 @@
 
 #include <stdio.h>
 
+extern void httpclient1();
 extern void json1();
+extern void rxf1();
+extern void rxf2();
+extern void rxf3();
+extern void rxf4();
 
 int main(int argc, char *args[])
 {
-    json1();
+//    httpclient1();
+//    json1();
+//    rxf1();
+//    rxf2();
+//    rxf3();
+    rxf4();
     return 0;
 }
