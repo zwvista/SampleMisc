@@ -80,6 +80,30 @@ struct RestApi {
             .wait();
         });
     }
+    
+    observable<T> getArray(const string_t &path_query_fragment) {
+        return observable<>::create<T>(
+        [&](subscriber<T> s){
+            client
+            .request(methods::GET, path_query_fragment)
+            .then([](http_response response) -> pplx::task<string_t> {
+                return response.extract_string();
+            })
+            .then([&](pplx::task<string_t> previousTask) {
+                try {
+                    string_t const & v = previousTask.get();
+                    json j = json::parse(v);
+                    std::vector<T> vec = j;
+                    for(const auto& t : vec)
+                        s.on_next(t);
+                    s.on_completed();
+                } catch (http_exception const & e) {
+                    s.on_error(std::current_exception());
+                }
+            })
+            .wait();
+        });
+    }
 
     observable<string_t> createObject(const string_t& url, const T& obj) {
         return observable<>::create<string_t>(

@@ -14,24 +14,15 @@ using namespace std;
 void json3()
 {
     RestApi<Post> api(U("https://jsonplaceholder.typicode.com/"));
-    api.getString(uri_builder(U("posts/1")).to_string()).subscribe([](string_t v){
-        cout << v << endl;
-    });
-    api.getObject(uri_builder(U("posts/1")).to_string()).subscribe([](Post v){
-        cout << v << endl;
-    });
+    api.getString(U("posts/1")).subscribe([](const string_t& v){cout << v << endl;});
+    api.getObject(U("posts/1")).subscribe([](const Post& v){cout << v << endl;});
+    api.getArray(U("posts")).take(2).subscribe([](const Post& v){cout << v << endl;});
     Post o;
     o.id = 0;
     o.userId = 101;
     o.title = U("test title");
     o.body = U("test body");
-    api.createObject(U("posts"), o).subscribe([](string_t v){
-        cout << v << endl;
-    });
-    api.updateObject(U("posts/1"), o).subscribe([](string_t v){
-        cout << v << endl;
-    });
-    api.deleteObject(U("posts/1")).subscribe([](string_t v){
-        cout << v << endl;
-    });
+    api.createObject(U("posts"), o).subscribe([](string_t v){cout << v << endl;});
+    api.updateObject(U("posts/1"), o).subscribe([](string_t v){cout << v << endl;});
+    api.deleteObject(U("posts/1")).subscribe([](string_t v){cout << v << endl;});
 }

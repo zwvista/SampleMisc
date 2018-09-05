@@ -32,7 +32,7 @@ static void print_results(json::value const & value)
             << ", id = " << id
             << ", title = \"" << title
             << "\", body = \"" << body
-            << "\"}";
+            << "\"}" << endl;
     }
 }
 
