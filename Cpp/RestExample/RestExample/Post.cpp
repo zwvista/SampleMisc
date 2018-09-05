@@ -21,8 +21,8 @@ void from_json(const json& j, Post& p) {
 }
 std::ostream& operator<<(std::ostream& out, Post& p) {
     out << "userId: " << p.userId << endl
-    << "id: " << p.id << endl
-    << "title: " << p.title << endl
-    << "body: " << p.body << endl;
+        << "id: " << p.id << endl
+        << "title: " << p.title << endl
+        << "body: " << p.body << endl;
     return out;
 }

@@ -21,7 +21,7 @@ using namespace concurrency::streams;       // Asynchronous streams
 #include "Post.hpp"
 using namespace std;
 
-void print_results(string_t const & value)
+static void print_results(string_t const & value)
 {
     json j = json::parse(value);
     Post p = j;

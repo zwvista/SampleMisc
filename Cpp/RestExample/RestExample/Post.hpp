@@ -9,7 +9,7 @@
 #ifndef Post_hpp
 #define Post_hpp
 
-#include <stdio.h>
+#include <iostream>
 #include <nlohmann/json.hpp>
 using nlohmann::json;
 
