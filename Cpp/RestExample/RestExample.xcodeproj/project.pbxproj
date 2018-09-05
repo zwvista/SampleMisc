@@ -12,6 +12,8 @@
 		954D8B71213E7E1300651A80 /* json1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B70213E7E1300651A80 /* json1.cpp */; };
 		954D8B73213EDD0100651A80 /* rx1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B72213EDD0100651A80 /* rx1.cpp */; };
 		954D8B75213FAE5C00651A80 /* json2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B74213FAE5C00651A80 /* json2.cpp */; };
+		954D8B79213FC37800651A80 /* json3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B78213FC37800651A80 /* json3.cpp */; };
+		954D8B7C213FCA1200651A80 /* Post.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B7A213FCA1200651A80 /* Post.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +35,9 @@
 		954D8B70213E7E1300651A80 /* json1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = json1.cpp; sourceTree = "<group>"; };
 		954D8B72213EDD0100651A80 /* rx1.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = rx1.cpp; sourceTree = "<group>"; };
 		954D8B74213FAE5C00651A80 /* json2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = json2.cpp; sourceTree = "<group>"; };
+		954D8B78213FC37800651A80 /* json3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json3.cpp; sourceTree = "<group>"; };
+		954D8B7A213FCA1200651A80 /* Post.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Post.cpp; sourceTree = "<group>"; };
+		954D8B7B213FCA1200651A80 /* Post.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Post.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,8 +73,11 @@
 				954D8B67213D757000651A80 /* main.cpp */,
 				954D8B6E213E6E1A00651A80 /* httpclient1.cpp */,
 				954D8B70213E7E1300651A80 /* json1.cpp */,
+				954D8B78213FC37800651A80 /* json3.cpp */,
 				954D8B72213EDD0100651A80 /* rx1.cpp */,
 				954D8B74213FAE5C00651A80 /* json2.cpp */,
+				954D8B7A213FCA1200651A80 /* Post.cpp */,
+				954D8B7B213FCA1200651A80 /* Post.hpp */,
 			);
 			path = RestExample;
 			sourceTree = "<group>";
@@ -133,6 +141,8 @@
 				954D8B71213E7E1300651A80 /* json1.cpp in Sources */,
 				954D8B75213FAE5C00651A80 /* json2.cpp in Sources */,
 				954D8B6F213E6E1A00651A80 /* httpclient1.cpp in Sources */,
+				954D8B7C213FCA1200651A80 /* Post.cpp in Sources */,
+				954D8B79213FC37800651A80 /* json3.cpp in Sources */,
 				954D8B68213D757000651A80 /* main.cpp in Sources */,
 				954D8B73213EDD0100651A80 /* rx1.cpp in Sources */,
 			);

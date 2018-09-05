@@ -48,7 +48,7 @@ void json1()
         // if the status is OK extract the body of the response into a JSON value
         // works only when the content type is application\json
         if(response.status_code() == status_codes::OK) {
-          return response.extract_json();
+            return response.extract_json();
         }
 
         // return an empty JSON value
