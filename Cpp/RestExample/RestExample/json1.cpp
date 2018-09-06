@@ -25,7 +25,7 @@ static void print_results(json::value const & value)
     if(!value.is_null()) {
         auto userId = value.at(U("userId")).as_integer();
         auto id = value.at(U("id")).as_integer();
-        auto title = boost::algorithm::replace_all_copy(value.at(U("body")).as_string(), "\n", "\\n");
+        auto title = value.at(U("title")).as_string();
         auto body = boost::algorithm::replace_all_copy(value.at(U("body")).as_string(), "\n", "\\n");
 
         cout << "Post {userId = " << userId
