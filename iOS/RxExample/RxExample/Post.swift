@@ -15,10 +15,7 @@ struct Post : Codable {
     let title: String
     let body: String
     var description: String {
-        func f(_ str: String) -> String {
-            return "\"\(str.replacingOccurrences(of: "\n", with: "\\n"))\"";
-        }
-        return "Post {userId = \(userId), id = \(id), title = \(f(title)), body = \(f(body))}";
+        return "Post {userId = \(userId), id = \(id), title = \"\(title)\", body = \"\(body.replacingOccurrences(of: "\n", with: "\\n"))\"}";
     }
     
     static let url = "https://jsonplaceholder.typicode.com/"

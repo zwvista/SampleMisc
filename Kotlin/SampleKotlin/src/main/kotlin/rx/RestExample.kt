@@ -13,10 +13,8 @@ data class Post(@SerializedName("userId") @Expose val userId: Int,
                 @SerializedName("id") @Expose val id: Int,
                 @SerializedName("title") @Expose val title: String,
                 @SerializedName("body") @Expose val body: String) {
-    override fun toString(): String {
-        fun f(str: String) = "\"${str.replace("\n", "\\n")}\""
-        return "Post {userId = $userId, id = $id, title = ${f(title)}, body = ${f(body)}}"
-    }
+    override fun toString() =
+        "Post {userId = $userId, id = $id, title = \"$title\", body = \"${body.replace("\n", "\\n")}\"}"
 }
 
 interface RestPost {

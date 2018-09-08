@@ -25,11 +25,8 @@ namespace RxSamples
         [JsonProperty("body")]
         public string Body { get; set; }
 
-        public override string ToString()
-        {
-            string f(string str) => $"\"{str.Replace("\n", "\\n")}\"";
-            return $"Post {{userId = {UserId}, id = {Id}, title = {f(Title)}, body = {f(Body)}}}";
-        }
+        public override string ToString() =>
+            $"Post {{userId = {UserId}, id = {Id}, title = \"{Title}\", body = \"{Body.Replace("\n", "\\n")}\"}}";
     }
 
     public class PostDataStoreByTask
