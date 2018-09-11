@@ -1,0 +1,26 @@
+.div-scroll {
+    max-width: 1000px;
+    overflow: auto;
+}
+
+.table-scroll {
+    border: 1px solid #000;
+    border-spacing:0;
+    margin: 5px;
+}
+.table-scroll td {
+    border: 1px solid #000;
+    min-width: 70px;
+}
+
+.td-time {
+    background-color: yellow;
+}
+
+.td-readonly {
+    background-color: lightgray;
+}
+
+.td-manual-selected {
+    background-color: greenyellow;
+}

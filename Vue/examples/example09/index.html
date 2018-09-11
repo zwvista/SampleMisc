@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DR要求</title>
+<link rel="stylesheet" href="index.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<fieldset>
+<legend>検索条件</legend>
+<form action="" method="POST">
+  <table>
+    <tr>
+      <td>日付</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>会社</td>
+      <td>
+        <select class="form-control" id="company">
+          <option></option>
+          <option>A会社</option>
+          <option>B会社</option>
+        </select>
+      </td>
+    </tr>          
+    <tr>
+        <td>エリア</td>
+        <td>
+          <select class="form-control" id="company">
+            <option></option>
+            <option>Aエリア</option>
+            <option>Bエリア</option>
+          </select>
+        </td>
+      </tr>          
+    </table>
+</form>
+</fieldset>
+<fieldset>
+<legend>検索結果</legend>
+<form action="" method="POST">
+  <table>
+    <tr>
+      <td></td>
+      <td>
+        電力価格取得日時 <input value="aaa">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table>
+          <tr><td></td></tr>
+          <tr><td>価格(円/kWh)</td></tr>
+        </table>
+      </td>
+      <td>
+        <div class="div-scroll" id="div-scroll-top">
+          <table class="table-scroll">
+            <tr>
+              <td class="td-time" v-for="item in timeList">{{item}}</td>
+            </tr>
+            <tr>
+              <td class="td-readonly" v-for="item in priceList">{{item}}</td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table>
+          <tr><td></td></tr>
+          <tr><td>自動(kWh)</td></tr>
+          <tr><td>充電余力(kWh)</td></tr>
+          <tr><td>放電余力(kWh)</td></tr>
+          <tr><td>手動(kWh)</td></tr>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <div class="div-scroll" id="div-scroll-bottom">
+          <table class="table-scroll">
+            <tr>
+              <td class="td-time" v-for="(item, index) in timeList">{{timeList[index]}}</td>
+            </tr>
+            <tr>
+              <td class="td-readonly" v-for="(item, index) in autoList">{{autoList[index]}}</td>
+            </tr>
+            <tr>
+              <td class="td-readonly" v-for="(item, index) in chargeList">{{chargeList[index]}}</td>
+            </tr>
+            <tr>
+              <td class="td-readonly" v-for="(item, index) in dischargeList">{{dischargeList[index]}}</td>
+            </tr>
+            <tr>
+              <td class="td-manual" v-for="(item, index) in manualList">{{manualList[index]}}</td>
+            </tr>
+          </table>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button @click="multiEnterClick">一括入力</button>
+        <button>クリア</button>
+        <button>リセット</button>
+      </td>
+    </tr>
+  </table>
+</form>
+</fieldset>
+<script src="index.js">
+</script>
+</div>
+</body>
+</html>
