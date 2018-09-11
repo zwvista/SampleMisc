@@ -7,46 +7,46 @@
 <link rel="stylesheet" href="index.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+<script src="datepicker-ja.js"></script>
 </head>
 <body>
 <div id="app">
 <fieldset>
 <legend>検索条件</legend>
-<form action="" method="POST">
   <table>
     <tr>
-      <td>日付</td>
-      <td></td>
+      <td class="td-fixed-width">日付</td>
+      <td><input class="search-input" v-model="date1" id="date1" readonly="readonly" /></td>
     </tr>
     <tr>
       <td>会社</td>
       <td>
-        <select class="form-control" id="company">
+        <select class="search-input" id="company1">
           <option></option>
-          <option>A会社</option>
-          <option>B会社</option>
+          <option v-for="item in companyList" :value="item.id">{{item.name}}</option>
         </select>
       </td>
     </tr>          
     <tr>
         <td>エリア</td>
         <td>
-          <select class="form-control" id="company">
+          <select class="search-input" id="area1">
             <option></option>
-            <option>Aエリア</option>
-            <option>Bエリア</option>
+            <option v-for="item in areaList" :value="item.id">{{item.name}}</option>
           </select>
+        </td>
+        <td>
+          <button @click="searchClick()">表示</button>
         </td>
       </tr>          
     </table>
-</form>
 </fieldset>
 <fieldset>
 <legend>検索結果</legend>
-<form action="" method="POST">
   <table>
     <tr>
-      <td></td>
+      <td class="td-fixed-width"></td>
       <td>
         電力価格取得日時 <input value="aaa">
       </td>
@@ -54,17 +54,17 @@
     <tr>
       <td>
         <table>
-          <tr><td></td></tr>
-          <tr><td>価格(円/kWh)</td></tr>
+          <tr class="tr-fixed-height"><td></td></tr>
+          <tr class="tr-fixed-height"><td>価格(円/kWh)</td></tr>
         </table>
       </td>
       <td>
         <div class="div-scroll" id="div-scroll-top">
           <table class="table-scroll">
-            <tr>
+            <tr class="tr-fixed-height">
               <td class="td-time" v-for="item in timeList">{{item}}</td>
             </tr>
-            <tr>
+            <tr class="tr-fixed-height">
               <td class="td-readonly" v-for="item in priceList">{{item}}</td>
             </tr>
           </table>
@@ -74,31 +74,31 @@
     <tr>
       <td>
         <table>
-          <tr><td></td></tr>
-          <tr><td>自動(kWh)</td></tr>
-          <tr><td>充電余力(kWh)</td></tr>
-          <tr><td>放電余力(kWh)</td></tr>
-          <tr><td>手動(kWh)</td></tr>
+          <tr class="tr-fixed-height"><td></td></tr>
+          <tr class="tr-fixed-height"><td>自動(kWh)</td></tr>
+          <tr class="tr-fixed-height"><td>充電余力(kWh)</td></tr>
+          <tr class="tr-fixed-height"><td>放電余力(kWh)</td></tr>
+          <tr class="tr-fixed-height"><td>手動(kWh)</td></tr>
           </tr>
         </table>
       </td>
       <td>
         <div class="div-scroll" id="div-scroll-bottom">
           <table class="table-scroll">
-            <tr>
-              <td class="td-time" v-for="(item, index) in timeList">{{timeList[index]}}</td>
+            <tr class="tr-fixed-height">
+              <td class="td-time" v-for="item in timeList">{{item}}</td>
             </tr>
-            <tr>
-              <td class="td-readonly" v-for="(item, index) in autoList">{{autoList[index]}}</td>
+            <tr class="tr-fixed-height">
+              <td class="td-readonly" v-for="item in autoList">{{item}}</td>
             </tr>
-            <tr>
-              <td class="td-readonly" v-for="(item, index) in chargeList">{{chargeList[index]}}</td>
+            <tr class="tr-fixed-height">
+              <td class="td-readonly" v-for="item in chargeList">{{item}}</td>
             </tr>
-            <tr>
-              <td class="td-readonly" v-for="(item, index) in dischargeList">{{dischargeList[index]}}</td>
+            <tr class="tr-fixed-height">
+              <td class="td-readonly" v-for="item in dischargeList">{{item}}</td>
             </tr>
-            <tr>
-              <td class="td-manual" v-for="(item, index) in manualList">{{manualList[index]}}</td>
+            <tr class="tr-fixed-height">
+              <td class="td-manual" v-for="item in manualList">{{item}}</td>
             </tr>
           </table>
         </div>
@@ -107,13 +107,12 @@
     <tr>
       <td></td>
       <td>
-        <button @click="multiEnterClick">一括入力</button>
-        <button>クリア</button>
-        <button>リセット</button>
+        <button @click="multiEnterClick()">一括入力</button>
+        <button @click="clearClick()">クリア</button>
+        <button @click="resetClick()">リセット</button>
       </td>
     </tr>
   </table>
-</form>
 </fieldset>
 <script src="index.js">
 </script>

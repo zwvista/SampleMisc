@@ -7,10 +7,20 @@
     border: 1px solid #000;
     border-spacing:0;
     margin: 5px;
+    overflow-x: auto;
 }
 .table-scroll td {
     border: 1px solid #000;
     min-width: 70px;
+}
+
+.tr-fixed-height {
+    height: 25px;
+    min-height: 25px;
+}
+
+.td-fixed-width {
+    width: 120px;
 }
 
 .td-time {
@@ -23,4 +33,13 @@
 
 .td-manual-selected {
     background-color: greenyellow;
+}
+
+.ui-datepicker {
+    /*background: transparent;*/
+    background: white;
+}
+
+.search-input {
+    width: 200px;
 }
