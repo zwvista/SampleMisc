@@ -19,8 +19,8 @@ body {
 }
 
 .tr-fixed-height {
-    height: 25px;
-    min-height: 25px;
+    height: 30px;
+    min-height: 30px;
 }
 
 .td-fixed-width {
@@ -31,12 +31,12 @@ body {
     background-color: yellow;
 }
 
-.td-readonly {
-    background-color: lightgray;
-}
-
 .td-manual {
     background-color: white;
+}
+
+.td-readonly {
+    background-color: lightgray;
 }
 
 .td-manual-selected {

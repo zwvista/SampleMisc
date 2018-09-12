@@ -108,16 +108,16 @@
     <tr>
       <td></td>
       <td>
-        <button @click="multiEnterClick">一括入力</button>
-        <button @click="clearClick">クリア</button>
-        <button @click="resetClick">リセット</button>
+        <button class="buttons-disabled" @click="batchInputClick" disabled="disabled">一括入力</button>
+        <button class="buttons-disabled" @click="clearClick" disabled="disabled">クリア</button>
+        <button class="buttons-disabled" @click="resetClick" disabled="disabled">リセット</button>
       </td>
     </tr>
   </table>
 </fieldset>
 <span style="margin-left:150px;">メッセージ</span> <input style="width:500px;" id="message" readonly="readonly">
-<button style="margin-left:250px;" @click="checkClick">チェック</button>
-<button @click="execClick">DR実行</button>
+<button class="buttons-disabled" style="margin-left:250px;" @click="checkClick" disabled="disabled">チェック</button>
+<button class="buttons-disabled" @click="execClick" disabled="disabled">DR実行</button>
 <script src="index.js">
 </script>
 </div>
