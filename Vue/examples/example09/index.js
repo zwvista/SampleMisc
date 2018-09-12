@@ -6,7 +6,7 @@ var app = new Vue({
     selectedArea: '',
     companyList: [],
     areaList: [],
-    fetchTime: '2018/09/01',
+    fetchTime: '',
     timeList: [],
     priceList: [],
     chargeList: [],
@@ -63,19 +63,25 @@ var app = new Vue({
         this.manualList.push(null);
         this.manualOriginalList.push(null);
         this.manualSelectedList.push(false);
+        $(".td-manual:nth-child(" + (i+1) + ")")
+          .removeClass("td-readonly").removeClass("td-manual-selected");
       }
       $(".buttons-disabled").prop("disabled", true);
+      $("#message").val('');
+      this.fetchTime = '';
     },
     showAll: function() {
+      this.fetchTime = '2018/09/01 00:00:00';
       this.emptyAll();
       for (var i = 0; i < 48; i++) {
-        this.priceList.push(11 + i * 0.1);
-        this.chargeList.push(i == 1 ? null : 11 + i * 0.1);
-        this.dischargeList.push(i == 2 ? null : 11 + i * 0.1);
-        this.autoList.push(i == 0 || i == 4 ? 11 + i * 0.1 : null);
+        var value = Math.round((11 + i * 0.1) * 10) / 10;
+        this.priceList.push(value);
+        this.chargeList.push(i == 1 ? null : value);
+        this.dischargeList.push(i == 2 ? null : value);
+        this.autoList.push(i == 0 || i == 4 ? value : null);
         if (i % 4 == 2 || i % 4 == 3) {
-          this.manualList.push(11 + i * 0.1);
-          this.manualOriginalList.push(11 + i * 0.1);
+          this.manualList.push(value);
+          this.manualOriginalList.push(value);
         } else {
           this.manualList.push(null);
           this.manualOriginalList.push(null);
@@ -127,7 +133,7 @@ var app = new Vue({
     },
     checkDRFormat: function() {
       for (var i = 0; i < 48; i++)
-        if (this.manualList[i] && !/[+-]?(\d){1,4}(\.\d)?/.test(this.manualList[i]))
+        if (this.manualList[i] && !/^[+-]?(\d){1,4}(\.\d)?$/.test(this.manualList[i]))
           return false;
       return true;
     },
@@ -185,6 +191,7 @@ var app = new Vue({
         $("#message").val('エラー：手動設定したDR量が、放電余力のDR量を超過しています。');
         return false;
       }
+      $("#message").val('正常：入力した設定値は正常です。');
       return true;
     },
     checkClick: function() {
