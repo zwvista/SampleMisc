@@ -15,70 +15,84 @@ var app = new Vue({
     manualList: [],
     manualOriginalList: [],
     manualSelectedList: [],
-    message: '',
   },
   methods: {
-    multiEnterClick() {
-      var value = prompt("Please enter your value", "一括入力");
+    multiEnterClick: function() {
+      var value = prompt("一括入力", "");
       if (value === null) return;
       for(var i = 0; i < 48; i++) {
         if (this.manualSelectedList[i]) {
           this.manualList[i] = value;
           console.log(i + " " + this.manualList[i]);
-          $(".td-manual:nth-child(" + (i+1) + ")").html(value);
+          $(".td-manual:nth-child(" + (i+1) + ")").children('div').html(value);
         }
       }
     },
-    clearClick() {
+    clearClick: function() {
       if (!confirm("clear")) return;
       for(var i = 0; i < 48; i++) {
         value = "";
         this.manualList[i] = value;
-        $(".td-manual:nth-child(" + (i+1) + ")").html(value);
+        $(".td-manual:nth-child(" + (i+1) + ")").children('div').html(value);
       }
     },
-    resetClick() {
+    resetClick: function() {
       if (!confirm("reset")) return;
       for(var i = 0; i < 48; i++) {
         value = this.manualOriginalList[i];
         this.manualList[i] = value;
-        $(".td-manual:nth-child(" + (i+1) + ")").html(value);
+        $(".td-manual:nth-child(" + (i+1) + ")").children('div').html(value);
       }
     },
-    searchClick() {
+    searchClick: function() {
       if (this.selectedCompany === '') {
-        alert('company'); return;
+        alert('会社を入力してください。'); return;
       }
       if (this.selectedArea === '') {
-        alert('area'); return;
+        alert('エリアを入力してください。'); return;
       }
     },
-    isBlank(v) {
+    isBlank: function(v) {
       return v === null || v === '';
     },
-    checkAuto() {
+    checkAuto: function() {
       for (var i = 0; i < 48; i++) {
         var va = this.autoList[i];
         var vm = this.manualList[i];
         if (!this.isBlank(va) && !this.isBlank(vm)) {
-          //$("#message").val('auto');
-          app.message = 'auto';
+          $("#message").val('既に自動設定されている日時に対し、手動設定はできません。');
           return false;
         }
       }
       return true;
     },
-    check() {
-      //$("#message").val('');
-      app.message = '';
+    check: function() {
+      $("#message").val('');
       if (!this.checkAuto()) return false;
     },
-    checkClick() {
+    checkClick: function() {
       this.check();
     },
-    execClick() {
+    execClick: function() {
       this.check();
     },
+    manualClick: function(event, index) {
+      var $td = $(event.currentTarget);
+      var $div = $td.children("div");
+      $('.div-manual').not($div).prop('contenteditable', "false");
+      if ($div.prop('contenteditable') !== "true") {
+        $td.toggleClass("td-manual-selected");
+        app.manualSelectedList[index] = !app.manualSelectedList[index];
+        console.log(app.manualSelectedList[index]);
+        $div.prop('contenteditable', "true");
+      }
+    },
+    manualBlur: function(event, index) {
+      $('.div-manual').prop('contenteditable', "false");
+      var $div = $(event.currentTarget);
+      app.manualList[index] = $div.html();
+      console.log(app.manualList[index]);
+    }
   }
 })
 for (var i = 0; i < 48; i++) {
@@ -120,22 +134,6 @@ $(function() {
   });
   $('#div-scroll-bottom').on('scroll', function () {
     $('#div-scroll-top').scrollLeft($(this).scrollLeft());
-  });
-  $(".td-manual").click(function () {
-    $('.td-manual').not($(this)).prop('contenteditable', false);
-    if ($(this).prop('contenteditable') !== "true") {
-      $(this).toggleClass("td-manual-selected");
-      var index = $(this).closest("td").index();
-      app.manualSelectedList[index] = !app.manualSelectedList[index];
-      console.log(app.manualSelectedList[index]);
-      $(this).prop('contenteditable', true);
-    }
-  });
-  $(".td-manual").blur(function () {
-    $('.td-manual').prop('contenteditable', false);
-    var index = $(this).closest("td").index();
-    app.manualList[index] = $(this).html();
-    console.log(app.manualList[index]);
   });
 });
 

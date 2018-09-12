@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>DR要求</title>
 <link rel="stylesheet" href="index.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.js"></script>
+<script src="jquery.min.js"></script>
+<script src="vue.min.js"></script>
+<script src="jquery-ui.min.js"></script>
 <script src="datepicker-ja.js"></script>
 </head>
 <body>
@@ -79,7 +79,6 @@
           <tr class="tr-fixed-height"><td>充電余力(kWh)</td></tr>
           <tr class="tr-fixed-height"><td>放電余力(kWh)</td></tr>
           <tr class="tr-fixed-height"><td>手動(kWh)</td></tr>
-          </tr>
         </table>
       </td>
       <td>
@@ -98,7 +97,9 @@
               <td class="td-readonly" v-for="item in dischargeList">{{item}}</td>
             </tr>
             <tr class="tr-fixed-height">
-              <td class="td-manual" v-for="item in manualList">{{item}}</td>
+              <td class="td-manual" v-for="(item, index) in manualList" @click="manualClick(event, index)">
+                <div class="div-manual" @blur="manualBlur(event, index)">{{item}}</div>
+              </td>
             </tr>
           </table>
         </div>
@@ -107,16 +108,16 @@
     <tr>
       <td></td>
       <td>
-        <button @click="multiEnterClick()">一括入力</button>
-        <button @click="clearClick()">クリア</button>
-        <button @click="resetClick()">リセット</button>
+        <button @click="multiEnterClick">一括入力</button>
+        <button @click="clearClick">クリア</button>
+        <button @click="resetClick">リセット</button>
       </td>
     </tr>
   </table>
 </fieldset>
-<span style="margin-left:150px;">メッセージ</span> <input style="width:300px;" v-model="message" id="message" readonly="readonly">
-<button style="margin-left:350px;" @click="checkClick()">チェック</button>
-<button @click="execClick()">DR実行</button>
+<span style="margin-left:150px;">メッセージ</span> <input style="width:500px;" id="message" readonly="readonly">
+<button style="margin-left:250px;" @click="checkClick">チェック</button>
+<button @click="execClick">DR実行</button>
 <script src="index.js">
 </script>
 </div>

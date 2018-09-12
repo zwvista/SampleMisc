@@ -1,3 +1,7 @@
+body {
+    background-color: aqua;
+}
+
 .div-scroll {
     max-width: 1000px;
     overflow: auto;
@@ -29,6 +33,10 @@
 
 .td-readonly {
     background-color: lightgray;
+}
+
+.td-manual {
+    background-color: white;
 }
 
 .td-manual-selected {
