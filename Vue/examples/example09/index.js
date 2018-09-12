@@ -1,9 +1,12 @@
 var app = new Vue({
   el: '#app',
   data: {
-    date1: '2018/09/01',
+    selectedDate: '2018/09/01',
+    selectedCompany: '',
+    selectedArea: '',
     companyList: [],
     areaList: [],
+    fetchTime: '2018/09/01',
     timeList: [],
     priceList: [],
     chargeList: [],
@@ -12,15 +15,16 @@ var app = new Vue({
     manualList: [],
     manualOriginalList: [],
     manualSelectedList: [],
+    message: '',
   },
   methods: {
     multiEnterClick() {
       var value = prompt("Please enter your value", "一括入力");
       if (value === null) return;
       for(var i = 0; i < 48; i++) {
-        if (app.manualSelectedList[i]) {
-          app.manualList[i] = value;
-          console.log(i + " " + app.manualList[i]);
+        if (this.manualSelectedList[i]) {
+          this.manualList[i] = value;
+          console.log(i + " " + this.manualList[i]);
           $(".td-manual:nth-child(" + (i+1) + ")").html(value);
         }
       }
@@ -29,30 +33,71 @@ var app = new Vue({
       if (!confirm("clear")) return;
       for(var i = 0; i < 48; i++) {
         value = "";
-        app.manualList[i] = value;
+        this.manualList[i] = value;
         $(".td-manual:nth-child(" + (i+1) + ")").html(value);
       }
     },
     resetClick() {
       if (!confirm("reset")) return;
       for(var i = 0; i < 48; i++) {
-        value = app.manualOriginalList[i];
-        app.manualList[i] = value;
+        value = this.manualOriginalList[i];
+        this.manualList[i] = value;
         $(".td-manual:nth-child(" + (i+1) + ")").html(value);
       }
     },
     searchClick() {
+      if (this.selectedCompany === '') {
+        alert('company'); return;
+      }
+      if (this.selectedArea === '') {
+        alert('area'); return;
+      }
+    },
+    isBlank(v) {
+      return v === null || v === '';
+    },
+    checkAuto() {
+      for (var i = 0; i < 48; i++) {
+        var va = this.autoList[i];
+        var vm = this.manualList[i];
+        if (!this.isBlank(va) && !this.isBlank(vm)) {
+          //$("#message").val('auto');
+          app.message = 'auto';
+          return false;
+        }
+      }
+      return true;
+    },
+    check() {
+      //$("#message").val('');
+      app.message = '';
+      if (!this.checkAuto()) return false;
+    },
+    checkClick() {
+      this.check();
+    },
+    execClick() {
+      this.check();
     },
   }
 })
 for (var i = 0; i < 48; i++) {
   app.timeList.push("00:00");
-  app.priceList.push("13");
-  app.chargeList.push("10.0");
-  app.dischargeList.push("10.0");
-  app.autoList.push("10.0");
-  app.manualList.push("10.0");
-  app.manualOriginalList.push("10.0");
+  app.priceList.push(11 + i * 0.1);
+  app.chargeList.push(11 + i * 0.1);
+  app.dischargeList.push(11 + i * 0.1);
+  if (i == 0 || i == 4) {
+    app.autoList.push(11 + i * 0.1);
+  } else {
+    app.autoList.push(null);
+  }
+  if (i % 4 == 2 || i % 4 == 3) {
+    app.manualList.push(11 + i * 0.1);
+    app.manualOriginalList.push(11 + i * 0.1);
+  } else {
+    app.manualList.push(null);
+    app.manualOriginalList.push(null);
+  }
   app.manualSelectedList.push(false);
 }
 app.companyList.push({id: 0, name: 'A会社'});
@@ -87,10 +132,10 @@ $(function() {
     }
   });
   $(".td-manual").blur(function () {
+    $('.td-manual').prop('contenteditable', false);
     var index = $(this).closest("td").index();
     app.manualList[index] = $(this).html();
     console.log(app.manualList[index]);
-    $(this).prop('contenteditable', false);
   });
 });
 
