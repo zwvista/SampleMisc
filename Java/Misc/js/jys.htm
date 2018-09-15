@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>静夜思</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/2.3.5/rx.all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ixjs/1.0.6/l2o.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ixjs/1.0.6/ix.js"></script>
+<style>
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+table {
+	width: 100%;
+}
+th {
+	background-color: green;
+	color: white;
+}
+td {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+}
+</style>
+<script>
+$(function(){
+	var $input = $("#input");
+	$input.css("color", "blue");
+	var $output1 = $("#output1");
+	$output1.css("color", "green");
+	var $output2 = $("#output2");
+	$output2.css("color", "red");
+	var $output3 = $("#output3");
+	$output3.css("color", "brown");
+	$("button").click(function(){
+		var input = $input.text();
+		var output1 = Enumerable.From(input)
+			.Select("c, i => {ch:c, id:i}")
+			.GroupBy("$.id % 5", "$.ch")
+			.Select("$.Reverse().ToString('|')")
+			.ToString("<br>");
+		$output1.html(output1);
+		Rx.Observable.from(input)
+			.map(function (c, i, obs) { return {ch:c, id:i}; })
+			.groupBy(function (x) { return x.id % 5; }, function (x) { return x.ch; })
+			.flatMap(function (g) { return g.reduce(function (s, ch) { return ch + '|' + s; }); })
+			.reduce(function (acc, s) { return acc + '<br>' + s; })
+			.subscribe(function (output2) { $output2.html(output2); });
+		var output3 = Ix.Enumerable.fromArray(input.split(''))
+			.select(function (c, i) { return {ch:c, id:i}; })
+			.groupBy(function (x) { return x.id % 5; }, function (x) { return x.ch; })
+			.select(function (g) { return g.toArray().reverse().join('|'); })
+			.toArray().join('<br>');
+		$output3.html(output3);
+	});
+});
+</script>
+</head>
+<body>
+<h2>静夜思</h2>
+<p id="input">床前明月光疑是地上霜举头望明月低头思故乡</p>
+<button>Click me</button>
+<br>
+<br>
+<table>
+<tr><th>linq.js</th><th>RxJS</th><th>IxJS</th><tr>
+<tr><td id=output1></td><td id=output2></td><td id=output3></td></tr>
+</table>
+</body>
+</html>

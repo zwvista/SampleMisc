@@ -1,0 +1,6 @@
+「$msgObj.name」さんのお金使用状況
+
+今月のお給料　：　$msgObj.salary円
+今月のお出費　：　$msgObj.expense円
+
+ひゃっはー金がないぜ！

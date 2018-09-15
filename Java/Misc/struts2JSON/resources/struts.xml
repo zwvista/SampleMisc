@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.action.extension" value="action,pdf" />
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<constant name="struts.custom.i18n.resources" value="i18n/ap,application" />
+	<constant name="struts.date.format" value="yyyy-MM-dd" />
+	<constant name="struts.serve.static" value="true" />
+	<constant name="struts.serve.static.browserCache" value="false" />
+
+	<package name="default" namespace="/" extends="json-default">
+
+		<interceptors>
+			<interceptor-stack name="defaultStack">
+				<interceptor-ref name="json">
+					<param name="enableSMD">true</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="defaultStack" />
+
+		<action name="writeJSON" class="com.rajesh.json.ReadJSON" method="writeJSON">
+			<result type="json" />
+		</action>
+
+		<action name="readJSON" class="com.rajesh.json.ReadJSON" method="readJSON">
+			<result type="json" />
+		</action>
+
+	</package>
+</struts>

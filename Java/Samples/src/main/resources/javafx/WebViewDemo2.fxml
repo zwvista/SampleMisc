@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="450.0" spacing="5.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafx.WebViewDemo2Controller">
+   <children>
+      <Button mnemonicParsing="false" onAction="#onLoadPage" text="Load Page http://www.french-linguistics.co.uk/freng.exe?word=fleur" />
+      <Button mnemonicParsing="false" onAction="#onLoadHtml" text="Load HTML StringLoad HTML String" />
+      <Button mnemonicParsing="false" text="Load File C:/test/a.htmlLoad File C:/test/a.html" />
+      <WebView fx:id="webView" prefHeight="316.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </WebView>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</VBox>
