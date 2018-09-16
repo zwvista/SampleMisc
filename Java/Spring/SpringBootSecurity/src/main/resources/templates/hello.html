@@ -7,11 +7,11 @@
     <body>
         <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
         <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
+            <input type="submit" value="Sign Out">
         </form>
         <p>Data From DB1</p>
-        <div th:each="fruit : ${fruits}" th:text="${fruit.name}" />
+        <div th:each="fruit : ${fruits}" th:text="${fruit.name}"></div>
         <p>Data From DB2</p>
-        <div th:each="fruit : ${fruits2}" th:text="${fruit.name}" />
+        <div th:each="fruit : ${fruits2}" th:text="${fruit.name}"></div>
     </body>
 </html>

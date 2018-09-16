@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.type.JdbcType;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
@@ -27,6 +28,9 @@ public class DBConfig2 {
     public SqlSessionFactory sqlSessionFactory2() throws Exception {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource2());
-        return sessionFactory.getObject();
+        SqlSessionFactory sqlSessionFactory = sessionFactory.getObject();
+        sqlSessionFactory.getConfiguration().setMapUnderscoreToCamelCase(true);
+        sqlSessionFactory.getConfiguration().setJdbcTypeForNull(JdbcType.NULL);
+        return sqlSessionFactory;
     }
 }
