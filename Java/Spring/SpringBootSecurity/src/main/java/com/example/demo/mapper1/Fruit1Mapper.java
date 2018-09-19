@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 @Mapper
 public interface Fruit1Mapper {
-    List<Fruit> selectAll();
+    List<Fruit> selectAll(String selectedDate);
 }

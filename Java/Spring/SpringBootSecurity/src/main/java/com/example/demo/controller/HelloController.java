@@ -20,7 +20,7 @@ public class HelloController {
 
     @RequestMapping("/hello")
     public String index(Model model) {
-        List<Fruit> list = fruit1Mapper.selectAll();
+        List<Fruit> list = fruit1Mapper.selectAll("2018/09/21");
         List<Fruit> list2 = fruit2Mapper.selectAll();
         model.addAttribute("fruits", list);
         model.addAttribute("fruits2", list2);

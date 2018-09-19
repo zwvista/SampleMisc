@@ -12,35 +12,34 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
 <script>
-angular.module('lollyApp', []).controller("lollyCtrl", ["$scope", "$http", "$sce",
-    	function($scope, $http, $sce) {
+angular.module('lollyApp', []).controller("lollyCtrl", ["$scope", "$http", "$sce", function($scope, $http, $sce) {
 	var $lang = $('#lang');
 	$scope.word = '一人';
-	$http.get('https://zwvista.000webhostapp.com/lolly/apisqlite.php/VLANGUAGES?transform=1&filter=ID,neq,0').then(function(response) {
-        $scope.langList = response.data.VLANGUAGES;
-        $scope.selectedLang = $scope.langList[0];
+	$http.get('https://zwvista.tk/lolly/api.php/LANGUAGES?transform=1&filter=ID,neq,0').then(function(response) {
+    $scope.langList = response.data.LANGUAGES;
+    $scope.selectedLang = $scope.langList[0];
 		$scope.langChanged();
-    });
+  });
 	$scope.langChanged = function() {
-		$http.get('https://zwvista.000webhostapp.com/lolly/apisqlite.php/VDICTIONARIES?transform=1&filter=LANGIDFROM,eq,' + $scope.selectedLang.ID).then(function(response) {
-	        $scope.dictList = response.data.VDICTIONARIES;
-	        $scope.selectedDict = $scope.dictList[0];
-	    });
+		$http.get('https://zwvista.tk/lolly/api.php/DICTIONARIES?transform=1&filter=LANGIDFROM,eq,' + $scope.selectedLang.ID).then(function(response) {
+      $scope.dictList = response.data.DICTIONARIES;
+      $scope.selectedDict = $scope.dictList[0];
+    });
 	};
 	$scope.trustSrc = function(url) {
 		return $sce.trustAsResourceUrl(url);
 	};
 	$scope.redirectSearch = false;
-    $scope.searchClick = function() {$scope.redirectSearch = false;};
-    $scope.redirectSearchClick = function() {$scope.redirectSearch = true;};
+  $scope.searchClick = function() {$scope.redirectSearch = false;};
+  $scope.redirectSearchClick = function() {$scope.redirectSearch = true;};
 	$scope.getDictUrl = function() {
 		event.preventDefault();
-        var url = $scope.selectedDict.URL;
-        url = url.replace('{0}', encodeURIComponent($scope.word));
-        if($scope.redirectSearch)
-        	window.location = url;
-        else
-        	$scope.dictUrl = url;
+    var url = $scope.selectedDict.URL;
+    url = url.replace('{0}', encodeURIComponent($scope.word));
+    if($scope.redirectSearch)
+      window.location = url;
+    else
+      $scope.dictUrl = url;
 	};
 }]);
 </script>
@@ -53,7 +52,7 @@ angular.module('lollyApp', []).controller("lollyCtrl", ["$scope", "$http", "$sce
 </tr>
 <tr ng-repeat="o in langList">
 <td>{{o.ID}}</td>
-<td>{{o.LANGNAME}}</td>
+<td>{{o.NAME}}</td>
 </tr>
 </table>
 <form class="form-horizontal" ng-submit="getDictUrl()" action='search'>
@@ -61,23 +60,23 @@ angular.module('lollyApp', []).controller("lollyCtrl", ["$scope", "$http", "$sce
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
 			<select class="form-control" id="lang" ng-model="selectedLang" ng-change="langChanged()"
-				ng-options="o as o.LANGNAME for o in langList">
+				ng-options="o as o.NAME for o in langList">
 			</select>
 		</div>
 		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>
     	<div class="col-sm-3">
 			<select class="form-control" id="dict" ng-model="selectedDict"
-				ng-options="o as o.DICTNAME for o in dictList">
+				ng-options="o as o.NAME for o in dictList">
 			</select>
 		</div>
 	</div>
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='word'>Word:</label>
-    	<div class="col-sm-3">
+    <div class="col-sm-3">
 			<input type="text" class="form-control" id="word" ng-model="word"/>
 		</div>
-	    <input type="submit" class="btn btn-primary" value='Search' id='search' ng-click="searchClick()" />
-	    <input type="submit" class="btn btn-primary" value='Search(redirect)' id='redirectSearch' ng-click="redirectSearchClick()" />
+    <input type="submit" class="btn btn-primary" value='Search' id='search' ng-click="searchClick()" />
+    <input type="submit" class="btn btn-primary" value='Search(redirect)' id='redirectSearch' ng-click="redirectSearchClick()" />
 	</div>
 </form>
 <iframe id='dictframe' ng-src="{{trustSrc(dictUrl)}}">

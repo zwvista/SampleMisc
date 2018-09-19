@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html ng-app="lollyApp">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Angular JS - Lolly</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="lolly.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<table class="table table-striped table-bordered">
+<tr>
+<th>id</th>
+<th>language</th>
+</tr>
+<tr v-for="lang in langList">
+<td>{{lang.ID}}</td>
+<td>{{lang.NAME}}</td>
+</tr>
+</table>
+<form class="form-horizontal" action="search" method="post">
+	<div class="form-group">
+		<label class="col-sm-1 control-label" for='lang'>Language:</label>
+    	<div class="col-sm-3">
+			<select class="form-control" @change="langChange()" v-model="selectedLang" id='lang'>
+				<option v-for="lang in langList" :value="lang">{{lang.NAME}}</option>
+			</select>
+		</div>
+ 		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>
+    	<div class="col-sm-3">
+			<select class="form-control" v-model="selectedDict" id='dict'>
+				<option v-for="dict in dictList" :value="dict">{{dict.NAME}}</option>
+			</select>
+		</div>
+	</div>
+ 	<div class="form-group">
+		<label class="col-sm-1 control-label" for='word'>Word:</label>
+    <div class="col-sm-3">
+			<input class="form-control" v-model="word" name="word" id="word" />
+		</div>
+    <input type="submit" class="btn btn-primary" value='Search' id='search' @click="searchClick()" />
+    <input type="submit" class="btn btn-primary" value='Search(redirect)' id='redirectSearch' @click="redirectSearchClick()" />
+	</div>
+</form>
+<iframe id='dictframe' :src="dictUrl">
+</iframe>
+<script>
+var app = new Vue({
+	el: '#app',
+	data: {
+    langList: [],
+    dictList: [],
+    selectedLang: null,
+    selectedDict: null,
+    word: '一人',
+    redirectSearch: false,
+    wordError: '',
+    dictUrl: 'about:blank',
+  },
+  mounted: function() {
+    var self = this;
+    $.get('https://zwvista.tk/lolly/api.php/LANGUAGES?transform=1&filter=ID,neq,0', function(response) {
+      self.langList = response.LANGUAGES;
+      self.selectedLang = self.langList[0];
+      self.langChange();
+    });
+  },
+ 	methods: {
+    langChange: function() {
+      var self = this;
+      $.get('https://zwvista.tk/lolly/api.php/DICTIONARIES?transform=1&filter=LANGIDFROM,eq,' + this.selectedLang.ID, function(response) {
+        self.dictList = response.DICTIONARIES;
+        self.selectedDict = self.dictList[0];
+      });
+    },
+		formSubmit: function() {
+			if(this.redirectSearch) return;
+			event.preventDefault();
+	    	var self = this;
+        $.ajax({
+            type: "POST",
+            url: "dictall3",
+            data: $('form').serialize(),
+            success: function(response) {
+              self.wordError = '';
+                var url = response.url.replace('{0}', encodeURIComponent(this.word));
+                self.dictUrl = url;
+            },
+            error: function(response) {
+                //alert(JSON.stringify(response));
+                var err = response.responseJSON[0];
+                self.wordError = err.field + ": " + err.defaultMessage;
+                self.dictUrl = 'about:blank';
+            }
+        });
+	    },
+	    searchClick: function() {
+	    	this.redirectSearch = false;
+	    	this.formSubmit();
+	    },
+	    redirectSearchClick: function() {
+	    	this.redirectSearch = true;
+	    },
+	}
+});
+</script>
+</div>
+</body>
+</html>
