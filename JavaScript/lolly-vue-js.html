@@ -24,7 +24,7 @@
 <td>{{lang.NAME}}</td>
 </tr>
 </table>
-<form class="form-horizontal" action="search" method="post">
+<form class="form-horizontal" @submit.prevent="formSubmit" action="search" method="post">
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for='lang'>Language:</label>
     	<div class="col-sm-3">
@@ -42,7 +42,7 @@
  	<div class="form-group">
 		<label class="col-sm-1 control-label" for='word'>Word:</label>
     <div class="col-sm-3">
-			<input class="form-control" v-model="word" name="word" id="word" />
+			<input class="form-control" v-model="word" id="word" />
 		</div>
     <input type="submit" class="btn btn-primary" value='Search' id='search' @click="searchClick()" />
     <input type="submit" class="btn btn-primary" value='Search(redirect)' id='redirectSearch' @click="redirectSearchClick()" />
@@ -80,33 +80,19 @@ var app = new Vue({
       });
     },
 		formSubmit: function() {
-			if(this.redirectSearch) return;
-			event.preventDefault();
-	    	var self = this;
-        $.ajax({
-            type: "POST",
-            url: "dictall3",
-            data: $('form').serialize(),
-            success: function(response) {
-              self.wordError = '';
-                var url = response.url.replace('{0}', encodeURIComponent(this.word));
-                self.dictUrl = url;
-            },
-            error: function(response) {
-                //alert(JSON.stringify(response));
-                var err = response.responseJSON[0];
-                self.wordError = err.field + ": " + err.defaultMessage;
-                self.dictUrl = 'about:blank';
-            }
-        });
-	    },
-	    searchClick: function() {
-	    	this.redirectSearch = false;
-	    	this.formSubmit();
-	    },
-	    redirectSearchClick: function() {
-	    	this.redirectSearch = true;
-	    },
+      var url = this.selectedDict.URL;
+      url = url.replace('{0}', encodeURIComponent(this.word));
+      if(this.redirectSearch)
+        window.location = url;
+      else
+        this.dictUrl = url;
+    },
+    searchClick: function() {
+      this.redirectSearch = false;
+    },
+    redirectSearchClick: function() {
+      this.redirectSearch = true;
+    },
 	}
 });
 </script>
