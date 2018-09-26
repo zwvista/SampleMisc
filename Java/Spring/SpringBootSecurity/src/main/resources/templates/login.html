@@ -3,6 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
         <title>Spring Security Example </title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     </head>
     <body>
         <div th:if="${param.error}">
@@ -16,5 +17,12 @@
             <div><label> Password: <input type="password" name="password"/> </label></div>
             <div><input type="submit" value="Sign In"/></div>
         </form>
+        <script th:inline="javascript">
+            $(function () {
+                if ([[${param.error}]]) {
+                    alert('Invalid username and password.');
+                }
+            })
+        </script>
     </body>
 </html>

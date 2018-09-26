@@ -14,6 +14,7 @@ div.spinner {
 </head>
 <body>
 <div id="foo" style="width:100%;height:500px;">
+  <button id="start">Start Spin</button>
 </div>
 <script>
 var opts = {
@@ -36,13 +37,17 @@ var opts = {
   shadow: '0 0 1px transparent', // Box-shadow for the lines
   position: 'absolute' // Element positioning
 };
-var target = document.getElementById('foo');
-var spinner = new Spinner(opts).spin(target);
-$.blockUI({ message: null, overlayCSS: { backgroundColor: '#ddd' } });
-setTimeout(function() {
-  spinner.stop();
-  $.unblockUI();
-}, 5000);
+var spinner = new Spinner(opts);
+$(function() {
+  $('#start').click(function() {
+    spinner.spin($('#foo')[0]);
+    $.blockUI({ message: null, overlayCSS: { backgroundColor: '#ddd' } });
+    setTimeout(function() {
+      spinner.stop();
+      $.unblockUI();
+    }, 5000);
+  });
+});
 </script>
 </body>
 </html>
