@@ -1,0 +1,90 @@
+<html>
+
+<head>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <meta charset="utf-8"/>
+  <style>
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+.SplitPane {
+  width: 100%;
+  height: 100%;
+}
+
+.SplitPane-left {
+  float: left;
+  width: 30%;
+  height: 100%;
+}
+
+.SplitPane-right {
+  float: left;
+  width: 70%;
+  height: 100%;
+}
+
+.Contacts {
+  width: 100%;
+  height: 100%; 
+  background: lightblue;
+}
+
+.Chat {
+  width: 100%;
+  height: 100%; 
+  background: pink;
+}
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  
+<script type="text/babel">
+function Contacts() {
+  return <div className="Contacts" />;
+}
+
+function Chat() {
+  return <div className="Chat" />;
+}
+
+function SplitPane(props) {
+  return (
+    <div className="SplitPane">
+      <div className="SplitPane-left">
+        {props.left}
+      </div>
+      <div className="SplitPane-right">
+        {props.right}
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <SplitPane
+      left={
+        <Contacts />
+      }
+      right={
+        <Chat />
+      } />
+  );
+}
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+</script>
+
+</body>
+
+</html>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html ng-app="lollyApp">
+<html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Angular JS - Lolly</title>
+<title>vue JS - Lolly</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="lolly.css">
@@ -50,6 +50,7 @@
 </form>
 <iframe id='dictframe' :src="dictUrl">
 </iframe>
+</div>
 <script>
 var app = new Vue({
 	el: '#app',
@@ -60,23 +61,20 @@ var app = new Vue({
     selectedDict: null,
     word: '一人',
     redirectSearch: false,
-    wordError: '',
     dictUrl: 'about:blank',
   },
   mounted: function() {
-    var self = this;
-    $.get('https://zwvista.tk/lolly/api.php/LANGUAGES?transform=1&filter=ID,neq,0', function(response) {
-      self.langList = response.LANGUAGES;
-      self.selectedLang = self.langList[0];
-      self.langChange();
+    $.get('https://zwvista.tk/lolly/api.php/LANGUAGES?transform=1&filter=ID,neq,0', response => {
+      this.langList = response.LANGUAGES;
+      this.selectedLang = this.langList[0];
+      this.langChange();
     });
   },
  	methods: {
     langChange: function() {
-      var self = this;
-      $.get('https://zwvista.tk/lolly/api.php/DICTIONARIES?transform=1&filter=LANGIDFROM,eq,' + this.selectedLang.ID, function(response) {
-        self.dictList = response.DICTIONARIES;
-        self.selectedDict = self.dictList[0];
+      $.get('https://zwvista.tk/lolly/api.php/DICTIONARIES?transform=1&filter=LANGIDFROM,eq,' + this.selectedLang.ID, response => {
+        this.dictList = response.DICTIONARIES;
+        this.selectedDict = this.dictList[0];
       });
     },
 		formSubmit: function() {
@@ -96,6 +94,5 @@ var app = new Vue({
 	}
 });
 </script>
-</div>
 </body>
 </html>
