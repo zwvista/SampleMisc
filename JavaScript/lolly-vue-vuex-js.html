@@ -11,6 +11,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.min.js"></script>
 </head>
 <body>
 <div id="app">
@@ -52,30 +53,65 @@
 </iframe>
 </div>
 <script>
-var app = new Vue({
-	el: '#app',
-	data: {
+var store = new Vuex.Store({
+  state: {
     langList: [],
     dictList: [],
     selectedLang: null,
     selectedDict: null,
-    word: '一人',
-    redirectSearch: false,
-    dictUrl: 'about:blank',
   },
+  mutations: {
+    setLangs(state, payload) {
+      state.langList = payload.LANGUAGES;
+      state.selectedLang = state.langList[0];
+    },
+    setDicts(state, payload) {
+      state.dictList = payload.DICTIONARIES;
+      state.selectedDict = state.dictList[0];
+    },
+    setSelectedLang(state, payload) {
+      state.selectedLang = payload;
+    },
+    setSelectedDict(state, payload) {
+      state.selectedDict = payload;
+    }
+  },
+  actions: {
+    fetchLangs({commit, dispatch}) { //fetchLangs(context)
+      $.get('https://zwvista.tk/lolly/api.php/LANGUAGES?transform=1&filter=ID,neq,0', response => {
+        commit("setLangs", response); //context.commit("setLangs", response);
+        dispatch("fetchDicts"); //context.dispatch("fetchDicts");
+      });
+    },
+    fetchDicts({commit, getters}) {
+      $.get('https://zwvista.tk/lolly/api.php/DICTIONARIES?transform=1&filter=LANGIDFROM,eq,' + getters.selectedLang.ID, response => {
+        commit("setDicts", response);
+      });
+    }
+  },
+  getters: {
+    langList: ({langList}) => langList, //langList: state => state.langList,  
+    dictList: ({dictList}) => dictList,
+    selectedLang: ({selectedLang}) => selectedLang,
+    selectedDict: ({selectedDict}) => selectedDict,
+  },
+}); 
+var app = new Vue({
+  el: '#app',
+  data: {
+    word: '一人',
+    dictUrl: 'about:blank',
+    redirectSearch: false,
+  },
+  store, //store: store
   mounted() {
-    $.get('https://zwvista.tk/lolly/api.php/LANGUAGES?transform=1&filter=ID,neq,0', response => {
-      this.langList = response.LANGUAGES;
-      this.selectedLang = this.langList[0];
-      this.langChange();
-    });
+    this.fetchLangs(); //store.dispatch("fetchLangs");
   },
  	methods: {
+    ...Vuex.mapActions(['fetchLangs','fetchDicts']),
+    ...Vuex.mapMutations(['setSelectedLang','setSelectedDict']),
     langChange() {
-      $.get('https://zwvista.tk/lolly/api.php/DICTIONARIES?transform=1&filter=LANGIDFROM,eq,' + this.selectedLang.ID, response => {
-        this.dictList = response.DICTIONARIES;
-        this.selectedDict = this.dictList[0];
-      });
+      this.fetchDicts(); //store.dispatch("fetchDicts");
     },
 		formSubmit() {
       var url = this.selectedDict.URL;
@@ -91,7 +127,20 @@ var app = new Vue({
     redirectSearchClick() {
       this.redirectSearch = true;
     },
-	}
+  },
+  computed: {
+    ...Vuex.mapGetters(['langList','dictList']),
+    //langList: () => store.getters.langList,
+    //dictList: () => store.getters.dictList,
+    selectedLang: {
+      get: () => store.getters.selectedLang,
+      set(newValue) { this.setSelectedLang(newValue); }, //set: newValue => store.commit("setSelectedLang", newValue),
+    },
+    selectedDict: {
+      get: () => store.getters.selectedDict,
+      set(newValue) { this.setSelectedDict(newValue); }, //set: newValue => store.commit("setSelectedDict", newValue),
+    },
+  },
 });
 </script>
 </body>
