@@ -70,7 +70,7 @@ class Lolly extends React.Component {
         <div className="form-group">
           <label className="col-sm-1 control-label" for='lang'>Language:</label>
             <div className="col-sm-3">
-            <select className="form-control" onChange={this.langChange} value={this.state.selectedLang} id='lang'>
+            <select className="form-control" onChange={this.langChange} value={this.state.selectedLang} id='lang' name='selectedLang'>
             {
               this.state.langList.map(lang =>
                 <option key={lang.ID} value={JSON.stringify(lang)}>{lang.NAME}</option>
@@ -80,7 +80,7 @@ class Lolly extends React.Component {
           </div>
           <label className="col-sm-1 control-label" for='dict'>Dictionary:</label>
             <div className="col-sm-3">
-            <select className="form-control" onChange={this.dictChange} value={this.state.selectedDict} id='dict'>
+            <select className="form-control" onChange={this.onChange} value={this.state.selectedDict} id='dict' name='selectedDict'>
             {
               this.state.dictList.map(dict => 
                 <option key={dict.ID} value={JSON.stringify(dict)}>{dict.NAME}</option>
@@ -92,7 +92,7 @@ class Lolly extends React.Component {
         <div className="form-group">
           <label className="col-sm-1 control-label" for='word'>Word:</label>
           <div className="col-sm-3">
-            <input className="form-control" value={this.state.word} onChange={this.wordChange} id="word" />
+            <input className="form-control" value={this.state.word} onChange={this.onChange} id="word" name='word' />
           </div>
           <input type="submit" className="btn btn-primary" value='Search' id='search' onClick={this.searchClick} />
           <input type="submit" className="btn btn-primary" value='Search(redirect)' id='redirectSearch' onClick={this.redirectSearchClick} />
@@ -115,12 +115,8 @@ class Lolly extends React.Component {
     });
   }
 
-  dictChange = event => {
-    this.setState({selectedDict: event.target.value});
-  }
-
-  wordChange = event => {
-    this.setState({word: event.target.value});
+  onChange = event => {
+    this.setState({[event.target.name]: event.target.value});
   }
 
   formSubmit = event => {

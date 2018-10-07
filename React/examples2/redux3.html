@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Redux basic example</title>
+    <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+  </head>
+  <body>
+    <div>
+      Open the console!
+    </div>
+    <script>
+      function userReducer(state={}, action) {
+        switch (action.type) {
+          case 'CHANGE_NAME':
+            return {...state, name: action.payload};
+          case 'CHANGE_AGE':
+            return {...state, age: action.payload};
+          default:
+            return state;
+        }
+      }
+      function tweetsReducer(state=[], action) {
+        switch (action.type) {
+          default:
+            return state;
+        }
+      }
+
+      const reducer = Redux.combineReducers({
+        user: userReducer,
+        tweets: tweetsReducer,
+      })
+      var store = Redux.createStore(reducer);
+      store.subscribe(() => console.log(store.getState()));
+      store.dispatch({type: "CHANGE_NAME", payload: "Will"});
+      store.dispatch({type: "CHANGE_AGE", payload: 35});
+      store.dispatch({type: "CHANGE_AGE", payload: 36});
+
+    </script>
+  </body>
+</html>
