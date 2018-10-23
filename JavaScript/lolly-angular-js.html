@@ -13,7 +13,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular.min.js"></script>
 <script>
 angular.module('lollyApp', []).controller("lollyCtrl", ["$scope", "$http", "$sce", function($scope, $http, $sce) {
-	var $lang = $('#lang');
 	$scope.word = '一人';
 	$http.get('https://zwvista.tk/lolly/api.php/LANGUAGES?transform=1&filter=ID,neq,0').then(function(response) {
     $scope.langList = response.data.LANGUAGES;
