@@ -1,0 +1,54 @@
+
+<!-- https://codepen.io/webifi/pen/ddWbvr -->
+<html>
+  <head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuetify@0.16.7/dist/vuetify.min.js"></script>
+    <script src="https://raw.githack.com/RubaXa/Sortable/master/Sortable.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" rel="stylesheet"> 
+    <link href="https://unpkg.com/vuetify@0.16.7/dist/vuetify.min.css" rel="stylesheet"> 
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <div id="app">
+      <v-app id="inspire">
+        <v-data-table
+            v-bind:headers="headers"
+            :items="items"
+            hide-actions
+            class="elevation-1"
+            ref="sortableTable"
+            item-key="name"
+            expand
+          >
+          <template slot="items" slot-scope="props">
+            <tr class="sortableRow" :key="itemKey(props.item)" @click="props.expanded = !props.expanded"> <!-- NOTE:  You'll need a unique ID, that is specific to the given item, for the key.   Not providing a unique key that's bound to the item object will break drag and drop sorting.  The itemKey method will return a uid for a given object using WeakMap.  You could just use a property in the object with a unique value, like "props.item.name" in this case, but often getting a unique value from the object's properties can be difficult, like when adding new rows, or when the unique field is open to editing, etc. -->
+              <td class="px-1" style="width: 0.1%">
+                <v-btn style="cursor: move" icon class="sortHandle"><v-icon>drag_handle</v-icon></v-btn>
+              </td>
+              <td>{{ props.item.name }}</td>
+              <td class="text-xs-right">{{ props.item.calories }}</td>
+              <td class="text-xs-right">{{ props.item.fat }}</td>
+              <td class="text-xs-right">{{ props.item.carbs }}</td>
+              <td class="text-xs-right">{{ props.item.protein }}</td>
+              <td class="text-xs-right">{{ props.item.sodium }}</td>
+              <td class="text-xs-right">{{ props.item.calcium }}</td>
+              <td class="text-xs-right">{{ props.item.iron }}</td>
+            </tr>
+          </template>
+          
+          <template slot="expand" slot-scope="props" >
+            <v-card flat :key="itemKey(props.item) + '_expand'">
+              something nested here {{ props.item.name }}
+            </v-card>
+          </template>
+          
+        </v-data-table>
+      </v-app>
+    </div>
+
+    <script src="index.js">
+    </script>
+    </body>
+  </html>
+  

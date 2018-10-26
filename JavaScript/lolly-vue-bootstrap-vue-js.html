@@ -17,24 +17,24 @@
 <b-table :items="langList" :fields="fields"></b-table>
 <b-form @submit.prevent="formSubmit" action="search" method="post">
 	<b-form-row>
-		<label class="col-sm-1 control-label" for='lang'>Language:</label>
-    	<div class="col-sm-3">
+		<b-col cols="1"><label class="control-label" for='lang'>Language:</label></b-col>
+    <b-col cols="3">
 			<b-form-select @change="langChange($event)" v-model="selectedLang" id='lang'>
 				<option v-for="lang in langList" :value="lang">{{lang.NAME}}</option>
-			</b-form-select>
-		</div>
- 		<label class="col-sm-1 control-label" for='dict'>Dictionary:</label>
-    	<div class="col-sm-3">
+      </b-form-select>
+    </b-col>
+    <b-col cols="1"><label class="control-label" for='dict'>Dictionary:</label></b-col>
+    <b-col cols="3">
 			<b-form-select v-model="selectedDict" id='dict'>
 				<option v-for="dict in dictList" :value="dict">{{dict.NAME}}</option>
 			</b-form-select>
-		</div>
+		</b-col>
 	</b-form-row>
  	<b-form-row>
-		<label class="col-sm-1 control-label" for='word'>Word:</label>
-    <div class="col-sm-3">
+		<b-col cols="1"><label class="control-label" for='word'>Word:</label></b-col>
+    <b-col cols="3">
 			<b-form-input v-model="word" id="word" />
-		</div>
+		</b-col>
     <b-btn type="submit" variant="primary" id='search' @click="searchClick()">Search</b-btn>
     <b-btn type="submit" variant="primary" id='redirectSearch' @click="redirectSearchClick()">Search(redirect)</b-btn>
 	</b-form-row>
