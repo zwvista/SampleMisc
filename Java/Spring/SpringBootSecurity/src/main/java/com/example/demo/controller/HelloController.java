@@ -10,6 +10,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -46,6 +48,19 @@ public class HelloController {
             System.err.println("IOException: " + ioe.getMessage());
         }
         return "hello";
+    }
+
+    @RequestMapping(value = {"/signup", "/signup?error"}, method = RequestMethod.GET)
+    public String signup() {
+        return "signup";
+    }
+
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public String signup(@RequestParam String username, @RequestParam String password) {
+        if (username.equals("user"))
+            return "redirect:/signup?error";
+        else
+            return "redirect:/login";
     }
 
 }
