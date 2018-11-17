@@ -20,7 +20,7 @@ export class PostService {
 
   private getPostAsString(): Observable<string> {
     const url = `${this.baseUrl}posts/1`;
-    return this.http.get(url, { responseType: 'text' })
+    return new Rxios({transformResponse: undefined}).get<string>(url)
       .pipe(
         tap((result: any) => console.log(result)),
       );
