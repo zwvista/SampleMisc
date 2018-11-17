@@ -409,14 +409,14 @@ export class TransformingService {
   partition2() {
     const source = from([1, 2, 3, 4, 5, 6]);
     // if greater than 3 throw
-    const example = source.pipe<{success: number, error: number}>(
+    const example = source.pipe<{success: number, error: number},{success: number, error: number}>(
       map(val => {
         if (val > 3) {
           // throw `${val} greater than 3!`;
         }
-        return { success: val };
+        return { success: val, error: null };
       }),
-      catchError(val => of({ error: val }))
+      catchError(val => of({ success: null, error: val }))
     );
     // split on success or error
     const [success, error] = partition<{success: number, error: number}>(res => res.success !== null)(example);
@@ -554,7 +554,7 @@ export class TransformingService {
     //  Accumulate values in an array, emit random values from this array.
     const scanObs = interval(1000)
       .pipe(
-        scan((a, c) => [...a, c], []),
+        scan((a: number[], c: number) => [...a, c], []),
         map(r => r[Math.floor(Math.random() * r.length)]),
         distinctUntilChanged()
       )
@@ -630,7 +630,7 @@ export class TransformingService {
     // emit immediately then every 1s
     const source = timer(0, 1000);
     const example = source.pipe(windowTime(3000));
-    const count = example.pipe(scan((acc, curr) => acc + 1, 0));
+    const count = example.pipe(scan((acc: number, curr: any) => acc + 1, 0));
     /*
       "Window 1:"
       0
