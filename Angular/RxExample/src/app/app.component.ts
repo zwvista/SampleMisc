@@ -47,13 +47,13 @@ export class AppComponent implements AfterViewInit {
     const f = elemRef => fromEvent(elemRef.nativeElement, 'input')
       .pipe(pluck('target', 'value'), startWith((elemRef.nativeElement as HTMLInputElement).value));
     const g = s => Number(s) || 0;
-    this.resultAsync = combineLatest(f(this.number1Ref), f(this.number2Ref), f(this.number3Ref))
-      .pipe(map(results => String(g(results[0]) + g(results[1]) + g(results[2]))));
+    setTimeout(() => this.resultAsync = combineLatest(f(this.number1Ref), f(this.number2Ref), f(this.number3Ref))
+      .pipe(map(results => String(g(results[0]) + g(results[1]) + g(results[2])))));
     this.onChangeNumber();
   }
 
   onChangeNumber() {
     const g = s => Number(s) || 0;
-    this.result = String(g(this.number1) + g(this.number2) + g(this.number3));
+    setTimeout(() => this.result = String(g(this.number1) + g(this.number2) + g(this.number3)));
   }
 }

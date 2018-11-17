@@ -1,5 +1,5 @@
 import { injectable } from 'vue-typescript-inject';
-import {of, Observable, from} from 'rxjs';
+import {Observable, from} from 'rxjs';
 import {map, mergeAll, take, tap} from 'rxjs/operators';
 import { Post } from './post';
 import { Rxios } from '@/rxios';

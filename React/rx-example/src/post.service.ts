@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from 'react.di';
 import { Observable, from } from 'rxjs';
 import { map, mergeAll, take, tap } from 'rxjs/operators';
 import { Post } from './post';
+import { Rxios } from './rxios';
 
-@Injectable()
+@Injectable
 export class PostService {
-  private baseUrl = 'http://jsonplaceholder.typicode.com/';
+  private readonly http = new Rxios();
+  private readonly baseUrl = 'http://jsonplaceholder.typicode.com/';
 
-  constructor(private http: HttpClient) { }
-
-  restExample() {
+  constructor() {
     this.getPostAsString().subscribe();
     this.getPostAsJson().subscribe();
     this.getPosts(2).subscribe();
@@ -21,7 +20,7 @@ export class PostService {
 
   private getPostAsString(): Observable<string> {
     const url = `${this.baseUrl}posts/1`;
-    return this.http.get(url, {responseType: 'text'})
+    return this.http.get<string>(url)
       .pipe(
         tap((result: any) => console.log(result)),
       );
@@ -50,12 +49,12 @@ export class PostService {
   private createPost(): Observable<string> {
     const url = `${this.baseUrl}posts`;
     return this.http.post(url, {
-        params: {
-          userId: 101,
-          title: 'test title',
-          body: 'test body',
-        }
-      })
+      params: {
+        userId: 101,
+        title: 'test title',
+        body: 'test body',
+      }
+    })
       .pipe(
         map((result: any) => JSON.stringify(result)),
         tap((result: any) => console.log(result)),
@@ -65,12 +64,12 @@ export class PostService {
   private updatePost(): Observable<string> {
     const url = `${this.baseUrl}posts/1`;
     return this.http.put(url, {
-        params: {
-          userId: 101,
-          title: 'test title',
-          body: 'test body',
-        }
-      })
+      params: {
+        userId: 101,
+        title: 'test title',
+        body: 'test body',
+      }
+    })
       .pipe(
         map((result: any) => JSON.stringify(result)),
         tap((result: any) => console.log(result)),
