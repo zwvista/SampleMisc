@@ -1,6 +1,6 @@
 import Foundation
 
-let s = "123-4567-89"
+let s = "123-4567-89,987-6543-21"
 let r = try NSRegularExpression(pattern: "\\d{3}-(\\d{4})-\\d{2}")
 let results = r.matches(in: s, options: [], range: NSRange(s.startIndex..., in: s))
 results.flatMap{m in (0..<m.numberOfRanges).map{String(s[Range(m.range(at: $0), in: s)!])}}.enumerated().forEach{print("group \($0) : \($1)")}

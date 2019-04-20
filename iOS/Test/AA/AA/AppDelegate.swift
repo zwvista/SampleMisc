@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let talker = AVSpeechSynthesizer()
+//        let utterance = AVSpeechUtterance(string: "こんにちは")
+//        utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
+//        talker.speak(utterance)
+        let utterance = AVSpeechUtterance(string: "Je m'appelle Jean.")
+        utterance.voice = AVSpeechSynthesisVoice(language: "fr-FR")
+        talker.speak(utterance)
+
         return true
     }
 

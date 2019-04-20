@@ -8,7 +8,7 @@
 
 import Foundation
 
-let s = "123-4567-89"
+let s = "123-4567-89,987-6543-21"
 let r = "\\d{3}-(\\d{4})-\\d{2}".r!
 r.findAll(in: s).forEach { m in
     for i in 0..<m.ranges.count {
