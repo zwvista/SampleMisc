@@ -8,7 +8,7 @@ Vue.component('component', {
   data: function () {
   	return {
     	typeOf: typeof this.data
-     }
+    }
   },
   template: '<div>Data: {{data}}<br>Type: {{typeOf}}</div>',
   mounted: function () {
