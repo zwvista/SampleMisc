@@ -268,9 +268,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U259NHMY78;
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/Cellar/cpprestsdk/2.10.2/lib,
-					/usr/local/Cellar/boost/1.67.0_1/lib,
-					/usr/local/Cellar/libressl/2.7.4/lib,
+					/usr/local/Cellar/cpprestsdk/2.10.13/lib,
+					/usr/local/Cellar/boost/1.69.0_2/lib,
+					/usr/local/Cellar/libressl/2.8.3/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-lcpprest",
@@ -282,11 +282,11 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/cpprestsdk/2.10.2/include,
-					/usr/local/Cellar/boost/1.67.0_1/include,
-					/usr/local/Cellar/libressl/2.7.4/include,
+					/usr/local/Cellar/cpprestsdk/2.10.13/include,
+					/usr/local/Cellar/boost/1.69.0_2/include,
+					/usr/local/Cellar/libressl/2.8.3/include,
 					/Users/zhaowei/Documents/Programs/OSS/RxCpp/Rx/v2/src,
-					/usr/local/Cellar/nlohmann_json/3.1.2/include,
+					/usr/local/Cellar/nlohmann_json/3.6.1/include,
 				);
 			};
 			name = Debug;
@@ -297,9 +297,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U259NHMY78;
 				LIBRARY_SEARCH_PATHS = (
-					/usr/local/Cellar/cpprestsdk/2.10.2/lib,
-					/usr/local/Cellar/boost/1.67.0_1/lib,
-					/usr/local/Cellar/libressl/2.7.4/lib,
+					/usr/local/Cellar/cpprestsdk/2.10.13/lib,
+					/usr/local/Cellar/boost/1.69.0_2/lib,
+					/usr/local/Cellar/libressl/2.8.3/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-lcpprest",
@@ -311,11 +311,11 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					/usr/local/Cellar/cpprestsdk/2.10.2/include,
-					/usr/local/Cellar/boost/1.67.0_1/include,
-					/usr/local/Cellar/libressl/2.7.4/include,
+					/usr/local/Cellar/cpprestsdk/2.10.13/include,
+					/usr/local/Cellar/boost/1.69.0_2/include,
+					/usr/local/Cellar/libressl/2.8.3/include,
 					/Users/zhaowei/Documents/Programs/OSS/RxCpp/Rx/v2/src,
-					/usr/local/Cellar/nlohmann_json/3.1.2/include,
+					/usr/local/Cellar/nlohmann_json/3.6.1/include,
 				);
 			};
 			name = Release;
