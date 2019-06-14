@@ -16,6 +16,7 @@ extern void rxf3();
 extern void rxf4();
 extern void json2();
 extern void json3();
+extern void jys();
 
 int main(int argc, char *args[])
 {
@@ -27,5 +28,6 @@ int main(int argc, char *args[])
 //    rxf4();
 //    json2();
     json3();
+    jys();
     return 0;
 }

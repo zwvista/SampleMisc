@@ -6,10 +6,11 @@
 //  Copyright © 2019 趙偉. All rights reserved.
 //
 
-#include "jys.hpp"
-
-#include <range/v3/all.hpp>
+#include <iostream>
+#include <locale>
+#include <locale.h>
 #include <vector>
+#include <range/v3/all.hpp>
 using namespace std;
 using namespace ranges;
 
@@ -33,4 +34,33 @@ void jys2(wstring_view text, int offset) {
     });
     for (wstring o : rng)
         wcout << o << endl;
+}
+
+#include "rxcpp/rx.hpp"
+namespace Rx {
+    using namespace rxcpp;
+    using namespace rxcpp::sources;
+    using namespace rxcpp::operators;
+    using namespace rxcpp::util;
+}
+using namespace Rx;
+
+void jys3(wstring_view text, int offset) {
+    range<int>(0, text.size()).group_by([&](int i){return i % offset;}, [&](int i){return text[i];})
+    .map([&](auto g){
+        return g.reduce(wstring{}, [&](const wstring& acc, wchar_t ch){return ch + (L'|' + acc);});
+    }).merge().subscribe(println(wcout));
+    
+}
+
+void jys() {
+    constexpr char locale_name[] = "en_US.UTF-8";
+    setlocale( LC_ALL, locale_name );
+    locale::global(locale(locale_name));
+    wcout.imbue(locale());
+    wstring text = L"床前明月光疑是地上霜举头望明月低头思故乡";
+    int offset = 5;
+    jys1(text, offset);
+    jys2(text, offset);
+    jys3(text, offset);
 }
