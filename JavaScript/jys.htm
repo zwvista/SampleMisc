@@ -3,11 +3,12 @@
 <head>
 <title>静夜思</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/linq.js/2.2.0.2/linq.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/2.3.5/rx.all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/5.0.0-rc.1/Rx.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ixjs/1.0.6/l2o.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ixjs/1.0.6/ix.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js"></script>
 <style>
 table, th, td {
 	border: 1px solid black;
@@ -36,6 +37,8 @@ $(function(){
 	$output2.css("color", "red");
 	var $output3 = $("#output3");
 	$output3.css("color", "brown");
+	var $output4 = $("#output4");
+	$output4.css("color", "purple");
 	$("button").click(function(){
 		var input = $input.text();
 		var output1 = Enumerable.From(input)
@@ -45,17 +48,23 @@ $(function(){
 			.ToString("<br>");
 		$output1.html(output1);
 		Rx.Observable.from(input)
-			.map(function (c, i, obs) { return {ch:c, id:i}; })
-			.groupBy(function (x) { return x.id % 5; }, function (x) { return x.ch; })
-			.flatMap(function (g) { return g.reduce(function (s, ch) { return ch + '|' + s; }); })
-			.reduce(function (acc, s) { return acc + '<br>' + s; })
-			.subscribe(function (output2) { $output2.html(output2); });
+			.map((c, i) => ({ch:c, id:i}))
+			.groupBy(x => x.id % 5, x => x.ch)
+			.flatMap(g => g.reduce((s, ch) => ch + '|' + s))
+			.reduce((acc, s) => acc + '<br>' + s)
+			.subscribe(output2 => $output2.html(output2));
 		var output3 = Ix.Enumerable.fromArray(input.split(''))
-			.select(function (c, i) { return {ch:c, id:i}; })
-			.groupBy(function (x) { return x.id % 5; }, function (x) { return x.ch; })
-			.select(function (g) { return g.toArray().reverse().join('|'); })
+			.select((c, i) => ({ch:c, id:i}))
+			.groupBy(x => x.id % 5, x => x.ch)
+			.select(g => g.toArray().reverse().join('|'))
 			.toArray().join('<br>');
 		$output3.html(output3);
+    var o1 = _.toArray(input);
+    var o2 = _.zip(o1, _.range(_.size(o1)));
+    var o3 = _.groupBy(o2, x => x[1] % 5);
+    var o4 = _.flatMap(o3, g => _.join(_.reverse(_.map(g, e => e[0])), '|'));
+    var output4 = _.join(o4, '<br>');
+    $output4.html(output4);
 	});
 });
 </script>
@@ -67,8 +76,18 @@ $(function(){
 <br>
 <br>
 <table>
-<tr><th>linq.js</th><th>RxJS</th><th>IxJS</th><tr>
-<tr><td id=output1></td><td id=output2></td><td id=output3></td></tr>
+<tr>
+  <th>linq.js</th>
+  <th>RxJS</th>
+  <th>IxJS</th>
+  <th>Lodash</th>
+<tr>
+<tr>
+  <td id=output1></td>
+  <td id=output2></td>
+  <td id=output3></td>
+  <td id=output4></td>
+</tr>
 </table>
 </body>
 </html>
