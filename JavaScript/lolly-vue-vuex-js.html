@@ -62,11 +62,11 @@ var store = new Vuex.Store({
   },
   mutations: {
     setLangs(state, payload) {
-      state.langList = payload.LANGUAGES;
+      state.langList = payload.records;
       state.selectedLang = state.langList[0];
     },
     setDicts(state, payload) {
-      state.dictList = payload.DICTIONARIES;
+      state.dictList = payload.records;
       state.selectedDict = state.dictList[0];
     },
     setSelectedLang(state, payload) {
@@ -78,13 +78,13 @@ var store = new Vuex.Store({
   },
   actions: {
     fetchLangs({commit, dispatch}) { //fetchLangs(context)
-      $.get('https://zwvista.tk/lolly/api.php/LANGUAGES?transform=1&filter=ID,neq,0', response => {
+      $.get('https://zwvista.tk/lolly/api.php/records/LANGUAGES?filter=ID,neq,0', response => {
         commit("setLangs", response); //context.commit("setLangs", response);
         dispatch("fetchDicts"); //context.dispatch("fetchDicts");
       });
     },
     fetchDicts({commit, getters}) {
-      $.get('https://zwvista.tk/lolly/api.php/DICTIONARIES?transform=1&filter=LANGIDFROM,eq,' + getters.selectedLang.ID, response => {
+      $.get('https://zwvista.tk/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + getters.selectedLang.ID, response => {
         commit("setDicts", response);
       });
     }

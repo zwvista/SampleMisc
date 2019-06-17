@@ -56,16 +56,16 @@ var app = new Vue({
     dictUrl: 'about:blank',
   },
   mounted() {
-    $.get('https://zwvista.tk/lolly/api.php/LANGUAGES?transform=1&filter=ID,neq,0', response => {
-      this.langList = response.LANGUAGES;
+    $.get('https://zwvista.tk/lolly/api.php/records/LANGUAGES?filter=ID,neq,0', response => {
+      this.langList = response.records;
       this.selectedLang = this.langList[0];
       this.langChange(this.selectedLang);
     });
   },
  	methods: {
     langChange(value) {
-      $.get('https://zwvista.tk/lolly/api.php/DICTIONARIES?transform=1&filter=LANGIDFROM,eq,' + value.ID, response => {
-        this.dictList = response.DICTIONARIES;
+      $.get('https://zwvista.tk/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + value.ID, response => {
+        this.dictList = response.records;
         this.selectedDict = this.dictList[0];
       });
     },
