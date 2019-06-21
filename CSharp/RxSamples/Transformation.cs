@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Reflection;
@@ -20,6 +22,8 @@ namespace RxSamples
             Materialize1();
             Materialize2();
             Dematerialize();
+            ManySelect1();
+            ManySelect2();
         }
 
         private static void Select()
@@ -122,6 +126,37 @@ namespace RxSamples
             .Materialize()
             .Dematerialize()
             .Dump("Dematerialize");
+        }
+
+        // https://social.msdn.microsoft.com/Forums/en-US/e70fe8b6-6d9d-486a-a8d0-c1bc66551ded/what-does-the-new-manyselect-operator-do?forum=rx
+        private static void ManySelect1()
+        {
+            var xs = Observable.Range(1, 3).Do(x => Console.WriteLine("Generated: {0}", x));
+
+            var projection = new[] { "A", "B", "C" };
+            int counter = 0;
+
+            var manySelect = xs.ManySelect(ys =>
+            {
+                var x = ++counter;
+
+                return ys.Select(y => new { x, y = projection[y - 1] });
+            },
+                Scheduler.CurrentThread);
+
+            using (manySelect.Concat().Subscribe(
+                x => Console.WriteLine("Observed: {0}", x),
+                () => Console.WriteLine("Completed")))
+            {
+                Console.ReadKey();
+            }
+        }
+
+        private static void ManySelect2()
+        {
+            Observable.Range(1, 10).ManySelect(xs => xs.Sum(), Scheduler.CurrentThread).Concat().Dump("ManySelect21");
+            Observable.Range(1, 10).ManySelect(xs => xs.Take(3).ToList(), Scheduler.CurrentThread)
+                .Concat().Select(xs => string.Join(",", xs.Select(x => x.ToString()))).Dump("ManySelect22");
         }
     }
 }
