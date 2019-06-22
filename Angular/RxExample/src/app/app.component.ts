@@ -12,6 +12,7 @@ import { ToService } from './services/to.service';
 import { UtilityService } from './services/utility.service';
 import { combineLatest, fromEvent, Observable } from 'rxjs';
 import { map, pluck, startWith } from 'rxjs/operators';
+import { MiscService } from './services/misc.service';
 
 @Component({
   selector: 'app-root',
@@ -41,7 +42,8 @@ export class AppComponent implements AfterViewInit {
               public postService: PostService,
               public transformingService: TransformingService,
               public toService: ToService,
-              public utilityService: UtilityService) { }
+              public utilityService: UtilityService,
+              public miscService: MiscService) { }
 
   ngAfterViewInit() {
     const f = elemRef => fromEvent(elemRef.nativeElement, 'input')

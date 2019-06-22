@@ -4,8 +4,6 @@ import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import io.reactivex.functions.Function
 import io.reactivex.rxkotlin.Observables
-import io.reactivex.rxkotlin.zipWith
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 
@@ -38,7 +36,7 @@ private fun exampleCombineLatest() {
             .doOnNext { i -> println("Left emits") },
         Observable.interval(150, TimeUnit.MILLISECONDS)
             .doOnNext { i -> println("Right emits") })
-        { i1, i2 -> i1.toString() + " - " + i2 }
+        { i1, i2 -> "$i1 - $i2" }
         .take(6)
         .dump()
     readLine()
@@ -249,7 +247,7 @@ private fun exampleSwitchOnNext() {
         Observable.interval(100, TimeUnit.MILLISECONDS)
             .map { i ->
                 Observable.interval(30, TimeUnit.MILLISECONDS)
-                    .map { i2 -> i }
+                    .map { _ -> i }
             }
     )
         .take(9)
@@ -338,8 +336,8 @@ private fun exampleZipUneven() {
 private fun exampleZipWith() {
     println(object{}.javaClass.enclosingMethod.name)
     Observable.interval(100, TimeUnit.MILLISECONDS)
-        .zipWith(Observable.interval(150, TimeUnit.MILLISECONDS))
-            { i1, i2 -> "$i1 - $i2" }
+        .zipWith(Observable.interval(150, TimeUnit.MILLISECONDS),
+            BiFunction<Long, Long, String> { i1, i2 -> "$i1 - $i2" })
         .take(6)
         .dump()
     readLine()
@@ -355,7 +353,7 @@ private fun exampleZipWith() {
 private fun exampleZipWithIterable() {
     println(object{}.javaClass.enclosingMethod.name)
     Observable.range(0, 5)
-        .zipWith(Arrays.asList(0, 2, 4, 6, 8))
+        .zipWith(listOf(0, 2, 4, 6, 8))
             { i1, i2 -> "$i1 - $i2" }
         .dump()
     readLine()

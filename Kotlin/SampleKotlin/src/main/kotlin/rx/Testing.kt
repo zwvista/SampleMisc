@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
 private fun exampleTick() {
     println(object{}.javaClass.enclosingMethod.name)
     val scheduler = TestScheduler()
-    val expected = Arrays.asList(0L, 1L, 2L, 3L, 4L)
+    val expected = listOf(0L, 1L, 2L, 3L, 4L)
     val result = ArrayList<Long>()
     Observable
         .interval(1, TimeUnit.SECONDS, scheduler)
