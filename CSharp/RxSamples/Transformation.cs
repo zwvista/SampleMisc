@@ -131,6 +131,7 @@ namespace RxSamples
         // https://social.msdn.microsoft.com/Forums/en-US/e70fe8b6-6d9d-486a-a8d0-c1bc66551ded/what-does-the-new-manyselect-operator-do?forum=rx
         private static void ManySelect1()
         {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var xs = Observable.Range(1, 3).Do(x => Console.WriteLine("Generated: {0}", x));
 
             var projection = new[] { "A", "B", "C" };
@@ -154,7 +155,9 @@ namespace RxSamples
 
         private static void ManySelect2()
         {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Observable.Range(1, 10).ManySelect(xs => xs.Sum(), Scheduler.CurrentThread).Concat().Dump("ManySelect21");
+            Observable.Range(1, 10).SelectMany(x => Observable.Range(x, 10 - x + 1).Sum()).Dump("SelectMany21");
             Observable.Range(1, 10).ManySelect(xs => xs.Take(3).ToList(), Scheduler.CurrentThread)
                 .Concat().Select(xs => string.Join(",", xs.Select(x => x.ToString()))).Dump("ManySelect22");
         }

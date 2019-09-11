@@ -21,9 +21,9 @@ import { MiscService } from './services/misc.service';
 })
 export class AppComponent implements AfterViewInit {
 
-  @ViewChild('number1Ref') number1Ref: ElementRef;
-  @ViewChild('number2Ref') number2Ref: ElementRef;
-  @ViewChild('number3Ref') number3Ref: ElementRef;
+  @ViewChild('number1Ref', { static: true }) number1Ref: ElementRef;
+  @ViewChild('number2Ref', { static: true }) number2Ref: ElementRef;
+  @ViewChild('number3Ref', { static: true }) number3Ref: ElementRef;
   resultAsync: Observable<string>;
 
   number1 = '1';
