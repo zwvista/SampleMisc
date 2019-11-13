@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="utils.js"></script>
+<style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+</style>
+</head>
+<body>
+    <div id="container" style="width: 75%;">
+        <canvas id="canvas"></canvas>
+    </div>
+    <script>
+        var color = Chart.helpers.color;
+        var chartData = {
+            labels: [
+                'Hong Kong',
+                'Singapore',
+                'Taipei',
+                'Seoul',
+                'Kuala Lumpur',
+                'Bangkok',
+                'Manila',
+                'Jakarta',
+                'Ho Chi Minh City',
+                'Hanoi',
+            ],
+			datasets: [{
+				label: 'Unmarried',
+				backgroundColor: color(window.chartColors.red).rgbString(),
+                data:[49,53.6,58.9,51.3,44.4,37.5,39,24.2,35.4,34.1]
+			}, {
+				label: 'Married <including living with partner>',
+				backgroundColor: color(window.chartColors.orange).rgbString(),
+                data:[48.4,43.8,37.3,47.9,50.4,55.6,48.6,68,61.5,64.5]
+			}, {
+				label: 'Married <I live separately for the couple>',
+				backgroundColor: color(window.chartColors.yellow).rgbString(),
+                data:[0.9,0.4,0.6,0,1.4,2.3,7.6,1.5,0.4,0.3]
+			}, {
+				label: 'Separation',
+				backgroundColor: color(window.chartColors.green).rgbString(),
+                data:[1.8,2.2,3,0.8,2.6,3.6,3,1.9,1.4,0.8]
+			}, {
+				label: 'bereavement',
+				backgroundColor: color(window.chartColors.blue).rgbString(),
+                data:[0,0,0.3,0,1.2,1,1.8,4.4,1.4,0.4]
+			}, {
+				label: 'Refusal to answer',
+				backgroundColor: color(window.chartColors.purple).rgbString(),
+                data:[0,0,0,0,0,0,0,0,0,0]
+			}]
+
+		};
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myChart = new Chart(ctx, {
+				type: 'bar',
+				data: chartData,
+				options: {
+					legend: {
+						position: 'right',
+					},
+				}
+			});
+
+		};
+
+    </script>
+</body>
+</html>

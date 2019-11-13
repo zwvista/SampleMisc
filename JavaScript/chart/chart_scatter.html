@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="utils.js"></script>
+<style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+</style>
+</head>
+<body>
+    <div id="container" style="width: 75%;">
+        <canvas id="canvas"></canvas>
+    </div>
+    <script>
+        var color = Chart.helpers.color;
+        var chartData = {
+            labels: [
+                'Hong Kong',
+                'Singapore',
+                'Taipei',
+                'Seoul',
+                'Kuala Lumpur',
+                'Bangkok',
+                'Manila',
+                'Jakarta',
+                'Ho Chi Minh City',
+                'Hanoi',
+            ],
+			datasets: [{
+				label: 'Unmarried / Married <including living with partner>',
+				borderColor: color(window.chartColors.red).rgbString(),
+                data:[
+					{x: 49, y: 48.4},
+					{x: 53.6, y: 43.8},
+					{x: 58.9, y: 37.3},
+					{x: 51.3, y: 47.9},
+					{x: 44.4, y: 50.4},
+					{x: 37.5, y: 55.6},
+					{x: 39, y: 48.6},
+					{x: 24.2, y: 68},
+					{x: 35.4, y: 61.5},
+					{x: 34.1, y: 64.5},					
+				]
+			}]
+
+		};
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myChart = new Chart(ctx, {
+				type: 'scatter',
+				data: chartData,
+				options: {
+					legend: {
+						position: 'top',
+					},
+					tooltips: {
+						callbacks: {
+							label: function(tooltipItem, data) {
+								var label = data.labels[tooltipItem.index];
+								return label + ': (' + tooltipItem.xLabel + ', ' + tooltipItem.yLabel + ')';
+							}
+						}
+					}
+				},
+			});
+
+		};
+
+    </script>
+</body>
+</html>

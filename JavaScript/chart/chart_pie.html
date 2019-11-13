@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script src="utils.js"></script>
+<style>
+    canvas {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+    }
+</style>
+</head>
+<body>
+    <div id="container" style="width: 75%;">
+        <canvas id="canvas"></canvas>
+    </div>
+    <script>
+        var color = Chart.helpers.color;
+        var chartData = {
+            labels: [
+				'Unmarried',
+				'Married <including living with partner>',
+				'Married <I live separately for the couple>',
+				'Separation',
+				'bereavement',
+				'Refusal to answer',
+            ],
+			datasets: [{
+				label: 'Hong Kong',
+				backgroundColor: [
+					color(window.chartColors.red).rgbString(),
+					color(window.chartColors.orange).rgbString(),
+					color(window.chartColors.yellow).rgbString(),
+					color(window.chartColors.green).rgbString(),
+					color(window.chartColors.blue).rgbString(),
+					color(window.chartColors.purple).rgbString(),
+				],
+                data:[49,48.4,0.9,1.8,0,0]
+			}]
+
+		};
+		window.onload = function() {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myChart = new Chart(ctx, {
+				type: 'pie',
+				data: chartData,
+				options: {
+					legend: {
+						position: 'top',
+					},
+				},
+			});
+
+		};
+
+    </script>
+</body>
+</html>
