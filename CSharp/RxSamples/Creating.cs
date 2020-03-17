@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Timers;
 
 namespace RxSamples
@@ -15,7 +17,8 @@ namespace RxSamples
             Range();
             Interval();
             Timer();
-            ToObservable();
+            ToObservable1();
+            ToObservable2();
         }
 
         private static void ReturnEmptyNeverThrow()
@@ -79,11 +82,22 @@ namespace RxSamples
             Console.ReadKey();
         }
 
-        private static void ToObservable()
+        private static void ToObservable1()
         {
             Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             var values = new List<string> { "Rx", "is", "easy" };
             values.ToObservable().Subscribe(
+                Console.WriteLine,
+                () => Console.WriteLine("Completed"));
+            Console.ReadKey();
+        }
+
+        private static void ToObservable2()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var t = Task.Factory.StartNew(() => "Test");
+            var source = t.ToObservable();
+            source.Subscribe(
                 Console.WriteLine,
                 () => Console.WriteLine("Completed"));
             Console.ReadKey();
