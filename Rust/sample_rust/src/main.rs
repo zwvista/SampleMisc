@@ -1,10 +1,14 @@
 mod examples1;
 mod examples2;
 mod examples3;
+mod jys;
 
 use examples1::*;
 use examples2::*;
 use examples3::*;
+use jys::*;
+
+extern crate itertools;
 
 fn main() {
     example11();
@@ -20,6 +24,8 @@ fn main() {
     example32();
     example33();
     example34();
+
+    jys();
 }
 /*
 rect1 is Rectangle { width: 30, height: 50 }
