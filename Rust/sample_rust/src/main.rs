@@ -9,6 +9,7 @@ use examples3::*;
 use jys::*;
 
 extern crate itertools;
+extern crate reduce;
 
 fn main() {
     example11();
