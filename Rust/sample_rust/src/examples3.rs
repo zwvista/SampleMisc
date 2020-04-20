@@ -66,3 +66,16 @@ pub fn example34() {
     }
     println!("count after c goes out of scope = {}", Rc::strong_count(&a)); // strong_count == 2
 }
+
+/*
+CustomSmartPointers created.
+Dropping CustomSmartPointer with data `other stuff`!
+Dropping CustomSmartPointer with data `my stuff`!
+CustomSmartPointer created.
+Dropping CustomSmartPointer with data `some data`!
+CustomSmartPointer dropped before the end of main.
+count after creating a = 1
+count after creating b = 2
+count after creating c = 3
+count after c goes out of scope = 2
+*/

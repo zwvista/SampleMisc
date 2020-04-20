@@ -39,3 +39,9 @@ pub fn example23() {
     assert_eq!(5, *y);
     assert_eq!(5, *z);
 }
+
+
+/*
+The largest number is 100
+The largest char is y
+*/
