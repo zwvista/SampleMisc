@@ -14,9 +14,6 @@ use examples5::*;
 use examples6::*;
 use jys::*;
 
-extern crate itertools;
-extern crate reduce;
-
 fn main() {
     // jys();
 

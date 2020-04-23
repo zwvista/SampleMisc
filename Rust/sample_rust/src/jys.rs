@@ -1,7 +1,6 @@
 use itertools::Itertools;
 use reduce::Reduce;
 
-
 pub fn jys() {
     let text = "床前明月光疑是地上霜举头望明月低头思故乡";
     let offset = 5;
