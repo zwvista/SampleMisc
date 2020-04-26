@@ -5,6 +5,7 @@ mod examples4;
 mod examples5;
 mod examples6;
 mod jys;
+mod regexes;
 
 use examples1::*;
 use examples2::*;
@@ -13,6 +14,7 @@ use examples4::*;
 use examples5::*;
 use examples6::*;
 use jys::*;
+use regexes::*;
 
 fn main() {
     // jys();
@@ -39,6 +41,8 @@ fn main() {
     // example52();
     // example53();
 
-    example61();
-    example62();
+    // example61();
+    // example62();
+
+    regex1();
 }
