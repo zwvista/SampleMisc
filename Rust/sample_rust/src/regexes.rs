@@ -1,5 +1,4 @@
 use regex::{Regex, Captures};
-use std::ops::Index;
 use itertools::Itertools;
 
 pub fn regex1() {

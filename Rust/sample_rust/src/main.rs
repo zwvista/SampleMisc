@@ -6,6 +6,7 @@ mod examples5;
 mod examples6;
 mod jys;
 mod regexes;
+mod jsons;
 
 use examples1::*;
 use examples2::*;
@@ -15,6 +16,7 @@ use examples5::*;
 use examples6::*;
 use jys::*;
 use regexes::*;
+use jsons::*;
 
 fn main() {
     // jys();
@@ -44,5 +46,7 @@ fn main() {
     // example61();
     // example62();
 
-    regex1();
+    // regex1();
+
+    json1();
 }
