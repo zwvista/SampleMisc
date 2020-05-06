@@ -275,6 +275,8 @@ return [
             'persistent' => false,
             'host' => 'localhost',
             'database' => 'cake_cms',
+            // 'username' => 'root',
+            // 'password' => '',
             'encoding' => 'utf8mb4',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
