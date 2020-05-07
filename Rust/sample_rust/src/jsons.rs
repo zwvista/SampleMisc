@@ -1,3 +1,4 @@
+use std::error::Error;
 use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -14,7 +15,7 @@ struct Person {
     age: i32,
 }
 
-pub fn json1() {
+pub fn json1() -> Result<(), Box<dyn Error>> {
     let json_str = r#"{
         "persons" : [
             {
@@ -23,12 +24,14 @@ pub fn json1() {
             }
         ]
     }"#;
-    let v: Persons = serde_json::from_str(&json_str).unwrap();
+    let v: Persons = serde_json::from_str(&json_str)?;
     println!("{:?}", v);
-    let json_str = serde_json::to_string(&v).unwrap();
+    let json_str = serde_json::to_string(&v)?;
     println!("{}", json_str);
-    let json_str = serde_json::to_string_pretty(&v).unwrap();
+    let json_str = serde_json::to_string_pretty(&v)?;
     println!("{}", json_str);
+
+    Ok(())
 }
 
 /*
