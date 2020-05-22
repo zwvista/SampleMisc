@@ -48,6 +48,7 @@ namespace RxExample
         public IObservable<int> ValueChanged;
         public void SetValue(int value)
         {
+            value = Math.Max(0, Math.Min(86399, value));
             Hour = value / 3600;
             Minute = value / 60 % 60;
             Second = value % 60;
