@@ -18,10 +18,10 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBox Grid.Column="1" Margin="10" Text="{Binding Number1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" TextAlignment="Right"/>
-        <TextBox Grid.Column="1" Margin="10" Grid.Row="1" Text="{Binding Number2, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" TextAlignment="Right"/>
+        <TextBox Grid.Column="1" Margin="10" Text="{Binding Number1, UpdateSourceTrigger=PropertyChanged}" Width="120" TextAlignment="Right"/>
+        <TextBox Grid.Column="1" Margin="10" Grid.Row="1" Text="{Binding Number2, UpdateSourceTrigger=PropertyChanged}" Width="120" TextAlignment="Right"/>
         <TextBlock Margin="10" Grid.Row="2" Text="+" />
-        <TextBox Grid.Column="1" Margin="10" Grid.Row="2" Text="{Binding Number3, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" TextAlignment="Right"/>
+        <TextBox Grid.Column="1" Margin="10" Grid.Row="2" Text="{Binding Number3, UpdateSourceTrigger=PropertyChanged}" Width="120" TextAlignment="Right"/>
         <TextBlock Grid.Column="1" Margin="10" Grid.Row="3" Text="{Binding Result}" TextAlignment="Right"/>
         <local:TimeSpanUpDown x:Name="x" Value="86399" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Right" />
         <TextBlock x:Name="y" Grid.Column="2" Margin="10" Grid.Row="1" Text="{Binding ElementName=x,Path=Value}" TextAlignment="Right" HorizontalAlignment="Right" />
