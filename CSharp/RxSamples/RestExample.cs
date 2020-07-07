@@ -10,9 +10,8 @@ using System.Reactive.Linq;
 using System.Reactive.Threading.Tasks;
 
 using Newtonsoft.Json;
-using Plugin.Connectivity;
-using RestRequest = RestSharp.Serializers.Newtonsoft.Json.RestRequest;
 using RestSharp;
+using RestSharp.Serializers.NewtonsoftJson;
 
 namespace RxSamples
 {
@@ -123,10 +122,14 @@ namespace RxSamples
     public class PostDataStoreByRestSharp
     {
         protected RestClient client = new RestClient("https://jsonplaceholder.typicode.com/");
+        public PostDataStoreByRestSharp()
+        {
+            client.UseNewtonsoftJson();
+        }
         public IObservable<string> GetPostAsString(int id)
         {
             var request = new RestRequest($"posts/{id}", Method.GET);
-            return client.ExecuteAsync<string>(request).ToObservable().Select(o => o.Data);
+            return client.ExecuteAsync<string>(request).ToObservable().Select(o => o.Content);
         }
         public IObservable<Post> GetPostAsJson(int id)
         {
@@ -157,7 +160,7 @@ namespace RxSamples
         public IObservable<string> DeletePost(int id)
         {
             var request = new RestRequest($"posts/{id}", Method.DELETE);
-            return client.ExecuteAsync<string>(request).ToObservable().Select(o => o.Data);
+            return client.ExecuteAsync<string>(request).ToObservable().Select(o => o.Content);
         }
     }
 
