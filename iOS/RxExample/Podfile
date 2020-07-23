@@ -7,4 +7,5 @@ project 'RxExample'
 pod 'CodableAlamofire'
 pod 'RxAlamofire'
 pod 'RxCocoa'
+pod 'RxBinding'
 end

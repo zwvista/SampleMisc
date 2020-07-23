@@ -32,15 +32,14 @@ extension Reactive where Base: UIControl {
     /// - parameter controlEvents: Filter for observed event types.
     public func controlEvent(_ controlEvents: UIControl.Event) -> ControlEvent<()> {
         let source: Observable<Void> = Observable.create { [weak control = self.base] observer in
-                MainScheduler.ensureExecutingOnScheduler()
+                MainScheduler.ensureRunningOnMainThread()
 
                 guard let control = control else {
                     observer.on(.completed)
                     return Disposables.create()
                 }
 
-                let controlTarget = ControlTarget(control: control, controlEvents: controlEvents) {
-                    control in
+                let controlTarget = ControlTarget(control: control, controlEvents: controlEvents) { _ in
                     observer.on(.next(()))
                 }
 
@@ -59,7 +58,7 @@ extension Reactive where Base: UIControl {
     public func controlProperty<T>(
         editingEvents: UIControl.Event,
         getter: @escaping (Base) -> T,
-        setter: @escaping (Base, T) -> ()
+        setter: @escaping (Base, T) -> Void
     ) -> ControlProperty<T> {
         let source: Observable<T> = Observable.create { [weak weakControl = base] observer in
                 guard let control = weakControl else {
@@ -84,15 +83,15 @@ extension Reactive where Base: UIControl {
         return ControlProperty<T>(values: source, valueSink: bindingObserver)
     }
 
-    /// This is a separate method is to better communicate to public consumers that
+    /// This is a separate method to better communicate to public consumers that
     /// an `editingEvent` needs to fire for control property to be updated.
     internal func controlPropertyWithDefaultEvents<T>(
         editingEvents: UIControl.Event = [.allEditingEvents, .valueChanged],
         getter: @escaping (Base) -> T,
-        setter: @escaping (Base, T) -> ()
+        setter: @escaping (Base, T) -> Void
         ) -> ControlProperty<T> {
         return controlProperty(
-            editingEvents: [.allEditingEvents, .valueChanged],
+            editingEvents: editingEvents,
             getter: getter,
             setter: setter
         )
