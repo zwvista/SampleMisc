@@ -43,6 +43,10 @@ class NumbersViewController: UIViewController {
 //        let num3 = Int(tfNumber3.text!) ?? 0
 //        lblResult.text = String(num1 + num2 + num3)
     }
+    
+    deinit {
+        print("DEBUG: \(String(describing: type(of: self))) deinit")
+    }
 }
 
 class NumbersViewModel {
@@ -50,10 +54,8 @@ class NumbersViewModel {
     var number2 = BehaviorRelay(value: "2")
     var number3 = BehaviorRelay(value: "3")
     var result = BehaviorRelay(value: "")
-    var disposeBag: DisposeBag!
     
     init(disposeBag: DisposeBag) {
-        self.disposeBag = disposeBag
         Observable.combineLatest(number1, number2, number3) { num1, num2, num3 -> Int in
             (Int(num1) ?? 0) + (Int(num2) ?? 0) + (Int(num3) ?? 0) }
             .map { String($0) }
