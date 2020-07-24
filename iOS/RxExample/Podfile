@@ -8,4 +8,5 @@ pod 'CodableAlamofire'
 pod 'RxAlamofire'
 pod 'RxCocoa'
 pod 'RxBinding'
+pod 'NSObject+Rx'
 end
