@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Misc.cs" />
     <Compile Include="Subjects.cs" />
     <Compile Include="Testing.cs" />
     <Compile Include="HotAndCold.cs" />

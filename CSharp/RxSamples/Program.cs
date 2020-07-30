@@ -14,6 +14,7 @@ namespace RxSamples
             Console.WriteLine("h: Hot & Cold");
             Console.WriteLine("i: Inspection");
             Console.WriteLine("l: Leaving");
+            Console.WriteLine("m: Misc");
             Console.WriteLine("r1: Reduction");
             Console.WriteLine("r2: REST API");
             Console.WriteLine("s1: Scheduling");
@@ -32,6 +33,7 @@ namespace RxSamples
                 case "h": HotAndCold.Test(); break;
                 case "i": Inspection.Test(); break;
                 case "l": Leaving.Test(); break;
+                case "m": Misc.Test(); break;
                 case "r1": Reducing.Test(); break;
                 case "r2": RestExample.Test(); break;
                 case "s1": Scheduling.Test(); break;
