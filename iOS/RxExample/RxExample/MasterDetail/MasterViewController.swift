@@ -8,18 +8,16 @@
 
 import UIKit
 import RxSwift
+import NSObject_Rx
 
 class MasterViewController: UIViewController { //, CharacterDelegate {
 
     @IBOutlet weak var greetingsLabel: UILabel!
-    
-    let disposeBag = DisposeBag()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
     
     @IBAction func selectCharacter(_ sender: Any) {
         
@@ -29,7 +27,7 @@ class MasterViewController: UIViewController { //, CharacterDelegate {
         detailVC.selectedCharacter
         .subscribe(onNext: { [weak self] character in
             self?.greetingsLabel.text = "Hello \(character)"
-        }).disposed(by: disposeBag)
+        }) ~ rx.disposeBag
        
         navigationController?.pushViewController(detailVC, animated: true)
         

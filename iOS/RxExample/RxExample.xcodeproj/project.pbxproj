@@ -15,13 +15,13 @@
 		954D8AD921326F5500651A80 /* RxExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8AD821326F5500651A80 /* RxExampleTests.swift */; };
 		954D8AE421326F5500651A80 /* RxExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8AE321326F5500651A80 /* RxExampleUITests.swift */; };
 		954D8AF4213270FE00651A80 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8AF1213270FE00651A80 /* Post.swift */; };
-		954D8AF5213270FE00651A80 /* RxCodableAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8AF2213270FE00651A80 /* RxCodableAlamofire.swift */; };
 		954D8AF6213270FE00651A80 /* RestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8AF3213270FE00651A80 /* RestApi.swift */; };
 		954D8B3E2134580D00651A80 /* Numbers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954D8B3C2134580D00651A80 /* Numbers.storyboard */; };
 		954D8B3F2134580D00651A80 /* NumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B3D2134580D00651A80 /* NumbersViewController.swift */; };
 		954D8B442134587600651A80 /* MasterDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954D8B412134587600651A80 /* MasterDetail.storyboard */; };
 		954D8B452134587600651A80 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B422134587600651A80 /* DetailViewController.swift */; };
 		954D8B462134587600651A80 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B432134587600651A80 /* MasterViewController.swift */; };
+		95840F4324C9DE9000D6BA6D /* RxCodableAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8AF2213270FE00651A80 /* RxCodableAlamofire.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -256,16 +256,16 @@
 				TargetAttributes = {
 					954D8ABF21326F5400651A80 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1160;
 					};
 					954D8AD321326F5500651A80 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1160;
 						TestTargetID = 954D8ABF21326F5400651A80;
 					};
 					954D8ADE21326F5500651A80 = {
 						CreatedOnToolsVersion = 9.4.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1160;
 						TestTargetID = 954D8ABF21326F5400651A80;
 					};
 				};
@@ -343,25 +343,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RxExample/Pods-RxExample-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CodableAlamofire/CodableAlamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAlamofire/RxAlamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RxExample/Pods-RxExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CodableAlamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RxExample/Pods-RxExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxExample/Pods-RxExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RxExample/Pods-RxExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -377,7 +368,7 @@
 				954D8B452134587600651A80 /* DetailViewController.swift in Sources */,
 				954D8AC421326F5400651A80 /* AppDelegate.swift in Sources */,
 				954D8B462134587600651A80 /* MasterViewController.swift in Sources */,
-				954D8AF5213270FE00651A80 /* RxCodableAlamofire.swift in Sources */,
+				95840F4324C9DE9000D6BA6D /* RxCodableAlamofire.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,7 +551,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zwstudio.RxExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -579,7 +570,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zwstudio.RxExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -599,7 +590,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zwstudio.RxExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RxExample.app/RxExample";
 			};
@@ -620,7 +611,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zwstudio.RxExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RxExample.app/RxExample";
 			};
@@ -640,7 +631,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zwstudio.RxExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = RxExample;
 			};
@@ -660,7 +651,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zwstudio.RxExampleUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = RxExample;
 			};

@@ -8,21 +8,21 @@
 
 import UIKit
 import RxSwift
+import NSObject_Rx
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let disposeBag = DisposeBag()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        Post.getPostAsString().do(onNext: { print($0) }).subscribe().disposed(by: disposeBag)
-        Post.getPostAsJson().do(onNext: { print($0.description) }).subscribe().disposed(by: disposeBag)
-        Post.getPosts(n: 2).do(onNext: { print($0.description) }).subscribe().disposed(by: disposeBag)
-        Post.createPost().do(onNext: { print($0) }).subscribe().disposed(by: disposeBag)
-        Post.updatePost().do(onNext: { print($0) }).subscribe().disposed(by: disposeBag)
-        Post.deletePost().do(onNext: { print($0) }).subscribe().disposed(by: disposeBag)
+        Post.getPostAsString().do(onNext: { print($0) }).subscribe() ~ rx.disposeBag
+        Post.getPostAsJson().do(onNext: { print($0.description) }).subscribe() ~ rx.disposeBag
+        Post.getPosts(n: 2).do(onNext: { print($0.description) }).subscribe() ~ rx.disposeBag
+        Post.createPost().do(onNext: { print($0) }).subscribe() ~ rx.disposeBag
+        Post.updatePost().do(onNext: { print($0) }).subscribe() ~ rx.disposeBag
+        Post.deletePost().do(onNext: { print($0) }).subscribe() ~ rx.disposeBag
         return true
     }
 
