@@ -24,7 +24,8 @@ namespace ComposeSample
             //StartWithSample();
             //JoinSample();
             //GroupJoinSample();
-            AndThenWhenSample();
+            //AndThenWhenSample();
+            WithLatestFromSample();
         }
 
         //-Merge Method : マージ（統合）
@@ -650,6 +651,49 @@ namespace ComposeSample
             }
         }
 
+        //-WithLatestFrom(TFirst, TSecond, TResult) Method
+        static void WithLatestFromSample()
+        {
+            Console.WriteLine("## WithLatestFromSample");
+
+            var source1 = new Subject<string>();
+            var source2 = new Subject<int>();
+
+            source1
+                // source1とsource2を合成
+                .WithLatestFrom(
+                    source2,
+                    // 発行された値を結合して文字列化
+                    (l, r) => string.Format("{0}-{1}", l, r))
+                // 購読
+                .Subscribe(
+                    s => Console.WriteLine("OnNext: {0}", s),
+                    () => Console.WriteLine("OnCompleted"));
+
+            // 適当に値を発行する
+            Console.WriteLine("source1.OnNext(foo)");
+            source1.OnNext("foo");
+            Console.WriteLine("source2.OnNext(100)");
+            source2.OnNext(100);
+            Console.WriteLine("source2.OnNext(200)");
+            source2.OnNext(200);
+            Console.WriteLine("source1.OnNext(bar)");
+            source1.OnNext("bar");
+            Console.WriteLine("source1.OnNext(boo)");
+            source1.OnNext("boo");
+
+            // source2完了
+            Console.WriteLine("source2.OnCompleted()");
+            source2.OnCompleted();
+            // source2完了後にsource1から値を発行する
+            Console.WriteLine("source1.OnNext(baz)");
+            source1.OnNext("baz");
+            // source1完了
+            Console.WriteLine("source1.OnCompleted()");
+            source1.OnCompleted();
+
+            Console.WriteLine("------------------------------");
+        }
 
     }
 }
