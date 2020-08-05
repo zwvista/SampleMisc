@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit
 
 fun main(args: Array<String>) {
     exampleCombineLatest()
+    exampleWithLatestFrom()
 
     exampleJoinSimple()
     exampleJoin2Way()
@@ -55,6 +56,37 @@ private fun exampleCombineLatest() {
     // 3 - 1
     // Right emits
     // 3 - 2
+}
+
+private fun exampleWithLatestFrom() {
+    println(object{}.javaClass.enclosingMethod.name)
+    Observable.interval(100, TimeUnit.MILLISECONDS)
+        .doOnNext { i -> println("Left emits") }.withLatestFrom<Long, String>(
+        Observable.interval(150, TimeUnit.MILLISECONDS)
+            .doOnNext { i -> println("Right emits") },
+        BiFunction { i1, i2 -> "$i1 - $i2" })
+        .take(6)
+        .dump()
+    readLine()
+
+
+    // Left emits
+    // Right emits
+    // Left emits
+    // 1 - 0
+    // Left emits
+    // Right emits
+    // 2 - 0
+    // Left emits
+    // 3 - 1
+    // Right emits
+    // Left emits
+    // 4 - 2
+    // Right emits
+    // Left emits
+    // 5 - 3
+    // Left emits
+    // 6 - 3
 }
 
 private fun exampleJoinSimple() {
