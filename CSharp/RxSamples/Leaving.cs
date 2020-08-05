@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Reactive;
 using System.Reactive.Linq;
+using System.Reactive.Threading.Tasks;
 using System.Reflection;
+using System.Threading.Tasks;
 
 namespace RxSamples
 {
@@ -14,6 +16,8 @@ namespace RxSamples
             ToArray();
             Wait1();
             Wait2();
+            ToTask1().Wait();
+            ToTask2().Wait();
             ToEvent();
             ToEventPattern();
         }
@@ -75,6 +79,28 @@ namespace RxSamples
             try
             {
                 source.Wait();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        private static async Task ToTask1()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var source = Observable.Interval(TimeSpan.FromSeconds(1)).Take(3);
+            var result = await source.ToTask(); //Will arrive in 3 seconds. 
+            Console.WriteLine(result);
+        }
+
+        private static async Task ToTask2()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var source = Observable.Throw<long>(new Exception("Fail!"));
+            try
+            {
+                await source.ToTask();
             }
             catch (Exception e)
             {

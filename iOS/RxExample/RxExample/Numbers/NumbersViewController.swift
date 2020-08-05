@@ -31,10 +31,10 @@ class NumbersViewController: UIViewController {
 //            .bind(to: lblResult.rx.text)
 //            .disposed(by: rx.disposeBag)
         
-        vm.number1 <~> tfNumber1.rx.textInput ~ rx.disposeBag
-        vm.number2 <~> tfNumber2.rx.textInput ~ rx.disposeBag
-        vm.number3 <~> tfNumber3.rx.textInput ~ rx.disposeBag
-        vm.result ~> lblResult.rx.text ~ rx.disposeBag
+        _ = vm.number1 <~> tfNumber1.rx.textInput
+        _ = vm.number2 <~> tfNumber2.rx.textInput
+        _ = vm.number3 <~> tfNumber3.rx.textInput
+        _ = vm.result ~> lblResult.rx.text
     }
     
     @IBAction func tfNumberChanged(_ sender: Any) {
@@ -57,10 +57,13 @@ class NumbersViewModel: NSObject {
     
     override init() {
         super.init()
-        Observable.combineLatest(number1, number2, number3) { num1, num2, num3 -> Int in
+        _ = Observable.combineLatest(number1, number2, number3) { num1, num2, num3 -> Int in
             (Int(num1) ?? 0) + (Int(num2) ?? 0) + (Int(num3) ?? 0) }
             .map { String($0) }
             ~> result
-            ~ rx.disposeBag
+    }
+    
+    deinit {
+        print("DEBUG: \(String(describing: type(of: self))) deinit")
     }
 }
