@@ -1,8 +1,8 @@
 package rx
 
-import io.reactivex.Observable
-import io.reactivex.rxkotlin.toObservable
-import io.reactivex.schedulers.TestScheduler
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.kotlin.toObservable
+import io.reactivex.rxjava3.schedulers.TestScheduler
 import java.util.*
 import java.util.concurrent.TimeUnit
 

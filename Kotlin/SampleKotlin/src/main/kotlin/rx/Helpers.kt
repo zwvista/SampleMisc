@@ -1,7 +1,7 @@
 package rx
 
-import io.reactivex.*
-import io.reactivex.disposables.Disposable
+import io.reactivex.rxjava3.core.*
+import io.reactivex.rxjava3.disposables.Disposable
 
 
 class PrintSubscriber<T>(private val name: String) : Observer<T> {

@@ -2,9 +2,9 @@ package rx
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import io.reactivex.Observable
+import io.reactivex.rxjava3.core.Observable
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.*
@@ -41,12 +41,12 @@ interface RestPost {
 
 val retrofitJson: Retrofit = Retrofit.Builder()
     .baseUrl("https://jsonplaceholder.typicode.com/")
-    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+    .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
     .addConverterFactory(GsonConverterFactory.create())
     .build()
 val retrofitString: Retrofit = Retrofit.Builder()
     .baseUrl("https://jsonplaceholder.typicode.com/")
-    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+    .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
     .addConverterFactory(ScalarsConverterFactory.create())
     .build()
 

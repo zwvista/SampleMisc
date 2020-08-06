@@ -1,11 +1,11 @@
 package rx
 
-import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
-import io.reactivex.functions.Function
-import io.reactivex.rxkotlin.Observables
-import io.reactivex.rxkotlin.withLatestFrom
-import io.reactivex.rxkotlin.zipWith
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.functions.BiFunction
+import io.reactivex.rxjava3.functions.Function
+import io.reactivex.rxjava3.kotlin.Observables
+import io.reactivex.rxjava3.kotlin.withLatestFrom
+import io.reactivex.rxjava3.kotlin.zipWith
 import java.util.concurrent.TimeUnit
 
 
@@ -265,7 +265,7 @@ private fun exampleMergeDelayError2() {
 private fun exampleStartWith() {
     println(object{}.javaClass.enclosingMethod.name)
     val values = Observable.range(0, 3)
-    values.startWith(listOf(-1, -2))
+    values.startWithIterable(listOf(-1, -2))
         .dump()
 
     // -1
