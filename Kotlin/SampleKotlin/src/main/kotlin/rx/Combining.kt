@@ -4,6 +4,8 @@ import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import io.reactivex.functions.Function
 import io.reactivex.rxkotlin.Observables
+import io.reactivex.rxkotlin.withLatestFrom
+import io.reactivex.rxkotlin.zipWith
 import java.util.concurrent.TimeUnit
 
 
@@ -61,10 +63,10 @@ private fun exampleCombineLatest() {
 private fun exampleWithLatestFrom() {
     println(object{}.javaClass.enclosingMethod.name)
     Observable.interval(100, TimeUnit.MILLISECONDS)
-        .doOnNext { i -> println("Left emits") }.withLatestFrom<Long, String>(
+        .doOnNext { i -> println("Left emits") }.withLatestFrom(
         Observable.interval(150, TimeUnit.MILLISECONDS)
-            .doOnNext { i -> println("Right emits") },
-        BiFunction { i1, i2 -> "$i1 - $i2" })
+            .doOnNext { i -> println("Right emits") })
+        { i1, i2 -> "$i1 - $i2" }
         .take(6)
         .dump()
     readLine()
@@ -176,8 +178,8 @@ private fun exampleGroupJoin() {
 private fun exampleMerge() {
     println(object{}.javaClass.enclosingMethod.name)
     Observable.merge(
-        Observable.interval(250, TimeUnit.MILLISECONDS).map { i -> "First" },
-        Observable.interval(150, TimeUnit.MILLISECONDS).map { i -> "Second" })
+        Observable.interval(250, TimeUnit.MILLISECONDS).map { "First" },
+        Observable.interval(150, TimeUnit.MILLISECONDS).map { "Second" })
         .take(10)
         .dump()
     readLine()
@@ -196,8 +198,8 @@ private fun exampleMerge() {
 
 private fun exampleMergeWith() {
     println(object{}.javaClass.enclosingMethod.name)
-    Observable.interval(250, TimeUnit.MILLISECONDS).map { i -> "First" }
-        .mergeWith(Observable.interval(150, TimeUnit.MILLISECONDS).map { i -> "Second" })
+    Observable.interval(250, TimeUnit.MILLISECONDS).map { "First" }
+        .mergeWith(Observable.interval(150, TimeUnit.MILLISECONDS).map { "Second" })
         .take(10)
         .dump()
     readLine()
@@ -368,8 +370,8 @@ private fun exampleZipUneven() {
 private fun exampleZipWith() {
     println(object{}.javaClass.enclosingMethod.name)
     Observable.interval(100, TimeUnit.MILLISECONDS)
-        .zipWith(Observable.interval(150, TimeUnit.MILLISECONDS),
-            BiFunction<Long, Long, String> { i1, i2 -> "$i1 - $i2" })
+        .zipWith(Observable.interval(150, TimeUnit.MILLISECONDS))
+        { i1, i2 -> "$i1 - $i2" }
         .take(6)
         .dump()
     readLine()
@@ -386,7 +388,7 @@ private fun exampleZipWithIterable() {
     println(object{}.javaClass.enclosingMethod.name)
     Observable.range(0, 5)
         .zipWith(listOf(0, 2, 4, 6, 8))
-            { i1, i2 -> "$i1 - $i2" }
+        { i1, i2 -> "$i1 - $i2" }
         .dump()
     readLine()
 
