@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QFQ-5f-OeT">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Incremental Search View Controller-->
+        <scene sceneID="xmk-QG-GFO">
+            <objects>
+                <viewController id="QFQ-5f-OeT" customClass="IncrementalSearchViewController" customModule="RxExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="O6J-xt-uLr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="B09-yA-cVk">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vmt-lR-aQA">
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="qqP-bF-4rR" style="IBUITableViewCellStyleDefault" id="KYr-pL-SwZ">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KYr-pL-SwZ" id="hry-zc-2Cu">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="qqP-bF-4rR">
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Vmt-lR-aQA" firstAttribute="leading" secondItem="NKs-yw-deR" secondAttribute="leading" id="Jtx-hV-CGo"/>
+                            <constraint firstItem="Vmt-lR-aQA" firstAttribute="top" secondItem="B09-yA-cVk" secondAttribute="bottom" id="KLc-EC-IN8"/>
+                            <constraint firstItem="B09-yA-cVk" firstAttribute="top" secondItem="NKs-yw-deR" secondAttribute="top" id="ZVW-PY-a9L"/>
+                            <constraint firstItem="B09-yA-cVk" firstAttribute="trailing" secondItem="NKs-yw-deR" secondAttribute="trailing" id="cok-wh-vXM"/>
+                            <constraint firstItem="NKs-yw-deR" firstAttribute="trailing" secondItem="Vmt-lR-aQA" secondAttribute="trailing" id="eqH-AP-0SX"/>
+                            <constraint firstItem="NKs-yw-deR" firstAttribute="bottom" secondItem="Vmt-lR-aQA" secondAttribute="bottom" id="pTU-EK-q67"/>
+                            <constraint firstItem="B09-yA-cVk" firstAttribute="leading" secondItem="NKs-yw-deR" secondAttribute="leading" id="xev-a1-uxV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NKs-yw-deR"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="B09-yA-cVk" id="g5a-hA-z3j"/>
+                        <outlet property="tableView" destination="Vmt-lR-aQA" id="2um-fl-jUi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n9Y-m1-sq6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-142" y="218"/>
+        </scene>
+    </scenes>
+</document>

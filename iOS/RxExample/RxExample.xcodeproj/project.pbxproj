@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,8 @@
 		954D8B442134587600651A80 /* MasterDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954D8B412134587600651A80 /* MasterDetail.storyboard */; };
 		954D8B452134587600651A80 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B422134587600651A80 /* DetailViewController.swift */; };
 		954D8B462134587600651A80 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B432134587600651A80 /* MasterViewController.swift */; };
+		95837E7424DD100E00B5D2AE /* IncrementalSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95837E7324DD100E00B5D2AE /* IncrementalSearch.storyboard */; };
+		95837E7624DD104800B5D2AE /* IncrementalSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95837E7524DD104800B5D2AE /* IncrementalSearchViewController.swift */; };
 		95840F4324C9DE9000D6BA6D /* RxCodableAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8AF2213270FE00651A80 /* RxCodableAlamofire.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,8 @@
 		954D8B412134587600651A80 /* MasterDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MasterDetail.storyboard; sourceTree = "<group>"; };
 		954D8B422134587600651A80 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		954D8B432134587600651A80 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		95837E7324DD100E00B5D2AE /* IncrementalSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = IncrementalSearch.storyboard; sourceTree = "<group>"; };
+		95837E7524DD104800B5D2AE /* IncrementalSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementalSearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +139,7 @@
 		954D8AC221326F5400651A80 /* RxExample */ = {
 			isa = PBXGroup;
 			children = (
+				95837E7224DD0FD100B5D2AE /* IncrementalSearch */,
 				954D8B402134587600651A80 /* MasterDetail */,
 				954D8B3B2134580D00651A80 /* Numbers */,
 				954D8AC321326F5400651A80 /* AppDelegate.swift */,
@@ -184,6 +189,15 @@
 				954D8B432134587600651A80 /* MasterViewController.swift */,
 			);
 			path = MasterDetail;
+			sourceTree = "<group>";
+		};
+		95837E7224DD0FD100B5D2AE /* IncrementalSearch */ = {
+			isa = PBXGroup;
+			children = (
+				95837E7324DD100E00B5D2AE /* IncrementalSearch.storyboard */,
+				95837E7524DD104800B5D2AE /* IncrementalSearchViewController.swift */,
+			);
+			path = IncrementalSearch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,6 +314,7 @@
 				954D8ACB21326F5500651A80 /* Assets.xcassets in Resources */,
 				954D8AC921326F5400651A80 /* Main.storyboard in Resources */,
 				954D8B3E2134580D00651A80 /* Numbers.storyboard in Resources */,
+				95837E7424DD100E00B5D2AE /* IncrementalSearch.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +384,7 @@
 				954D8AC421326F5400651A80 /* AppDelegate.swift in Sources */,
 				954D8B462134587600651A80 /* MasterViewController.swift in Sources */,
 				95840F4324C9DE9000D6BA6D /* RxCodableAlamofire.swift in Sources */,
+				95837E7624DD104800B5D2AE /* IncrementalSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
