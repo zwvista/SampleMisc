@@ -28,33 +28,33 @@ class StopWatchViewController: UIViewController {
         return button
     }()
 
-    private var viewModel: StopWatchViewModelType = StopWatchViewModel()
+    private var viewModel = StopWatchViewModel()
     private let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSubView()
         bind()
-        viewModel.inputs.isPauseTimer.accept(false)
+        viewModel.isPauseTimer.accept(false)
     }
 }
 
 extension StopWatchViewController {
     func bind() {
         startStopButton.rx.tap.asSignal()
-            .withLatestFrom(viewModel.outputs.isTimerWorked)
-            .emit(onNext: { [weak self] isTimerStop in
-                self?.viewModel.inputs.isPauseTimer.accept(!isTimerStop)
+            .withLatestFrom(viewModel.isTimerWorking)
+            .emit(onNext: { [weak self] isTimerWorking in
+                self?.viewModel.isPauseTimer.accept(!isTimerWorking)
             })
             .disposed(by: disposeBag)
 
         resetButton.rx.tap.asSignal()
-            .emit(to: viewModel.inputs.isResetButtonTaped)
+            .emit(to: viewModel.isResetButtonTapped)
             .disposed(by: disposeBag)
 
-        viewModel.outputs.isTimerWorked
-            .drive(onNext: { [weak self] isWorked in
-                if isWorked {
+        viewModel.isTimerWorking
+            .drive(onNext: { [weak self] isWorking in
+                if isWorking {
                     self?.startStopButton.backgroundColor = UIColor(red: 255/255, green: 110/255, blue: 134/255, alpha: 1)
                     self?.startStopButton.setTitle("Stop", for: UIControl.State.normal)
                 } else {
@@ -64,11 +64,11 @@ extension StopWatchViewController {
             })
             .disposed(by: disposeBag)
 
-        viewModel.outputs.timerText
+        viewModel.timerText
             .drive(timerLabel.rx.text)
             .disposed(by: disposeBag)
 
-        viewModel.outputs.isResetButtonHidden
+        viewModel.isResetButtonHidden
             .drive(resetButton.rx.isHidden)
             .disposed(by: disposeBag)
     }
