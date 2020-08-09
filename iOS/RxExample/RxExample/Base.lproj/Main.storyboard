@@ -118,6 +118,33 @@
                                             <segue destination="kYg-Z6-UXZ" kind="push" id="TSn-bm-PBk"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="3Yk-ic-3Eu" detailTextLabel="Fbn-Cc-XHB" style="IBUITableViewCellStyleSubtitle" id="nQD-wj-wr8">
+                                        <rect key="frame" x="0.0" y="242" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nQD-wj-wr8" id="c1v-1Q-tAJ">
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Stopwatch" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3Yk-ic-3Eu">
+                                                    <rect key="frame" x="16" y="6" width="77.5" height="19.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="driver &amp; signal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fbn-Cc-XHB">
+                                                    <rect key="frame" x="16" y="25.5" width="75.5" height="13.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Vkk-vK-Nae" kind="push" id="jYF-bU-SUC"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -132,35 +159,45 @@
             </objects>
             <point key="canvasLocation" x="-1111.5942028985507" y="-525"/>
         </scene>
-        <!--Numbers-->
+        <!--NumbersViewController-->
         <scene sceneID="hvb-Nl-POd">
             <objects>
-                <viewControllerPlaceholder storyboardName="Numbers" id="Yfw-ua-4De" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Misc" referencedIdentifier="NumbersViewController" id="Yfw-ua-4De" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="B61-aa-DYv"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BpG-fA-Qaz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-498.55072463768118" y="-748.66071428571422"/>
         </scene>
-        <!--MasterDetail-->
+        <!--MasterViewController-->
         <scene sceneID="eVL-iZ-n1d">
             <objects>
-                <viewControllerPlaceholder storyboardName="MasterDetail" id="uZr-Pr-Jz3" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Misc" referencedIdentifier="MasterViewController" id="uZr-Pr-Jz3" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="G9I-ss-qRT"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j0T-bR-e84" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-482.60869565217394" y="-711.16071428571422"/>
         </scene>
-        <!--IncrementalSearch-->
+        <!--IncrementalSearchViewController-->
         <scene sceneID="IOp-mH-Okh">
             <objects>
-                <viewControllerPlaceholder storyboardName="IncrementalSearch" id="kYg-Z6-UXZ" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Misc" referencedIdentifier="IncrementalSearchViewController" id="kYg-Z6-UXZ" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="RDX-SF-uH8"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uJW-wG-PnZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-470" y="-667"/>
+        </scene>
+        <!--StopWatchViewController-->
+        <scene sceneID="pR8-Au-gvl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Misc" referencedIdentifier="StopWatchViewController" id="Vkk-vK-Nae" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="p8s-i9-7HX"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y2Y-ZD-eEe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-419" y="-624"/>
         </scene>
     </scenes>
 </document>
