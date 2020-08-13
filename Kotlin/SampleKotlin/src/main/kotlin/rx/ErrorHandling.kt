@@ -1,17 +1,14 @@
 package rx
 
-import io.reactivex.Observable
-import io.reactivex.functions.Function
+import io.reactivex.rxjava3.core.Observable
 import java.util.*
 import java.util.concurrent.TimeUnit
 
 
 fun main(args: Array<String>) {
     exampleOnErrorReturn()
-    exampleOnErrorResumeNext()
+    exampleOnErrorResumeWith()
     exampleOnErrorResumeNextRethrow()
-    exampleOnExceptionResumeNext()
-    exampleOnExceptionResumeNextNoException()
 
     exampleRetry()
     exampleRetryWhen()
@@ -33,7 +30,7 @@ private fun exampleOnErrorReturn() {
     // Error: adjective unknown
 }
 
-private fun exampleOnErrorResumeNext() {
+private fun exampleOnErrorResumeWith() {
     println(object{}.javaClass.enclosingMethod.name)
     val values = Observable.create<Int> { o ->
         o.onNext(1)
@@ -41,7 +38,7 @@ private fun exampleOnErrorResumeNext() {
         o.onError(Exception("Oops"))
     }
     values
-        .onErrorResumeNext(Observable.just(Integer.MAX_VALUE))
+        .onErrorResumeWith(Observable.just(Int.MAX_VALUE))
         .dump()
 
     // with onError: 1
@@ -58,46 +55,12 @@ private fun exampleOnErrorResumeNextRethrow() {
         o.onError(Exception("Oops"))
     }
     values
-        .onErrorResumeNext( Function { e -> Observable.error(UnsupportedOperationException(e)) } )
+        .onErrorResumeNext { e -> Observable.error(UnsupportedOperationException(e)) }
         .dump()
 
     // with onError: : 1
     // with onError: : 2
     // with onError: : Error: java.lang.UnsupportedOperationException: java.lang.Exception: Oops
-}
-
-private fun exampleOnExceptionResumeNext() {
-    println(object{}.javaClass.enclosingMethod.name)
-    val values = Observable.create<String> { o ->
-        o.onNext("Rx")
-        o.onNext("is")
-        // o.onError(Throwable()) // this won't be caught
-        o.onError(Exception()) // this will be caught
-    }
-    values
-        .onExceptionResumeNext(Observable.just("hard"))
-        .dump()
-
-    // Rx
-    // is
-    // hard
-}
-
-private fun exampleOnExceptionResumeNextNoException() {
-    println(object{}.javaClass.enclosingMethod.name)
-    val values = Observable.create<String> { o ->
-        o.onNext("Rx")
-        o.onNext("is")
-        o.onError(object : Throwable() {
-        }) // this won't be caught
-    }
-    values
-        .onExceptionResumeNext(Observable.just("hard"))
-        .dump()
-
-    // Rx
-    // is
-    // uncaught exception
 }
 
 private fun exampleRetry() {

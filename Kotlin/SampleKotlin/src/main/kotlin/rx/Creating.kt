@@ -1,8 +1,9 @@
 package rx
 
-import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
-import io.reactivex.functions.Consumer
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.functions.BiFunction
+import io.reactivex.rxjava3.functions.Consumer
+import io.reactivex.rxjava3.functions.Supplier
 import java.util.*
 import java.util.concurrent.Callable
 import java.util.concurrent.FutureTask
@@ -50,7 +51,7 @@ private fun exampleCreate() {
 
 private fun exampleGenerate() {
     println(object{}.javaClass.enclosingMethod.name)
-    val values = Observable.generate<Int, Int>(Callable { 0 }, BiFunction { i, o ->
+    val values = Observable.generate<Int, Int>( Supplier { 0 }, BiFunction { i, o ->
         if (i < 10) {
             o.onNext(i * i); i + 1
         } else {

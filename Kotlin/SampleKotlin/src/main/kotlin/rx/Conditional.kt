@@ -1,7 +1,7 @@
 package rx
 
-import io.reactivex.Observable
-import io.reactivex.functions.BiPredicate
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.functions.BiPredicate
 import java.util.concurrent.TimeUnit
 
 

@@ -1,8 +1,8 @@
 package rx
 
-import io.reactivex.Observable
-import io.reactivex.functions.Function
-import io.reactivex.subjects.ReplaySubject
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.functions.Function
+import io.reactivex.rxjava3.subjects.ReplaySubject
 import java.util.concurrent.TimeUnit
 
 

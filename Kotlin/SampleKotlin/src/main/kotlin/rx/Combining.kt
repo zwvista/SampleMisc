@@ -1,14 +1,17 @@
 package rx
 
-import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
-import io.reactivex.functions.Function
-import io.reactivex.rxkotlin.Observables
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.functions.BiFunction
+import io.reactivex.rxjava3.functions.Function
+import io.reactivex.rxjava3.kotlin.Observables
+import io.reactivex.rxjava3.kotlin.withLatestFrom
+import io.reactivex.rxjava3.kotlin.zipWith
 import java.util.concurrent.TimeUnit
 
 
 fun main(args: Array<String>) {
     exampleCombineLatest()
+    exampleWithLatestFrom()
 
     exampleJoinSimple()
     exampleJoin2Way()
@@ -55,6 +58,37 @@ private fun exampleCombineLatest() {
     // 3 - 1
     // Right emits
     // 3 - 2
+}
+
+private fun exampleWithLatestFrom() {
+    println(object{}.javaClass.enclosingMethod.name)
+    Observable.interval(100, TimeUnit.MILLISECONDS)
+        .doOnNext { i -> println("Left emits") }.withLatestFrom(
+        Observable.interval(150, TimeUnit.MILLISECONDS)
+            .doOnNext { i -> println("Right emits") })
+        { i1, i2 -> "$i1 - $i2" }
+        .take(6)
+        .dump()
+    readLine()
+
+
+    // Left emits
+    // Right emits
+    // Left emits
+    // 1 - 0
+    // Left emits
+    // Right emits
+    // 2 - 0
+    // Left emits
+    // 3 - 1
+    // Right emits
+    // Left emits
+    // 4 - 2
+    // Right emits
+    // Left emits
+    // 5 - 3
+    // Left emits
+    // 6 - 3
 }
 
 private fun exampleJoinSimple() {
@@ -144,8 +178,8 @@ private fun exampleGroupJoin() {
 private fun exampleMerge() {
     println(object{}.javaClass.enclosingMethod.name)
     Observable.merge(
-        Observable.interval(250, TimeUnit.MILLISECONDS).map { i -> "First" },
-        Observable.interval(150, TimeUnit.MILLISECONDS).map { i -> "Second" })
+        Observable.interval(250, TimeUnit.MILLISECONDS).map { "First" },
+        Observable.interval(150, TimeUnit.MILLISECONDS).map { "Second" })
         .take(10)
         .dump()
     readLine()
@@ -164,8 +198,8 @@ private fun exampleMerge() {
 
 private fun exampleMergeWith() {
     println(object{}.javaClass.enclosingMethod.name)
-    Observable.interval(250, TimeUnit.MILLISECONDS).map { i -> "First" }
-        .mergeWith(Observable.interval(150, TimeUnit.MILLISECONDS).map { i -> "Second" })
+    Observable.interval(250, TimeUnit.MILLISECONDS).map { "First" }
+        .mergeWith(Observable.interval(150, TimeUnit.MILLISECONDS).map { "Second" })
         .take(10)
         .dump()
     readLine()
@@ -231,7 +265,7 @@ private fun exampleMergeDelayError2() {
 private fun exampleStartWith() {
     println(object{}.javaClass.enclosingMethod.name)
     val values = Observable.range(0, 3)
-    values.startWith(listOf(-1, -2))
+    values.startWithIterable(listOf(-1, -2))
         .dump()
 
     // -1
@@ -336,8 +370,8 @@ private fun exampleZipUneven() {
 private fun exampleZipWith() {
     println(object{}.javaClass.enclosingMethod.name)
     Observable.interval(100, TimeUnit.MILLISECONDS)
-        .zipWith(Observable.interval(150, TimeUnit.MILLISECONDS),
-            BiFunction<Long, Long, String> { i1, i2 -> "$i1 - $i2" })
+        .zipWith(Observable.interval(150, TimeUnit.MILLISECONDS))
+        { i1, i2 -> "$i1 - $i2" }
         .take(6)
         .dump()
     readLine()
@@ -354,7 +388,7 @@ private fun exampleZipWithIterable() {
     println(object{}.javaClass.enclosingMethod.name)
     Observable.range(0, 5)
         .zipWith(listOf(0, 2, 4, 6, 8))
-            { i1, i2 -> "$i1 - $i2" }
+        { i1, i2 -> "$i1 - $i2" }
         .dump()
     readLine()
 

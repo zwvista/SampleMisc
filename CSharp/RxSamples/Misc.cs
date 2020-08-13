@@ -15,6 +15,7 @@ namespace RxSamples
             Zip1();
             CombineLatest1();
             WithLatestFrom1();
+            ForkJoin1();
         }
         private static IObservable<int> Xs
         {
@@ -38,6 +39,7 @@ namespace RxSamples
         }
         private static void Merge1()
         {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Console.WriteLine("Press any key to unsubscribe");
 
             using (Xs.Merge(Ys).Timestamp().Subscribe(
@@ -49,6 +51,7 @@ namespace RxSamples
         }
         private static void Zip1()
         {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Console.WriteLine("Press any key to unsubscribe");
 
             using (Xs.Zip(Ys, (x, y) => (x, y)).Timestamp().Subscribe(
@@ -60,6 +63,7 @@ namespace RxSamples
         }
         private static void CombineLatest1()
         {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Console.WriteLine("Press any key to unsubscribe");
 
             using (Xs.CombineLatest(Ys, (x, y) => (x, y)).Timestamp().Subscribe(
@@ -71,9 +75,22 @@ namespace RxSamples
         }
         private static void WithLatestFrom1()
         {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
             Console.WriteLine("Press any key to unsubscribe");
 
             using (Xs.WithLatestFrom(Ys, (x, y) => (x, y)).Timestamp().Subscribe(
+                z => Console.WriteLine("{0}: {1}", z.Value, z.Timestamp),
+                () => Console.WriteLine("Completed, press a key")))
+            {
+                Console.ReadKey();
+            }
+        }
+        private static void ForkJoin1()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine("Press any key to unsubscribe");
+
+            using (Xs.ForkJoin(Ys, (x, y) => (x, y)).Timestamp().Subscribe(
                 z => Console.WriteLine("{0}: {1}", z.Value, z.Timestamp),
                 () => Console.WriteLine("Completed, press a key")))
             {

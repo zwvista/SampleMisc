@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,11 +16,13 @@
 		954D8AE421326F5500651A80 /* RxExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8AE321326F5500651A80 /* RxExampleUITests.swift */; };
 		954D8AF4213270FE00651A80 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8AF1213270FE00651A80 /* Post.swift */; };
 		954D8AF6213270FE00651A80 /* RestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8AF3213270FE00651A80 /* RestApi.swift */; };
-		954D8B3E2134580D00651A80 /* Numbers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954D8B3C2134580D00651A80 /* Numbers.storyboard */; };
 		954D8B3F2134580D00651A80 /* NumbersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B3D2134580D00651A80 /* NumbersViewController.swift */; };
-		954D8B442134587600651A80 /* MasterDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954D8B412134587600651A80 /* MasterDetail.storyboard */; };
+		954D8B442134587600651A80 /* Misc.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954D8B412134587600651A80 /* Misc.storyboard */; };
 		954D8B452134587600651A80 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B422134587600651A80 /* DetailViewController.swift */; };
 		954D8B462134587600651A80 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8B432134587600651A80 /* MasterViewController.swift */; };
+		95837E7624DD104800B5D2AE /* IncrementalSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95837E7524DD104800B5D2AE /* IncrementalSearchViewController.swift */; };
+		95837E9F24DFD3CC00B5D2AE /* StopWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95837E9D24DFD3CC00B5D2AE /* StopWatchViewModel.swift */; };
+		95837EA024DFD3CC00B5D2AE /* StopWatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95837E9E24DFD3CC00B5D2AE /* StopWatchViewController.swift */; };
 		95840F4324C9DE9000D6BA6D /* RxCodableAlamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8AF2213270FE00651A80 /* RxCodableAlamofire.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,11 +62,13 @@
 		954D8AF1213270FE00651A80 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		954D8AF2213270FE00651A80 /* RxCodableAlamofire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCodableAlamofire.swift; sourceTree = "<group>"; };
 		954D8AF3213270FE00651A80 /* RestApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestApi.swift; sourceTree = "<group>"; };
-		954D8B3C2134580D00651A80 /* Numbers.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Numbers.storyboard; sourceTree = "<group>"; };
 		954D8B3D2134580D00651A80 /* NumbersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersViewController.swift; sourceTree = "<group>"; };
-		954D8B412134587600651A80 /* MasterDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MasterDetail.storyboard; sourceTree = "<group>"; };
+		954D8B412134587600651A80 /* Misc.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Misc.storyboard; sourceTree = "<group>"; };
 		954D8B422134587600651A80 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		954D8B432134587600651A80 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		95837E7524DD104800B5D2AE /* IncrementalSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementalSearchViewController.swift; sourceTree = "<group>"; };
+		95837E9D24DFD3CC00B5D2AE /* StopWatchViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchViewModel.swift; sourceTree = "<group>"; };
+		95837E9E24DFD3CC00B5D2AE /* StopWatchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopWatchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,16 +139,19 @@
 		954D8AC221326F5400651A80 /* RxExample */ = {
 			isa = PBXGroup;
 			children = (
-				954D8B402134587600651A80 /* MasterDetail */,
-				954D8B3B2134580D00651A80 /* Numbers */,
 				954D8AC321326F5400651A80 /* AppDelegate.swift */,
 				954D8ACA21326F5500651A80 /* Assets.xcassets */,
+				95837E7224DD0FD100B5D2AE /* IncrementalSearch */,
 				954D8ACF21326F5500651A80 /* Info.plist */,
 				954D8ACC21326F5500651A80 /* LaunchScreen.storyboard */,
 				954D8AC721326F5400651A80 /* Main.storyboard */,
+				954D8B402134587600651A80 /* MasterDetail */,
+				954D8B412134587600651A80 /* Misc.storyboard */,
+				954D8B3B2134580D00651A80 /* Numbers */,
 				954D8AF1213270FE00651A80 /* Post.swift */,
 				954D8AF3213270FE00651A80 /* RestApi.swift */,
 				954D8AF2213270FE00651A80 /* RxCodableAlamofire.swift */,
+				95837E9C24DFD3CC00B5D2AE /* StopWatch */,
 			);
 			path = RxExample;
 			sourceTree = "<group>";
@@ -170,7 +177,6 @@
 		954D8B3B2134580D00651A80 /* Numbers */ = {
 			isa = PBXGroup;
 			children = (
-				954D8B3C2134580D00651A80 /* Numbers.storyboard */,
 				954D8B3D2134580D00651A80 /* NumbersViewController.swift */,
 			);
 			path = Numbers;
@@ -179,11 +185,27 @@
 		954D8B402134587600651A80 /* MasterDetail */ = {
 			isa = PBXGroup;
 			children = (
-				954D8B412134587600651A80 /* MasterDetail.storyboard */,
 				954D8B422134587600651A80 /* DetailViewController.swift */,
 				954D8B432134587600651A80 /* MasterViewController.swift */,
 			);
 			path = MasterDetail;
+			sourceTree = "<group>";
+		};
+		95837E7224DD0FD100B5D2AE /* IncrementalSearch */ = {
+			isa = PBXGroup;
+			children = (
+				95837E7524DD104800B5D2AE /* IncrementalSearchViewController.swift */,
+			);
+			path = IncrementalSearch;
+			sourceTree = "<group>";
+		};
+		95837E9C24DFD3CC00B5D2AE /* StopWatch */ = {
+			isa = PBXGroup;
+			children = (
+				95837E9D24DFD3CC00B5D2AE /* StopWatchViewModel.swift */,
+				95837E9E24DFD3CC00B5D2AE /* StopWatchViewController.swift */,
+			);
+			path = StopWatch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,10 +318,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				954D8ACE21326F5500651A80 /* LaunchScreen.storyboard in Resources */,
-				954D8B442134587600651A80 /* MasterDetail.storyboard in Resources */,
+				954D8B442134587600651A80 /* Misc.storyboard in Resources */,
 				954D8ACB21326F5500651A80 /* Assets.xcassets in Resources */,
 				954D8AC921326F5400651A80 /* Main.storyboard in Resources */,
-				954D8B3E2134580D00651A80 /* Numbers.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,13 +383,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95837E9F24DFD3CC00B5D2AE /* StopWatchViewModel.swift in Sources */,
 				954D8AF6213270FE00651A80 /* RestApi.swift in Sources */,
 				954D8AF4213270FE00651A80 /* Post.swift in Sources */,
 				954D8B3F2134580D00651A80 /* NumbersViewController.swift in Sources */,
+				95837EA024DFD3CC00B5D2AE /* StopWatchViewController.swift in Sources */,
 				954D8B452134587600651A80 /* DetailViewController.swift in Sources */,
 				954D8AC421326F5400651A80 /* AppDelegate.swift in Sources */,
 				954D8B462134587600651A80 /* MasterViewController.swift in Sources */,
 				95840F4324C9DE9000D6BA6D /* RxCodableAlamofire.swift in Sources */,
+				95837E7624DD104800B5D2AE /* IncrementalSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

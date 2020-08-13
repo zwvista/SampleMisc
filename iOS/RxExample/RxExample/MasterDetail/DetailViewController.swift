@@ -38,5 +38,9 @@ class DetailViewController: UIViewController {
         
     }
     
+    deinit {
+        print("DEBUG: \(String(describing: type(of: self))) deinit")
+    }
+
     
 }
