@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Diagnostics;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +11,7 @@ using System.Reactive.Threading.Tasks;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
+using Refit;
 
 namespace RxSamples
 {
@@ -32,7 +32,7 @@ namespace RxSamples
 
     public class PostDataStoreByTask
     {
-        protected HttpClient client = new HttpClient
+        HttpClient client = new HttpClient
         {
             BaseAddress = new Uri("https://jsonplaceholder.typicode.com/")
         };
@@ -84,7 +84,7 @@ namespace RxSamples
 
     public class PostDataStoreByRx
     {
-        protected HttpClient client = new HttpClient
+        HttpClient client = new HttpClient
         {
             BaseAddress = new Uri("https://jsonplaceholder.typicode.com/")
         };
@@ -121,7 +121,7 @@ namespace RxSamples
 
     public class PostDataStoreByRestSharp
     {
-        protected RestClient client = new RestClient("https://jsonplaceholder.typicode.com/");
+        RestClient client = new RestClient("https://jsonplaceholder.typicode.com/");
         public PostDataStoreByRestSharp()
         {
             client.UseNewtonsoftJson();
@@ -162,6 +162,43 @@ namespace RxSamples
             var request = new RestRequest($"posts/{id}", Method.DELETE);
             return client.ExecuteAsync<string>(request).ToObservable().Select(o => o.Content);
         }
+    }
+
+    public class PostDataStoreByRefit
+    {
+        public interface IPost
+        {
+            [Get("/posts/{id}")]
+            Task<string> GetPostAsString(int id);
+            [Get("/posts/{id}")]
+            Task<Post> GetPostAsJson(int id);
+            [Get("/posts")]
+            Task<List<Post>> GetPosts();
+            [Post("/posts")]
+            Task<Post> CreatePost([Body] Post item);
+            [Put("/posts/{item.Id}")]
+            Task<Post> UpdatePost([Body] Post item);
+            [Delete("/posts/{id}")]
+            Task<string> DeletePost(int id);
+        }
+
+        IPost client = RestService.For<IPost>("https://jsonplaceholder.typicode.com");
+        public async Task<string> GetPostAsString(int id) =>
+            await client.GetPostAsString(id);
+        public async Task<Post> GetPostAsJson(int id) =>
+            await client.GetPostAsJson(id);
+
+        public async Task<IEnumerable<Post>> GetPosts(int n) =>
+            (await client.GetPosts()).Take(n);
+
+        public async Task<Post> CreatePost(Post item) =>
+            await client.CreatePost(item);
+
+        public async Task<Post> UpdatePost(Post item) =>
+            await client.UpdatePost(item);
+
+        public async Task<string> DeletePost(int id) =>
+            await client.DeletePost(id);
     }
 
     public class RestExample
@@ -232,6 +269,27 @@ namespace RxSamples
                 }).Subscribe(Console.WriteLine);
                 dataStore.DeletePost(1).Subscribe(Console.WriteLine);
                 Console.ReadKey();
+            }
+            {
+                var dataStore = new PostDataStoreByRefit();
+                Console.WriteLine(dataStore.GetPostAsString(1).Result);
+                Console.WriteLine(dataStore.GetPostAsJson(1).Result);
+                dataStore.GetPosts(2).Result.ToList().ForEach(Console.WriteLine);
+                Console.WriteLine(dataStore.CreatePost(new Post
+                {
+                    UserId = 101,
+                    Id = 0,
+                    Title = "test title",
+                    Body = "test body"
+                }).Result);
+                Console.WriteLine(dataStore.UpdatePost(new Post
+                {
+                    UserId = 101,
+                    Id = 1,
+                    Title = "test title",
+                    Body = "test body"
+                }).Result);
+                Console.WriteLine(dataStore.DeletePost(1).Result);
             }
         }   
     }
