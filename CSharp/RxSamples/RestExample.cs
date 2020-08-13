@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Serializers.NewtonsoftJson;
 using Refit;
+using System.Reflection;
 
 namespace RxSamples
 {
@@ -205,92 +206,108 @@ namespace RxSamples
     {
         public static void Test()
         {
+            TestByTask();
+            TestByRx();
+            TestByRestSharp();
+            TestByRefit();
+        }
+
+        private static void TestByTask()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var dataStore = new PostDataStoreByTask();
+            Console.WriteLine(dataStore.GetPostAsString(1).Result);
+            Console.WriteLine(dataStore.GetPostAsJson(1).Result);
+            dataStore.GetPosts(2).Result.ToList().ForEach(Console.WriteLine);
+            Console.WriteLine(dataStore.CreatePost(new Post
             {
-                var dataStore = new PostDataStoreByTask();
-                Console.WriteLine(dataStore.GetPostAsString(1).Result);
-                Console.WriteLine(dataStore.GetPostAsJson(1).Result);
-                dataStore.GetPosts(2).Result.ToList().ForEach(Console.WriteLine);
-                Console.WriteLine(dataStore.CreatePost(new Post
-                {
-                    UserId = 101,
-                    Id = 0,
-                    Title = "test title",
-                    Body = "test body"
-                }).Result);
-                Console.WriteLine(dataStore.UpdatePost(new Post
-                {
-                    UserId = 101,
-                    Id = 1,
-                    Title = "test title",
-                    Body = "test body"
-                }).Result);
-                Console.WriteLine(dataStore.DeletePost(1).Result);
-            }
+                UserId = 101,
+                Id = 0,
+                Title = "test title",
+                Body = "test body"
+            }).Result);
+            Console.WriteLine(dataStore.UpdatePost(new Post
             {
-                var dataStore = new PostDataStoreByRx();
-                dataStore.GetPostAsString(1).Subscribe(Console.WriteLine);
-                dataStore.GetPostAsJson(1).Subscribe(Console.WriteLine);
-                dataStore.GetPosts(2).Do(Console.WriteLine).Subscribe();
-                dataStore.CreatePost(new Post
-                {
-                    UserId = 101,
-                    Id = 0,
-                    Title = "test title",
-                    Body = "test body"
-                }).Subscribe(Console.WriteLine);
-                dataStore.UpdatePost(new Post
-                {
-                    UserId = 101,
-                    Id = 1,
-                    Title = "test title",
-                    Body = "test body"
-                }).Subscribe(Console.WriteLine);
-                dataStore.DeletePost(1).Subscribe(Console.WriteLine);
-                Console.ReadKey();
-            }
+                UserId = 101,
+                Id = 1,
+                Title = "test title",
+                Body = "test body"
+            }).Result);
+            Console.WriteLine(dataStore.DeletePost(1).Result);
+        }
+
+        private static void TestByRx()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var dataStore = new PostDataStoreByRx();
+            dataStore.GetPostAsString(1).Subscribe(Console.WriteLine);
+            dataStore.GetPostAsJson(1).Subscribe(Console.WriteLine);
+            dataStore.GetPosts(2).Do(Console.WriteLine).Subscribe();
+            dataStore.CreatePost(new Post
             {
-                var dataStore = new PostDataStoreByRestSharp();
-                dataStore.GetPostAsString(1).Subscribe(Console.WriteLine);
-                dataStore.GetPostAsJson(1).Subscribe(Console.WriteLine);
-                dataStore.GetPosts(2).Do(Console.WriteLine).Subscribe();
-                dataStore.CreatePost(new Post
-                {
-                    UserId = 101,
-                    Id = 0,
-                    Title = "test title",
-                    Body = "test body"
-                }).Subscribe(Console.WriteLine);
-                dataStore.UpdatePost(new Post
-                {
-                    UserId = 101,
-                    Id = 1,
-                    Title = "test title",
-                    Body = "test body"
-                }).Subscribe(Console.WriteLine);
-                dataStore.DeletePost(1).Subscribe(Console.WriteLine);
-                Console.ReadKey();
-            }
+                UserId = 101,
+                Id = 0,
+                Title = "test title",
+                Body = "test body"
+            }).Subscribe(Console.WriteLine);
+            dataStore.UpdatePost(new Post
             {
-                var dataStore = new PostDataStoreByRefit();
-                Console.WriteLine(dataStore.GetPostAsString(1).Result);
-                Console.WriteLine(dataStore.GetPostAsJson(1).Result);
-                dataStore.GetPosts(2).Result.ToList().ForEach(Console.WriteLine);
-                Console.WriteLine(dataStore.CreatePost(new Post
-                {
-                    UserId = 101,
-                    Id = 0,
-                    Title = "test title",
-                    Body = "test body"
-                }).Result);
-                Console.WriteLine(dataStore.UpdatePost(new Post
-                {
-                    UserId = 101,
-                    Id = 1,
-                    Title = "test title",
-                    Body = "test body"
-                }).Result);
-                Console.WriteLine(dataStore.DeletePost(1).Result);
-            }
-        }   
+                UserId = 101,
+                Id = 1,
+                Title = "test title",
+                Body = "test body"
+            }).Subscribe(Console.WriteLine);
+            dataStore.DeletePost(1).Subscribe(Console.WriteLine);
+            Console.ReadKey();
+        }
+
+        private static void TestByRestSharp()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var dataStore = new PostDataStoreByRestSharp();
+            dataStore.GetPostAsString(1).Subscribe(Console.WriteLine);
+            dataStore.GetPostAsJson(1).Subscribe(Console.WriteLine);
+            dataStore.GetPosts(2).Do(Console.WriteLine).Subscribe();
+            dataStore.CreatePost(new Post
+            {
+                UserId = 101,
+                Id = 0,
+                Title = "test title",
+                Body = "test body"
+            }).Subscribe(Console.WriteLine);
+            dataStore.UpdatePost(new Post
+            {
+                UserId = 101,
+                Id = 1,
+                Title = "test title",
+                Body = "test body"
+            }).Subscribe(Console.WriteLine);
+            dataStore.DeletePost(1).Subscribe(Console.WriteLine);
+            Console.ReadKey();
+        }
+
+        private static void TestByRefit()
+        {
+            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            var dataStore = new PostDataStoreByRefit();
+            Console.WriteLine(dataStore.GetPostAsString(1).Result);
+            Console.WriteLine(dataStore.GetPostAsJson(1).Result);
+            dataStore.GetPosts(2).Result.ToList().ForEach(Console.WriteLine);
+            Console.WriteLine(dataStore.CreatePost(new Post
+            {
+                UserId = 101,
+                Id = 0,
+                Title = "test title",
+                Body = "test body"
+            }).Result);
+            Console.WriteLine(dataStore.UpdatePost(new Post
+            {
+                UserId = 101,
+                Id = 1,
+                Title = "test title",
+                Body = "test body"
+            }).Result);
+            Console.WriteLine(dataStore.DeletePost(1).Result);
+        }
     }
 }
