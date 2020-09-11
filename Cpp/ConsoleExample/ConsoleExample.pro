@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = RxExample
+TARGET = ConsoleExample
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -29,19 +29,24 @@ CONFIG += c++17
 
 QMAKE_CXXFLAGS += /std:c++17 /permissive- /experimental:preprocessor
 
-INCLUDEPATH += \
-    C:\zw\vcpkg\installed\x86-windows\include\rxcpp \
-    C:\zw\vcpkg\installed\x86-windows\include
+INCLUDEPATH += C:\zw\vcpkg\installed\x86-windows\include
+
+LIBS += -LC:\zw\vcpkg\installed\x86-windows\lib \
+    -lcpprest_2_10 -lboost_system-vc140-mt -lboost_thread-vc140-mt -lboost_chrono-vc140-mt -llibssl -llibcrypto -lboost_regex-vc140-mt
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp
+        ConsoleExample\main.cpp \
+#        ConsoleExample\coroutine.cpp \
+        ConsoleExample\Rest\httpclient1.cpp \
+#        ConsoleExample\Rest\json1.cpp \
+#        ConsoleExample\Rest\json2.cpp \
+#        ConsoleExample\Rest\json3.cpp \
+#        ConsoleExample\Rest\Post.cpp \
+#        ConsoleExample\Rest\rx1.cpp \
+#        ConsoleExample\Range\jys.cpp \
 
-HEADERS += \
-        mainwindow.h
-
-FORMS += \
-        mainwindow.ui
+#HEADERS  += ConsoleExample\Rest\Post.hpp \
+#        ConsoleExample\Rest\RestApi.hpp \
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
