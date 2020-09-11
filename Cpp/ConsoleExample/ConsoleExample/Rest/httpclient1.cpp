@@ -23,14 +23,11 @@ void httpclient1()
     pplx::task<void> requestTask = fstream::open_ostream(U("results.html")).then([=](ostream outFile) {
          *fileStream = outFile;
         
-         uri a(U("http://www.bing.com/"));
          // Create http_client to send the request.
-         http_client client(a);
-
-         uri b(U("/search"));
+         http_client client(U("http://www.bing.com/"));
         
          // Build request URI and start the request.
-         uri_builder builder(b);
+         uri_builder builder(U("/search"));
          builder.append_query(U("q"), U("cpprestsdk github"));
          return client.request(methods::GET, builder.to_string());
     })
