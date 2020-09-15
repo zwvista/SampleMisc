@@ -2,6 +2,11 @@ name: samples
 version: 0.0.1
 description: A sample command-line application
 dependencies:
+  collection: 1.14.13
+  json_annotation: ^3.0.0
+  analyzer: '0.39.14'
 
 dev_dependencies:
 #  unittest: any
+  build_runner: ^1.0.0
+  json_serializable: ^3.2.0
