@@ -1,9 +1,11 @@
+import 'httpTest.dart';
 import 'jys.dart';
 import 'regTest.dart';
 import 'jsonTest.dart';
 
 void main() {
-  regTest();
-  jys();
-  jsonTest();
+  // regTest();
+  // jys();
+  // jsonTest();
+  httpTest();
 }
