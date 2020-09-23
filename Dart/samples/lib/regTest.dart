@@ -1,10 +1,12 @@
 void regTest() {
   final s = "123-4567-89,987-6543-21";
   final r = RegExp(r"\d{3}-(\d{4})-\d{2}");
+  final m = r.firstMatch(s);
+  if (m != null) print("Found matches:");
   final ms = r.allMatches(s);
   ms.toList().asMap().forEach((i, m) {
-    for (var i = 0; i <= m.groupCount; i++)
-      print("group $i : ${m.group(i)}");
+    for (var j = 0; j <= m.groupCount; j++)
+      print("group $i,$j : ${m.group(j)}");
   });
 
   print(s.replaceAllMapped(RegExp(r"(\d+)-(\d+)-(\d+)"), (m) => "${m.group(3)}-${m.group(1)}-${m.group(2)}"));
@@ -16,10 +18,11 @@ void regTest() {
 }
 
 /*
-group 0 : 123-4567-89
-group 1 : 4567
-group 0 : 987-6543-21
-group 1 : 6543
+Found matches:
+group 0,0 : 123-4567-89
+group 0,1 : 4567
+group 1,0 : 987-6543-21
+group 1,1 : 6543
 89-123-4567,21-987-6543
 321-7654-98,789-3456-12
 [, hello, world, ]
