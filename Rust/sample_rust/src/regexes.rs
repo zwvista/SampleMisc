@@ -5,6 +5,9 @@ use itertools::Itertools;
 pub fn regex1() -> Result<(), Box<dyn Error>> {
     let s = "123-4567-89,987-6543-21";
     let r = Regex::new(r"\d{3}-(\d{4})-\d{2}")?;
+    if r.is_match(s) { // if let m = r.find(s) {
+        println!("Found Matches:")
+    }
     for (i, c) in r.captures_iter(&s).enumerate() {
         for j in 0..c.len() {
             println!("group {},{} : {}", i, j, &c[j]);
@@ -28,6 +31,7 @@ pub fn regex1() -> Result<(), Box<dyn Error>> {
 }
 
 /*
+Found Matches:
 group 0,0 : 123-4567-89
 group 0,1 : 4567
 group 1,0 : 987-6543-21
