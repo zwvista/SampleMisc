@@ -7,6 +7,7 @@ mod examples6;
 mod jys;
 mod regexes;
 mod jsons;
+mod rest;
 
 use examples1::*;
 use examples2::*;
@@ -17,8 +18,10 @@ use examples6::*;
 use jys::*;
 use regexes::*;
 use jsons::*;
+use rest::*;
 
-fn main() {
+#[tokio::main]
+async fn main() {
     // jys();
 
     // example11();
@@ -48,5 +51,7 @@ fn main() {
 
     // regex1();
 
-    json1();
+    // json1();
+
+    rest1().await.unwrap();
 }
