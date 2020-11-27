@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rx_widget_demo/homepage/weather_list_view.dart';
 import 'package:rx_widget_demo/keys.dart';
 import 'package:rx_widget_demo/model_provider.dart';
-import 'package:rx_widgets/rx_widgets.dart';
-
 import 'package:rx_widget_demo/service/weather_entry.dart';
+import 'package:rx_widgets/rx_widgets.dart';
 
 class HomePage extends StatefulWidget {
   @override
