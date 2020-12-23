@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.orange,
       ),
-      home: RandomWords(),
+      home: HomeWidget(),
     );
   }
 // #enddocregion build
@@ -21,104 +23,85 @@ class MyApp extends StatelessWidget {
 // #enddocregion MyApp
 
 // #docregion RWS-var
-class RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
-  final _saved = Set<WordPair>();
-  final _biggerFont = const TextStyle(fontSize: 18.0);
-  // #enddocregion RWS-var
+class HomeWidget extends StatefulWidget {
+  @override
+  HomeState createState() => HomeState();
+}
 
-  // #docregion _buildSuggestions
-  Widget _buildSuggestions() {
-    return ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemBuilder: /*1*/ (context, i) {
-          if (i.isOdd) return Divider(); /*2*/
+class HomeState extends State<HomeWidget> {
+  final _onTimeChange = StreamController<TimeOfDay>();
 
-          final index = i ~/ 2; /*3*/
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-          }
-          return _buildRow(_suggestions[index]);
-        });
+  @override
+  void dispose() {
+    // StreamControllerは必ず開放する
+    _onTimeChange.close();
+    super.dispose();
   }
-  // #enddocregion _buildSuggestions
 
-  // #docregion _buildRow
-  Widget _buildRow(WordPair pair) {
-    final alreadySaved = _saved.contains(pair);
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: _biggerFont,
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        // 2つのWidgetは親のもつStreamControllerのstreamとsinkを使ってデータの受け渡しを行う
+        TimeText(stream: _onTimeChange.stream),
+        TimeSelector(sink: _onTimeChange.sink),
+      ],
+    );
+  }
+}
+
+/// 時刻を受け取って表示する
+class TimeText extends StatelessWidget {
+  /// 受け口
+  final Stream<TimeOfDay> stream;
+  TimeText({this.stream});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(width: 3),
+        ),
       ),
-      trailing: Icon(
-        alreadySaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.red : null,
+      child: StreamBuilder(
+        // 指定したstreamにデータが流れてくると再描画される
+        stream: this.stream,
+        builder: (BuildContext context, AsyncSnapshot<TimeOfDay> snapShot) {
+          // StreamControllerから流れてきたデータを使って再描画
+          return Text(
+            snapShot.hasData ? snapShot.data.format(context) : "未選択",
+            style: TextStyle(fontSize: 50),
+          );
+        },
       ),
-      onTap: () {
-        setState(() {
-          if (alreadySaved) {
-            _saved.remove(pair);
-          } else {
-            _saved.add(pair);
-          }
-        });
+    );
+  }
+}
+
+/// 時刻を選択して、選択結果を渡す
+class TimeSelector extends StatelessWidget {
+  /// 渡し口
+  final StreamSink<TimeOfDay> sink;
+  TimeSelector({this.sink});
+
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(
+      child: const Text(
+        "時刻を選択する",
+        style: TextStyle(fontSize: 20),
+      ),
+      color: Colors.deepOrangeAccent,
+      onPressed: () async {
+        final select = await showTimePicker(
+          context: context,
+          initialTime: TimeOfDay.now(),
+        );
+        // sinkに選択した時刻を流す
+        this.sink.add(select);
       },
     );
   }
-  // #enddocregion _buildRow
-
-  // #docregion RWS-build
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Startup Name Generator'),
-        actions: [
-          IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
-        ],
-      ),
-      body: _buildSuggestions(),
-    );
-  }
-// #enddocregion RWS-build
-
-  void _pushSaved() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        // NEW lines from here...
-        builder: (BuildContext context) {
-          final tiles = _saved.map(
-                (WordPair pair) {
-              return ListTile(
-                title: Text(
-                  pair.asPascalCase,
-                  style: _biggerFont,
-                ),
-              );
-            },
-          );
-          final divided = ListTile.divideTiles(
-            context: context,
-            tiles: tiles,
-          ).toList();
-
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Saved Suggestions'),
-            ),
-            body: ListView(children: divided),
-          );
-        }, // ...to here.
-      ),
-    );
-  }
-
-// #docregion RWS-var
-}
-// #enddocregion RWS-var
-
-class RandomWords extends StatefulWidget {
-  @override
-  RandomWordsState createState() => new RandomWordsState();
 }

@@ -1,11 +1,14 @@
 name: samples
 version: 0.0.1
 description: A sample command-line application
+environment:
+  sdk: '>=2.10.0 <3.0.0'
 dependencies:
   collection: 1.14.13
   json_annotation: ^3.0.0
   analyzer: '0.39.14'
   http: 0.12.2
+  rxdart: 0.25.0
 
 dev_dependencies:
 #  unittest: any
