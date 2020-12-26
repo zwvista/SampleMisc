@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Landmarks/Landmarks.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:CC/CC.xcodeproj">
    </FileRef>
    <FileRef
