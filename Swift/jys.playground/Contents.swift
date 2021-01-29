@@ -1,10 +1,9 @@
-
 func verticalWriting(txt:String, offset:Int) {
-    Dictionary(grouping: txt.enumerated(), by: {$0.0 % offset})
-        .sorted{$0.0 < $1.0}
-        .forEach{print(
-            $0.1.map{String($0.element)}.reversed().joined(separator: "|")
-        )}
+    Dictionary(grouping: txt.enumerated()) { $0.0 % offset }
+        .sorted { $0.0 < $1.0 }
+        .forEach { print(
+            $0.1.map { String($0.element) }.reversed().joined(separator: "|")
+        ) }
 }
 
 verticalWriting(txt: "床前明月光疑是地上霜举头望明月低头思故乡", offset: 5)
