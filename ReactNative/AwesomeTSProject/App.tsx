@@ -2,6 +2,8 @@ import * as React from 'react';
 import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 function HomeScreen({ navigation }:any) {
   return (
@@ -24,13 +26,55 @@ function NotificationsScreen({ navigation }:any) {
 
 const Drawer = createDrawerNavigator();
 
-export default function App() {
+function draw() {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeScreen} />
-        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+
+      <Drawer.Navigator initialRouteName="Home" >
+        <Drawer.Screen name="Home" component={HomeScreen} 
+        options={{
+        drawerIcon: () => <Ionicons name='md-home' size={30} color='#130f40' />,
+          }}
+         />
+        <Drawer.Screen name="Notifications" component={NotificationsScreen}
+        options={{
+        drawerIcon: () => <Ionicons name='md-notifications' size={30} color='#130f40' />,
+          }}
+         />
       </Drawer.Navigator>
-    </NavigationContainer>
+
   );
 }
+
+
+
+const Stack = createStackNavigator();
+
+function Def(){
+  return (
+    <NavigationContainer>
+    <Stack.Navigator>
+    <Stack.Screen
+        name="Home"
+        component={draw}
+        options={{
+          title: 'My home',
+          headerStyle: {
+            backgroundColor: '#5f27cd',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+
+          headerLeft: ({navigation}) =>  (<Ionicons name='md-menu' style={{paddingLeft: "20px"}} size={30} color='white' onPress={() => navigation.toggleDrawer()} />)
+
+
+        }}
+
+      />
+    </Stack.Navigator>
+    </NavigationContainer>    
+  )
+}
+
+export default Def;
