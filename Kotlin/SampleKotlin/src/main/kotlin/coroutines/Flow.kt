@@ -29,7 +29,18 @@ fun main() {
 //    flowM()
 //    flowN()
 //    flowO()
-    flowP()
+//    flowP()
+//    flowQ()
+//    flowR()
+//    flowS()
+//    flowT()
+//    flowU()
+//    flowV()
+//    flowW()
+//    flowX()
+//    flowY()
+//    flowZ()
+    flowAA()
 }
 
 fun simple1(): List<Int> = listOf(1, 2, 3)
@@ -321,4 +332,125 @@ fun flowP() = runBlocking {
         .collect { value -> // collect and print
             println("$value at ${System.currentTimeMillis() - startTime} ms from start")
         }
+}
+
+fun simpleQ(): Flow<Int> = flow {
+    for (i in 1..3) {
+        println("Emitting $i")
+        emit(i) // emit next value
+    }
+}
+
+fun flowQ() = runBlocking {
+    try {
+        simpleQ().collect { value ->
+            println(value)
+            check(value <= 1) { "Collected $value" }
+        }
+    } catch (e: Throwable) {
+        println("Caught $e")
+    }
+}
+
+fun simpleR(): Flow<String> =
+    flow {
+        for (i in 1..3) {
+            println("Emitting $i")
+            emit(i) // emit next value
+        }
+    }
+    .map { value ->
+        check(value <= 1) { "Crashed on $value" }
+        "string $value"
+    }
+
+fun flowR() = runBlocking {
+    try {
+        simpleR().collect { value -> println(value) }
+    } catch (e: Throwable) {
+        println("Caught $e")
+    }
+}
+
+fun simpleS(): Flow<Int> = (1..3).asFlow()
+
+fun flowS() = runBlocking {
+    try {
+        simpleS().collect { value -> println(value) }
+    } finally {
+        println("Done")
+    }
+}
+
+fun flowT() = runBlocking {
+    simpleS()
+        .onCompletion { println("Done") }
+        .collect { value -> println(value) }
+}
+
+fun simpleU(): Flow<Int> = flow {
+    emit(1)
+    throw RuntimeException()
+}
+
+fun flowU() = runBlocking {
+    simpleU()
+        .onCompletion { cause -> if (cause != null) println("Flow completed exceptionally") }
+        .catch { cause -> println("Caught exception") }
+        .collect { value -> println(value) }
+}
+
+fun simpleV(): Flow<Int> = (1..3).asFlow()
+
+fun flowV() = runBlocking {
+    simpleV()
+        .onCompletion { cause -> println("Flow completed with $cause") }
+        .collect { value ->
+            check(value <= 1) { "Collected $value" }
+            println(value)
+        }
+}
+// Imitate a flow of events
+fun events(): Flow<Int> = (1..3).asFlow().onEach { delay(100) }
+
+fun flowW() = runBlocking {
+    events()
+        .onEach { event -> println("Event: $event") }
+        .collect() // <--- Collecting the flow waits
+    println("Done")
+}
+
+fun flowX() = runBlocking {
+    events()
+        .onEach { event -> println("Event: $event") }
+        .launchIn(this) // <--- Launching the flow in a separate coroutine
+    println("Done")
+}
+
+fun foo(): Flow<Int> = flow {
+    for (i in 1..5) {
+        println("Emitting $i")
+        emit(i)
+    }
+}
+
+fun flowY() = runBlocking {
+    foo().collect { value ->
+        if (value == 3) cancel()
+        println(value)
+    }
+}
+
+fun flowZ() = runBlocking {
+    (1..5).asFlow().collect { value ->
+        if (value == 3) cancel()
+        println(value)
+    }
+}
+
+fun flowAA() = runBlocking {
+    (1..5).asFlow().cancellable().collect { value ->
+        if (value == 3) cancel()
+        println(value)
+    }
 }
