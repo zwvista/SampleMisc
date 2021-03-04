@@ -7,7 +7,9 @@ fun main() {
 //    tutorial1()
 //    tutorial2()
 //    tutorial3()
-    tutorial4()
+//    tutorial4()
+//    tutorial5()
+    tutorial6()
 }
 
 fun tutorial1() {
@@ -66,4 +68,27 @@ fun tutorial4() {
 suspend fun workload(n: Int): Int {
     delay(1000)
     return n
+}
+
+fun tutorial5() = runBlocking {
+    val deferred: Deferred<Int> = async {
+        loadData()
+    }
+    log("waiting...")
+    log(deferred.await().toString())
+}
+
+fun tutorial6() = runBlocking {
+    val deferred: Deferred<Int> = async(Dispatchers.Default) {
+        loadData()
+    }
+    log("waiting...")
+    log(deferred.await().toString())
+}
+
+suspend fun loadData(): Int {
+    log("loading...")
+    delay(1000L)
+    log("loaded!")
+    return 42
 }
