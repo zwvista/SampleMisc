@@ -2,7 +2,7 @@ import Foundation
 
 let s = "123-4567-89,987-6543-21"
 let r = try NSRegularExpression(pattern: #"\d{3}-(\d{4})-\d{2}"#)
-let results = r.matches(in: s, options: [], range: NSRange(s.startIndex..., in: s))
+let results = r.matches(in: s, range: NSRange(s.startIndex..., in: s))
 for (i, m) in results.enumerated() {
     for j in 0..<m.numberOfRanges {
         print("group \(i),\(j) : \(String(s[Range(m.range(at: j), in: s)!]))")
@@ -10,11 +10,11 @@ for (i, m) in results.enumerated() {
 }
 
 let r2 = try NSRegularExpression(pattern: #"(\d+)-(\d+)-(\d+)"#)
-let s2 = r2.stringByReplacingMatches(in: s, options: [], range: NSRange(s.startIndex..., in: s), withTemplate: "$3-$1-$2")
+let s2 = r2.stringByReplacingMatches(in: s, range: NSRange(s.startIndex..., in: s), withTemplate: "$3-$1-$2")
 print(s2)
 
 let r3 = try NSRegularExpression(pattern: #"\d+"#)
-let results2 = r3.matches(in: s, options: [], range: NSRange(s.startIndex..., in: s))
+let results2 = r3.matches(in: s, range: NSRange(s.startIndex..., in: s))
 var s3 = s
 for i in (0..<results2.count).reversed() {
     let rng = Range(results2[i].range, in: s3)!
@@ -34,7 +34,6 @@ extension String {
         let stop = "<SomeStringThatYouDoNotExpectToOccurInSelf>"
         let modifiedString = re.stringByReplacingMatches(
             in: self,
-            options: [],
             range: NSRange(location: 0, length: nsString.length),
             withTemplate: stop)
         return modifiedString.components(separatedBy: stop)
