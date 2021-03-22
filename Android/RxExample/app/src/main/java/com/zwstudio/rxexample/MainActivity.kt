@@ -1,11 +1,11 @@
 package com.zwstudio.rxexample
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.jakewharton.rxbinding2.widget.RxTextView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.Observables
@@ -46,6 +46,6 @@ class MainActivity : AppCompatActivity() {
             {s1, s2, s3 -> ((s1.toString().toIntOrNull() ?: 0) + (s2.toString().toIntOrNull() ?: 0) + (s3.toString().toIntOrNull() ?: 0)).toString()}
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(RxTextView.text(tvResult))
+            .subscribe(tvResult::setText)
     }
 }
