@@ -2,12 +2,14 @@ package com.example.myapplication.ui.home
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.androidisland.vita.VitaOwner
 import com.androidisland.vita.vita
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
+import com.example.myapplication.getNavigationResult
 import com.example.myapplication.ui.autoCleared
 
 class HomeFragment : Fragment() {
@@ -32,6 +34,9 @@ class HomeFragment : Fragment() {
         binding.button.setOnClickListener {
             val a = HomeFragmentDirections.actionNavHomeToNavHome2()
             findNavController().navigate(a)
+        }
+        getNavigationResult<String> {
+            Toast.makeText(requireContext(), "Result from home2: $it", Toast.LENGTH_SHORT).show()
         }
         return binding.root
     }

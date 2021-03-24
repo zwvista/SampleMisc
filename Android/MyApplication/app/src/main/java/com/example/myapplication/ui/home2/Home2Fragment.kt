@@ -4,28 +4,32 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.example.myapplication.R
+import androidx.navigation.fragment.findNavController
+import com.androidisland.vita.VitaOwner
+import com.androidisland.vita.vita
+import com.example.myapplication.databinding.FragmentHome2Binding
+import com.example.myapplication.setNavigationResult
+import com.example.myapplication.ui.autoCleared
 
 class Home2Fragment : Fragment() {
 
-    private lateinit var home2ViewModel: Home2ViewModel
+    private val homeViewModel by lazy { vita.with(VitaOwner.Multiple(this)).getViewModel<Home2ViewModel>() }
+    private var binding by autoCleared<FragmentHome2Binding>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        home2ViewModel =
-            ViewModelProvider(this).get(Home2ViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home2, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        home2ViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        binding = FragmentHome2Binding.inflate(inflater, container, false).apply {
+            lifecycleOwner = viewLifecycleOwner
+            model = homeViewModel
+        }
+        binding.button.setOnClickListener {
+            setNavigationResult( "1")
+            findNavController().navigateUp()
+        }
+        return binding.root
     }
 }
