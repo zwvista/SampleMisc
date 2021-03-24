@@ -42,7 +42,20 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.main, menu)
+        inflater.inflate(R.menu.home, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+        when (item.itemId) {
+            R.id.action_settings -> {
+                Toast.makeText(requireContext(), "Settings", Toast.LENGTH_SHORT).show()
+                true
+            }
+            R.id.action_settings2 -> {
+                Toast.makeText(requireContext(), "Settings2", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
 }
