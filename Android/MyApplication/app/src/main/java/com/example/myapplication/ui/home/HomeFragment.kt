@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import com.androidisland.vita.VitaOwner
 import com.androidisland.vita.vita
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
-import com.example.myapplication.getNavigationResult
 import com.example.myapplication.ui.autoCleared
 
 class HomeFragment : Fragment() {
@@ -35,8 +35,9 @@ class HomeFragment : Fragment() {
             val a = HomeFragmentDirections.actionNavHomeToNavHome2()
             findNavController().navigate(a)
         }
-        getNavigationResult<String> {
-            Toast.makeText(requireContext(), "Result from home2: $it", Toast.LENGTH_SHORT).show()
+        setFragmentResultListener("requestKey") { requestKey, bundle ->
+            val result = bundle.getString("bundleKey")
+            Toast.makeText(requireContext(), "Result from home2: $result", Toast.LENGTH_SHORT).show()
         }
         return binding.root
     }
