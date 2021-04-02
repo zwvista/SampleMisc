@@ -22,15 +22,16 @@ class HomeFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
             model = homeViewModel
         }
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.button.setOnClickListener {
             val a = HomeFragmentDirections.actionNavHomeToNavHome2()
             findNavController().navigate(a)
@@ -39,7 +40,6 @@ class HomeFragment : Fragment() {
             val result = bundle.getString("bundleKey")
             Toast.makeText(requireContext(), "Result from home2: $result", Toast.LENGTH_SHORT).show()
         }
-        return binding.root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

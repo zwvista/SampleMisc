@@ -29,17 +29,15 @@ class RxExamplePage extends StatefulWidget {
 }
 
 class _RxExamplePageState extends State<RxExamplePage> {
-  final vm = RxExampleModel();
+  final vm = RxExampleViewModel();
   TextEditingController number1Ctrl;
   TextEditingController number2Ctrl;
   TextEditingController number3Ctrl;
-  final resultCtrl = TextEditingController();
 
   _RxExamplePageState() {
     number1Ctrl = TextEditingController(text: vm.number1.lastResult);
     number2Ctrl = TextEditingController(text: vm.number2.lastResult);
     number3Ctrl = TextEditingController(text: vm.number3.lastResult);
-    vm.result.listen((v) => resultCtrl.text = v);
   }
 
   @override
@@ -50,37 +48,42 @@ class _RxExamplePageState extends State<RxExamplePage> {
       ),
       body: Center(
         child: Container(
-            width: 150,
-            child: Table(
-                columnWidths: {0: FractionColumnWidth(.2)},
-                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                children: [
-                  TableRow(children: [
-                    Container(),
-                    TextField(
-                        controller: number1Ctrl,
-                        textAlign: TextAlign.end,
-                        onChanged: vm.number1)
-                  ]),
-                  TableRow(children: [
-                    Container(),
-                    TextField(
-                        controller: number2Ctrl,
-                        textAlign: TextAlign.end,
-                        onChanged: vm.number2)
-                  ]),
-                  TableRow(children: [
-                    Center(child: Text("+")),
-                    TextField(
-                        controller: number3Ctrl,
-                        textAlign: TextAlign.end,
-                        onChanged: vm.number3)
-                  ]),
-                  TableRow(children: [
-                    Center(child: Text("=")),
-                    TextField(controller: resultCtrl, textAlign: TextAlign.end)
-                  ])
-                ])),
+          width: 150,
+          child: Table(
+              columnWidths: {0: FractionColumnWidth(.2)},
+              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+              children: [
+                TableRow(children: [
+                  Container(),
+                  TextField(
+                      controller: number1Ctrl,
+                      textAlign: TextAlign.end,
+                      onChanged: vm.number1)
+                ]),
+                TableRow(children: [
+                  Container(),
+                  TextField(
+                      controller: number2Ctrl,
+                      textAlign: TextAlign.end,
+                      onChanged: vm.number2)
+                ]),
+                TableRow(children: [
+                  Center(child: Text("+")),
+                  TextField(
+                      controller: number3Ctrl,
+                      textAlign: TextAlign.end,
+                      onChanged: vm.number3)
+                ]),
+                TableRow(children: [
+                  Center(child: Text("=")),
+                  StreamBuilder(
+                    stream: vm.result,
+                    builder: (context, snapshot) =>
+                        Text(vm.result.lastResult, textAlign: TextAlign.end),
+                  ),
+                ]),
+              ]),
+        ),
       ),
     );
   }
