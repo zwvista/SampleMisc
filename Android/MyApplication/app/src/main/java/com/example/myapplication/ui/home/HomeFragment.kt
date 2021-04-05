@@ -38,10 +38,10 @@ class HomeFragment : Fragment() {
             val a = HomeFragmentDirections.actionNavHomeToNavHome2()
             findNavController().navigate(a)
         }
-        binding.spinner.adapter = makeCustomAdapter(requireContext(), items) { it.label }
-        homeViewModel.itemPosition.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), "Result from spinner: ${items[it].value}", Toast.LENGTH_SHORT).show()
+        binding.button2.setOnClickListener {
+            homeViewModel.itemPosition.value = 0
         }
+        binding.spinner.adapter = makeCustomAdapter(requireContext(), items) { it.label }
         setFragmentResultListener("requestKey") { requestKey, bundle ->
             val result = bundle.getString("bundleKey")
             Toast.makeText(requireContext(), "Result from home2: $result", Toast.LENGTH_SHORT).show()
