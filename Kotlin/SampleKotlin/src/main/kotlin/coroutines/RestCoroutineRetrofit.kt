@@ -1,15 +1,11 @@
 package coroutines
 
+import Post
 import kotlinx.coroutines.runBlocking
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.*
-
-data class Post(val userId: Int, val id: Int, val title: String, val body: String) {
-    override fun toString() =
-        "Post {userId = $userId, id = $id, title = \"$title\", body = \"${body.replace("\n", "\\n")}\"}"
-}
 
 interface RestPost {
     @GET
