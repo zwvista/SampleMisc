@@ -9,7 +9,9 @@ void regTest() {
       print("group $i,$j : ${m.group(j)}");
   });
 
-  print(s.replaceAllMapped(RegExp(r"(\d+)-(\d+)-(\d+)"), (m) => "${m.group(3)}-${m.group(1)}-${m.group(2)}"));
+  print(s.replaceAllMapped(RegExp(r"(\d+)-(\d+)-(\d+)"),
+          (m) => r"$3-$1-$2".replaceAllMapped(RegExp(r"\$(\d)"),
+              (m2) => m.group(int.parse(m2.group(1))))));
 
   // https://stackoverflow.com/questions/21521729/how-do-i-reverse-a-string-in-dart
   print(s.replaceAllMapped(RegExp(r"\d+"), (m) => m.group(0).split("").reversed.join()));
