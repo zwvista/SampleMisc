@@ -1,6 +1,7 @@
 package rx
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import java.util.concurrent.TimeUnit
 
 
@@ -13,7 +14,9 @@ fun main(args: Array<String>) {
     exampleGroupJoin()
 
     exampleMerge()
+    exampleMergeSingle()
     exampleMergeWith()
+    exampleMergeWithSingle()
     exampleMergeDelayError1()
     exampleMergeDelayError2()
 
@@ -21,7 +24,9 @@ fun main(args: Array<String>) {
     exampleSwitchOnNext()
 
     exampleZip()
+    exampleZipSingle()
     exampleZipMultiple()
+    exampleZipMultipleSingle()
     exampleZipUneven()
     exampleZipWith()
     exampleZipWithIterable()
@@ -191,6 +196,19 @@ private fun exampleMerge() {
     // First
 }
 
+
+private fun exampleMergeSingle() {
+    println(object{}.javaClass.enclosingMethod.name)
+    Single.merge(
+        Single.timer(250, TimeUnit.MILLISECONDS).map { "First" },
+        Single.timer(150, TimeUnit.MILLISECONDS).map { "Second" })
+        .dump()
+    readLine()
+
+    // Second
+    // First
+}
+
 private fun exampleMergeWith() {
     println(object{}.javaClass.enclosingMethod.name)
     Observable.interval(250, TimeUnit.MILLISECONDS).map { "First" }
@@ -207,6 +225,17 @@ private fun exampleMergeWith() {
     // Second
     // First
     // Second
+    // Second
+    // First
+}
+
+private fun exampleMergeWithSingle() {
+    println(object{}.javaClass.enclosingMethod.name)
+    Single.timer(250, TimeUnit.MILLISECONDS).map { "First" }
+        .mergeWith(Single.timer(150, TimeUnit.MILLISECONDS).map { "Second" })
+        .dump()
+    readLine()
+
     // Second
     // First
 }
@@ -329,6 +358,22 @@ private fun exampleZip() {
     // 5 - 5
 }
 
+private fun exampleZipSingle() {
+    println(object{}.javaClass.enclosingMethod.name)
+    Single.zip(
+        Single.timer(100, TimeUnit.MILLISECONDS)
+            .doAfterSuccess { i -> println("Left emits $i") },
+        Single.timer(150, TimeUnit.MILLISECONDS)
+            .doAfterSuccess { i -> println("Right emits $i") })
+        { i1, i2 -> "$i1 - $i2" }
+        .dump()
+    readLine()
+
+    // Left emits
+    // 0 - 0
+    // Right emits
+}
+
 private fun exampleZipMultiple() {
     println(object{}.javaClass.enclosingMethod.name)
     Observable.zip(
@@ -346,6 +391,19 @@ private fun exampleZipMultiple() {
     // 3 - 3 - 3
     // 4 - 4 - 4
     // 5 - 5 - 5
+}
+
+private fun exampleZipMultipleSingle() {
+    println(object{}.javaClass.enclosingMethod.name)
+    Single.zip(
+        Single.timer(100, TimeUnit.MILLISECONDS),
+        Single.timer(150, TimeUnit.MILLISECONDS),
+        Single.timer(40, TimeUnit.MILLISECONDS))
+        { i1, i2, i3 -> "$i1 - $i2 - $i3" }
+        .dump()
+    readLine()
+
+    // 0 - 0 - 0
 }
 
 private fun exampleZipUneven() {

@@ -32,6 +32,16 @@ fun <T> Observable<T>.dump(name: String): Disposable =
         { println("$name: onError: $it: ${it.message}") },
         { println("$name: onComplete") })
 
+fun <T> Flowable<T>.dump(): Disposable =
+    this.subscribe({ println("onNext: $it") },
+        { println("onError: $it: ${it.message}") },
+        { println("onComplete") })
+
+fun <T> Flowable<T>.dump(name: String): Disposable =
+    this.subscribe({ println("$name: onNext: $it") },
+        { println("$name: onError: $it: ${it.message}") },
+        { println("$name: onComplete") })
+
 fun <T> Single<T>.dump(): Disposable =
     this.subscribe({ println("onSuccess: $it") },
         { println("onError: $it: ${it.message}") })

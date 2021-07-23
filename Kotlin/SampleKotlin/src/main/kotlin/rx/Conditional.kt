@@ -1,7 +1,7 @@
 package rx
 
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.functions.BiPredicate
+import io.reactivex.rxjava3.core.Single
 import java.util.concurrent.TimeUnit
 
 
@@ -103,10 +103,15 @@ private fun exampleAllErrorAfterComplete() {
 
 private fun exampleAmb() {
     println(object{}.javaClass.enclosingMethod.name)
-    Observable.amb(listOf(
-        Observable.timer(100, TimeUnit.MILLISECONDS).map { i -> "First" },
-        Observable.timer(50, TimeUnit.MILLISECONDS).map { i -> "Second" },
-        Observable.timer(70, TimeUnit.MILLISECONDS).map { i -> "Third" }))
+//    Observable.amb(listOf(
+//        Observable.timer(100, TimeUnit.MILLISECONDS).map { "First" },
+//        Observable.timer(50, TimeUnit.MILLISECONDS).map { "Second" },
+//        Observable.timer(70, TimeUnit.MILLISECONDS).map { "Third" }))
+//        .dump()
+    Single.amb(listOf(
+        Single.timer(100, TimeUnit.MILLISECONDS).map { "First" },
+        Single.timer(50, TimeUnit.MILLISECONDS).map { "Second" },
+        Single.timer(70, TimeUnit.MILLISECONDS).map { "Third" }))
         .dump()
     readLine()
 
@@ -116,10 +121,15 @@ private fun exampleAmb() {
 
 private fun exampleAmbArray() {
     println(object{}.javaClass.enclosingMethod.name)
-    Observable.ambArray(
-        Observable.timer(100, TimeUnit.MILLISECONDS).map { i -> "First" },
-        Observable.timer(50, TimeUnit.MILLISECONDS).map { i -> "Second" },
-        Observable.timer(70, TimeUnit.MILLISECONDS).map { i -> "Third" })
+//    Observable.ambArray(
+//        Observable.timer(100, TimeUnit.MILLISECONDS).map { "First" },
+//        Observable.timer(50, TimeUnit.MILLISECONDS).map { "Second" },
+//        Observable.timer(70, TimeUnit.MILLISECONDS).map { "Third" })
+//        .dump()
+    Single.ambArray(
+        Single.timer(100, TimeUnit.MILLISECONDS).map { "First" },
+        Single.timer(50, TimeUnit.MILLISECONDS).map { "Second" },
+        Single.timer(70, TimeUnit.MILLISECONDS).map { "Third" })
         .dump()
     readLine()
 
@@ -129,9 +139,13 @@ private fun exampleAmbArray() {
 
 private fun exampleAmbWith() {
     println(object{}.javaClass.enclosingMethod.name)
-    Observable.timer(100, TimeUnit.MILLISECONDS).map { i -> "First" }
-        .ambWith(Observable.timer(50, TimeUnit.MILLISECONDS).map { i -> "Second" })
-        .ambWith(Observable.timer(70, TimeUnit.MILLISECONDS).map { i -> "Third" })
+//    Observable.timer(100, TimeUnit.MILLISECONDS).map { "First" }
+//        .ambWith(Observable.timer(50, TimeUnit.MILLISECONDS).map { "Second" })
+//        .ambWith(Observable.timer(70, TimeUnit.MILLISECONDS).map { "Third" })
+//        .dump()
+    Single.timer(100, TimeUnit.MILLISECONDS).map { "First" }
+        .ambWith(Single.timer(50, TimeUnit.MILLISECONDS).map { "Second" })
+        .ambWith(Single.timer(70, TimeUnit.MILLISECONDS).map { "Third" })
         .dump()
     readLine()
 
@@ -211,7 +225,7 @@ private fun exampleSequenceEqualTrue() {
     println(object{}.javaClass.enclosingMethod.name)
     val strings = Observable.just("1", "2", "3")
     val ints = Observable.just(1, 2, 3)
-    Observable.sequenceEqual(strings, ints, BiPredicate { s, i -> s == i.toString() } )
+    Observable.sequenceEqual(strings, ints) { s, i -> s == i.toString() }
         .dump()
 
     // true

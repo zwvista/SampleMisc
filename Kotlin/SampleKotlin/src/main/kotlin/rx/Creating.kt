@@ -3,8 +3,6 @@ package rx
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.functions.BiFunction
-import io.reactivex.rxjava3.functions.Consumer
-import io.reactivex.rxjava3.functions.Supplier
 import java.util.*
 import java.util.concurrent.FutureTask
 import java.util.concurrent.TimeUnit
@@ -27,7 +25,7 @@ fun main(args: Array<String>) {
     exampleFromArray()
     exampleFromIterable()
     exampleFromCallable()
-    
+
     exampleInterval()
     exampleJust()
     exampleJustSingle()
@@ -53,13 +51,13 @@ private fun exampleCreate() {
 
 private fun exampleGenerate() {
     println(object{}.javaClass.enclosingMethod.name)
-    val values = Observable.generate<Int, Int>( Supplier { 0 }, BiFunction { i, o ->
+    val values = Observable.generate<Int, Int>( { 0 }, BiFunction { i, o ->
         if (i < 10) {
             o.onNext(i * i); i + 1
         } else {
             o.onComplete(); i
         }
-    }, Consumer { i -> println(i) } )
+    }, { i -> println(i) } )
     values.dump()
 
     // 0
@@ -74,7 +72,8 @@ private fun exampleGenerate() {
 
 private fun exampleShouldDefer() {
     println(object{}.javaClass.enclosingMethod.name)
-    val now = Observable.just(System.currentTimeMillis())
+//    val now = Observable.just(System.currentTimeMillis())
+    val now = Single.just(System.currentTimeMillis())
     now.dump()
     Thread.sleep(1000)
     now.dump()
@@ -85,7 +84,8 @@ private fun exampleShouldDefer() {
 
 private fun exampleDefer() {
     println(object{}.javaClass.enclosingMethod.name)
-    val now = Observable.defer { Observable.just(System.currentTimeMillis()) }
+//    val now = Observable.defer { Observable.just(System.currentTimeMillis()) }
+    val now = Single.defer { Single.just(System.currentTimeMillis()) }
     now.dump()
     Thread.sleep(1000)
     now.dump()
@@ -131,7 +131,8 @@ private fun exampleFromFuture() {
         21
     }
     Thread(f).start()
-    val values = Observable.fromFuture(f)
+//    val values = Observable.fromFuture(f)
+    val values = Single.fromFuture(f)
     values.dump()
     readLine()
 
@@ -146,7 +147,8 @@ private fun exampleFromFutureTimeout() {
         21
     }
     Thread(f).start()
-    val values = Observable.fromFuture(f, 1000, TimeUnit.MILLISECONDS)
+//    val values = Observable.fromFuture(f, 1000, TimeUnit.MILLISECONDS)
+    val values = Single.fromFuture(f, 1000, TimeUnit.MILLISECONDS)
     values.dump()
     readLine()
 
@@ -168,7 +170,8 @@ private fun exampleFromArray() {
 
 private fun exampleFromCallable() {
     println(object{}.javaClass.enclosingMethod.name)
-    val now = Observable.fromCallable { System.currentTimeMillis() }
+//    val now = Observable.fromCallable { System.currentTimeMillis() }
+    val now = Single.fromCallable { System.currentTimeMillis() }
     now.dump()
     Thread.sleep(1000)
     now.dump()
@@ -221,7 +224,6 @@ private fun exampleJustSingle() {
     values.dump()
 
     // Received: one
-    // Completed
 }
 
 private fun exampleRange() {
@@ -302,7 +304,8 @@ private fun exampleRepeatWithInterval() {
 
 private fun exampleTimer() {
     println(object{}.javaClass.enclosingMethod.name)
-    val values = Observable.timer(1, TimeUnit.SECONDS)
+//    val values = Observable.timer(1, TimeUnit.SECONDS)
+    val values = Single.timer(1, TimeUnit.SECONDS)
     values.dump()
     readLine()
 
