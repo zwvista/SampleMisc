@@ -1,11 +1,11 @@
 package rx
 
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.functions.BiFunction
 import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.functions.Supplier
 import java.util.*
-import java.util.concurrent.Callable
 import java.util.concurrent.FutureTask
 import java.util.concurrent.TimeUnit
 
@@ -20,6 +20,7 @@ fun main(args: Array<String>) {
     exampleEmpty()
     exampleNever()
     exampleError()
+    exampleErrorSingle()
 
     exampleFromFuture()
     exampleFromFutureTimeout()
@@ -29,6 +30,7 @@ fun main(args: Array<String>) {
     
     exampleInterval()
     exampleJust()
+    exampleJustSingle()
     exampleRange()
     exampleRepeat()
     exampleRepeat2()
@@ -109,6 +111,14 @@ private fun exampleNever() {
 private fun exampleError() {
     println(object{}.javaClass.enclosingMethod.name)
     val values = Observable.error<String>(Exception("Oops"))
+    values.dump()
+
+    // Error: java.lang.Exception: Oops
+}
+
+private fun exampleErrorSingle() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val values = Single.error<String>(Exception("Oops"))
     values.dump()
 
     // Error: java.lang.Exception: Oops
@@ -202,6 +212,15 @@ private fun exampleJust() {
     // Received: one
     // Received: two
     // Received: three
+    // Completed
+}
+
+private fun exampleJustSingle() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val values = Single.just("one")
+    values.dump()
+
+    // Received: one
     // Completed
 }
 

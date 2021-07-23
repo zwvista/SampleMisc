@@ -1,11 +1,6 @@
 package rx
 
 import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.functions.BiFunction
-import io.reactivex.rxjava3.functions.Function
-import io.reactivex.rxjava3.kotlin.Observables
-import io.reactivex.rxjava3.kotlin.withLatestFrom
-import io.reactivex.rxjava3.kotlin.zipWith
 import java.util.concurrent.TimeUnit
 
 
@@ -34,7 +29,7 @@ fun main(args: Array<String>) {
 
 private fun exampleCombineLatest() {
     println(object{}.javaClass.enclosingMethod.name)
-    Observables.combineLatest(
+    Observable.combineLatest(
         Observable.interval(100, TimeUnit.MILLISECONDS)
             .doOnNext { i -> println("Left emits") },
         Observable.interval(150, TimeUnit.MILLISECONDS)
@@ -100,9 +95,9 @@ private fun exampleJoinSimple() {
     left
         .join<String, Any, Long, String>(
             right,
-            Function { i -> Observable.never() },
-            Function { i -> Observable.timer(0, TimeUnit.MILLISECONDS) },
-            BiFunction { l, r -> "$l - $r" }
+            { i -> Observable.never() },
+            { i -> Observable.timer(0, TimeUnit.MILLISECONDS) },
+            { l, r -> "$l - $r" }
         )
         .take(10)
         .dump()
@@ -127,11 +122,11 @@ private fun exampleJoin2Way() {
     val right = Observable.interval(100, TimeUnit.MILLISECONDS)
         .map { i -> "R$i" }
     left
-        .join<String, Long, Long, String>(
+        .join(
             right,
-            Function { i -> Observable.timer(150, TimeUnit.MILLISECONDS) },
-            Function { i -> Observable.timer(0, TimeUnit.MILLISECONDS) },
-            BiFunction { l, r -> "$l - $r" }
+            { i -> Observable.timer(150, TimeUnit.MILLISECONDS) },
+            { i -> Observable.timer(0, TimeUnit.MILLISECONDS) },
+            { l, r -> "$l - $r" }
         )
         .take(10)
         .dump()
@@ -160,9 +155,9 @@ private fun exampleGroupJoin() {
     left
         .groupJoin<String, Any, Long, Any>(
             right,
-            Function { i -> Observable.never<Any>() },
-            Function { i -> Observable.timer(0, TimeUnit.MILLISECONDS) },
-            BiFunction { l, rs -> rs.toList().subscribe { list -> println("$l: $list") } }
+            { i -> Observable.never<Any>() },
+            { i -> Observable.timer(0, TimeUnit.MILLISECONDS) },
+            { l, rs -> rs.toList().subscribe { list -> println("$l: $list") } }
         )
         .subscribe()
     readLine()
@@ -301,7 +296,7 @@ private fun exampleSwitchOnNext() {
 
 private fun exampleZip() {
     println(object{}.javaClass.enclosingMethod.name)
-    Observables.zip(
+    Observable.zip(
         Observable.interval(100, TimeUnit.MILLISECONDS)
             .doOnNext { i -> println("Left emits $i") },
         Observable.interval(150, TimeUnit.MILLISECONDS)
@@ -336,7 +331,7 @@ private fun exampleZip() {
 
 private fun exampleZipMultiple() {
     println(object{}.javaClass.enclosingMethod.name)
-    Observables.zip(
+    Observable.zip(
         Observable.interval(100, TimeUnit.MILLISECONDS),
         Observable.interval(150, TimeUnit.MILLISECONDS),
         Observable.interval(40, TimeUnit.MILLISECONDS))
@@ -355,7 +350,7 @@ private fun exampleZipMultiple() {
 
 private fun exampleZipUneven() {
     println(object{}.javaClass.enclosingMethod.name)
-    Observables.zip(
+    Observable.zip(
         Observable.range(0, 5),
         Observable.range(0, 3),
         Observable.range(0, 8))

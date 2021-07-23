@@ -22,32 +22,32 @@ class PrintSubscriber<T>(private val name: String) : Observer<T> {
     }
 }
 
-fun <T> Observable<T>.dump() =
+fun <T> Observable<T>.dump(): Disposable =
     this.subscribe({ println("onNext: $it") },
         { println("onError: $it: ${it.message}") },
         { println("onComplete") })
 
-fun <T> Observable<T>.dump(name: String) =
+fun <T> Observable<T>.dump(name: String): Disposable =
     this.subscribe({ println("$name: onNext: $it") },
         { println("$name: onError: $it: ${it.message}") },
         { println("$name: onComplete") })
 
-fun <T> Single<T>.dump() =
+fun <T> Single<T>.dump(): Disposable =
     this.subscribe({ println("onSuccess: $it") },
         { println("onError: $it: ${it.message}") })
 
-fun <T> Single<T>.dump(name: String) =
+fun <T> Single<T>.dump(name: String): Disposable =
     this.subscribe({ println("$name: onSuccess: $it") },
         { println("$name: onError: $it: ${it.message}") })
 
-fun <T> Maybe<T>.dump() =
+fun <T> Maybe<T>.dump(): Disposable =
     this.subscribe({ println("onSuccess: $it") },
         { println("onError: $it: ${it.message}") })
 
-fun <T> Maybe<T>.dump(name: String) =
+fun <T> Maybe<T>.dump(name: String): Disposable =
     this.subscribe({ println("$name: onSuccess: $it") },
         { println("$name: onError: $it: ${it.message}") })
 
-fun Completable.dump() =
+fun Completable.dump(): Disposable =
     this.subscribe({ println("onComplete") },
         { println("onError: $it: ${it.message}") })
