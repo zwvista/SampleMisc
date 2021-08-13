@@ -3,6 +3,7 @@ package rx
 import Post
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -68,10 +69,10 @@ fun deletePost(): Single<String> =
         .deletePost(1)
 
 fun main(args: Array<String>) {
-    getPostAsString().subscribe(::println)
-    getPostAsJson().subscribe(::println)
-    getPosts(2).subscribe(::println)
-    createPost().subscribe(::println)
-    updatePost().subscribe(::println)
-    deletePost().subscribe(::println)
+    getPostAsString().subscribeBy { println(it) }
+    getPostAsJson().subscribeBy { println(it) }
+    getPosts(2).subscribeBy { println(it) }
+    createPost().subscribeBy { println(it) }
+    updatePost().subscribeBy { println(it) }
+    deletePost().subscribeBy { println(it) }
 }

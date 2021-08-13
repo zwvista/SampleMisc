@@ -7,6 +7,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.kotlin.subscribeBy
 
 
 private val home = "https://jsonplaceholder.typicode.com/"
@@ -46,11 +47,11 @@ fun deletePost2(): Single<String> =
     Fuel.delete("${home}posts/1").rxString().map { it.component1()!! }
 
 fun main(args: Array<String>) {
-    getPostAsString2().subscribe(::println)
-    getPostAsJson2().subscribe(::println)
-    getPosts2(2).subscribe(::println)
-    createPost2().subscribe(::println)
-    updatePost2().subscribe(::println)
-    deletePost2().subscribe(::println)
+    getPostAsString2().subscribeBy { println(it) }
+    getPostAsJson2().subscribeBy { println(it) }
+    getPosts2(2).subscribeBy { println(it) }
+    createPost2().subscribeBy { println(it) }
+    updatePost2().subscribeBy { println(it) }
+    deletePost2().subscribeBy { println(it) }
     readLine()
 }
