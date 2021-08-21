@@ -3,7 +3,7 @@ import 'package:collection/collection.dart';
 void jys() {
   final text = "床前明月光疑是地上霜举头望明月低头思故乡";
   final offset = 5;
-  groupBy(text.split("").asMap().entries, (kv) => kv.key % offset).forEach((k, lst) {
+  groupBy(text.split("").asMap().entries, (MapEntry<int, String> kv) => kv.key % offset).forEach((k, lst) {
     final s = lst.map((kv2) => kv2.value).toList().reversed.join("|");
     print(s);
   });

@@ -11,10 +11,10 @@ void regTest() {
 
   print(s.replaceAllMapped(RegExp(r"(\d+)-(\d+)-(\d+)"),
           (m) => r"$3-$1-$2".replaceAllMapped(RegExp(r"\$(\d)"),
-              (m2) => m.group(int.parse(m2.group(1))))));
+              (m2) => m.group(int.parse(m2.group(1)!))!)));
 
   // https://stackoverflow.com/questions/21521729/how-do-i-reverse-a-string-in-dart
-  print(s.replaceAllMapped(RegExp(r"\d+"), (m) => m.group(0).split("").reversed.join()));
+  print(s.replaceAllMapped(RegExp(r"\d+"), (m) => m.group(0)!.split("").reversed.join()));
 
   print("%begin%hello%next%world%end%".split(RegExp("%(begin|next|end)%")));
 }

@@ -2,15 +2,15 @@ name: samples
 version: 0.0.1
 description: A sample command-line application
 environment:
-  sdk: '>=2.10.0 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
 dependencies:
-  collection: 1.14.13
-  json_annotation: ^3.0.0
-  analyzer: '0.39.14'
-  http: 0.12.2
-  rxdart: 0.25.0
+  collection: 1.15.0
+  json_annotation: ^4.1.0
+  analyzer: '2.1.0'
+  http: 0.13.3
+  rxdart: 0.27.1
 
 dev_dependencies:
 #  unittest: any
-  build_runner: ^1.0.0
-  json_serializable: ^3.2.0
+  build_runner: ^2.1.1
+  json_serializable: ^5.0.0

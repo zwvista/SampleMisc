@@ -6,7 +6,7 @@ part 'jsonTest.g.dart';
 
 @JsonSerializable()
 class Persons {
-  List<Person> persons;
+  List<Person> persons = [];
 
   Persons() {}
   factory Persons.fromJson(Map<String, dynamic> json) => _$PersonsFromJson(json);
@@ -18,8 +18,8 @@ class Persons {
 @JsonSerializable()
 class Person {
   @JsonKey(name: 'name')
-  String name;
-  int age;
+  String name = "";
+  int age = 0;
 
   Person() {}
   factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
