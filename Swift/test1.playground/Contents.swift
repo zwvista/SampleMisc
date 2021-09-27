@@ -47,7 +47,7 @@ if let definiteString = possibleString {
 
 if let definiteString2 = possibleString?.lowercased() {}
 
-for ch in "Hello".characters {ch}
+for ch in "Hello" {ch}
 
 //let (x, y, z) = (1, 2, 3)
 let x2 = 1, y2 = 2, z2 = 3.3
@@ -56,8 +56,9 @@ var (a1, b1) = (3, 4)
 (a1, b1) = (b1, a1)
 print(a1, b1)
 
-if case 1...255 = a1 { print(3)}
+if case 1...255 = a1 {print(3)}
 if 1...255 ~= a1 {print(3)}
+if (1...255).contains(a1) {print(3)}
 if case 1...255 = a1, case 0...1 = b1 {print(3)}
 if 1...255 ~= a1, 0...1 ~= b1 {print(3)}
 
@@ -91,4 +92,3 @@ if 1 == 1 {
 let row = 3, col = 4, rows = 6, cols = 6
 if row == 3 && 1..<rows - 1 ~= row && 1..<cols - 1 ~= col {print("ok")}
 if row == 3, 1..<rows - 1 ~= row, 1..<cols - 1 ~= col {print("ok")}
-
