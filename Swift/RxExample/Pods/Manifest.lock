@@ -1,52 +1,63 @@
 PODS:
-  - Alamofire (5.1.0)
-  - CodableAlamofire (1.2.1):
-    - Alamofire (~> 5.1.0)
-  - "NSObject+Rx (5.1.0)":
-    - RxSwift (~> 5.1)
-  - RxAlamofire (5.6.0):
-    - RxAlamofire/Core (= 5.6.0)
-  - RxAlamofire/Core (5.6.0):
-    - Alamofire (~> 5.1)
-    - RxSwift (~> 5.1)
-  - RxBinding (0.4):
-    - RxCocoa (< 6.0.0, >= 5.0.0)
-    - RxSwift (< 6.0.0, >= 5.0.0)
-  - RxCocoa (5.1.1):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxRelay (5.1.1):
-    - RxSwift (~> 5)
-  - RxSwift (5.1.1)
+  - Alamofire (5.4.4)
+  - CodableAlamofire (1.2.4):
+    - Alamofire (~> 5.4.0)
+  - "NSObject+Rx (5.2.2)":
+    - RxSwift (~> 6.2)
+  - RxAlamofire (6.1.1):
+    - RxAlamofire/Core (= 6.1.1)
+  - RxAlamofire/Core (6.1.1):
+    - Alamofire (~> 5.4)
+    - RxSwift (~> 6.0)
+  - RxBinding (0.51):
+    - RxCocoa (~> 6)
+    - RxSwift (~> 6)
+  - RxCocoa (6.2.0):
+    - RxRelay (= 6.2.0)
+    - RxSwift (= 6.2.0)
+  - RxRelay (6.2.0):
+    - RxSwift (= 6.2.0)
+  - RxSwift (6.2.0)
 
 DEPENDENCIES:
-  - CodableAlamofire
+  - CodableAlamofire (from `https://github.com/zwvista/CodableAlamofire`)
   - "NSObject+Rx"
-  - RxAlamofire
-  - RxBinding
-  - RxCocoa
+  - RxAlamofire (~> 6)
+  - RxBinding (from `https://github.com/zwvista/RxBinding`)
 
 SPEC REPOS:
   trunk:
     - Alamofire
-    - CodableAlamofire
     - "NSObject+Rx"
     - RxAlamofire
-    - RxBinding
     - RxCocoa
     - RxRelay
     - RxSwift
 
+EXTERNAL SOURCES:
+  CodableAlamofire:
+    :git: https://github.com/zwvista/CodableAlamofire
+  RxBinding:
+    :git: https://github.com/zwvista/RxBinding
+
+CHECKOUT OPTIONS:
+  CodableAlamofire:
+    :commit: cf9369fc18e1326fa8e042d53bb716db0c5d02c8
+    :git: https://github.com/zwvista/CodableAlamofire
+  RxBinding:
+    :commit: 5176ecc93ae6eff8fa8b1932a145235a75b519d8
+    :git: https://github.com/zwvista/RxBinding
+
 SPEC CHECKSUMS:
-  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
-  CodableAlamofire: 3532ececac18593b300d775f2a51feca2f83a2f1
-  "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
-  RxAlamofire: f34ddbab56fa2a36f99737f4d4ecc22288a1384f
-  RxBinding: da433c012633802a72c2a5bec8775b86f4cddeb8
-  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
-  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
-  RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  CodableAlamofire: 73f910ddd6b53292cf60260a88f4c40def9de394
+  "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
+  RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
+  RxBinding: a09619842d943f157557541866f7ea832687e0ab
+  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
+  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
+  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
 
-PODFILE CHECKSUM: 631292ff30a3a253c2bd17ddd205358c51493be9
+PODFILE CHECKSUM: 869822901e088e2d9c54b6851abb4a1a6a92fa32
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.11.2

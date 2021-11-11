@@ -23,7 +23,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-import Foundation
+#if os(iOS)
+import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 import RxSwift
 import RxCocoa
 
@@ -32,6 +36,9 @@ infix operator <~> : DefaultPrecedence
 public func <~> <T>(relay: BehaviorRelay<T>, property: ControlProperty<T>) -> Disposable {
     return relay.twoWayBind(to: property)
 }
+
+#if os(iOS)
+
 public func <~> <T>(relay: BehaviorRelay<String>, textInput: TextInput<T>) -> Disposable {
     return relay.twoWaybind(to: textInput)
 }
@@ -90,12 +97,13 @@ extension BehaviorRelay where Element == String {
     }
     
 }
+#endif
 
 extension BehaviorRelay {
     
     func twoWayBind(to property: ControlProperty<Element>) -> Disposable {
         if Element.self == String.self {
-            #if DEBUG
+            #if DEBUG && !os(macOS)
             fatalError("It is ok to delete this message, but this is here to warn that you are maybe trying to bind to some `rx.text` property directly to relay.\n" +
                 "That will usually work ok, but for some languages that use IME, that simplistic method could cause unexpected issues because it will return intermediate results while text is being inputed.\n" +
                 "REMEDY: Just use `textField <~> relay` instead of `textField.rx.text <~> relay`.\n"
