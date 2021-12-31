@@ -5,14 +5,16 @@ import { PostService } from './post.service';
 import { Inject, Module } from 'react.di';
 import { combineLatest, fromEvent, Observable } from 'rxjs';
 import { map, pluck, startWith } from 'rxjs/operators';
+import {Post2Service} from "./post2.service";
 
 @Module({
   providers: [
-    PostService,
+    PostService, Post2Service
   ],
 })
 class App extends React.Component {
   @Inject postService!: PostService;
+  @Inject post2Service!: Post2Service;
 
   state = {
     number1: '1',
@@ -26,7 +28,7 @@ class App extends React.Component {
     console.log(this.postService);
     const f = (id: string) => {
       const e = document.getElementById(id) as HTMLInputElement;
-      return fromEvent(e, 'input').pipe<string, string>(pluck('target', 'value'), startWith(e.value)) as Observable<string>;
+      return fromEvent(e, 'input').pipe<unknown, unknown>(pluck('target', 'value'), startWith(e.value)) as Observable<string>;
     };
     const g = (s: string) => Number(s) || 0;
     combineLatest(f('number1'), f('number2'), f('number3'))
