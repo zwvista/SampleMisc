@@ -18,17 +18,19 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { PostService } from './post.service';
+import { Post2Service } from './post2.service';
 import { inject } from 'vue-typescript-inject';
 import { combineLatest, fromEvent, Observable } from 'rxjs';
 import { map, pluck, startWith } from 'rxjs/operators';
 
 @Component({
   providers: [
-    PostService,
+    PostService, Post2Service
   ],
 })
 export default class App extends Vue {
-  @inject() postService!: PostService;
+  // @inject() postService!: PostService;
+  @inject() post2Service!: Post2Service;
 
   number1 = '1';
   number2 = '2';
