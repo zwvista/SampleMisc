@@ -13,6 +13,7 @@ import { UtilityService } from './services/utility.service';
 import { combineLatest, fromEvent, Observable } from 'rxjs';
 import { map, pluck, startWith } from 'rxjs/operators';
 import { MiscService } from './services/misc.service';
+import {Post2Service} from './services/post2.service';
 
 @Component({
   selector: 'app-root',
@@ -40,6 +41,7 @@ export class AppComponent implements AfterViewInit {
               public errorHandlingService: ErrorHandlingService,
               public filteringService: FilteringService,
               public postService: PostService,
+              public post2Service: Post2Service,
               public transformingService: TransformingService,
               public toService: ToService,
               public utilityService: UtilityService,

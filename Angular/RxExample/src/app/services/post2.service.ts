@@ -1,11 +1,14 @@
-import { injectable } from 'vue-typescript-inject';
-import { Post } from './post';
+import { Injectable } from '@angular/core';
+import {Post} from './post';
+import {HttpClient} from '@angular/common/http';
 
-@injectable()
+@Injectable()
 export class Post2Service {
-  private readonly baseUrl = 'http://jsonplaceholder.typicode.com/';
+  private baseUrl = 'http://jsonplaceholder.typicode.com/';
 
-  constructor() {
+  constructor(private http: HttpClient) { }
+
+  restExample() {
     this.getPostAsString();
     this.getPostAsJson();
     this.getPosts(2);
