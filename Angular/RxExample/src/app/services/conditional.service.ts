@@ -58,7 +58,7 @@ export class ConditionalService {
 
   race1() {
     // take the first observable to emit
-    const example = race<number | string>(
+    const example = race<(number | string)[]>(
       // emit every 1.5s
       interval(1500),
       // emit every 1s
