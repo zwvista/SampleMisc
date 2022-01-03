@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="lolly.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://unpkg.com/@reduxjs/toolkit@latest/dist/redux-toolkit.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
@@ -53,7 +53,7 @@ class Lolly extends React.Component {
   }
 
   componentDidMount() {
-    $.get('https://zwvista2.tk/lolly/api.php/records/LANGUAGES?filter=ID,neq,0', response => {
+    fetch('https://zwvista2.tk/lolly/api.php/records/LANGUAGES?filter=ID,neq,0', response => {
       this.setState({
         langList: response.records,
         selectedLang: JSON.stringify(response.records[0]),
@@ -107,7 +107,7 @@ class Lolly extends React.Component {
   langChange = event => {
     var selectedLang = event ? event.target.value : this.state.selectedLang;
     if (event) this.setState({selectedLang: selectedLang});
-    $.get('https://zwvista2.tk/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + JSON.parse(selectedLang).ID, response => {
+    fetch('https://zwvista2.tk/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + JSON.parse(selectedLang).ID, response => {
       this.setState({
         dictList: response.records,
         selectedDict: JSON.stringify(response.records[0]),

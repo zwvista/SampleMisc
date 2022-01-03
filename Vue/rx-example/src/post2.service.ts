@@ -78,7 +78,7 @@ export class Post2Service {
   private async deletePost() {
     const url = `${this.baseUrl}posts/1`;
     const result = await fetch(url, {
-      method: 'DELETE'
+      method: 'DELETE',
     });
     const data = await result.text();
     console.log(data);

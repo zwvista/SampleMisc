@@ -41,10 +41,10 @@ export default class App extends Vue {
   mounted() {
     const f = (id: string) => {
       const e = document.getElementById(id) as HTMLInputElement;
-      return fromEvent(e, 'input').pipe<string, string>(pluck('target', 'value'), startWith(e.value)) as Observable<string>;
+      return fromEvent(e, 'input').pipe<unknown, unknown>(pluck('target', 'value'), startWith(e.value)) as Observable<string>;
     };
     const g = (s: string) => Number(s) || 0;
-    combineLatest(f('number1'), f('number2'), f('number3'))
+    combineLatest([f('number1'), f('number2'), f('number3')])
       .pipe(map((results: string[]) => String(g(results[0]) + g(results[1]) + g(results[2]))))
       .subscribe(result => this.result2 = result);
     this.onChangeNumber();

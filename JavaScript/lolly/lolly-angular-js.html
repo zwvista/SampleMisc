@@ -14,13 +14,13 @@
 <script>
 angular.module('lollyApp', []).controller("lollyCtrl", ["$scope", "$http", "$sce", function($scope, $http, $sce) {
 	$scope.word = '一人';
-	$http.get('https://zwvista.tk/lolly/api.php/records/LANGUAGES?filter=ID,neq,0').then(function(response) {
+	$http.get('https://zwvista2.tk/lolly/api.php/records/LANGUAGES?filter=ID,neq,0').then(function(response) {
     $scope.langList = response.data.records;
     $scope.selectedLang = $scope.langList[0];
 		$scope.langChanged();
   });
 	$scope.langChanged = function() {
-		$http.get('https://zwvista.tk/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + $scope.selectedLang.ID).then(function(response) {
+		$http.get('https://zwvista2.tk/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + $scope.selectedLang.ID).then(function(response) {
       $scope.dictList = response.data.records;
       $scope.selectedDict = $scope.dictList[0];
     });
