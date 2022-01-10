@@ -31,7 +31,7 @@ class App extends React.Component {
       return fromEvent(e, 'input').pipe<unknown, unknown>(pluck('target', 'value'), startWith(e.value)) as Observable<string>;
     };
     const g = (s: string) => Number(s) || 0;
-    combineLatest(f('number1'), f('number2'), f('number3'))
+    combineLatest([f('number1'), f('number2'), f('number3')])
       .pipe(map((results: string[]) => String(g(results[0]) + g(results[1]) + g(results[2]))))
       .subscribe(result2 => this.setState({result2}));
     this.onChangeNumber(null);
