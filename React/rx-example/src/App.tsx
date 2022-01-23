@@ -1,76 +1,37 @@
 import * as React from 'react';
-import './App.css';
+import 'react-tabs/style/react-tabs.css';
+import Add from "./Add";
+import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
+import {useState} from "react";
 
-import { PostService } from './post.service';
-import { Inject, Module } from 'react.di';
-import { combineLatest, fromEvent, Observable } from 'rxjs';
-import { map, pluck, startWith } from 'rxjs/operators';
-import {Post2Service} from "./post2.service";
+function App() {
+  const [index, setIndex] = useState(2);
 
-@Module({
-  providers: [
-    PostService, Post2Service
-  ],
-})
-class App extends React.Component {
-  @Inject postService!: PostService;
-  @Inject post2Service!: Post2Service;
-
-  state = {
-    number1: '1',
-    number2: '2',
-    number3: '3',
-    result: '',
-    result2: '',
-  };
-
-  componentDidMount() {
-    console.log(this.postService);
-    const f = (id: string) => {
-      const e = document.getElementById(id) as HTMLInputElement;
-      return fromEvent(e, 'input').pipe<unknown, unknown>(pluck('target', 'value'), startWith(e.value)) as Observable<string>;
-    };
-    const g = (s: string) => Number(s) || 0;
-    combineLatest([f('number1'), f('number2'), f('number3')])
-      .pipe(map((results: string[]) => String(g(results[0]) + g(results[1]) + g(results[2]))))
-      .subscribe(result2 => this.setState({result2}));
-    this.onChangeNumber(null);
+  function handleSelect(index1: number, last: number, event: Event) {
+    setIndex(index1);
   }
 
-  render() {
-    return (
-      <div className="App">
-        <p>
-          <input name="number1" className="number" value={this.state.number1} onChange={this.onChangeNumber} /> +
-          <input name="number2" className="number" value={this.state.number2} onChange={this.onChangeNumber} /> +
-          <input name="number3" className="number" value={this.state.number3} onChange={this.onChangeNumber} /> =
-          <label>{this.state.result}</label>
-        </p>
-        <p>
-          <input id="number1" className="number" defaultValue="1" /> +
-          <input id="number2" className="number" defaultValue="2" /> +
-          <input id="number3" className="number" defaultValue="3" /> =
-          <label>{this.state.result2}</label>
-        </p>
-      </div>
-    );
-  }
-
-  onChangeNumber = (e: any) => {
-    const f = () => {
-      const g = (s: string) => Number(s) || 0;
-      this.setState({
-        result: String(g(this.state.number1) + g(this.state.number2) + g(this.state.number3))
-      });
-    };
-    if (e != null) {
-      const elem = e.nativeEvent.target as HTMLInputElement;
-      // https://stackoverflow.com/questions/30782948/why-calling-react-setstate-method-doesnt-mutate-the-state-immediately
-      this.setState({[elem.name]: elem.value}, () => f());
-    } else {
-      f();
-    }
-  };
+  return (
+    <Tabs
+        onSelect={handleSelect}
+        selectedIndex={index}
+    >
+      <TabList>
+        <Tab>Foo</Tab>
+        <Tab>Bar</Tab>
+        <Tab>Baz</Tab>
+      </TabList>
+      <TabPanel>
+        <Add />
+      </TabPanel>
+      <TabPanel>
+        <h2>Hello from Bar</h2>
+      </TabPanel>
+      <TabPanel>
+        <h2>Hello from Baz</h2>
+      </TabPanel>
+    </Tabs>
+  );
 }
 
 export default App;
