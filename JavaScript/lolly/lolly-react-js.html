@@ -68,7 +68,7 @@ class Lolly extends React.Component {
       <LangList langList={this.state.langList} />
       <form className="form-horizontal" onSubmit={this.formSubmit} action="search" method="post">
         <div className="form-group">
-          <label className="col-sm-1 control-label" for='lang'>Language:</label>
+          <label className="col-sm-1 control-label" htmlFor='lang'>Language:</label>
             <div className="col-sm-3">
             <select className="form-control" onChange={this.langChange} value={this.state.selectedLang} id='lang' name='selectedLang'>
             {
@@ -78,7 +78,7 @@ class Lolly extends React.Component {
             }
             </select>
           </div>
-          <label className="col-sm-1 control-label" for='dict'>Dictionary:</label>
+          <label className="col-sm-1 control-label" htmlFor='dict'>Dictionary:</label>
             <div className="col-sm-3">
             <select className="form-control" onChange={this.onChange} value={this.state.selectedDict} id='dict' name='selectedDict'>
             {
@@ -90,7 +90,7 @@ class Lolly extends React.Component {
           </div>
         </div>
         <div className="form-group">
-          <label className="col-sm-1 control-label" for='word'>Word:</label>
+          <label className="col-sm-1 control-label" htmlFor='word'>Word:</label>
           <div className="col-sm-3">
             <input className="form-control" value={this.state.word} onChange={this.onChange} id="word" name='word' />
           </div>

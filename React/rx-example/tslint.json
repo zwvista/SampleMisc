@@ -15,6 +15,8 @@
     "member-access": false,
     "variable-name": false,
     "member-ordering": false,
-    "class-name": false
+    "class-name": false,
+    "curly": false,
+    "jsx-no-lambda": false
   }
 }

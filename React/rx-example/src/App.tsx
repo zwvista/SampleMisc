@@ -3,18 +3,26 @@ import 'react-tabs/style/react-tabs.css';
 import Add from "./Add";
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {useState} from "react";
+import Lolly, {lollyReducer} from "./Lolly";
+import {Provider} from "react-redux";
+import {combineReducers, configureStore} from "@reduxjs/toolkit";
+
+const rootReducer = combineReducers({
+  lolly: lollyReducer,
+})
+const store = configureStore({ reducer: rootReducer })
 
 function App() {
-  const [index, setIndex] = useState(2);
+  const [tabIndex, setTabIndex] = useState(2);
 
-  function handleSelect(index1: number, last: number, event: Event) {
-    setIndex(index1);
+  function handleSelect(index: number, last: number, event: Event) {
+    setTabIndex(index);
   }
 
   return (
     <Tabs
         onSelect={handleSelect}
-        selectedIndex={index}
+        selectedIndex={tabIndex}
     >
       <TabList>
         <Tab>Foo</Tab>
@@ -25,7 +33,9 @@ function App() {
         <Add />
       </TabPanel>
       <TabPanel>
-        <h2>Hello from Bar</h2>
+        <Provider store={store}>
+          <Lolly />
+        </Provider>
       </TabPanel>
       <TabPanel>
         <h2>Hello from Baz</h2>
