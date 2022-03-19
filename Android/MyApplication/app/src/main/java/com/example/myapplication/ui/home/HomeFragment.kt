@@ -16,7 +16,7 @@ import com.example.myapplication.ui.autoCleared
 
 class HomeFragment : Fragment() {
 
-    private val homeViewModel by lazy { vita.with(VitaOwner.Multiple(this)).getViewModel<HomeViewModel>() }
+    private val vm by lazy { vita.with(VitaOwner.Multiple(this)).getViewModel<HomeViewModel>() }
     private var binding by autoCleared<FragmentHomeBinding>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +24,10 @@ class HomeFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
-            model = homeViewModel
+            model = vm
         }
         return binding.root
     }
@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(a)
         }
         binding.button2.setOnClickListener {
-            homeViewModel.itemPosition.value = 0
+            vm.itemPosition.value = 0
         }
         binding.spinner.adapter = makeCustomAdapter(requireContext(), items) { it.label }
         setFragmentResultListener("requestKey") { requestKey, bundle ->
@@ -59,8 +59,9 @@ class HomeFragment : Fragment() {
                 Toast.makeText(requireContext(), "Settings", Toast.LENGTH_SHORT).show()
                 true
             }
-            R.id.action_settings2 -> {
-                Toast.makeText(requireContext(), "Settings2", Toast.LENGTH_SHORT).show()
+            R.id.action_dialog -> {
+                val a = HomeFragmentDirections.actionNavHomeToNavSampleDialog()
+                findNavController().navigate(a)
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_nav_home_to_nav_home2"
             app:destination="@id/nav_home2" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_sample_dialog"
+            app:destination="@id/nav_sample_dialog" />
     </fragment>
 
     <fragment
@@ -30,5 +33,10 @@
         android:id="@+id/nav_home2"
         android:name="com.example.myapplication.ui.home2.Home2Fragment"
         android:label="@string/title_home2"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home2" />
+    <dialog
+        android:id="@+id/nav_sample_dialog"
+        android:name="com.example.myapplication.ui.sample_dialog.SampleDialogFragment"
+        android:label="@string/title_sample_dialog"
+        tools:layout="@layout/fragment_sample_dialog" />
 </navigation>

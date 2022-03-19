@@ -6,7 +6,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="action_settings2">Settings2</string>
+    <string name="action_dialog">Dialog</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
@@ -14,4 +14,5 @@
     <string name="title_home2">Home2</string>
     <string name="go_to_home2">Go to Home2</string>
     <string name="return_to_home">Return to Home</string>
+    <string name="title_sample_dialog">Sample</string>
 </resources>
