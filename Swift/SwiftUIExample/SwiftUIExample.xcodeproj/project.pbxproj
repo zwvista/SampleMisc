@@ -17,6 +17,8 @@
 		D5A7E2BD281B73C8003709B7 /* SwiftUIExampleUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A7E2BC281B73C8003709B7 /* SwiftUIExampleUITestsLaunchTests.swift */; };
 		D5A7E2CB281B758F003709B7 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = D5A7E2CA281B758F003709B7 /* Alamofire */; };
 		D5A7E2CD281B75E4003709B7 /* RestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A7E2CC281B75E4003709B7 /* RestApi.swift */; };
+		D5FA9368281BE53A0053E262 /* NumbersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA9367281BE53A0053E262 /* NumbersViewModel.swift */; };
+		D5FA936A281BE9700053E262 /* NumbersModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5FA9369281BE9700053E262 /* NumbersModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		D5A7E2BA281B73C8003709B7 /* SwiftUIExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExampleUITests.swift; sourceTree = "<group>"; };
 		D5A7E2BC281B73C8003709B7 /* SwiftUIExampleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExampleUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D5A7E2CC281B75E4003709B7 /* RestApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestApi.swift; sourceTree = "<group>"; };
+		D5FA9367281BE53A0053E262 /* NumbersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersViewModel.swift; sourceTree = "<group>"; };
+		D5FA9369281BE9700053E262 /* NumbersModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumbersModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				D5A7E2A5281B73C8003709B7 /* Preview Content */,
 				D5A7E2CC281B75E4003709B7 /* RestApi.swift */,
 				D530EA3C281B8C3F00F48B9A /* Post.swift */,
+				D5FA9367281BE53A0053E262 /* NumbersViewModel.swift */,
+				D5FA9369281BE9700053E262 /* NumbersModifier.swift */,
 			);
 			path = SwiftUIExample;
 			sourceTree = "<group>";
@@ -272,6 +278,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5A7E2A2281B73C3003709B7 /* ContentView.swift in Sources */,
+				D5FA936A281BE9700053E262 /* NumbersModifier.swift in Sources */,
+				D5FA9368281BE53A0053E262 /* NumbersViewModel.swift in Sources */,
 				D5A7E2A0281B73C3003709B7 /* SwiftUIExampleApp.swift in Sources */,
 				D5A7E2CD281B75E4003709B7 /* RestApi.swift in Sources */,
 				D530EA3D281B8C3F00F48B9A /* Post.swift in Sources */,

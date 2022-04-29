@@ -27,5 +27,4 @@ class RestApi {
     static func getString(url: String) async -> String {
         try! await AF.request(url).serializingString().value
     }
-
 }

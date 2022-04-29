@@ -19,7 +19,7 @@ struct SwiftUIExampleApp: App {
         Task {
             print(await Post.getPostAsString())
             print(await Post.getPostAsJson())
-            (await Post.getPosts(n: 2)).forEach { print($0) }
+            print(await Post.getPosts(n: 2))
             print(await Post.createPost())
             print(await Post.updatePost())
             print(await Post.deletePost())
