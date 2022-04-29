@@ -15,19 +15,19 @@ struct Post : Codable {
     let title: String
     let body: String
     var description: String {
-        return "Post {userId = \(userId), id = \(id), title = \"\(title)\", body = \"\(body.replacingOccurrences(of: "\n", with: "\\n"))\"}";
+        "Post {userId = \(userId), id = \(id), title = \"\(title)\", body = \"\(body.replacingOccurrences(of: "\n", with: "\\n"))\"}";
     }
     
     static let url = "https://jsonplaceholder.typicode.com/"
 
     static func getPostAsString() -> Observable<String> {
-        return RestApi.getString(url: "\(url)posts/1")
+        RestApi.getString(url: "\(url)posts/1")
     }
     static func getPostAsJson() -> Observable<Post> {
-        return RestApi.getObject(url: "\(url)posts/1")
+        RestApi.getObject(url: "\(url)posts/1")
     }
     static func getPosts(n: Int) -> Observable<Post> {
-        return RestApi.getArray(url: "\(url)posts").flatMap { Observable.from($0) }.take(n)
+        RestApi.getArray(url: "\(url)posts").flatMap { Observable.from($0) }.take(n)
     }
     static func createPost() -> Observable<String> {
         let post = Post(userId: 101, id: 0, title: "test title", body: "test body")

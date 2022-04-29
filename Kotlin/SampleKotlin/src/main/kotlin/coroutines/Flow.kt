@@ -182,7 +182,7 @@ fun flowC() = runBlocking {
         }
 }
 
-fun simple(): Flow<Int> = flow {
+fun simpleD(): Flow<Int> = flow {
     log("Started simple flow")
     for (i in 1..3) {
         emit(i)
@@ -190,7 +190,7 @@ fun simple(): Flow<Int> = flow {
 }
 
 fun flowD() = runBlocking {
-    simple().collect { value -> log("Collected $value") }
+    simpleD().collect { value -> log("Collected $value") }
 }
 
 fun simpleE(): Flow<Int> = flow {
