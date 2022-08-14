@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		01B2F405150953DF0BB0123F /* Pods_RxExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21ED21882CD61008CC9BFC09 /* Pods_RxExample.framework */; };
+		8C8546EC28A9116F007C4A01 /* Numbers2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8546EB28A9116F007C4A01 /* Numbers2ViewController.swift */; };
+		8C8546EE28A91544007C4A01 /* Numbers3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C8546ED28A91544007C4A01 /* Numbers3ViewController.swift */; };
 		954D8AC421326F5400651A80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954D8AC321326F5400651A80 /* AppDelegate.swift */; };
 		954D8AC921326F5400651A80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 954D8AC721326F5400651A80 /* Main.storyboard */; };
 		954D8ACB21326F5500651A80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 954D8ACA21326F5500651A80 /* Assets.xcassets */; };
@@ -47,6 +49,8 @@
 		21ED21882CD61008CC9BFC09 /* Pods_RxExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EE2031BF2F0025521BE9F20 /* Pods-RxExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxExample/Pods-RxExample.release.xcconfig"; sourceTree = "<group>"; };
 		802BC58473772FA2B6501693 /* Pods-RxExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxExample/Pods-RxExample.debug.xcconfig"; sourceTree = "<group>"; };
+		8C8546EB28A9116F007C4A01 /* Numbers2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers2ViewController.swift; sourceTree = "<group>"; };
+		8C8546ED28A91544007C4A01 /* Numbers3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Numbers3ViewController.swift; sourceTree = "<group>"; };
 		954D8AC021326F5400651A80 /* RxExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		954D8AC321326F5400651A80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		954D8AC821326F5400651A80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				954D8B3D2134580D00651A80 /* NumbersViewController.swift */,
+				8C8546EB28A9116F007C4A01 /* Numbers2ViewController.swift */,
+				8C8546ED28A91544007C4A01 /* Numbers3ViewController.swift */,
 			);
 			path = Numbers;
 			sourceTree = "<group>";
@@ -185,8 +191,8 @@
 		954D8B402134587600651A80 /* MasterDetail */ = {
 			isa = PBXGroup;
 			children = (
-				954D8B422134587600651A80 /* DetailViewController.swift */,
 				954D8B432134587600651A80 /* MasterViewController.swift */,
+				954D8B422134587600651A80 /* DetailViewController.swift */,
 			);
 			path = MasterDetail;
 			sourceTree = "<group>";
@@ -384,6 +390,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				95837E9F24DFD3CC00B5D2AE /* StopWatchViewModel.swift in Sources */,
+				8C8546EE28A91544007C4A01 /* Numbers3ViewController.swift in Sources */,
+				8C8546EC28A9116F007C4A01 /* Numbers2ViewController.swift in Sources */,
 				954D8AF6213270FE00651A80 /* RestApi.swift in Sources */,
 				954D8AF4213270FE00651A80 /* Post.swift in Sources */,
 				954D8B3F2134580D00651A80 /* NumbersViewController.swift in Sources */,
@@ -571,6 +579,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U259NHMY78;
 				INFOPLIST_FILE = RxExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -590,6 +599,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U259NHMY78;
 				INFOPLIST_FILE = RxExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -2,6 +2,7 @@ PODS:
   - Alamofire (5.4.4)
   - CodableAlamofire (1.2.4):
     - Alamofire (~> 5.4.0)
+  - CombineCocoa (0.4.0)
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
   - RxAlamofire (6.1.1):
@@ -21,6 +22,7 @@ PODS:
 
 DEPENDENCIES:
   - CodableAlamofire (from `https://github.com/zwvista/CodableAlamofire`)
+  - CombineCocoa
   - "NSObject+Rx"
   - RxAlamofire (~> 6)
   - RxBinding (from `https://github.com/zwvista/RxBinding`)
@@ -28,6 +30,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - CombineCocoa
     - "NSObject+Rx"
     - RxAlamofire
     - RxCocoa
@@ -51,6 +54,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   CodableAlamofire: 73f910ddd6b53292cf60260a88f4c40def9de394
+  CombineCocoa: 68a050228ce7c53c1c5ac2c57cccf92a7f5c5085
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
   RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
   RxBinding: a09619842d943f157557541866f7ea832687e0ab
@@ -58,6 +62,6 @@ SPEC CHECKSUMS:
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
 
-PODFILE CHECKSUM: 869822901e088e2d9c54b6851abb4a1a6a92fa32
+PODFILE CHECKSUM: c05e912f42331cbfc83360a8d57c5d63092cd0d1
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
