@@ -41,6 +41,11 @@ class StopWatchViewController: UIViewController {
 
 extension StopWatchViewController {
     func bind() {
+        // if startStopButton is tapped
+        // check the latest(current) value of isTimerWorking
+        // and set isPauseTimer to the opposite value of isTimerWorking
+        // isTimerWorking is just the driver of isPauseTimer
+        // so isPauseTimer will be set to its own opposite value
         startStopButton.rx.tap.asSignal()
             .withLatestFrom(viewModel.isTimerWorking)
             .emit(onNext: { [weak self] isTimerWorking in
@@ -48,6 +53,8 @@ extension StopWatchViewController {
             })
             .disposed(by: disposeBag)
 
+        // if resetButton is tapped
+        // isResetButtonTapped will be set to a new Void value
         resetButton.rx.tap.asSignal()
             .emit(to: viewModel.isResetButtonTapped)
             .disposed(by: disposeBag)

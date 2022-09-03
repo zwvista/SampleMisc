@@ -23,6 +23,8 @@ final class StopWatchViewModel {
             .map { String("\(Double($0) / 10)") }
             .asDriver(onErrorDriveWith: .empty())
         
+        // isResetButtonHidden is set to isTimerWorking whenever isTimerWorking is set
+        // isResetButtonHidden is set to true whenever isResetButtonTapped is set
         isResetButtonHidden = Observable.merge(isTimerWorking.asObservable(), isResetButtonTapped.map { _ in true }.asObservable())
             .skip(1)
             .asDriver(onErrorDriveWith: .empty())

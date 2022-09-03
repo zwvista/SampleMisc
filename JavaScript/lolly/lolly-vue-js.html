@@ -64,7 +64,7 @@ var app = new Vue({
     dictUrl: 'about:blank',
   },
   mounted() {
-    $.get('https://zwvista2.tk/lolly/api.php/records/LANGUAGES?filter=ID,neq,0', response => {
+    $.get('https://zwvista.com/lolly/api.php/records/LANGUAGES?filter=ID,neq,0', response => {
       this.langList = response.records;
       this.selectedLang = this.langList[0];
       this.langChange();
@@ -72,7 +72,7 @@ var app = new Vue({
   },
  	methods: {
     langChange() {
-      $.get('https://zwvista2.tk/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + this.selectedLang.ID, response => {
+      $.get('https://zwvista.com/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + this.selectedLang.ID, response => {
         this.dictList = response.records;
         this.selectedDict = this.dictList[0];
       });

@@ -53,7 +53,7 @@ class Lolly extends React.Component {
   }
 
   componentDidMount() {
-    $.get('https://zwvista2.tk/lolly/api.php/records/LANGUAGES?filter=ID,neq,0', response => {
+    $.get('https://zwvista.com/lolly/api.php/records/LANGUAGES?filter=ID,neq,0', response => {
       this.setState({
         langList: response.records,
         selectedLang: JSON.stringify(response.records[0]),
@@ -107,7 +107,7 @@ class Lolly extends React.Component {
   langChange = event => {
     var selectedLang = event ? event.target.value : this.state.selectedLang;
     if (event) this.setState({selectedLang: selectedLang});
-    $.get('https://zwvista2.tk/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + JSON.parse(selectedLang).ID, response => {
+    $.get('https://zwvista.com/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + JSON.parse(selectedLang).ID, response => {
       this.setState({
         dictList: response.records,
         selectedDict: JSON.stringify(response.records[0]),
