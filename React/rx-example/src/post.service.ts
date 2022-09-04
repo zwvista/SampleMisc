@@ -1,10 +1,11 @@
-import { Injectable } from 'react.di';
+import 'reflect-metadata';
+import { injectable } from 'inversify';
 import { Observable, from } from 'rxjs';
 import { map, mergeAll, take, tap } from 'rxjs/operators';
 import { Post } from './post';
 import { Rxios } from 'rxios';
 
-@Injectable
+@injectable()
 export class PostService {
   private readonly http = new Rxios();
   private readonly baseUrl = 'https://jsonplaceholder.typicode.com/';

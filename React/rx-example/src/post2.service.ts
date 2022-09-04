@@ -1,7 +1,8 @@
-import { Injectable } from 'react.di';
+import 'reflect-metadata';
+import { injectable } from 'inversify';
 import { Post } from './post';
 
-@Injectable
+@injectable()
 export class Post2Service {
   private readonly baseUrl = 'https://jsonplaceholder.typicode.com/';
 

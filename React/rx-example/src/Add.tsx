@@ -2,19 +2,15 @@ import * as React from 'react';
 import './App.css';
 
 import { PostService } from './post.service';
-import {Inject, Module} from 'react.di';
+import 'reflect-metadata';
+import {resolve} from "inversify-react";
 import { combineLatest, fromEvent, Observable } from 'rxjs';
 import { map, pluck, startWith } from 'rxjs/operators';
 import {Post2Service} from "./post2.service";
 
-@Module({
-  providers: [
-    PostService, Post2Service
-  ],
-})
 class Add extends React.Component {
-  @Inject postService!: PostService;
-  @Inject post2Service!: Post2Service;
+  @resolve postService!: PostService;
+  @resolve post2Service!: Post2Service;
 
   state = {
     number1: '1',
