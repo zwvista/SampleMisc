@@ -2,7 +2,7 @@ import { Injectable } from 'react.di';
 import { Observable, from } from 'rxjs';
 import { map, mergeAll, take, tap } from 'rxjs/operators';
 import { Post } from './post';
-import { Rxios } from './rxios';
+import { Rxios } from 'rxios';
 
 @Injectable
 export class PostService {

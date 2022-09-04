@@ -53,7 +53,7 @@ export const lollyReducer = lollySlice.reducer;
 function langChange(lang: any) {
   return async (dispatch: any) => {
     dispatch(setSelectedLang(lang));
-    const response = await fetch('https://zwvista2.tk/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + JSON.parse(lang).ID);
+    const response = await fetch('https://zwvista.com/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + JSON.parse(lang).ID);
     const data = await response.json();
     dispatch(setDictList(data.records));
     dispatch(setSelectedDict(JSON.stringify(data.records[0])));
@@ -61,7 +61,7 @@ function langChange(lang: any) {
 }
 function init() {
   return async (dispatch: any) => {
-    const response = await fetch('https://zwvista2.tk/lolly/api.php/records/LANGUAGES?filter=ID,neq,0');
+    const response = await fetch('https://zwvista.com/lolly/api.php/records/LANGUAGES?filter=ID,neq,0');
     const data = await response.json();
     dispatch(setLangList(data.records));
     dispatch(langChange(JSON.stringify(data.records[0])));
