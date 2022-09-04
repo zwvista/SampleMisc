@@ -27,8 +27,8 @@ function LangList(props: any) {
 const initialState = {
   langList: [],
   dictList: [],
-  selectedLang: null,
-  selectedDict: null,
+  selectedLang: undefined,
+  selectedDict: undefined,
   word: '一人',
   redirectSearch: false,
   dictUrl: 'about:blank',

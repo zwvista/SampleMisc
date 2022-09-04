@@ -20,27 +20,27 @@ function App() {
   }
 
   return (
-      <Tabs
-          onSelect={handleSelect}
-          selectedIndex={tabIndex}
-      >
-        <TabList>
-          <Tab>Foo</Tab>
-          <Tab>Bar</Tab>
-          <Tab>Baz</Tab>
-        </TabList>
-        <TabPanel>
-          <Add />
-        </TabPanel>
-        <TabPanel>
-          <Provider store={store}>
-            <Lolly />
-          </Provider>
-        </TabPanel>
-        <TabPanel>
-          <h2>Hello from Baz</h2>
-        </TabPanel>
-      </Tabs>
+    <Tabs
+        onSelect={handleSelect}
+        selectedIndex={tabIndex}
+    >
+      <TabList>
+        <Tab>Foo</Tab>
+        <Tab>Bar</Tab>
+        <Tab>Baz</Tab>
+      </TabList>
+      <TabPanel>
+        <Add />
+      </TabPanel>
+      <TabPanel>
+        <Provider store={store}>
+          <Lolly />
+        </Provider>
+      </TabPanel>
+      <TabPanel>
+        <h2>Hello from Baz</h2>
+      </TabPanel>
+    </Tabs>
   );
 }
 

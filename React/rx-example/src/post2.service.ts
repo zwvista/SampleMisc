@@ -3,7 +3,7 @@ import { Post } from './post';
 
 @Injectable
 export class Post2Service {
-  private readonly baseUrl = 'http://jsonplaceholder.typicode.com/';
+  private readonly baseUrl = 'https://jsonplaceholder.typicode.com/';
 
   constructor() {
     this.getPostAsString();
