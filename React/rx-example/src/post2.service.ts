@@ -37,6 +37,7 @@ export class Post2Service {
     (data as Post[]).slice(0, n).map(v => {
       const post = Object.assign(new Post(), v);
       console.log(post);
+      return post;
     });
   }
 
