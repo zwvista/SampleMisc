@@ -16,6 +16,7 @@
     "@types/react-tabs": "^2.3.4",
     "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "customize-cra": "^1.0.0",
+    "eslint": "8.22.0",
     "inversify-react": "^1.0.2",
     "react": "^18.2.0",
     "react-app-rewired": "^2.2.1",

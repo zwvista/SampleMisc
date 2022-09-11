@@ -29,7 +29,7 @@ import { map, pluck, startWith } from 'rxjs/operators';
   ],
 })
 export default class App extends Vue {
-  // @inject() postService!: PostService;
+  @inject() postService!: PostService;
   @inject() post2Service!: Post2Service;
 
   number1 = '1';

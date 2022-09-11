@@ -121,7 +121,7 @@ function Lolly() {
           <input type="submit" className="btn btn-primary" value='Search(redirect)' id='redirectSearch' onClick={() => dispatch(setRedirectSearch(true))} />
         </div>
       </form>
-      <iframe id='dictframe' src={dictUrl} />
+      <iframe id='dictframe' title='dictframe' src={dictUrl} />
     </div>
   );
 }

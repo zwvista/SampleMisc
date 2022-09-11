@@ -22,6 +22,7 @@ class Add extends React.Component {
 
   componentDidMount() {
     console.log(this.postService);
+    console.log(this.post2Service);
     const f = (id: string) => {
       const e = document.getElementById(id) as HTMLInputElement;
       return fromEvent(e, 'input').pipe<unknown, unknown>(pluck('target', 'value'), startWith(e.value)) as Observable<string>;

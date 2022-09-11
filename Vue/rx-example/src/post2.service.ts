@@ -3,7 +3,7 @@ import { Post } from './post';
 
 @injectable()
 export class Post2Service {
-  private readonly baseUrl = 'http://jsonplaceholder.typicode.com/';
+  private readonly baseUrl = 'https://jsonplaceholder.typicode.com/';
 
   constructor() {
     this.getPostAsString();
@@ -36,6 +36,7 @@ export class Post2Service {
     (data as Post[]).slice(0, n).map(v => {
       const post = Object.assign(new Post(), v);
       console.log(post);
+      return post;
     });
   }
 
