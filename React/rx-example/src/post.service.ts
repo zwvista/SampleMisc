@@ -4,13 +4,16 @@ import { Observable, from } from 'rxjs';
 import { map, mergeAll, take, tap } from 'rxjs/operators';
 import { Post } from './post';
 import { Rxios } from 'rxios';
+import {Post2Service} from "./post2.service";
+import {inject} from "inversify";
 
 @injectable()
 export class PostService {
   private readonly http = new Rxios();
   private readonly baseUrl = 'https://jsonplaceholder.typicode.com/';
 
-  constructor() {
+  constructor(@inject(Post2Service) post2Service: Post2Service) {
+    console.log(post2Service);
     this.getPostAsString().subscribe();
     this.getPostAsJson().subscribe();
     this.getPosts(2).subscribe();

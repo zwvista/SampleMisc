@@ -1,6 +1,7 @@
 import * as React from 'react';
 import 'react-tabs/style/react-tabs.css';
 import Add from "./Add";
+import Add2 from "./Add2";
 import {Tab, TabList, TabPanel, Tabs} from "react-tabs";
 import {useState} from "react";
 import Lolly, {lollyReducer} from "./Lolly";
@@ -13,7 +14,7 @@ const rootReducer = combineReducers({
 const store = configureStore({ reducer: rootReducer })
 
 function App() {
-  const [tabIndex, setTabIndex] = useState(2);
+  const [tabIndex, setTabIndex] = useState(3);
 
   function handleSelect(index: number, last: number, event: Event) {
     setTabIndex(index);
@@ -26,11 +27,15 @@ function App() {
     >
       <TabList>
         <Tab>Foo</Tab>
+        <Tab>Foo2</Tab>
         <Tab>Bar</Tab>
         <Tab>Baz</Tab>
       </TabList>
       <TabPanel>
         <Add />
+      </TabPanel>
+      <TabPanel>
+        <Add2 />
       </TabPanel>
       <TabPanel>
         <Provider store={store}>

@@ -14,8 +14,8 @@ const root = ReactDOM.createRoot(
 root.render(
     <Provider container={() => {
         const container = new Container();
-        container.bind(PostService).toSelf();
-        container.bind(Post2Service).toSelf();
+        container.bind(PostService).toSelf().inSingletonScope();
+        container.bind(Post2Service).toSelf().inSingletonScope();
         return container;
     }}>
         <App />
