@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   catchError,
-  combineAll,
+  combineLatestAll,
   delay,
   map,
   mapTo,
@@ -20,7 +20,7 @@ export class CombiningService {
 
   constructor() { }
 
-  combineAll1() {
+  combineLatestAll1() {
     // emit every 1s, take 2
     const source = interval(1000).pipe(take(2));
     // map each emitted value from source to interval observable that takes 5 values
@@ -29,10 +29,10 @@ export class CombiningService {
     );
     /*
       2 values from source will map to 2 (inner) interval observables that emit every 1s
-      combineAll uses combineLatest strategy, emitting the last value from each
+      combineLatestAll uses combineLatest strategy, emitting the last value from each
       whenever either observable emits a value
     */
-    const combined = example.pipe(combineAll());
+    const combined = example.pipe(combineLatestAll());
     /*
       output:
       ["Result (0): 0", "Result (1): 0"]
@@ -85,10 +85,10 @@ export class CombiningService {
     const timerThree = timer(3000, 4000);
 
     // combineLatest also takes an optional projection function
-    const combinedProject = combineLatest(
+    const combinedProject = combineLatest([
       timerOne,
       timerTwo,
-      timerThree,
+      timerThree],
       (one, two, three) => {
         return `Timer One (Proj) Latest: ${one},
                   Timer Two (Proj) Latest: ${two},
@@ -116,7 +116,7 @@ export class CombiningService {
         tap(setHtml(`${id}Total`))
       );
 
-    const combineTotal$ = combineLatest(addOneClick$('red'), addOneClick$('black'))
+    const combineTotal$ = combineLatest([addOneClick$('red'), addOneClick$('black')])
       .pipe(map(([val1, val2]) => val1 + val2))
       .subscribe(setHtml('total'));
   }
@@ -131,7 +131,7 @@ export class CombiningService {
       when all observables complete, give the last
       emitted value from each as an array
     */
-    const example = forkJoin(
+    const example = forkJoin([
       // emit 'Hello' immediately
       of('Hello'),
       // emit 'World' after 1 second
@@ -142,7 +142,7 @@ export class CombiningService {
       interval(1000).pipe(take(2)),
       // promise that resolves to 'Promise Resolved' after 5 seconds
       myPromise('RESULT')
-    );
+    ]);
     // output: ["Hello", "World", 0, 1, "Promise Resolved: RESULT"]
     const subscribe = example.subscribe(val => console.log(val));
   }
@@ -174,14 +174,14 @@ export class CombiningService {
       when all observables complete, give the last
       emitted value from each as an array
     */
-    const example = forkJoin(
+    const example = forkJoin([
       // emit 'Hello' immediately
       of('Hello'),
       // emit 'World' after 1 second
       of('World').pipe(delay(1000)),
       //  throw error
-      throwError('This will error')
-    ).pipe(catchError(error => of(error)));
+      throwError(() => 'This will error')
+    ]).pipe(catchError(error => of(error)));
     // output: 'This will Error'
     const subscribe = example.subscribe(val => console.log(val));
   }
@@ -197,7 +197,7 @@ export class CombiningService {
       // emit 'World' after 1 second
       of('World').pipe(delay(1000)),
       //  throw error
-      throwError('This will error').pipe(catchError(error => of(error)))
+      throwError(() => 'This will error').pipe(catchError(error => of(error)))
     );
     // output: ["Hello", "World", "This will error"]
     const subscribe = example.subscribe(val => console.log(val));
