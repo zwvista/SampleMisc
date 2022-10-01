@@ -59,6 +59,9 @@ var store = new Vuex.Store({
     dictList: [],
     selectedLang: null,
     selectedDict: null,
+    word: '一人',
+    dictUrl: 'about:blank',
+    redirectSearch: false,
   },
   mutations: {
     setLangs(state, payload) {
@@ -74,19 +77,28 @@ var store = new Vuex.Store({
     },
     setSelectedDict(state, payload) {
       state.selectedDict = payload;
-    }
+    },
+    setWord(state, payload) {
+      state.word = payload;
+    },
+    setDictUrl(state, payload) {
+      state.dictUrl = payload;
+    },
+    setRedirectSearch(state, payload) {
+      state.redirectSearch = payload;
+    },
   },
   actions: {
-    fetchLangs({commit, dispatch}) { //fetchLangs(context)
-      $.get('https://zwvista.com/lolly/api.php/records/LANGUAGES?filter=ID,neq,0', response => {
-        commit("setLangs", response); //context.commit("setLangs", response);
-        dispatch("fetchDicts"); //context.dispatch("fetchDicts");
-      });
+    async fetchLangs({commit, dispatch}) { //fetchLangs(context)
+      const response = await fetch('https://zwvista.com/lolly/api.php/records/LANGUAGES?filter=ID,neq,0');
+      const data = await response.json();
+      commit("setLangs", data); //context.commit("setLangs", data);
+      dispatch("fetchDicts"); //context.dispatch("fetchDicts");
     },
-    fetchDicts({commit, getters}) {
-      $.get('https://zwvista.com/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + getters.selectedLang.ID, response => {
-        commit("setDicts", response);
-      });
+    async fetchDicts({commit, getters}) {
+      const response = await fetch('https://zwvista.com/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + getters.selectedLang.ID);
+      const data = await response.json();
+      commit("setDicts", data);
     }
   },
   getters: {
@@ -94,24 +106,22 @@ var store = new Vuex.Store({
     dictList: ({dictList}) => dictList,
     selectedLang: ({selectedLang}) => selectedLang,
     selectedDict: ({selectedDict}) => selectedDict,
+    word: ({word}) => word,
+    dictUrl: ({dictUrl}) => dictUrl,
+    redirectSearch: ({redirectSearch}) => redirectSearch,
   },
 }); 
 var app = new Vue({
   el: '#app',
-  data: {
-    word: '一人',
-    dictUrl: 'about:blank',
-    redirectSearch: false,
-  },
   store, //store: store
-  mounted() {
-    this.fetchLangs(); //store.dispatch("fetchLangs");
+  async mounted() {
+    await this.fetchLangs(); //store.dispatch("fetchLangs");
   },
  	methods: {
     ...Vuex.mapActions(['fetchLangs','fetchDicts']),
-    ...Vuex.mapMutations(['setSelectedLang','setSelectedDict']),
-    langChange() {
-      this.fetchDicts(); //store.dispatch("fetchDicts");
+    ...Vuex.mapMutations(['setSelectedLang','setSelectedDict','setWord','setDictUrl','setRedirectSearch']),
+    async langChange() {
+      await this.fetchDicts(); //store.dispatch("fetchDicts");
     },
 		formSubmit() {
       let url = this.selectedDict.URL;
@@ -139,6 +149,18 @@ var app = new Vue({
     selectedDict: {
       get: () => store.getters.selectedDict,
       set(newValue) { this.setSelectedDict(newValue); }, //set: newValue => store.commit("setSelectedDict", newValue),
+    },
+    word: {
+      get: () => store.getters.word,
+      set(newValue) { this.setWord(newValue); }, //set: newValue => store.commit("setWord", newValue),
+    },
+    dictUrl: {
+      get: () => store.getters.dictUrl,
+      set(newValue) { this.setDictUrl(newValue); }, //set: newValue => store.commit("setDictUrl", newValue),
+    },
+    redirectSearch: {
+      get: () => store.getters.redirectSearch,
+      set(newValue) { this.setRedirectSearch(newValue); }, //set: newValue => store.commit("setRedirectSearch", newValue),
     },
   },
 });
