@@ -95,20 +95,11 @@ var store = new Vuex.Store({
       commit("setLangs", data); //context.commit("setLangs", data);
       dispatch("fetchDicts"); //context.dispatch("fetchDicts");
     },
-    async fetchDicts({commit, getters}) {
-      const response = await fetch('https://zwvista.com/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + getters.selectedLang.ID);
+    async fetchDicts({commit, state}) {
+      const response = await fetch('https://zwvista.com/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + state.selectedLang.ID);
       const data = await response.json();
       commit("setDicts", data);
-    }
-  },
-  getters: {
-    langList: ({langList}) => langList, //langList: state => state.langList,  
-    dictList: ({dictList}) => dictList,
-    selectedLang: ({selectedLang}) => selectedLang,
-    selectedDict: ({selectedDict}) => selectedDict,
-    word: ({word}) => word,
-    dictUrl: ({dictUrl}) => dictUrl,
-    redirectSearch: ({redirectSearch}) => redirectSearch,
+    },
   },
 }); 
 var app = new Vue({
@@ -119,7 +110,6 @@ var app = new Vue({
   },
  	methods: {
     ...Vuex.mapActions(['fetchLangs','fetchDicts']),
-    ...Vuex.mapMutations(['setSelectedLang','setSelectedDict','setWord','setDictUrl','setRedirectSearch']),
     async langChange() {
       await this.fetchDicts(); //store.dispatch("fetchDicts");
     },
@@ -139,28 +129,28 @@ var app = new Vue({
     },
   },
   computed: {
-    ...Vuex.mapGetters(['langList','dictList']),
-    //langList: () => store.getters.langList,
-    //dictList: () => store.getters.dictList,
+    ...Vuex.mapState(['langList','dictList']),
+    //langList: () => store.state.langList,
+    //dictList: () => store.state.dictList,
     selectedLang: {
-      get: () => store.getters.selectedLang,
-      set(newValue) { this.setSelectedLang(newValue); }, //set: newValue => store.commit("setSelectedLang", newValue),
+      ...Vuex.mapState({ get: 'selectedLang' }),//get: store.state.selectedLang,
+      ...Vuex.mapMutations({ set: 'setSelectedLang' }),//set: newValue => store.commit("setSelectedLang", newValue),
     },
     selectedDict: {
-      get: () => store.getters.selectedDict,
-      set(newValue) { this.setSelectedDict(newValue); }, //set: newValue => store.commit("setSelectedDict", newValue),
+      ...Vuex.mapState({ get: 'selectedDict' }),
+      ...Vuex.mapMutations({ set: 'setSelectedDict' }),
     },
     word: {
-      get: () => store.getters.word,
-      set(newValue) { this.setWord(newValue); }, //set: newValue => store.commit("setWord", newValue),
+      ...Vuex.mapState({ get: 'word' }),
+      ...Vuex.mapMutations({ set: 'setWord' }),
     },
     dictUrl: {
-      get: () => store.getters.dictUrl,
-      set(newValue) { this.setDictUrl(newValue); }, //set: newValue => store.commit("setDictUrl", newValue),
+      ...Vuex.mapState({ get: 'dictUrl' }),
+      ...Vuex.mapMutations({ set: 'setDictUrl' }),
     },
     redirectSearch: {
-      get: () => store.getters.redirectSearch,
-      set(newValue) { this.setRedirectSearch(newValue); }, //set: newValue => store.commit("setRedirectSearch", newValue),
+      ...Vuex.mapState({ get: 'redirectSearch' }),
+      ...Vuex.mapMutations({ set: 'setRedirectSearch' }),
     },
   },
 });
