@@ -10,8 +10,8 @@
 <link rel="stylesheet" href="lolly.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.0.1/vuex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.10/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vuex/3.6.2/vuex.min.js"></script>
 </head>
 <body>
 <div id="app">
@@ -114,7 +114,7 @@ var app = new Vue({
       this.fetchDicts(); //store.dispatch("fetchDicts");
     },
 		formSubmit() {
-      var url = this.selectedDict.URL;
+      let url = this.selectedDict.URL;
       url = url.replace('{0}', encodeURIComponent(this.word));
       if(this.redirectSearch)
         window.location = url;

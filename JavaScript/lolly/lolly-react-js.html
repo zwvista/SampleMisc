@@ -8,10 +8,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="lolly.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 </head>
 <body>
@@ -52,14 +51,14 @@ class Lolly extends React.Component {
     };
   }
 
-  componentDidMount() {
-    $.get('https://zwvista.com/lolly/api.php/records/LANGUAGES?filter=ID,neq,0', response => {
-      this.setState({
-        langList: response.records,
-        selectedLang: JSON.stringify(response.records[0]),
-      });
-      this.langChange();
+  async componentDidMount() {
+    const response = await fetch('https://zwvista.com/lolly/api.php/records/LANGUAGES?filter=ID,neq,0');
+    const data = await response.json();
+    this.setState({
+      langList: data.records,
+      selectedLang: JSON.stringify(data.records[0]),
     });
+    await this.langChange();
   }
 
   render() {
@@ -104,14 +103,14 @@ class Lolly extends React.Component {
     );
   }
 
-  langChange = event => {
-    var selectedLang = event ? event.target.value : this.state.selectedLang;
+  langChange = async event => {
+    const selectedLang = event ? event.target.value : this.state.selectedLang;
     if (event) this.setState({selectedLang: selectedLang});
-    $.get('https://zwvista.com/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + JSON.parse(selectedLang).ID, response => {
-      this.setState({
-        dictList: response.records,
-        selectedDict: JSON.stringify(response.records[0]),
-      });
+    const response = await fetch('https://zwvista.com/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + JSON.parse(selectedLang).ID);
+    const data = await response.json();
+    this.setState({
+      dictList: data.records,
+      selectedDict: JSON.stringify(data.records[0]),
     });
   }
 
@@ -121,7 +120,7 @@ class Lolly extends React.Component {
 
   formSubmit = event => {
     event.preventDefault();
-    var url = JSON.parse(this.state.selectedDict).URL;
+    let url = JSON.parse(this.state.selectedDict).URL;
     url = url.replace('{0}', encodeURIComponent(this.state.word));
     if(this.state.redirectSearch)
       window.location = url;

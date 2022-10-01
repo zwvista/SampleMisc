@@ -8,9 +8,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="lolly.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.10/vue.min.js"></script>
 </head>
 <body>
 <div id="app">
@@ -63,22 +62,22 @@ var app = new Vue({
     redirectSearch: false,
     dictUrl: 'about:blank',
   },
-  mounted() {
-    $.get('https://zwvista.com/lolly/api.php/records/LANGUAGES?filter=ID,neq,0', response => {
-      this.langList = response.records;
-      this.selectedLang = this.langList[0];
-      this.langChange();
-    });
+  async mounted() {
+    const response = await fetch('https://zwvista.com/lolly/api.php/records/LANGUAGES?filter=ID,neq,0');
+    const data = await response.json();
+    this.langList = data.records;
+    this.selectedLang = this.langList[0];
+    await this.langChange();
   },
  	methods: {
-    langChange() {
-      $.get('https://zwvista.com/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + this.selectedLang.ID, response => {
-        this.dictList = response.records;
-        this.selectedDict = this.dictList[0];
-      });
+    async langChange() {
+      const response = await fetch('https://zwvista.com/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + this.selectedLang.ID);
+      const data = await response.json();
+      this.dictList = data.records;
+      this.selectedDict = this.dictList[0];
     },
 		formSubmit() {
-      var url = this.selectedDict.URL;
+      let url = this.selectedDict.URL;
       url = url.replace('{0}', encodeURIComponent(this.word));
       if(this.redirectSearch)
         window.location = url;
