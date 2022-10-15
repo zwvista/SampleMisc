@@ -26,6 +26,10 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { Container } from 'inversify';
+import {Provider} from "inversify-react";
+import {PostService} from "./post.service";
+import {Post2Service} from "./post2.service";
 
 const Section: React.FC<
   PropsWithChildren<{
@@ -65,6 +69,12 @@ const App = () => {
   };
 
   return (
+    <Provider container={() => {
+        const container = new Container();
+        container.bind(PostService).toSelf().inSingletonScope();
+        container.bind(Post2Service).toSelf().inSingletonScope();
+        return container;
+    }}>
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
@@ -95,6 +105,7 @@ const App = () => {
         </View>
       </ScrollView>
     </SafeAreaView>
+    </Provider>
   );
 };
 
