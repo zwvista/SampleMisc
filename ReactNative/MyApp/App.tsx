@@ -28,9 +28,9 @@ const App = () => {
         container.bind(Post2Service).toSelf().inSingletonScope();
         return container;
     }}>
-    <SafeAreaView style={styles.container}>
-      <Add />
-    </SafeAreaView>
+      <SafeAreaView style={styles.container}>
+        <Add />
+      </SafeAreaView>
     </Provider>
   );
 };
