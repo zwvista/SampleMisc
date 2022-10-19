@@ -4,10 +4,10 @@ import { PostService } from './post.service';
 import 'reflect-metadata';
 import {useInjection} from "inversify-react";
 import {Post2Service} from "./post2.service";
-import {useEffect, useState} from "react";
+import {Dispatch, SetStateAction, useEffect, useState} from "react";
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-function Add() {
+const Add = () => {
   const postService = useInjection(PostService);
   const post2Service = useInjection(Post2Service);
   const [number1, setNumber1] = useState('1');
@@ -15,12 +15,12 @@ function Add() {
   const [number3, setNumber3] = useState('3');
   const [result, setResult] = useState('');
 
-  function onChangeNumber(t: any, setState: any) {
+  const onChangeNumber = (t: string | null, setState: Dispatch<SetStateAction<string>> | null) => {
     const f = () => {
       const g = (s: string) => Number(s) || 0;
       setResult(String(g(number1) + g(number2) + g(number3)));
     };
-    if (t) setState(t);
+    if (t && setState) setState(t);
     f();
   }
 
@@ -28,21 +28,21 @@ function Add() {
     console.log(postService);
     console.log(post2Service);
     onChangeNumber(null, null);
-  });
+  }, []);
 
   return (
     <View>
       <View style={styles.inputWrap}>
         <Text style={styles.label}></Text>
-        <TextInput style={styles.textInput} value={number1} onChangeText={t => onChangeNumber(t, setNumber1)} />
+        <TextInput style={styles.textInput} keyboardType='numeric' value={number1} onChangeText={t => onChangeNumber(t, setNumber1)} />
       </View>
       <View style={styles.inputWrap}>
         <Text style={styles.label}>+</Text>
-        <TextInput style={styles.textInput} value={number2} onChangeText={t => onChangeNumber(t, setNumber2)} />
+        <TextInput style={styles.textInput} keyboardType='numeric' value={number2} onChangeText={t => onChangeNumber(t, setNumber2)} />
       </View>
       <View style={styles.inputWrap}>
         <Text style={styles.label}>+</Text>
-        <TextInput style={styles.textInput} value={number3} onChangeText={t => onChangeNumber(t, setNumber3)} />
+        <TextInput style={styles.textInput} keyboardType='numeric' value={number3} onChangeText={t => onChangeNumber(t, setNumber3)} />
       </View>
       <View style={styles.inputWrap}>
         <Text style={styles.label}>=</Text>
