@@ -15,34 +15,32 @@ const Add = () => {
   const [number3, setNumber3] = useState('3');
   const [result, setResult] = useState('');
 
-  const onChangeNumber = (t: string | null, setState: Dispatch<SetStateAction<string>> | null) => {
-    const f = () => {
-      const g = (s: string) => Number(s) || 0;
-      setResult(String(g(number1) + g(number2) + g(number3)));
-    };
+  const toNumber = (s: string) => Number(s) || 0;
+
+  const onChangeNumber = (setState: Dispatch<SetStateAction<string>> | null) => (t: string | null) => {
     if (t && setState) setState(t);
-    f();
-  }
+    setResult(String(toNumber(number1) + toNumber(number2) + toNumber(number3)));
+  };
 
   useEffect(() => {
     console.log(postService);
     console.log(post2Service);
-    onChangeNumber(null, null);
+    onChangeNumber(null)(null);
   }, []);
 
   return (
     <View>
       <View style={styles.inputWrap}>
         <Text style={styles.label}></Text>
-        <TextInput style={styles.textInput} keyboardType='numeric' value={number1} onChangeText={t => onChangeNumber(t, setNumber1)} />
+        <TextInput style={styles.textInput} keyboardType='numeric' value={number1} onChangeText={onChangeNumber(setNumber1)} />
       </View>
       <View style={styles.inputWrap}>
         <Text style={styles.label}>+</Text>
-        <TextInput style={styles.textInput} keyboardType='numeric' value={number2} onChangeText={t => onChangeNumber(t, setNumber2)} />
+        <TextInput style={styles.textInput} keyboardType='numeric' value={number2} onChangeText={onChangeNumber(setNumber2)} />
       </View>
       <View style={styles.inputWrap}>
         <Text style={styles.label}>+</Text>
-        <TextInput style={styles.textInput} keyboardType='numeric' value={number3} onChangeText={t => onChangeNumber(t, setNumber3)} />
+        <TextInput style={styles.textInput} keyboardType='numeric' value={number3} onChangeText={onChangeNumber(setNumber3)} />
       </View>
       <View style={styles.inputWrap}>
         <Text style={styles.label}>=</Text>
@@ -50,7 +48,7 @@ const Add = () => {
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   inputWrap: {

@@ -7,9 +7,9 @@ import {useInjection} from "inversify-react";
 import { combineLatest, fromEvent, Observable } from 'rxjs';
 import { map, pluck, startWith } from 'rxjs/operators';
 import {Post2Service} from "./post2.service";
-import {useEffect, useState} from "react";
+import {Dispatch, SetStateAction, SyntheticEvent, useEffect, useState} from "react";
 
-function Add2() {
+const Add2 = () => {
   const postService = useInjection(PostService);
   const post2Service = useInjection(Post2Service);
   const [number1, setNumber1] = useState('1');
@@ -18,17 +18,15 @@ function Add2() {
   const [result, setResult] = useState('');
   const [result2, setResult2] = useState('');
 
-  function onChangeNumber(e: any, setState: any) {
-    const f = () => {
-      const g = (s: string) => Number(s) || 0;
-      setResult(String(g(number1) + g(number2) + g(number3)));
-    };
-    if (e != null) {
+  const toNumber = (s: string) => Number(s) || 0;
+
+  const onChangeNumber = (setState: Dispatch<SetStateAction<string>> | null) => (e: SyntheticEvent | null) => {
+    if (e && setState) {
       const elem = e.nativeEvent.target as HTMLInputElement;
       setState(elem.value);
     }
-    f();
-  }
+    setResult(String(toNumber(number1) + toNumber(number2) + toNumber(number3)));
+  };
 
   useEffect(() => {
     console.log(postService);
@@ -37,19 +35,18 @@ function Add2() {
       const e = document.getElementById(id) as HTMLInputElement;
       return fromEvent(e, 'input').pipe<unknown, unknown>(pluck('target', 'value'), startWith(e.value)) as Observable<string>;
     };
-    const g = (s: string) => Number(s) || 0;
     combineLatest([f('number1'), f('number2'), f('number3')])
-      .pipe(map((results: string[]) => String(g(results[0]) + g(results[1]) + g(results[2]))))
+      .pipe(map((results: string[]) => String(toNumber(results[0]) + toNumber(results[1]) + toNumber(results[2]))))
       .subscribe(result2 => setResult2(result2));
-    onChangeNumber(null, null);
-  });
+    onChangeNumber(null)(null);
+  }, []);
 
   return (
     <div className="App">
       <p>
-        <input name="number1" className="number" value={number1} onChange={e => onChangeNumber(e, setNumber1)} /> +
-        <input name="number2" className="number" value={number2} onChange={e => onChangeNumber(e, setNumber2)} /> +
-        <input name="number3" className="number" value={number3} onChange={e => onChangeNumber(e, setNumber3)} /> =
+        <input name="number1" className="number" value={number1} onChange={onChangeNumber(setNumber1)} /> +
+        <input name="number2" className="number" value={number2} onChange={onChangeNumber(setNumber2)} /> +
+        <input name="number3" className="number" value={number3} onChange={onChangeNumber(setNumber3)} /> =
         <label>{result}</label>
       </p>
       <p>
@@ -60,6 +57,6 @@ function Add2() {
       </p>
     </div>
   );
-}
+};
 
 export default Add2;
