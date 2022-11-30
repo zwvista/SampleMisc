@@ -14,6 +14,7 @@
 		8CBB5AEC29359A5400B8AEE0 /* NSTextField+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5AEB29359A5400B8AEE0 /* NSTextField+Combine.swift */; };
 		8CBB5B712937CD6C00B8AEE0 /* StoreIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B6E2937CD6B00B8AEE0 /* StoreIn.swift */; };
 		8CBB5B742937CD9E00B8AEE0 /* Publisher+NSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B732937CD9E00B8AEE0 /* Publisher+NSTextField.swift */; };
+		8CBB5B7A2937D09800B8AEE0 /* NumbersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B792937D09800B8AEE0 /* NumbersViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		8CBB5AEB29359A5400B8AEE0 /* NSTextField+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextField+Combine.swift"; sourceTree = "<group>"; };
 		8CBB5B6E2937CD6B00B8AEE0 /* StoreIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreIn.swift; sourceTree = "<group>"; };
 		8CBB5B732937CD9E00B8AEE0 /* Publisher+NSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+NSTextField.swift"; sourceTree = "<group>"; };
+		8CBB5B792937D09800B8AEE0 /* NumbersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +44,7 @@
 		8CBB5ABE2935078F00B8AEE0 = {
 			isa = PBXGroup;
 			children = (
+				8CBB5B792937D09800B8AEE0 /* NumbersViewModel.swift */,
 				8CBB5B6C2937CD6B00B8AEE0 /* CombineBind */,
 				8CBB5AC92935078F00B8AEE0 /* CombineMacExample */,
 				8CBB5AC82935078F00B8AEE0 /* Products */,
@@ -163,6 +166,7 @@
 				8CBB5B742937CD9E00B8AEE0 /* Publisher+NSTextField.swift in Sources */,
 				8CBB5ACD2935078F00B8AEE0 /* ViewController.swift in Sources */,
 				8CBB5B712937CD6C00B8AEE0 /* StoreIn.swift in Sources */,
+				8CBB5B7A2937D09800B8AEE0 /* NumbersViewModel.swift in Sources */,
 				8CBB5AEC29359A5400B8AEE0 /* NSTextField+Combine.swift in Sources */,
 				8CBB5ACB2935078F00B8AEE0 /* AppDelegate.swift in Sources */,
 			);

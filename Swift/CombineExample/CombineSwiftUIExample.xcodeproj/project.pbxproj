@@ -12,8 +12,8 @@
 		8CBB5B2629371B6C00B8AEE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CBB5B2529371B6C00B8AEE0 /* Assets.xcassets */; };
 		8CBB5B2929371B6C00B8AEE0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CBB5B2829371B6C00B8AEE0 /* Preview Assets.xcassets */; };
 		8CBB5B3829371BD100B8AEE0 /* NumbersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B3529371BD100B8AEE0 /* NumbersView.swift */; };
-		8CBB5B3929371BD100B8AEE0 /* NumbersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B3629371BD100B8AEE0 /* NumbersViewModel.swift */; };
 		8CBB5B3A29371BD100B8AEE0 /* NumbersModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B3729371BD100B8AEE0 /* NumbersModifier.swift */; };
+		8CBB5B782937D04E00B8AEE0 /* NumbersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B772937D04E00B8AEE0 /* NumbersViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,8 +23,8 @@
 		8CBB5B2529371B6C00B8AEE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CBB5B2829371B6C00B8AEE0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8CBB5B3529371BD100B8AEE0 /* NumbersView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersView.swift; sourceTree = "<group>"; };
-		8CBB5B3629371BD100B8AEE0 /* NumbersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersViewModel.swift; sourceTree = "<group>"; };
 		8CBB5B3729371BD100B8AEE0 /* NumbersModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersModifier.swift; sourceTree = "<group>"; };
+		8CBB5B772937D04E00B8AEE0 /* NumbersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +41,7 @@
 		8CBB5B1529371B6A00B8AEE0 = {
 			isa = PBXGroup;
 			children = (
+				8CBB5B772937D04E00B8AEE0 /* NumbersViewModel.swift */,
 				8CBB5B2029371B6A00B8AEE0 /* CombineSwiftUIExample */,
 				8CBB5B1F29371B6A00B8AEE0 /* Products */,
 			);
@@ -59,7 +60,6 @@
 			children = (
 				8CBB5B3729371BD100B8AEE0 /* NumbersModifier.swift */,
 				8CBB5B3529371BD100B8AEE0 /* NumbersView.swift */,
-				8CBB5B3629371BD100B8AEE0 /* NumbersViewModel.swift */,
 				8CBB5B2129371B6A00B8AEE0 /* CombineSwiftUIExampleApp.swift */,
 				8CBB5B2329371B6A00B8AEE0 /* ContentView.swift */,
 				8CBB5B2529371B6C00B8AEE0 /* Assets.xcassets */,
@@ -147,7 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CBB5B3829371BD100B8AEE0 /* NumbersView.swift in Sources */,
-				8CBB5B3929371BD100B8AEE0 /* NumbersViewModel.swift in Sources */,
+				8CBB5B782937D04E00B8AEE0 /* NumbersViewModel.swift in Sources */,
 				8CBB5B2429371B6A00B8AEE0 /* ContentView.swift in Sources */,
 				8CBB5B3A29371BD100B8AEE0 /* NumbersModifier.swift in Sources */,
 				8CBB5B2229371B6A00B8AEE0 /* CombineSwiftUIExampleApp.swift in Sources */,

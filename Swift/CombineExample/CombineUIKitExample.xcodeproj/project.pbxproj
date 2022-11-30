@@ -17,6 +17,7 @@
 		8CBB5B692937CD4200B8AEE0 /* Publisher+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B662937CD4200B8AEE0 /* Publisher+UILabel.swift */; };
 		8CBB5B6A2937CD4200B8AEE0 /* StoreIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B672937CD4200B8AEE0 /* StoreIn.swift */; };
 		8CBB5B6B2937CD4200B8AEE0 /* Publisher+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B682937CD4200B8AEE0 /* Publisher+UITextField.swift */; };
+		8CBB5B762937D03C00B8AEE0 /* NumbersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B752937D03C00B8AEE0 /* NumbersViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		8CBB5B662937CD4200B8AEE0 /* Publisher+UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+UILabel.swift"; sourceTree = "<group>"; };
 		8CBB5B672937CD4200B8AEE0 /* StoreIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreIn.swift; sourceTree = "<group>"; };
 		8CBB5B682937CD4200B8AEE0 /* Publisher+UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+UITextField.swift"; sourceTree = "<group>"; };
+		8CBB5B752937D03C00B8AEE0 /* NumbersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 		8CBB5B3B29371C5800B8AEE0 = {
 			isa = PBXGroup;
 			children = (
+				8CBB5B752937D03C00B8AEE0 /* NumbersViewModel.swift */,
 				8CBB5B652937CD4200B8AEE0 /* CombineBind */,
 				8CBB5B4629371C5800B8AEE0 /* CombineUIKitExample */,
 				8CBB5B4529371C5800B8AEE0 /* Products */,
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CBB5B4C29371C5800B8AEE0 /* ViewController.swift in Sources */,
+				8CBB5B762937D03C00B8AEE0 /* NumbersViewModel.swift in Sources */,
 				8CBB5B6A2937CD4200B8AEE0 /* StoreIn.swift in Sources */,
 				8CBB5B692937CD4200B8AEE0 /* Publisher+UILabel.swift in Sources */,
 				8CBB5B4829371C5800B8AEE0 /* AppDelegate.swift in Sources */,

@@ -27,4 +27,8 @@ class NumbersViewModel: ObservableObject {
             .map { String((Int($0) ?? 0) + (Int($1) ?? 0) + (Int($2) ?? 0)) }
             .assign(to: &$result)
     }
+
+    deinit {
+        print("DEBUG: \(String(describing: type(of: self))) deinit")
+    }
 }
