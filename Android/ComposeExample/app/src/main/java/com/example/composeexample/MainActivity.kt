@@ -85,7 +85,7 @@ fun AddNumbers() {
             )
         }
         Row {
-            LeftText()
+            LeftText("=")
             RightTextField(
                 value = vm.result.collectAsState("").value,
                 onValueChange = {},

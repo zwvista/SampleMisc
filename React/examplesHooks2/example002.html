@@ -1,0 +1,70 @@
+<html>
+
+<head>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <script src="https://unpkg.com/@mui/material@latest/umd/material-ui.development.js"></script>
+  <meta charset="utf-8"/>
+</head>
+
+<body>
+  <div id="root"></div>
+  
+<script type="text/babel">
+// https://qiita.com/seira/items/e62890f11e91f6b9653f
+const {
+  useState,
+  useEffect,
+  Fragment,
+} = React;
+const {
+  ButtonGroup,
+  Button,
+  Input,
+  Box,
+} = MaterialUI;
+function Example() {
+  const [count, setCount] = useState(0)
+  const [name, setName] = useState({
+    lastName: '',
+    firstName: ''
+  })
+  useEffect(() => {
+    document.title =`${count}回クリックされました`
+  },[count])
+
+  return (
+    <Fragment>
+      <p>{`${count}回クリックされました`}</p>
+      <ButtonGroup color="primary" aria-label="outlined primary button group">
+        <Button onClick={()=>setCount((prev) => prev + 1)}>
+          ボタン
+        </Button>
+        <Button onClick={()=>setCount(0)}>
+          リセット
+        </Button>
+      </ButtonGroup>
+      <p>{`私の名前は${name.lastName} ${name.firstName}です`}</p>
+      <Box component="form" sx={{'& > *': {margin: 1}}} noValidate autoComplete="off">
+        <Input
+          placeholder="姓"
+          value={name.lastName}
+          onChange={(e)=>{setName({...name,lastName: e.target.value})}}/>
+        <Input
+          placeholder="名"
+          value={name.firstName}
+          onChange={(e)=>{setName({...name,firstName: e.target.value})}}/>
+      </Box>
+    </Fragment>
+  )
+}
+ReactDOM.render(
+  <Example />,
+  document.getElementById('root')
+);
+</script>
+
+</body>
+
+</html>
