@@ -21,13 +21,10 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         vm = NumbersViewModel()
-        vm.$number1.assign(to: \.stringValue, on: tfNumber1).store(in: &subscriptions)
-        vm.$number2.assign(to: \.stringValue, on: tfNumber2).store(in: &subscriptions)
-        vm.$number3.assign(to: \.stringValue, on: tfNumber3).store(in: &subscriptions)
-        vm.$result.assign(to: \.stringValue, on: lblResult).store(in: &subscriptions)
-        tfNumber1.textPublisher.assign(to: &vm.$number1)
-        tfNumber2.textPublisher.assign(to: &vm.$number2)
-        tfNumber3.textPublisher.assign(to: &vm.$number3)
+        vm.$number1 <~> tfNumber1 ~ subscriptions
+        vm.$number2 <~> tfNumber2 ~ subscriptions
+        vm.$number3 <~> tfNumber3 ~ subscriptions
+        vm.$result ~> lblResult ~ subscriptions
     }
 
     override var representedObject: Any? {

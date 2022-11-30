@@ -15,19 +15,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var tfNumber3: UITextField!
     @IBOutlet weak var lblResult: UILabel!
 
-    var vm: Numbers3ViewModel!
+    var vm: NumbersViewModel!
     var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        vm = Numbers3ViewModel()
-        vm.$number1.assign(to: \UITextField.text!, on: tfNumber1).store(in: &subscriptions)
-        vm.$number2.assign(to: \UITextField.text!, on: tfNumber2).store(in: &subscriptions)
-        vm.$number3.assign(to: \UITextField.text!, on: tfNumber3).store(in: &subscriptions)
-        vm.$result.assign(to: \UILabel.text!, on: lblResult).store(in: &subscriptions)
-        tfNumber1.textPublisher.compactMap{$0}.assign(to: &vm.$number1)
-        tfNumber2.textPublisher.compactMap{$0}.assign(to: &vm.$number2)
-        tfNumber3.textPublisher.compactMap{$0}.assign(to: &vm.$number3)
+        vm = NumbersViewModel()
+        vm.$number1 <~> tfNumber1 ~ subscriptions
+        vm.$number2 <~> tfNumber2 ~ subscriptions
+        vm.$number3 <~> tfNumber3 ~ subscriptions
+        vm.$result ~> lblResult ~ subscriptions
     }
 
     deinit {
@@ -35,7 +32,7 @@ class ViewController: UIViewController {
     }
 }
 
-class Numbers3ViewModel: ObservableObject {
+class NumbersViewModel: ObservableObject {
     @Published
     var number1 = "1"
     @Published
