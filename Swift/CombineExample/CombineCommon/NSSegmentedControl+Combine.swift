@@ -13,7 +13,7 @@ extension NSSegmentedControl {
         Publishers.ControlProperty(control: self, keyPath: \.selectedSegment)
             .eraseToAnyPublisher()
     }
-    var selectSegmentProperty: Publishers.ControlProperty2<NSSegmentedControl, Int> {
+    var selectedSegmentProperty: Publishers.ControlProperty2<NSSegmentedControl, Int> {
         Publishers.ControlProperty2(control: self, getter: \.selectedSegmentPublisher, setter: \.selectedSegment)
     }
 

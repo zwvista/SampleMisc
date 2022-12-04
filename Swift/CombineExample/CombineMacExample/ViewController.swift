@@ -29,7 +29,7 @@ class ViewController: NSViewController {
         vm.$number3 <~> tfNumber3.textProperty ~ subscriptions
         vm.$result ~> (lblResult, \.stringValue) ~ subscriptions
 
-        vm2.$letterIndex <~> scLetter.selectSegmentProperty ~ subscriptions
+        vm2.$letterIndex <~> scLetter.selectedSegmentProperty ~ subscriptions
         vm2.$letterIndex.sink {
             print($0)
         } ~ subscriptions
