@@ -745,10 +745,32 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k3u-oU-Pd3">
+                                <rect key="frame" x="255" y="201" width="108" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="2k0-HB-co7">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="A" width="32"/>
+                                        <segment label="B" width="32" selected="YES" tag="1"/>
+                                        <segment label="C" width="32"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wFg-5b-wZ9">
+                                <rect key="frame" x="250" y="100" width="75" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="q3r-w5-Cm4">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="button1" destination="wFg-5b-wZ9" id="JEq-L5-gWv"/>
                         <outlet property="lblResult" destination="JYa-1E-FiZ" id="OH2-9s-ss8"/>
+                        <outlet property="scLetter" destination="k3u-oU-Pd3" id="WfJ-bj-kKa"/>
                         <outlet property="tfNumber1" destination="nc1-L8-KHp" id="B2x-tF-DMB"/>
                         <outlet property="tfNumber2" destination="nVs-b4-wOT" id="tgZ-3k-bIX"/>
                         <outlet property="tfNumber3" destination="LfW-nI-nFn" id="Gv7-Po-Xpf"/>

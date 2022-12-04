@@ -14,22 +14,26 @@ class ViewController: NSViewController {
     @IBOutlet weak var tfNumber2: NSTextField!
     @IBOutlet weak var tfNumber3: NSTextField!
     @IBOutlet weak var lblResult: NSTextField!
+    @IBOutlet weak var button1: NSButton!
     
-    var vm: NumbersViewModel!
+    var vm = NumbersViewModel()
+
+    @IBOutlet weak var scLetter: NSSegmentedControl!
+    var vm2 = ControlViewModel()
+
     var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        vm = NumbersViewModel()
-        vm.$number1 <~> tfNumber1 ~ subscriptions
-        vm.$number2 <~> tfNumber2 ~ subscriptions
-        vm.$number3 <~> tfNumber3 ~ subscriptions
-        vm.$result ~> lblResult ~ subscriptions
+        vm.$number1 <~> tfNumber1.textProperty ~ subscriptions
+        vm.$number2 <~> tfNumber2.textProperty ~ subscriptions
+        vm.$number3 <~> tfNumber3.textProperty ~ subscriptions
+        vm.$result ~> (lblResult, \.stringValue) ~ subscriptions
+
+        vm2.$letterIndex <~> scLetter.selectSegmentProperty ~ subscriptions
+        vm2.$letterIndex.sink {
+            print($0)
+        } ~ subscriptions
     }
 
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
 }

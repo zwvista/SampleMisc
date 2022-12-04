@@ -14,10 +14,10 @@
 		8CBB5B5129371C5900B8AEE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CBB5B5029371C5900B8AEE0 /* Assets.xcassets */; };
 		8CBB5B5429371C5900B8AEE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CBB5B5229371C5900B8AEE0 /* LaunchScreen.storyboard */; };
 		8CBB5B5D29371D9200B8AEE0 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 8CBB5B5C29371D9200B8AEE0 /* CombineCocoa */; };
-		8CBB5B692937CD4200B8AEE0 /* Publisher+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B662937CD4200B8AEE0 /* Publisher+UILabel.swift */; };
-		8CBB5B6A2937CD4200B8AEE0 /* StoreIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B672937CD4200B8AEE0 /* StoreIn.swift */; };
-		8CBB5B6B2937CD4200B8AEE0 /* Publisher+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B682937CD4200B8AEE0 /* Publisher+UITextField.swift */; };
 		8CBB5B762937D03C00B8AEE0 /* NumbersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B752937D03C00B8AEE0 /* NumbersViewModel.swift */; };
+		8CBB5B96293A814300B8AEE0 /* UILabel+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B92293A814300B8AEE0 /* UILabel+Bind.swift */; };
+		8CBB5B97293A814300B8AEE0 /* StoreIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B93293A814300B8AEE0 /* StoreIn.swift */; };
+		8CBB5B98293A814300B8AEE0 /* UITextField+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B94293A814300B8AEE0 /* UITextField+Bind.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,10 +29,10 @@
 		8CBB5B5029371C5900B8AEE0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CBB5B5329371C5900B8AEE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CBB5B5529371C5900B8AEE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8CBB5B662937CD4200B8AEE0 /* Publisher+UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+UILabel.swift"; sourceTree = "<group>"; };
-		8CBB5B672937CD4200B8AEE0 /* StoreIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreIn.swift; sourceTree = "<group>"; };
-		8CBB5B682937CD4200B8AEE0 /* Publisher+UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+UITextField.swift"; sourceTree = "<group>"; };
 		8CBB5B752937D03C00B8AEE0 /* NumbersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersViewModel.swift; sourceTree = "<group>"; };
+		8CBB5B92293A814300B8AEE0 /* UILabel+Bind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Bind.swift"; sourceTree = "<group>"; };
+		8CBB5B93293A814300B8AEE0 /* StoreIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreIn.swift; sourceTree = "<group>"; };
+		8CBB5B94293A814300B8AEE0 /* UITextField+Bind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Bind.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				8CBB5B752937D03C00B8AEE0 /* NumbersViewModel.swift */,
-				8CBB5B652937CD4200B8AEE0 /* CombineBind */,
+				8CBB5B90293A814300B8AEE0 /* CombineCommon */,
 				8CBB5B4629371C5800B8AEE0 /* CombineUIKitExample */,
 				8CBB5B4529371C5800B8AEE0 /* Products */,
 			);
@@ -79,15 +79,15 @@
 			path = CombineUIKitExample;
 			sourceTree = "<group>";
 		};
-		8CBB5B652937CD4200B8AEE0 /* CombineBind */ = {
+		8CBB5B90293A814300B8AEE0 /* CombineCommon */ = {
 			isa = PBXGroup;
 			children = (
-				8CBB5B662937CD4200B8AEE0 /* Publisher+UILabel.swift */,
-				8CBB5B682937CD4200B8AEE0 /* Publisher+UITextField.swift */,
-				8CBB5B672937CD4200B8AEE0 /* StoreIn.swift */,
+				8CBB5B92293A814300B8AEE0 /* UILabel+Bind.swift */,
+				8CBB5B94293A814300B8AEE0 /* UITextField+Bind.swift */,
+				8CBB5B93293A814300B8AEE0 /* StoreIn.swift */,
 			);
-			path = CombineBind;
-			sourceTree = "<group>";
+			path = CombineCommon;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -168,11 +168,11 @@
 			files = (
 				8CBB5B4C29371C5800B8AEE0 /* ViewController.swift in Sources */,
 				8CBB5B762937D03C00B8AEE0 /* NumbersViewModel.swift in Sources */,
-				8CBB5B6A2937CD4200B8AEE0 /* StoreIn.swift in Sources */,
-				8CBB5B692937CD4200B8AEE0 /* Publisher+UILabel.swift in Sources */,
 				8CBB5B4829371C5800B8AEE0 /* AppDelegate.swift in Sources */,
-				8CBB5B6B2937CD4200B8AEE0 /* Publisher+UITextField.swift in Sources */,
+				8CBB5B97293A814300B8AEE0 /* StoreIn.swift in Sources */,
 				8CBB5B4A29371C5800B8AEE0 /* SceneDelegate.swift in Sources */,
+				8CBB5B98293A814300B8AEE0 /* UITextField+Bind.swift in Sources */,
+				8CBB5B96293A814300B8AEE0 /* UILabel+Bind.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

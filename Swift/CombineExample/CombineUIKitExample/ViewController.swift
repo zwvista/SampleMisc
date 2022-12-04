@@ -15,12 +15,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var tfNumber3: UITextField!
     @IBOutlet weak var lblResult: UILabel!
 
-    var vm: NumbersViewModel!
+    var vm = NumbersViewModel()
     var subscriptions = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        vm = NumbersViewModel()
         vm.$number1 <~> tfNumber1 ~ subscriptions
         vm.$number2 <~> tfNumber2 ~ subscriptions
         vm.$number3 <~> tfNumber3 ~ subscriptions
