@@ -9,5 +9,6 @@ import Foundation
 
 class ControlViewModel: ObservableObject {
     @Published var letter = "B"
-    @Published var letterIndex = 1
+    @Published var letterIndex = 2
+    @Published var itemIndex = 2
 }

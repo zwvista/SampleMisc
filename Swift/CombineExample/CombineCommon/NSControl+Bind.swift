@@ -5,7 +5,7 @@
 //  Created by 趙偉 on 2022/12/01.
 //
 
-import AppKit
+import Cocoa
 import Combine
 
 infix operator <~> : DefaultPrecedence

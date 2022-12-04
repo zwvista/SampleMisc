@@ -21,6 +21,7 @@
 		8CBB5BC2293B7F7700B8AEE0 /* CombineControlProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BC1293B7F7700B8AEE0 /* CombineControlProperty.swift */; };
 		8CBB5BC4293B935300B8AEE0 /* NSButton+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BC3293B935300B8AEE0 /* NSButton+Combine.swift */; };
 		8CBB5BC6293C7BE400B8AEE0 /* CombineControlProperty2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BC5293C7BE400B8AEE0 /* CombineControlProperty2.swift */; };
+		8CBB5BD8293CFC0100B8AEE0 /* NSPopUpButton+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BD7293CFC0100B8AEE0 /* NSPopUpButton+Combine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		8CBB5BC1293B7F7700B8AEE0 /* CombineControlProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineControlProperty.swift; sourceTree = "<group>"; };
 		8CBB5BC3293B935300B8AEE0 /* NSButton+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSButton+Combine.swift"; sourceTree = "<group>"; };
 		8CBB5BC5293C7BE400B8AEE0 /* CombineControlProperty2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineControlProperty2.swift; sourceTree = "<group>"; };
+		8CBB5BD7293CFC0100B8AEE0 /* NSPopUpButton+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPopUpButton+Combine.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				8CBB5BBF293B535700B8AEE0 /* CombineControlTarget.swift */,
 				8CBB5BC3293B935300B8AEE0 /* NSButton+Combine.swift */,
 				8CBB5BA2293A82D400B8AEE0 /* NSControl+Bind.swift */,
+				8CBB5BD7293CFC0100B8AEE0 /* NSPopUpButton+Combine.swift */,
 				8CBB5BB9293AF84500B8AEE0 /* NSSegmentedControl+Combine.swift */,
 				8CBB5BA3293A82D400B8AEE0 /* NSTextField+Combine.swift */,
 				8CBB5B9B293A826500B8AEE0 /* StoreIn.swift */,
@@ -183,6 +186,7 @@
 				8CBB5BA4293A82D400B8AEE0 /* NSControl+Bind.swift in Sources */,
 				8CBB5BC2293B7F7700B8AEE0 /* CombineControlProperty.swift in Sources */,
 				8CBB5BA5293A82D400B8AEE0 /* NSTextField+Combine.swift in Sources */,
+				8CBB5BD8293CFC0100B8AEE0 /* NSPopUpButton+Combine.swift in Sources */,
 				8CBB5BBC293B170000B8AEE0 /* ControlViewModel.swift in Sources */,
 				8CBB5ACB2935078F00B8AEE0 /* AppDelegate.swift in Sources */,
 			);

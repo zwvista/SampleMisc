@@ -765,11 +765,27 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zGo-Mc-zrl">
+                                <rect key="frame" x="254" y="158" width="78" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="VyH-Nh-Max" id="1Qa-kD-bMx">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="ci4-fg-eEQ">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="VyH-Nh-Max"/>
+                                            <menuItem title="Item 2" id="aVn-Fa-Un0"/>
+                                            <menuItem title="Item 3" id="06g-Su-4ao"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="button1" destination="wFg-5b-wZ9" id="JEq-L5-gWv"/>
+                        <outlet property="button1" destination="wFg-5b-wZ9" id="Odb-KB-KtJ"/>
                         <outlet property="lblResult" destination="JYa-1E-FiZ" id="OH2-9s-ss8"/>
+                        <outlet property="pbItems" destination="zGo-Mc-zrl" id="JnE-Lv-Due"/>
                         <outlet property="scLetter" destination="k3u-oU-Pd3" id="WfJ-bj-kKa"/>
                         <outlet property="tfNumber1" destination="nc1-L8-KHp" id="B2x-tF-DMB"/>
                         <outlet property="tfNumber2" destination="nVs-b4-wOT" id="tgZ-3k-bIX"/>
