@@ -757,14 +757,6 @@
                                     </segments>
                                 </segmentedCell>
                             </segmentedControl>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wFg-5b-wZ9">
-                                <rect key="frame" x="250" y="100" width="75" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="q3r-w5-Cm4">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zGo-Mc-zrl">
                                 <rect key="frame" x="254" y="158" width="78" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -780,13 +772,31 @@
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wFg-5b-wZ9">
+                                <rect key="frame" x="250" y="85" width="75" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="q3r-w5-Cm4">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1cQ-Rt-LOX">
+                                <rect key="frame" x="255" y="126" width="65" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="gND-D2-bd3">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="button1" destination="wFg-5b-wZ9" id="Odb-KB-KtJ"/>
+                        <outlet property="check1" destination="1cQ-Rt-LOX" id="ei3-36-6cO"/>
                         <outlet property="lblResult" destination="JYa-1E-FiZ" id="OH2-9s-ss8"/>
                         <outlet property="pbItems" destination="zGo-Mc-zrl" id="JnE-Lv-Due"/>
                         <outlet property="scLetter" destination="k3u-oU-Pd3" id="WfJ-bj-kKa"/>
+                        <outlet property="switch1" destination="zGo-Mc-zrl" id="Gaf-2D-Gca"/>
                         <outlet property="tfNumber1" destination="nc1-L8-KHp" id="B2x-tF-DMB"/>
                         <outlet property="tfNumber2" destination="nVs-b4-wOT" id="tgZ-3k-bIX"/>
                         <outlet property="tfNumber3" destination="LfW-nI-nFn" id="Gv7-Po-Xpf"/>

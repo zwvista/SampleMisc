@@ -17,7 +17,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var scLetter: NSSegmentedControl!
     @IBOutlet weak var pbItems: NSPopUpButton!
     @IBOutlet weak var button1: NSButton!
-
+    @IBOutlet weak var check1: NSButton!
+    
     var vm = NumbersViewModel()
     var vm2 = ControlViewModel()
     var subscriptions = Set<AnyCancellable>()
@@ -35,6 +36,14 @@ class ViewController: NSViewController {
         } ~ subscriptions
 
         vm2.$itemIndex <~> pbItems.selectedItemIndexProperty ~ subscriptions
+        vm2.$itemIndex.sink {
+            print($0)
+        } ~ subscriptions
+
+        vm2.$isOn <~> check1.isOnProperty ~ subscriptions
+        vm2.$isOn.sink {
+            print($0)
+        } ~ subscriptions
 
         button1.tapPublisher.sink {
             print(self.vm2.letterIndex)

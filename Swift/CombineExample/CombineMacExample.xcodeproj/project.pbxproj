@@ -13,15 +13,16 @@
 		8CBB5AD22935079000B8AEE0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CBB5AD02935079000B8AEE0 /* Main.storyboard */; };
 		8CBB5B7A2937D09800B8AEE0 /* NumbersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B792937D09800B8AEE0 /* NumbersViewModel.swift */; };
 		8CBB5B9F293A826500B8AEE0 /* StoreIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B9B293A826500B8AEE0 /* StoreIn.swift */; };
-		8CBB5BA4293A82D400B8AEE0 /* NSControl+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BA2293A82D400B8AEE0 /* NSControl+Bind.swift */; };
-		8CBB5BA5293A82D400B8AEE0 /* NSTextField+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BA3293A82D400B8AEE0 /* NSTextField+Combine.swift */; };
-		8CBB5BBA293AF84500B8AEE0 /* NSSegmentedControl+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BB9293AF84500B8AEE0 /* NSSegmentedControl+Combine.swift */; };
 		8CBB5BBC293B170000B8AEE0 /* ControlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BBB293B170000B8AEE0 /* ControlViewModel.swift */; };
 		8CBB5BC0293B535700B8AEE0 /* CombineControlTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BBF293B535700B8AEE0 /* CombineControlTarget.swift */; };
 		8CBB5BC2293B7F7700B8AEE0 /* CombineControlProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BC1293B7F7700B8AEE0 /* CombineControlProperty.swift */; };
-		8CBB5BC4293B935300B8AEE0 /* NSButton+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BC3293B935300B8AEE0 /* NSButton+Combine.swift */; };
 		8CBB5BC6293C7BE400B8AEE0 /* CombineControlProperty2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BC5293C7BE400B8AEE0 /* CombineControlProperty2.swift */; };
-		8CBB5BD8293CFC0100B8AEE0 /* NSPopUpButton+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BD7293CFC0100B8AEE0 /* NSPopUpButton+Combine.swift */; };
+		8CBB5BEC293D7DD100B8AEE0 /* NSButton+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BE7293D7DD000B8AEE0 /* NSButton+Combine.swift */; };
+		8CBB5BED293D7DD100B8AEE0 /* NSPopUpButton+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BE8293D7DD000B8AEE0 /* NSPopUpButton+Combine.swift */; };
+		8CBB5BEF293D7DD100B8AEE0 /* NSSegmentedControl+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BEA293D7DD000B8AEE0 /* NSSegmentedControl+Combine.swift */; };
+		8CBB5BF0293D7DD100B8AEE0 /* NSTextField+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BEB293D7DD000B8AEE0 /* NSTextField+Combine.swift */; };
+		8CBB5BF2293DDF5000B8AEE0 /* NSTextView+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BF1293DDF5000B8AEE0 /* NSTextView+Combine.swift */; };
+		8CBB5BF6293DE18100B8AEE0 /* Control+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BF5293DE18100B8AEE0 /* Control+Bind.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,15 +34,16 @@
 		8CBB5AD32935079000B8AEE0 /* CombineMacExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CombineMacExample.entitlements; sourceTree = "<group>"; };
 		8CBB5B792937D09800B8AEE0 /* NumbersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersViewModel.swift; sourceTree = "<group>"; };
 		8CBB5B9B293A826500B8AEE0 /* StoreIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreIn.swift; sourceTree = "<group>"; };
-		8CBB5BA2293A82D400B8AEE0 /* NSControl+Bind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSControl+Bind.swift"; sourceTree = "<group>"; };
-		8CBB5BA3293A82D400B8AEE0 /* NSTextField+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextField+Combine.swift"; sourceTree = "<group>"; };
-		8CBB5BB9293AF84500B8AEE0 /* NSSegmentedControl+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSSegmentedControl+Combine.swift"; sourceTree = "<group>"; };
 		8CBB5BBB293B170000B8AEE0 /* ControlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlViewModel.swift; sourceTree = "<group>"; };
 		8CBB5BBF293B535700B8AEE0 /* CombineControlTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineControlTarget.swift; sourceTree = "<group>"; };
 		8CBB5BC1293B7F7700B8AEE0 /* CombineControlProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineControlProperty.swift; sourceTree = "<group>"; };
-		8CBB5BC3293B935300B8AEE0 /* NSButton+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSButton+Combine.swift"; sourceTree = "<group>"; };
 		8CBB5BC5293C7BE400B8AEE0 /* CombineControlProperty2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineControlProperty2.swift; sourceTree = "<group>"; };
-		8CBB5BD7293CFC0100B8AEE0 /* NSPopUpButton+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPopUpButton+Combine.swift"; sourceTree = "<group>"; };
+		8CBB5BE7293D7DD000B8AEE0 /* NSButton+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSButton+Combine.swift"; sourceTree = "<group>"; };
+		8CBB5BE8293D7DD000B8AEE0 /* NSPopUpButton+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPopUpButton+Combine.swift"; sourceTree = "<group>"; };
+		8CBB5BEA293D7DD000B8AEE0 /* NSSegmentedControl+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSSegmentedControl+Combine.swift"; sourceTree = "<group>"; };
+		8CBB5BEB293D7DD000B8AEE0 /* NSTextField+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextField+Combine.swift"; sourceTree = "<group>"; };
+		8CBB5BF1293DDF5000B8AEE0 /* NSTextView+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Combine.swift"; sourceTree = "<group>"; };
+		8CBB5BF5293DE18100B8AEE0 /* Control+Bind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Control+Bind.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,14 +94,23 @@
 				8CBB5BC1293B7F7700B8AEE0 /* CombineControlProperty.swift */,
 				8CBB5BC5293C7BE400B8AEE0 /* CombineControlProperty2.swift */,
 				8CBB5BBF293B535700B8AEE0 /* CombineControlTarget.swift */,
-				8CBB5BC3293B935300B8AEE0 /* NSButton+Combine.swift */,
-				8CBB5BA2293A82D400B8AEE0 /* NSControl+Bind.swift */,
-				8CBB5BD7293CFC0100B8AEE0 /* NSPopUpButton+Combine.swift */,
-				8CBB5BB9293AF84500B8AEE0 /* NSSegmentedControl+Combine.swift */,
-				8CBB5BA3293A82D400B8AEE0 /* NSTextField+Combine.swift */,
+				8CBB5BE6293D7DD000B8AEE0 /* Controls */,
 				8CBB5B9B293A826500B8AEE0 /* StoreIn.swift */,
 			);
 			path = CombineCommon;
+			sourceTree = "<group>";
+		};
+		8CBB5BE6293D7DD000B8AEE0 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				8CBB5BF5293DE18100B8AEE0 /* Control+Bind.swift */,
+				8CBB5BE7293D7DD000B8AEE0 /* NSButton+Combine.swift */,
+				8CBB5BE8293D7DD000B8AEE0 /* NSPopUpButton+Combine.swift */,
+				8CBB5BEA293D7DD000B8AEE0 /* NSSegmentedControl+Combine.swift */,
+				8CBB5BEB293D7DD000B8AEE0 /* NSTextField+Combine.swift */,
+				8CBB5BF1293DDF5000B8AEE0 /* NSTextView+Combine.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,19 +187,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CBB5BF2293DDF5000B8AEE0 /* NSTextView+Combine.swift in Sources */,
 				8CBB5ACD2935078F00B8AEE0 /* ViewController.swift in Sources */,
 				8CBB5BC0293B535700B8AEE0 /* CombineControlTarget.swift in Sources */,
-				8CBB5BBA293AF84500B8AEE0 /* NSSegmentedControl+Combine.swift in Sources */,
 				8CBB5B9F293A826500B8AEE0 /* StoreIn.swift in Sources */,
-				8CBB5BC4293B935300B8AEE0 /* NSButton+Combine.swift in Sources */,
 				8CBB5BC6293C7BE400B8AEE0 /* CombineControlProperty2.swift in Sources */,
 				8CBB5B7A2937D09800B8AEE0 /* NumbersViewModel.swift in Sources */,
-				8CBB5BA4293A82D400B8AEE0 /* NSControl+Bind.swift in Sources */,
 				8CBB5BC2293B7F7700B8AEE0 /* CombineControlProperty.swift in Sources */,
-				8CBB5BA5293A82D400B8AEE0 /* NSTextField+Combine.swift in Sources */,
-				8CBB5BD8293CFC0100B8AEE0 /* NSPopUpButton+Combine.swift in Sources */,
+				8CBB5BEF293D7DD100B8AEE0 /* NSSegmentedControl+Combine.swift in Sources */,
+				8CBB5BF6293DE18100B8AEE0 /* Control+Bind.swift in Sources */,
 				8CBB5BBC293B170000B8AEE0 /* ControlViewModel.swift in Sources */,
 				8CBB5ACB2935078F00B8AEE0 /* AppDelegate.swift in Sources */,
+				8CBB5BEC293D7DD100B8AEE0 /* NSButton+Combine.swift in Sources */,
+				8CBB5BED293D7DD100B8AEE0 /* NSPopUpButton+Combine.swift in Sources */,
+				8CBB5BF0293D7DD100B8AEE0 /* NSTextField+Combine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

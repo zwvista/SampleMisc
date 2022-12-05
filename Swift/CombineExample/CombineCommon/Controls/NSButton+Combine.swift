@@ -1,6 +1,6 @@
 //
 //  NSTextField+Combine.swift
-//  CombineMacExample
+//  CombineCommon
 //
 //  Created by 趙偉 on 2022/11/29.
 //
@@ -20,5 +20,21 @@ extension NSButton {
             control?.action = nil
         })
         .eraseToAnyPublisher()
+    }
+    
+    @objc var isOn: Bool {
+        get {
+            state == .on
+        }
+        set {
+            state = newValue ? .on : .off
+        }
+    }
+    var isOnPublisher: AnyPublisher<Bool, Never> {
+        Publishers.ControlProperty(control: self, keyPath: \.isOn)
+            .eraseToAnyPublisher()
+    }
+    var isOnProperty: Publishers.ControlProperty2<NSButton, Bool> {
+        Publishers.ControlProperty2(control: self, getter: \.isOnPublisher, setter: \.isOn)
     }
 }
