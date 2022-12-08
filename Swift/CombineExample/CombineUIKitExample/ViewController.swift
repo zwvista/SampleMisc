@@ -20,10 +20,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        vm.$number1 <~> tfNumber1 ~ subscriptions
-        vm.$number2 <~> tfNumber2 ~ subscriptions
-        vm.$number3 <~> tfNumber3 ~ subscriptions
-        vm.$result ~> lblResult ~ subscriptions
+        vm.$number1 <~> tfNumber1.textProperty ~ subscriptions
+        vm.$number2 <~> tfNumber2.textProperty ~ subscriptions
+        vm.$number3 <~> tfNumber3.textProperty ~ subscriptions
+        vm.$result ~> (lblResult, \.text!) ~ subscriptions
     }
 
     deinit {

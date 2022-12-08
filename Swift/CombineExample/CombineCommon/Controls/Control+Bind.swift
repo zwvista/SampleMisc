@@ -16,8 +16,16 @@ func <~><Control: AnyObject, Value> (pub: inout Published<Value>.Publisher, cont
     controlProperty.control[keyPath: controlProperty.getter].assign(to: &pub)
     return cancellable
 }
+
 func ~><Control: AnyObject, Value> (pub: Published<Value>.Publisher, controlAndKeyPath: (Control, ReferenceWritableKeyPath<Control, Value>)) -> AnyCancellable {
     pub.assign(to: controlAndKeyPath.1, on: controlAndKeyPath.0)
+}
+func ~><Control: AnyObject, Value> (pub: AnyPublisher<Value, Never>, controlAndKeyPath: (Control, ReferenceWritableKeyPath<Control, Value>)) -> AnyCancellable {
+    pub.assign(to: controlAndKeyPath.1, on: controlAndKeyPath.0)
+}
+
+func ~><Value> (pub1: Published<Value>.Publisher, pub2: inout Published<Value>.Publisher) {
+    pub1.assign(to: &pub2)
 }
 func ~><Value> (pub1: AnyPublisher<Value, Never>, pub2: inout Published<Value>.Publisher) {
     pub1.assign(to: &pub2)

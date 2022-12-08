@@ -15,9 +15,10 @@
 		8CBB5B5429371C5900B8AEE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CBB5B5229371C5900B8AEE0 /* LaunchScreen.storyboard */; };
 		8CBB5B5D29371D9200B8AEE0 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 8CBB5B5C29371D9200B8AEE0 /* CombineCocoa */; };
 		8CBB5B762937D03C00B8AEE0 /* NumbersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B752937D03C00B8AEE0 /* NumbersViewModel.swift */; };
-		8CBB5B96293A814300B8AEE0 /* UILabel+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B92293A814300B8AEE0 /* UILabel+Bind.swift */; };
-		8CBB5B97293A814300B8AEE0 /* StoreIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B93293A814300B8AEE0 /* StoreIn.swift */; };
-		8CBB5B98293A814300B8AEE0 /* UITextField+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5B94293A814300B8AEE0 /* UITextField+Bind.swift */; };
+		8CC3CB9A29427963005670CC /* StoreIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CB8529427963005670CC /* StoreIn.swift */; };
+		8CC3CB9E29427963005670CC /* Control+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CB8A29427963005670CC /* Control+Bind.swift */; };
+		8CC3CBA429427963005670CC /* CombineControlProperty2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CB9029427963005670CC /* CombineControlProperty2.swift */; };
+		8CC3CBBE2942839B005670CC /* UITextField+Combine2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CBBD2942839B005670CC /* UITextField+Combine2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,9 +31,10 @@
 		8CBB5B5329371C5900B8AEE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CBB5B5529371C5900B8AEE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CBB5B752937D03C00B8AEE0 /* NumbersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumbersViewModel.swift; sourceTree = "<group>"; };
-		8CBB5B92293A814300B8AEE0 /* UILabel+Bind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Bind.swift"; sourceTree = "<group>"; };
-		8CBB5B93293A814300B8AEE0 /* StoreIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreIn.swift; sourceTree = "<group>"; };
-		8CBB5B94293A814300B8AEE0 /* UITextField+Bind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Bind.swift"; sourceTree = "<group>"; };
+		8CC3CB8529427963005670CC /* StoreIn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreIn.swift; sourceTree = "<group>"; };
+		8CC3CB8A29427963005670CC /* Control+Bind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Control+Bind.swift"; sourceTree = "<group>"; };
+		8CC3CB9029427963005670CC /* CombineControlProperty2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineControlProperty2.swift; sourceTree = "<group>"; };
+		8CC3CBBD2942839B005670CC /* UITextField+Combine2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Combine2.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				8CBB5B752937D03C00B8AEE0 /* NumbersViewModel.swift */,
-				8CBB5B90293A814300B8AEE0 /* CombineCommon */,
+				8CC3CB8329427963005670CC /* CombineCommon */,
 				8CBB5B4629371C5800B8AEE0 /* CombineUIKitExample */,
 				8CBB5B4529371C5800B8AEE0 /* Products */,
 			);
@@ -79,15 +81,32 @@
 			path = CombineUIKitExample;
 			sourceTree = "<group>";
 		};
-		8CBB5B90293A814300B8AEE0 /* CombineCommon */ = {
+		8CC3CB8329427963005670CC /* CombineCommon */ = {
 			isa = PBXGroup;
 			children = (
-				8CBB5B92293A814300B8AEE0 /* UILabel+Bind.swift */,
-				8CBB5B94293A814300B8AEE0 /* UITextField+Bind.swift */,
-				8CBB5B93293A814300B8AEE0 /* StoreIn.swift */,
+				8CC3CB9029427963005670CC /* CombineControlProperty2.swift */,
+				8CC3CB8729427963005670CC /* Controls */,
+				8CC3CB8529427963005670CC /* StoreIn.swift */,
 			);
 			path = CombineCommon;
 			sourceTree = SOURCE_ROOT;
+		};
+		8CC3CB8729427963005670CC /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				8CC3CB8A29427963005670CC /* Control+Bind.swift */,
+				8CC3CBBC2942839B005670CC /* UIControl */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		8CC3CBBC2942839B005670CC /* UIControl */ = {
+			isa = PBXGroup;
+			children = (
+				8CC3CBBD2942839B005670CC /* UITextField+Combine2.swift */,
+			);
+			path = UIControl;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -167,12 +186,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CBB5B4C29371C5800B8AEE0 /* ViewController.swift in Sources */,
+				8CC3CB9E29427963005670CC /* Control+Bind.swift in Sources */,
 				8CBB5B762937D03C00B8AEE0 /* NumbersViewModel.swift in Sources */,
 				8CBB5B4829371C5800B8AEE0 /* AppDelegate.swift in Sources */,
-				8CBB5B97293A814300B8AEE0 /* StoreIn.swift in Sources */,
+				8CC3CB9A29427963005670CC /* StoreIn.swift in Sources */,
+				8CC3CBA429427963005670CC /* CombineControlProperty2.swift in Sources */,
+				8CC3CBBE2942839B005670CC /* UITextField+Combine2.swift in Sources */,
 				8CBB5B4A29371C5800B8AEE0 /* SceneDelegate.swift in Sources */,
-				8CBB5B98293A814300B8AEE0 /* UITextField+Bind.swift in Sources */,
-				8CBB5B96293A814300B8AEE0 /* UILabel+Bind.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

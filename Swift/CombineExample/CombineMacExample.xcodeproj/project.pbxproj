@@ -17,12 +17,18 @@
 		8CBB5BC0293B535700B8AEE0 /* CombineControlTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BBF293B535700B8AEE0 /* CombineControlTarget.swift */; };
 		8CBB5BC2293B7F7700B8AEE0 /* CombineControlProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BC1293B7F7700B8AEE0 /* CombineControlProperty.swift */; };
 		8CBB5BC6293C7BE400B8AEE0 /* CombineControlProperty2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BC5293C7BE400B8AEE0 /* CombineControlProperty2.swift */; };
-		8CBB5BEC293D7DD100B8AEE0 /* NSButton+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BE7293D7DD000B8AEE0 /* NSButton+Combine.swift */; };
-		8CBB5BED293D7DD100B8AEE0 /* NSPopUpButton+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BE8293D7DD000B8AEE0 /* NSPopUpButton+Combine.swift */; };
-		8CBB5BEF293D7DD100B8AEE0 /* NSSegmentedControl+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BEA293D7DD000B8AEE0 /* NSSegmentedControl+Combine.swift */; };
-		8CBB5BF0293D7DD100B8AEE0 /* NSTextField+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BEB293D7DD000B8AEE0 /* NSTextField+Combine.swift */; };
-		8CBB5BF2293DDF5000B8AEE0 /* NSTextView+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BF1293DDF5000B8AEE0 /* NSTextView+Combine.swift */; };
 		8CBB5BF6293DE18100B8AEE0 /* Control+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5BF5293DE18100B8AEE0 /* Control+Bind.swift */; };
+		8CC3CB6329404F12005670CC /* DelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CB5E29404F12005670CC /* DelegateProxy.swift */; };
+		8CC3CB6429404F12005670CC /* DelegateProxyPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CB5F29404F12005670CC /* DelegateProxyPublisher.swift */; };
+		8CC3CB6529404F12005670CC /* ObjcDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CB6029404F12005670CC /* ObjcDelegateProxy.m */; };
+		8CC3CB6629404F12005670CC /* DelegateProxyType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CB6229404F12005670CC /* DelegateProxyType.swift */; };
+		8CC3CBB529428391005670CC /* NSButton+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CBAE29428391005670CC /* NSButton+Combine.swift */; };
+		8CC3CBB629428391005670CC /* NSPopUpButton+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CBAF29428391005670CC /* NSPopUpButton+Combine.swift */; };
+		8CC3CBB729428391005670CC /* NSStepper+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CBB029428391005670CC /* NSStepper+Combine.swift */; };
+		8CC3CBB829428391005670CC /* NSSearchField+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CBB129428391005670CC /* NSSearchField+Combine.swift */; };
+		8CC3CBB929428391005670CC /* NSSegmentedControl+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CBB229428391005670CC /* NSSegmentedControl+Combine.swift */; };
+		8CC3CBBA29428391005670CC /* NSTextView+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CBB329428391005670CC /* NSTextView+Combine.swift */; };
+		8CC3CBBB29428391005670CC /* NSTextField+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CBB429428391005670CC /* NSTextField+Combine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,12 +44,20 @@
 		8CBB5BBF293B535700B8AEE0 /* CombineControlTarget.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineControlTarget.swift; sourceTree = "<group>"; };
 		8CBB5BC1293B7F7700B8AEE0 /* CombineControlProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombineControlProperty.swift; sourceTree = "<group>"; };
 		8CBB5BC5293C7BE400B8AEE0 /* CombineControlProperty2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineControlProperty2.swift; sourceTree = "<group>"; };
-		8CBB5BE7293D7DD000B8AEE0 /* NSButton+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSButton+Combine.swift"; sourceTree = "<group>"; };
-		8CBB5BE8293D7DD000B8AEE0 /* NSPopUpButton+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPopUpButton+Combine.swift"; sourceTree = "<group>"; };
-		8CBB5BEA293D7DD000B8AEE0 /* NSSegmentedControl+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSSegmentedControl+Combine.swift"; sourceTree = "<group>"; };
-		8CBB5BEB293D7DD000B8AEE0 /* NSTextField+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextField+Combine.swift"; sourceTree = "<group>"; };
-		8CBB5BF1293DDF5000B8AEE0 /* NSTextView+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Combine.swift"; sourceTree = "<group>"; };
 		8CBB5BF5293DE18100B8AEE0 /* Control+Bind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Control+Bind.swift"; sourceTree = "<group>"; };
+		8CC3CB5E29404F12005670CC /* DelegateProxy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateProxy.swift; sourceTree = "<group>"; };
+		8CC3CB5F29404F12005670CC /* DelegateProxyPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateProxyPublisher.swift; sourceTree = "<group>"; };
+		8CC3CB6029404F12005670CC /* ObjcDelegateProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjcDelegateProxy.m; sourceTree = "<group>"; };
+		8CC3CB6129404F12005670CC /* ObjcDelegateProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjcDelegateProxy.h; sourceTree = "<group>"; };
+		8CC3CB6229404F12005670CC /* DelegateProxyType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelegateProxyType.swift; sourceTree = "<group>"; };
+		8CC3CB7129406572005670CC /* CombineMacExample-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CombineMacExample-Bridging-Header.h"; sourceTree = "<group>"; };
+		8CC3CBAE29428391005670CC /* NSButton+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSButton+Combine.swift"; sourceTree = "<group>"; };
+		8CC3CBAF29428391005670CC /* NSPopUpButton+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPopUpButton+Combine.swift"; sourceTree = "<group>"; };
+		8CC3CBB029428391005670CC /* NSStepper+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSStepper+Combine.swift"; sourceTree = "<group>"; };
+		8CC3CBB129428391005670CC /* NSSearchField+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSSearchField+Combine.swift"; sourceTree = "<group>"; };
+		8CC3CBB229428391005670CC /* NSSegmentedControl+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSSegmentedControl+Combine.swift"; sourceTree = "<group>"; };
+		8CC3CBB329428391005670CC /* NSTextView+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Combine.swift"; sourceTree = "<group>"; };
+		8CC3CBB429428391005670CC /* NSTextField+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextField+Combine.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +98,7 @@
 				8CBB5AD02935079000B8AEE0 /* Main.storyboard */,
 				8CBB5AD32935079000B8AEE0 /* CombineMacExample.entitlements */,
 				8CBB5BBB293B170000B8AEE0 /* ControlViewModel.swift */,
+				8CC3CB7129406572005670CC /* CombineMacExample-Bridging-Header.h */,
 			);
 			path = CombineMacExample;
 			sourceTree = "<group>";
@@ -95,6 +110,7 @@
 				8CBB5BC5293C7BE400B8AEE0 /* CombineControlProperty2.swift */,
 				8CBB5BBF293B535700B8AEE0 /* CombineControlTarget.swift */,
 				8CBB5BE6293D7DD000B8AEE0 /* Controls */,
+				8CC3CB5D29404F12005670CC /* DelegateProxy */,
 				8CBB5B9B293A826500B8AEE0 /* StoreIn.swift */,
 			);
 			path = CombineCommon;
@@ -104,13 +120,36 @@
 			isa = PBXGroup;
 			children = (
 				8CBB5BF5293DE18100B8AEE0 /* Control+Bind.swift */,
-				8CBB5BE7293D7DD000B8AEE0 /* NSButton+Combine.swift */,
-				8CBB5BE8293D7DD000B8AEE0 /* NSPopUpButton+Combine.swift */,
-				8CBB5BEA293D7DD000B8AEE0 /* NSSegmentedControl+Combine.swift */,
-				8CBB5BEB293D7DD000B8AEE0 /* NSTextField+Combine.swift */,
-				8CBB5BF1293DDF5000B8AEE0 /* NSTextView+Combine.swift */,
+				8CC3CBAD29428391005670CC /* NSControl */,
 			);
 			path = Controls;
+			sourceTree = "<group>";
+		};
+		8CC3CB5D29404F12005670CC /* DelegateProxy */ = {
+			isa = PBXGroup;
+			children = (
+				8CC3CB5E29404F12005670CC /* DelegateProxy.swift */,
+				8CC3CB5F29404F12005670CC /* DelegateProxyPublisher.swift */,
+				8CC3CB6229404F12005670CC /* DelegateProxyType.swift */,
+				8CC3CB6129404F12005670CC /* ObjcDelegateProxy.h */,
+				8CC3CB6029404F12005670CC /* ObjcDelegateProxy.m */,
+			);
+			name = DelegateProxy;
+			path = CombineCommon/DelegateProxy;
+			sourceTree = SOURCE_ROOT;
+		};
+		8CC3CBAD29428391005670CC /* NSControl */ = {
+			isa = PBXGroup;
+			children = (
+				8CC3CBAE29428391005670CC /* NSButton+Combine.swift */,
+				8CC3CBAF29428391005670CC /* NSPopUpButton+Combine.swift */,
+				8CC3CBB029428391005670CC /* NSStepper+Combine.swift */,
+				8CC3CBB129428391005670CC /* NSSearchField+Combine.swift */,
+				8CC3CBB229428391005670CC /* NSSegmentedControl+Combine.swift */,
+				8CC3CBB329428391005670CC /* NSTextView+Combine.swift */,
+				8CC3CBB429428391005670CC /* NSTextField+Combine.swift */,
+			);
+			path = NSControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,20 +226,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CBB5BF2293DDF5000B8AEE0 /* NSTextView+Combine.swift in Sources */,
 				8CBB5ACD2935078F00B8AEE0 /* ViewController.swift in Sources */,
+				8CC3CBBA29428391005670CC /* NSTextView+Combine.swift in Sources */,
+				8CC3CBBB29428391005670CC /* NSTextField+Combine.swift in Sources */,
 				8CBB5BC0293B535700B8AEE0 /* CombineControlTarget.swift in Sources */,
+				8CC3CB6629404F12005670CC /* DelegateProxyType.swift in Sources */,
 				8CBB5B9F293A826500B8AEE0 /* StoreIn.swift in Sources */,
+				8CC3CBB829428391005670CC /* NSSearchField+Combine.swift in Sources */,
 				8CBB5BC6293C7BE400B8AEE0 /* CombineControlProperty2.swift in Sources */,
 				8CBB5B7A2937D09800B8AEE0 /* NumbersViewModel.swift in Sources */,
 				8CBB5BC2293B7F7700B8AEE0 /* CombineControlProperty.swift in Sources */,
-				8CBB5BEF293D7DD100B8AEE0 /* NSSegmentedControl+Combine.swift in Sources */,
+				8CC3CB6429404F12005670CC /* DelegateProxyPublisher.swift in Sources */,
+				8CC3CBB529428391005670CC /* NSButton+Combine.swift in Sources */,
+				8CC3CBB629428391005670CC /* NSPopUpButton+Combine.swift in Sources */,
 				8CBB5BF6293DE18100B8AEE0 /* Control+Bind.swift in Sources */,
+				8CC3CBB929428391005670CC /* NSSegmentedControl+Combine.swift in Sources */,
 				8CBB5BBC293B170000B8AEE0 /* ControlViewModel.swift in Sources */,
+				8CC3CB6329404F12005670CC /* DelegateProxy.swift in Sources */,
+				8CC3CB6529404F12005670CC /* ObjcDelegateProxy.m in Sources */,
+				8CC3CBB729428391005670CC /* NSStepper+Combine.swift in Sources */,
 				8CBB5ACB2935078F00B8AEE0 /* AppDelegate.swift in Sources */,
-				8CBB5BEC293D7DD100B8AEE0 /* NSButton+Combine.swift in Sources */,
-				8CBB5BED293D7DD100B8AEE0 /* NSPopUpButton+Combine.swift in Sources */,
-				8CBB5BF0293D7DD100B8AEE0 /* NSTextField+Combine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +399,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zwstudio.CombineMacExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CombineMacExample/CombineMacExample-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -381,6 +427,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zwstudio.CombineMacExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CombineMacExample/CombineMacExample-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
