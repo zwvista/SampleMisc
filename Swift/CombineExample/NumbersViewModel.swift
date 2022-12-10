@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+@MainActor
 class NumbersViewModel: ObservableObject {
     @Published
     var number1 = "1"

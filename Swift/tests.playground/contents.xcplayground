@@ -10,5 +10,6 @@
         <page name='json'/>
         <page name='jys'/>
         <page name='regex'/>
+        <page name='regex2'/>
     </pages>
 </playground>

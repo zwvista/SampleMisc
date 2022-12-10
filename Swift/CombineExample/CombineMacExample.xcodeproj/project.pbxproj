@@ -29,6 +29,7 @@
 		8CC3CBB929428391005670CC /* NSSegmentedControl+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CBB229428391005670CC /* NSSegmentedControl+Combine.swift */; };
 		8CC3CBBA29428391005670CC /* NSTextView+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CBB329428391005670CC /* NSTextView+Combine.swift */; };
 		8CC3CBBB29428391005670CC /* NSTextField+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CC3CBB429428391005670CC /* NSTextField+Combine.swift */; };
+		8CE527A629450F1400381D86 /* Publisher+Bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE527A529450F1400381D86 /* Publisher+Bind.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		8CC3CBB229428391005670CC /* NSSegmentedControl+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSSegmentedControl+Combine.swift"; sourceTree = "<group>"; };
 		8CC3CBB329428391005670CC /* NSTextView+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Combine.swift"; sourceTree = "<group>"; };
 		8CC3CBB429428391005670CC /* NSTextField+Combine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextField+Combine.swift"; sourceTree = "<group>"; };
+		8CE527A529450F1400381D86 /* Publisher+Bind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+Bind.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				8CBB5BBF293B535700B8AEE0 /* CombineControlTarget.swift */,
 				8CBB5BE6293D7DD000B8AEE0 /* Controls */,
 				8CC3CB5D29404F12005670CC /* DelegateProxy */,
+				8CE527A529450F1400381D86 /* Publisher+Bind.swift */,
 				8CBB5B9B293A826500B8AEE0 /* StoreIn.swift */,
 			);
 			path = CombineCommon;
@@ -242,6 +245,7 @@
 				8CBB5BF6293DE18100B8AEE0 /* Control+Bind.swift in Sources */,
 				8CC3CBB929428391005670CC /* NSSegmentedControl+Combine.swift in Sources */,
 				8CBB5BBC293B170000B8AEE0 /* ControlViewModel.swift in Sources */,
+				8CE527A629450F1400381D86 /* Publisher+Bind.swift in Sources */,
 				8CC3CB6329404F12005670CC /* DelegateProxy.swift in Sources */,
 				8CC3CB6529404F12005670CC /* ObjcDelegateProxy.m in Sources */,
 				8CC3CBB729428391005670CC /* NSStepper+Combine.swift in Sources */,
