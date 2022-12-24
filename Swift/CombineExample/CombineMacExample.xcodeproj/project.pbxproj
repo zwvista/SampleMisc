@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C47096C2953988E001BF4BE /* Publisher+DidSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C47096B2953988E001BF4BE /* Publisher+DidSet.swift */; };
 		8CBB5ACB2935078F00B8AEE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5ACA2935078F00B8AEE0 /* AppDelegate.swift */; };
 		8CBB5ACD2935078F00B8AEE0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBB5ACC2935078F00B8AEE0 /* ViewController.swift */; };
 		8CBB5ACF2935079000B8AEE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CBB5ACE2935079000B8AEE0 /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C47096B2953988E001BF4BE /* Publisher+DidSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+DidSet.swift"; sourceTree = "<group>"; };
 		8CBB5AC72935078F00B8AEE0 /* CombineMacExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombineMacExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CBB5ACA2935078F00B8AEE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CBB5ACC2935078F00B8AEE0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				8CBB5BE6293D7DD000B8AEE0 /* Controls */,
 				8CC3CB5D29404F12005670CC /* DelegateProxy */,
 				8CE527A529450F1400381D86 /* Publisher+Bind.swift */,
+				8C47096B2953988E001BF4BE /* Publisher+DidSet.swift */,
 				8CBB5B9B293A826500B8AEE0 /* StoreIn.swift */,
 			);
 			path = CombineCommon;
@@ -248,6 +251,7 @@
 				8CE527A629450F1400381D86 /* Publisher+Bind.swift in Sources */,
 				8CC3CB6329404F12005670CC /* DelegateProxy.swift in Sources */,
 				8CC3CB6529404F12005670CC /* ObjcDelegateProxy.m in Sources */,
+				8C47096C2953988E001BF4BE /* Publisher+DidSet.swift in Sources */,
 				8CC3CBB729428391005670CC /* NSStepper+Combine.swift in Sources */,
 				8CBB5ACB2935078F00B8AEE0 /* AppDelegate.swift in Sources */,
 			);

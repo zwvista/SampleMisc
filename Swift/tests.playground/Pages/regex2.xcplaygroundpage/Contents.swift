@@ -27,3 +27,20 @@ print(s3)
 let r4 = /%(begin|next|end)%/
 let s4 = "%begin%hello%next%world%end%"
 print(s4.split(separator: r4))
+
+func replacementToFunc(_ replacement: String) -> (Regex<AnyRegexOutput>.Match) -> String {
+    { m in
+        var s = replacement
+        for i in 1..<10 {
+            if s.contains("$\(i)") {
+                s = s.replacing("$\(i)", with: m[i].substring ?? "")
+            }
+        }
+        return s
+    }
+}
+
+// runtime regex
+let r22 = try! Regex(#"(\d+)-(\d+)-(\d+)"#) // Regex<AnyRegexOutput>
+let s22 = s.replacing(r22, with: replacementToFunc("$3-$1-$2"))
+print(s22)
