@@ -1,4 +1,4 @@
-package com.example.composeexample
+package com.zwstudio.composeexample
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -13,7 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.composeexample.ui.theme.ComposeExampleTheme
+import com.example.composeexample.NumbersViewModel
+import com.zwstudio.composeexample.ui.theme.ComposeExampleTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +22,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             ComposeExampleTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background
+                ) {
                     AddNumbers()
                 }
             }

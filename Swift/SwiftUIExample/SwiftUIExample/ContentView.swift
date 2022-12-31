@@ -8,17 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var page : Int? = 0
+    @State var showNumbers = false
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
-                NavigationLink(destination: NumbersView(),
-                    tag: 1, selection: $page) { EmptyView() }
-                Button(action : {
-                   page = 1
-                }){
-                   Text("Add Numbers")
+                Button("Add Numbers") {
+                    showNumbers.toggle()
                 }
+            }
+            .navigationDestination(isPresented: $showNumbers) {
+                NumbersView()
             }
         }
     }

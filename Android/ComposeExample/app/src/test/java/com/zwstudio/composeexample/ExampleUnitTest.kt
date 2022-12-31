@@ -1,4 +1,4 @@
-package com.example.composeexample
+package com.zwstudio.composeexample
 
 import org.junit.Test
 

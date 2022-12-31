@@ -1,4 +1,4 @@
-package com.example.composeexample.ui.theme
+package com.zwstudio.composeexample.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
