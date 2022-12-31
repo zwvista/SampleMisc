@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.composeexample.NumbersViewModel
 import com.zwstudio.composeexample.ui.theme.ComposeExampleTheme
 
 class MainActivity : ComponentActivity() {

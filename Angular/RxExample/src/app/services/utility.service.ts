@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { catchError, concatMap, delay, delayWhen, dematerialize, map, mapTo, tap, timeout } from 'rxjs/operators';
-import { from, interval, merge, of, timer, Notification } from 'rxjs';
+import { from, interval, merge, of, timer, ObservableNotification } from 'rxjs';
 
 @Injectable()
 export class UtilityService {
@@ -59,8 +59,8 @@ export class UtilityService {
   dematerialize1() {
     // emit next and error notifications
     const source = from([
-      Notification.createNext('SUCCESS!'),
-      Notification.createError('ERROR!')
+      { kind: 'N', value: 'SUCCESS!'} as ObservableNotification<string>,
+      { kind: 'N', value: 'ERROR!'} as ObservableNotification<string>
     ]).pipe(
       // turn notification objects into notification values
       dematerialize()

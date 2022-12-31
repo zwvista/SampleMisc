@@ -57,7 +57,7 @@ export class CombiningService {
     const timerThree = timer(3000, 4000);
 
     // when one timer emits, emit the latest values from each timer as an array
-    const combined = combineLatest(timerOne, timerTwo, timerThree);
+    const combined = combineLatest([timerOne, timerTwo, timerThree]);
 
     const subscribe = combined.subscribe(
       ([timerValOne, timerValTwo, timerValThree]) => {
@@ -191,14 +191,14 @@ export class CombiningService {
       when all observables complete, give the last
       emitted value from each as an array
     */
-    const example = forkJoin(
+    const example = forkJoin([
       // emit 'Hello' immediately
       of('Hello'),
       // emit 'World' after 1 second
       of('World').pipe(delay(1000)),
       //  throw error
       throwError(() => 'This will error').pipe(catchError(error => of(error)))
-    );
+    ]);
     // output: ["Hello", "World", "This will error"]
     const subscribe = example.subscribe(val => console.log(val));
   }

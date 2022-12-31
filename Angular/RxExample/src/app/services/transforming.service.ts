@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { EMPTY, from, fromEvent, interval, merge, of, Subject, timer } from 'rxjs';
+import { EMPTY, from, fromEvent, interval, merge, of, partition, Subject, timer } from 'rxjs';
 import {
   buffer,
   bufferCount,
@@ -7,7 +7,7 @@ import {
   bufferToggle,
   bufferWhen, catchError, concatMap, concatMapTo, delay, distinctUntilChanged, exhaustMap, expand,
   groupBy, map, mapTo,
-  mergeAll, mergeMap, partition, pluck,
+  mergeAll, mergeMap, pluck,
   scan, startWith, switchMap,
   take,
   takeWhile, tap, toArray, windowCount, windowTime, windowToggle,
@@ -390,7 +390,7 @@ export class TransformingService {
   partition1() {
     const source = from([1, 2, 3, 4, 5, 6]);
     // first value is true, second false
-    const [evens, odds] = partition<number>(val => val % 2 === 0)(source);
+    const [evens, odds] = partition<number>(source, val => val % 2 === 0);
     /*
       Output:
       "Even: 2"
@@ -419,7 +419,7 @@ export class TransformingService {
       catchError(val => of({ success: null, error: val }))
     );
     // split on success or error
-    const [success, error] = partition<{success: number, error: number}>(res => res.success !== null)(example);
+    const [success, error] = partition<{success: number, error: number}>(example, res => res.success !== null);
     /*
       Output:
       "Success! 1"
