@@ -3,6 +3,7 @@ package com.example.myapplication.ui.home
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
@@ -14,15 +15,10 @@ import com.example.myapplication.items
 import com.example.myapplication.makeCustomAdapter
 import com.example.myapplication.ui.autoCleared
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), MenuProvider {
 
     private val vm by lazy { vita.with(VitaOwner.Multiple(this)).getViewModel<HomeViewModel>() }
     private var binding by autoCleared<FragmentHomeBinding>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false).apply {
@@ -48,12 +44,11 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+    override fun onCreateMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.home, menu)
-        super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean =
+    override fun onMenuItemSelected(item: MenuItem): Boolean =
         when (item.itemId) {
             R.id.action_settings -> {
                 Toast.makeText(requireContext(), "Settings", Toast.LENGTH_SHORT).show()
@@ -64,6 +59,6 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(a)
                 true
             }
-            else -> super.onOptionsItemSelected(item)
+            else -> false
         }
 }
