@@ -7,17 +7,16 @@ import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
-import com.androidisland.vita.VitaOwner
-import com.androidisland.vita.vita
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.items
 import com.example.myapplication.makeCustomAdapter
 import com.example.myapplication.ui.autoCleared
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), MenuProvider {
 
-    private val vm by lazy { vita.with(VitaOwner.Multiple(this)).getViewModel<HomeViewModel>() }
+    private val vm: HomeViewModel by viewModel()
     private var binding by autoCleared<FragmentHomeBinding>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -61,4 +60,12 @@ class HomeFragment : Fragment(), MenuProvider {
             }
             else -> false
         }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 }

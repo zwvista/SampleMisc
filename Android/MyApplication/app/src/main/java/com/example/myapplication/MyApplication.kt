@@ -8,13 +8,36 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
-import com.androidisland.vita.startVita
+import com.example.myapplication.ui.gallery.GalleryViewModel
+import com.example.myapplication.ui.home.HomeViewModel
+import com.example.myapplication.ui.home2.Home2ViewModel
+import com.example.myapplication.ui.sample_dialog.SampleDialogViewModel
+import com.example.myapplication.ui.slideshow.SlideshowViewModel
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import java.io.Serializable
 
 class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        startVita()
+        startKoin {
+            // Log Koin into Android logger
+            androidLogger()
+            // Reference Android context
+            androidContext(this@MyApplication)
+            // Load modules
+            modules(myAppModule)
+        }
+    }
+    val myAppModule = module {
+        viewModel { GalleryViewModel() }
+        viewModel { HomeViewModel() }
+        viewModel { Home2ViewModel() }
+        viewModel { SampleDialogViewModel() }
+        viewModel { SlideshowViewModel() }
     }
 }
 

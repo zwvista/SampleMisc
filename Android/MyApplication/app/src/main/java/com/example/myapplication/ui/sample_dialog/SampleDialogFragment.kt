@@ -4,15 +4,14 @@ import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
-import com.androidisland.vita.VitaOwner
-import com.androidisland.vita.vita
 import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentSampleDialogBinding
 import com.example.myapplication.ui.autoCleared
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SampleDialogFragment : DialogFragment() {
 
-    private val vm by lazy { vita.with(VitaOwner.Multiple(this)).getViewModel<SampleDialogViewModel>() }
+    private val vm: SampleDialogViewModel by viewModel()
     private var binding by autoCleared<FragmentSampleDialogBinding>()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
