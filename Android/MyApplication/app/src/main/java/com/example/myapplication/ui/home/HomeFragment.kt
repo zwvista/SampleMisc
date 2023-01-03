@@ -16,7 +16,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), MenuProvider {
 
-    private val vm: HomeViewModel by viewModel()
+    private val vm by viewModel<HomeViewModel>()
     private var binding by autoCleared<FragmentHomeBinding>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

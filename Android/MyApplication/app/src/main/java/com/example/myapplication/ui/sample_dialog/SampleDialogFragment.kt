@@ -11,7 +11,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SampleDialogFragment : DialogFragment() {
 
-    private val vm: SampleDialogViewModel by viewModel()
+    private val vm by viewModel<SampleDialogViewModel>()
     private var binding by autoCleared<FragmentSampleDialogBinding>()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

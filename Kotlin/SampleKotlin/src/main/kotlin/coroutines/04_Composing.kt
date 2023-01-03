@@ -9,8 +9,7 @@ fun main() {
 //    composing3()
 //    composing4()
 //    composing5()
-//    composing6()
-    composing7()
+    composing6()
 }
 
 suspend fun doSomethingUsefulOne(): Int {
@@ -30,6 +29,9 @@ fun composing1() = runBlocking {
         println("The answer is ${one + two}")
     }
     println("Completed in $time ms")
+
+//    The answer is 42
+//    Completed in 2033 ms
 }
 
 fun composing2() = runBlocking {
@@ -39,6 +41,9 @@ fun composing2() = runBlocking {
         println("The answer is ${one.await() + two.await()}")
     }
     println("Completed in $time ms")
+
+//    The answer is 42
+//    Completed in 1028 ms
 }
 
 fun composing3() = runBlocking {
@@ -51,16 +56,9 @@ fun composing3() = runBlocking {
         println("The answer is ${one.await() + two.await()}")
     }
     println("Completed in $time ms")
-}
 
-fun composing4() = runBlocking {
-    val time = measureTimeMillis {
-        val one = async(start = CoroutineStart.LAZY) { doSomethingUsefulOne() }
-        val two = async(start = CoroutineStart.LAZY) { doSomethingUsefulTwo() }
-        // some computation
-        println("The answer is ${one.await() + two.await()}")
-    }
-    println("Completed in $time ms")
+//    The answer is 42
+//    Completed in 1029 ms
 }
 
 // The result type of somethingUsefulOneAsync is Deferred<Int>
@@ -73,7 +71,7 @@ fun somethingUsefulTwoAsync() = GlobalScope.async {
     doSomethingUsefulTwo()
 }
 
-fun composing5() {
+fun composing4() {
     val time = measureTimeMillis {
         // we can initiate async actions outside of a coroutine
         val one = somethingUsefulOneAsync()
@@ -85,6 +83,9 @@ fun composing5() {
         }
     }
     println("Completed in $time ms")
+
+//    The answer is 42
+//    Completed in 1143 ms
 }
 
 suspend fun concurrentSum(): Int = coroutineScope {
@@ -93,14 +94,17 @@ suspend fun concurrentSum(): Int = coroutineScope {
     one.await() + two.await()
 }
 
-fun composing6() = runBlocking {
+fun composing5() = runBlocking {
     val time = measureTimeMillis {
         println("The answer is ${concurrentSum()}")
     }
     println("Completed in $time ms")
+
+//    The answer is 42
+//    Completed in 1041 ms
 }
 
-fun composing7() = runBlocking {
+fun composing6() = runBlocking {
     try {
         failedConcurrentSum()
     } catch(e: ArithmeticException) {
@@ -109,7 +113,7 @@ fun composing7() = runBlocking {
 }
 
 suspend fun failedConcurrentSum(): Int = coroutineScope {
-    val one = async<Int> {
+    val one = async {
         try {
             delay(Long.MAX_VALUE) // Emulates very long computation
             42
@@ -122,4 +126,8 @@ suspend fun failedConcurrentSum(): Int = coroutineScope {
         throw ArithmeticException()
     }
     one.await() + two.await()
+
+//    Second child throws an exception
+//    First child was cancelled
+//    Computation failed with ArithmeticException
 }

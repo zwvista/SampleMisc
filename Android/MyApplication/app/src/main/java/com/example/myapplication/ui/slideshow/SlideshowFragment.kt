@@ -11,7 +11,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SlideshowFragment : Fragment() {
 
-    private val vm: SlideshowViewModel by viewModel()
+    private val vm by viewModel<SlideshowViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_slideshow, container, false)

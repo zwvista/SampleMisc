@@ -7,7 +7,8 @@ fun main() {
 //    cancellation2()
 //    cancellation3()
 //    cancellation4()
-    cancellation5()
+//    cancellation5()
+    cancellation6()
 }
 
 fun cancellation1() = runBlocking {
@@ -22,6 +23,12 @@ fun cancellation1() = runBlocking {
     job.cancel() // cancels the job
     job.join() // waits for job's completion
     println("main: Now I can quit.")
+
+//    job: I'm sleeping 0 ...
+//    job: I'm sleeping 1 ...
+//    job: I'm sleeping 2 ...
+//    main: I'm tired of waiting!
+//    main: Now I can quit.
 }
 
 fun cancellation2() = runBlocking {
@@ -41,9 +48,47 @@ fun cancellation2() = runBlocking {
     println("main: I'm tired of waiting!")
     job.cancelAndJoin() // cancels the job and waits for its completion
     println("main: Now I can quit.")
+
+//    job: I'm sleeping 0 ...
+//    job: I'm sleeping 1 ...
+//    job: I'm sleeping 2 ...
+//    main: I'm tired of waiting!
+//    job: I'm sleeping 3 ...
+//    job: I'm sleeping 4 ...
+//    main: Now I can quit.
 }
 
 fun cancellation3() = runBlocking {
+    val job = launch(Dispatchers.Default) {
+        repeat(5) { i ->
+            try {
+                // print a message twice a second
+                println("job: I'm sleeping $i ...")
+                delay(500)
+            } catch (e: Exception) {
+                // log the exception
+                println(e)
+            }
+        }
+    }
+    delay(1300L) // delay a bit
+    println("main: I'm tired of waiting!")
+    job.cancelAndJoin() // cancels the job and waits for its completion
+    println("main: Now I can quit.")
+
+//    job: I'm sleeping 0 ...
+//    job: I'm sleeping 1 ...
+//    job: I'm sleeping 2 ...
+//    main: I'm tired of waiting!
+//    kotlinx.coroutines.JobCancellationException: StandaloneCoroutine was cancelled; job=StandaloneCoroutine{Cancelling}@6eaa8ced
+//    job: I'm sleeping 3 ...
+//    kotlinx.coroutines.JobCancellationException: StandaloneCoroutine was cancelled; job=StandaloneCoroutine{Cancelling}@6eaa8ced
+//    job: I'm sleeping 4 ...
+//    kotlinx.coroutines.JobCancellationException: StandaloneCoroutine was cancelled; job=StandaloneCoroutine{Cancelling}@6eaa8ced
+//    main: Now I can quit.
+}
+
+fun cancellation4() = runBlocking {
     val startTime = System.currentTimeMillis()
     val job = launch(Dispatchers.Default) {
         var nextPrintTime = startTime
@@ -60,9 +105,15 @@ fun cancellation3() = runBlocking {
     println("main: I'm tired of waiting!")
     job.cancelAndJoin() // cancels the job and waits for its completion
     println("main: Now I can quit.")
+
+//    job: I'm sleeping 0 ...
+//    job: I'm sleeping 1 ...
+//    job: I'm sleeping 2 ...
+//    main: I'm tired of waiting!
+//    main: Now I can quit.
 }
 
-fun cancellation4() = runBlocking {
+fun cancellation5() = runBlocking {
     val job = launch {
         try {
             repeat(1000) { i ->
@@ -77,9 +128,16 @@ fun cancellation4() = runBlocking {
     println("main: I'm tired of waiting!")
     job.cancelAndJoin() // cancels the job and waits for its completion
     println("main: Now I can quit.")
+
+//    job: I'm sleeping 0 ...
+//    job: I'm sleeping 1 ...
+//    job: I'm sleeping 2 ...
+//    main: I'm tired of waiting!
+//    job: I'm running finally
+//    main: Now I can quit.
 }
 
-fun cancellation5() = runBlocking {
+fun cancellation6() = runBlocking {
     val job = launch {
         try {
             repeat(1000) { i ->
@@ -98,4 +156,12 @@ fun cancellation5() = runBlocking {
     println("main: I'm tired of waiting!")
     job.cancelAndJoin() // cancels the job and waits for its completion
     println("main: Now I can quit.")
+
+//    job: I'm sleeping 0 ...
+//    job: I'm sleeping 1 ...
+//    job: I'm sleeping 2 ...
+//    main: I'm tired of waiting!
+//    job: I'm running finally
+//    job: And I've just delayed for 1 sec because I'm non-cancellable
+//    main: Now I can quit.
 }

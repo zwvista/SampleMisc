@@ -17,7 +17,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class Home2Fragment : Fragment() {
 
     private val vm by lazy { requireParentFragment().getViewModel<HomeViewModel>() }
-    private val vm2: Home2ViewModel by viewModel()
+    private val vm2 by viewModel<Home2ViewModel>()
     private var binding by autoCleared<FragmentHome2Binding>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {

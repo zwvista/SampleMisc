@@ -1,12 +1,13 @@
 package coroutines
 
 import kotlinx.coroutines.*
+import javax.swing.text.html.HTML.Tag.I
 
 fun main() {
 //    timeout1()
 //    timeout2()
-//    timeout3()
-    timeout4()
+    timeout3()
+//    timeout4()
 }
 
 fun timeout1() = runBlocking {
@@ -16,6 +17,11 @@ fun timeout1() = runBlocking {
             delay(500L)
         }
     }
+
+//    I'm sleeping 0 ...
+//    I'm sleeping 1 ...
+//    I'm sleeping 2 ...
+//    Exception in thread "main" kotlinx.coroutines.TimeoutCancellationException: Timed out waiting for 1300 ms
 }
 
 fun timeout2() = runBlocking {
@@ -27,6 +33,11 @@ fun timeout2() = runBlocking {
         "Done" // will get cancelled before it produces this result
     }
     println("Result is $result")
+
+//    I'm sleeping 0 ...
+//    I'm sleeping 1 ...
+//    I'm sleeping 2 ...
+//    Result is null
 }
 
 var acquired = 0
@@ -51,6 +62,8 @@ fun timeout3() {
     }
     // Outside of runBlocking all coroutines have completed
     println(acquired) // Print the number of resources still acquired
+
+//    0
 }
 
 fun timeout4() {
@@ -73,4 +86,6 @@ fun timeout4() {
     }
     // Outside of runBlocking all coroutines have completed
     println(acquired) // Print the number of resources still acquired
+
+//    0
 }
