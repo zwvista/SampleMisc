@@ -1,8 +1,8 @@
 package com.example.myapplication.ui.sample_dialog
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 
 class SampleDialogViewModel : ViewModel() {
-    val text = MutableLiveData("This is Sample Dialog Fragment")
+    val text = MutableStateFlow("This is Sample Dialog Fragment")
 }

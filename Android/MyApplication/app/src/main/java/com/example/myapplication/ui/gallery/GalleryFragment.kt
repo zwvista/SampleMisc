@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.myapplication.R
+import kotlinx.coroutines.flow.onEach
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GalleryFragment : Fragment() {
@@ -16,7 +17,7 @@ class GalleryFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_gallery, container, false)
         val textView: TextView = root.findViewById(R.id.text_gallery)
-        vm.text.observe(viewLifecycleOwner) {
+        vm.text.onEach {
             textView.text = it
         }
         return root
