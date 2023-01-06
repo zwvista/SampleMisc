@@ -30,15 +30,15 @@ class ViewController: NSViewController {
         vm.$number3 <~> tfNumber3.textProperty ~ subscriptions
         vm.$result ~> (lblResult, \.stringValue) ~ subscriptions
 
-//        vm2.$letterIndex <~> scLetter.selectedSegmentProperty ~ subscriptions
-//        vm2.$letterIndex.sink {
-//            print($0)
-//        } ~ subscriptions
-
-        vm2.$letter <~> scLetter.selectedLabelProperty ~ subscriptions
-        vm2.$letter.didSet.sink {
+        vm2.$letterIndex <~> scLetter.selectedSegmentProperty ~ subscriptions
+        vm2.$letterIndex.didSet.sink {
             print($0)
         } ~ subscriptions
+
+//        vm2.$letter <~> scLetter.selectedLabelProperty ~ subscriptions
+//        vm2.$letter.didSet.sink {
+//            print($0)
+//        } ~ subscriptions
 
         vm2.$itemIndex <~> pbItems.selectedItemIndexProperty ~ subscriptions
         vm2.$itemIndex.sink {

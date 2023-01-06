@@ -40,13 +40,19 @@ fun main() {
 //    flowX()
 //    flowY()
 //    flowZ()
-    flowAA()
+//    flowAA()
+//    flowAB()
+    flowAC()
 }
 
 fun simple1(): List<Int> = listOf(1, 2, 3)
 
 fun flow1() {
     simple1().forEach { value -> println(value) }
+
+//    1
+//    2
+//    3
 }
 
 fun simple2(): Sequence<Int> = sequence { // sequence builder
@@ -58,6 +64,10 @@ fun simple2(): Sequence<Int> = sequence { // sequence builder
 
 fun flow2() {
     simple2().forEach { value -> println(value) }
+
+//    1
+//    2
+//    3
 }
 
 suspend fun simple3(): List<Int> {
@@ -67,6 +77,10 @@ suspend fun simple3(): List<Int> {
 
 fun flow3() = runBlocking {
     simple3().forEach { value -> println(value) }
+
+//    1
+//    2
+//    3
 }
 
 fun simple4(): Flow<Int> = flow { // flow builder
@@ -86,6 +100,13 @@ fun flow4() = runBlocking {
     }
     // Collect the flow
     simple4().collect { value -> println(value) }
+
+//    I'm not blocked 1
+//    1
+//    I'm not blocked 2
+//    2
+//    I'm not blocked 3
+//    3
 }
 
 fun simple5(): Flow<Int> = flow {
@@ -103,6 +124,18 @@ fun flow5() = runBlocking {
     flow.collect { value -> println(value) }
     println("Calling collect again...")
     flow.collect { value -> println(value) }
+
+//    Calling simple function...
+//    Calling collect...
+//    Flow started
+//    1
+//    2
+//    3
+//    Calling collect again...
+//    Flow started
+//    1
+//    2
+//    3
 }
 
 fun simple6(): Flow<Int> = flow {
@@ -118,10 +151,20 @@ fun flow6() = runBlocking {
         simple6().collect { value -> println(value) }
     }
     println("Done")
+
+//    Emitting 1
+//    1
+//    Emitting 2
+//    2
+//    Done
 }
 
 fun flow7() = runBlocking {
     (1..3).asFlow().collect { value -> println(value) }
+
+//    1
+//    2
+//    3
 }
 
 suspend fun performRequest(request: Int): String {
@@ -133,6 +176,10 @@ fun flow8() = runBlocking {
     (1..3).asFlow() // a flow of requests
         .map { request -> performRequest(request) }
         .collect { response -> println(response) }
+
+//    response 1
+//    response 2
+//    response 3
 }
 
 fun flow9() = runBlocking {
@@ -142,6 +189,13 @@ fun flow9() = runBlocking {
             emit(performRequest(request))
         }
         .collect { response -> println(response) }
+
+//    Making request 1
+//    response 1
+//    Making request 2
+//    response 2
+//    Making request 3
+//    response 3
 }
 
 fun numbers(): Flow<Int> = flow {
@@ -159,6 +213,10 @@ fun flowA() = runBlocking {
     numbers()
         .take(2) // take only the first two
         .collect { value -> println(value) }
+
+//    1
+//    2
+//    Finally in numbers
 }
 
 fun flowB() = runBlocking {
@@ -166,6 +224,8 @@ fun flowB() = runBlocking {
         .map { it * it } // squares of numbers from 1 to 5
         .reduce { a, b -> a + b } // sum them (terminal operator)
     println(sum)
+
+//    55
 }
 
 fun flowC() = runBlocking {
@@ -180,6 +240,16 @@ fun flowC() = runBlocking {
         }.collect {
             println("Collect $it")
         }
+
+//    Filter 1
+//    Filter 2
+//    Map 2
+//    Collect string 2
+//    Filter 3
+//    Filter 4
+//    Map 4
+//    Collect string 4
+//    Filter 5
 }
 
 fun simpleD(): Flow<Int> = flow {
@@ -191,6 +261,11 @@ fun simpleD(): Flow<Int> = flow {
 
 fun flowD() = runBlocking {
     simpleD().collect { value -> log("Collected $value") }
+
+//    [main @coroutine#1] Started simple flow
+//    [main @coroutine#1] Collected 1
+//    [main @coroutine#1] Collected 2
+//    [main @coroutine#1] Collected 3
 }
 
 fun simpleE(): Flow<Int> = flow {
@@ -201,6 +276,11 @@ fun simpleE(): Flow<Int> = flow {
             emit(i) // emit next value
         }
     }
+
+//    Exception in thread "main" java.lang.IllegalStateException: Flow invariant is violated:
+//    Flow was collected in [CoroutineId(1), "coroutine#1":BlockingCoroutine{Active}@2255421, BlockingEventLoop@5c2e61c0],
+//    but emission happened in [CoroutineId(1), "coroutine#1":DispatchedCoroutine{Active}@35ea2068, Dispatchers.Default].
+//    Please refer to 'flow' documentation or use 'flowOn' instead
 }
 
 fun flowE() = runBlocking<Unit> {
@@ -219,6 +299,13 @@ fun flowF() = runBlocking<Unit> {
     simpleF().collect { value ->
         log("Collected $value")
     }
+
+//    [DefaultDispatcher-worker-1 @coroutine#2] Emitting 1
+//    [main @coroutine#1] Collected 1
+//    [DefaultDispatcher-worker-1 @coroutine#2] Emitting 2
+//    [main @coroutine#1] Collected 2
+//    [DefaultDispatcher-worker-1 @coroutine#2] Emitting 3
+//    [main @coroutine#1] Collected 3
 }
 
 fun simpleG(): Flow<Int> = flow {
@@ -236,6 +323,11 @@ fun flowG() = runBlocking<Unit> {
         }
     }
     println("Collected in $time ms")
+
+//    1
+//    2
+//    3
+//    Collected in 1246 ms
 }
 
 fun flowH() = runBlocking {
@@ -248,6 +340,11 @@ fun flowH() = runBlocking {
             }
     }
     println("Collected in $time ms")
+
+//    1
+//    2
+//    3
+//    Collected in 1122 ms
 }
 
 fun flowI() = runBlocking {
@@ -260,6 +357,10 @@ fun flowI() = runBlocking {
             }
     }
     println("Collected in $time ms")
+
+//    1
+//    3
+//    Collected in 795 ms
 }
 
 fun flowJ() = runBlocking {
@@ -272,6 +373,12 @@ fun flowJ() = runBlocking {
             }
     }
     println("Collected in $time ms")
+
+//    Collecting 1
+//    Collecting 2
+//    Collecting 3
+//    Done 3
+//    Collected in 806 ms
 }
 
 fun flowK() = runBlocking {
@@ -279,6 +386,10 @@ fun flowK() = runBlocking {
     val strs = flowOf("one", "two", "three") // strings
     nums.zip(strs) { a, b -> "$a -> $b" } // compose a single string
         .collect { println(it) } // collect and print
+
+//    1 -> one
+//    2 -> two
+//    3 -> three
 }
 
 fun flowL() = runBlocking {
@@ -289,6 +400,10 @@ fun flowL() = runBlocking {
         .collect { value -> // collect and print
             println("$value at ${System.currentTimeMillis() - startTime} ms from start")
         }
+
+//    1 -> one at 441 ms from start
+//    2 -> two at 841 ms from start
+//    3 -> three at 1265 ms from start
 }
 
 fun flowM() = runBlocking {
@@ -299,6 +414,12 @@ fun flowM() = runBlocking {
         .collect { value -> // collect and print
             println("$value at ${System.currentTimeMillis() - startTime} ms from start")
         }
+
+//    1 -> one at 457 ms from start
+//    2 -> one at 669 ms from start
+//    2 -> two at 859 ms from start
+//    3 -> two at 975 ms from start
+//    3 -> three at 1266 ms from start
 }
 
 fun requestFlow(i: Int): Flow<String> = flow {
@@ -314,6 +435,13 @@ fun flowN() = runBlocking {
         .collect { value -> // collect and print
             println("$value at ${System.currentTimeMillis() - startTime} ms from start")
         }
+
+//    1: First at 143 ms from start
+//    1: Second at 649 ms from start
+//    2: First at 754 ms from start
+//    2: Second at 1260 ms from start
+//    3: First at 1369 ms from start
+//    3: Second at 1871 ms from start
 }
 
 fun flowO() = runBlocking {
@@ -323,6 +451,13 @@ fun flowO() = runBlocking {
         .collect { value -> // collect and print
             println("$value at ${System.currentTimeMillis() - startTime} ms from start")
         }
+
+//    1: First at 196 ms from start
+//    2: First at 292 ms from start
+//    3: First at 394 ms from start
+//    1: Second at 697 ms from start
+//    2: Second at 797 ms from start
+//    3: Second at 905 ms from start
 }
 
 fun flowP() = runBlocking {
@@ -332,6 +467,11 @@ fun flowP() = runBlocking {
         .collect { value -> // collect and print
             println("$value at ${System.currentTimeMillis() - startTime} ms from start")
         }
+
+//    1: First at 194 ms from start
+//    2: First at 376 ms from start
+//    3: First at 483 ms from start
+//    3: Second at 994 ms from start
 }
 
 fun simpleQ(): Flow<Int> = flow {
@@ -350,6 +490,12 @@ fun flowQ() = runBlocking {
     } catch (e: Throwable) {
         println("Caught $e")
     }
+
+//    Emitting 1
+//    1
+//    Emitting 2
+//    2
+//    Caught java.lang.IllegalStateException: Collected 2
 }
 
 fun simpleR(): Flow<String> =
@@ -370,61 +516,127 @@ fun flowR() = runBlocking {
     } catch (e: Throwable) {
         println("Caught $e")
     }
+
+//    Emitting 1
+//    string 1
+//    Emitting 2
+//    Caught java.lang.IllegalStateException: Crashed on 2
 }
 
-fun simpleS(): Flow<Int> = (1..3).asFlow()
-
 fun flowS() = runBlocking {
-    try {
-        simpleS().collect { value -> println(value) }
-    } finally {
-        println("Done")
+    simpleR()
+        .catch { e -> emit("Caught $e") } // emit on exception
+        .collect { value -> println(value) }
+
+//    Emitting 1
+//    string 1
+//    Emitting 2
+//    Caught java.lang.IllegalStateException: Crashed on 2
+}
+
+fun simpleT(): Flow<Int> = flow {
+    for (i in 1..3) {
+        println("Emitting $i")
+        emit(i)
     }
 }
 
 fun flowT() = runBlocking {
-    simpleS()
-        .onCompletion { println("Done") }
-        .collect { value -> println(value) }
+    simpleT()
+        .catch { e -> println("Caught $e") } // does not catch downstream exceptions
+        .collect { value ->
+            check(value <= 1) { "Collected $value" }
+            println(value)
+        }
+
+//    Emitting 1
+//    1
+//    Emitting 2
+//    Exception in thread "main" java.lang.IllegalStateException: Collected 2
 }
 
-fun simpleU(): Flow<Int> = flow {
+fun simpleU(): Flow<Int> = (1..3).asFlow()
+
+fun flowU() = runBlocking {
+    try {
+        simpleU().collect { value -> println(value) }
+    } finally {
+        println("Done")
+    }
+
+//    1
+//    2
+//    3
+//    Done
+}
+
+fun flowV() = runBlocking {
+    simpleU()
+        .onCompletion { println("Done") }
+        .collect { value -> println(value) }
+
+//    1
+//    2
+//    3
+//    Done
+}
+
+fun simpleW(): Flow<Int> = flow {
     emit(1)
     throw RuntimeException()
 }
 
-fun flowU() = runBlocking {
-    simpleU()
+fun flowW() = runBlocking {
+    simpleW()
         .onCompletion { cause -> if (cause != null) println("Flow completed exceptionally") }
         .catch { cause -> println("Caught exception") }
         .collect { value -> println(value) }
+
+//    1
+//    Flow completed exceptionally
+//    Caught exception
 }
 
-fun simpleV(): Flow<Int> = (1..3).asFlow()
+fun simpleX(): Flow<Int> = (1..3).asFlow()
 
-fun flowV() = runBlocking {
-    simpleV()
+fun flowX() = runBlocking {
+    simpleX()
         .onCompletion { cause -> println("Flow completed with $cause") }
         .collect { value ->
             check(value <= 1) { "Collected $value" }
             println(value)
         }
+
+//    1
+//    Flow completed with java.lang.IllegalStateException: Collected 2
+//    Exception in thread "main" java.lang.IllegalStateException: Collected 2
 }
+
 // Imitate a flow of events
 fun events(): Flow<Int> = (1..3).asFlow().onEach { delay(100) }
 
-fun flowW() = runBlocking {
+fun flowY() = runBlocking {
     events()
         .onEach { event -> println("Event: $event") }
         .collect() // <--- Collecting the flow waits
     println("Done")
+
+//    Event: 1
+//    Event: 2
+//    Event: 3
+//    Done
 }
 
-fun flowX() = runBlocking {
+fun flowZ() = runBlocking {
     events()
         .onEach { event -> println("Event: $event") }
         .launchIn(this) // <--- Launching the flow in a separate coroutine
     println("Done")
+
+//    Done
+//    Event: 1
+//    Event: 2
+//    Event: 3
 }
 
 fun foo(): Flow<Int> = flow {
@@ -434,23 +646,44 @@ fun foo(): Flow<Int> = flow {
     }
 }
 
-fun flowY() = runBlocking {
+fun flowAA() = runBlocking {
     foo().collect { value ->
         if (value == 3) cancel()
         println(value)
     }
+
+//    Emitting 1
+//    1
+//    Emitting 2
+//    2
+//    Emitting 3
+//    3
+//    Emitting 4
+//    Exception in thread "main" kotlinx.coroutines.JobCancellationException: BlockingCoroutine was cancelled; job="coroutine#1":BlockingCoroutine{Cancelled}@1a8a8f7c
 }
 
-fun flowZ() = runBlocking {
+fun flowAB() = runBlocking {
     (1..5).asFlow().collect { value ->
         if (value == 3) cancel()
         println(value)
     }
+
+//    1
+//    2
+//    3
+//    4
+//    5
+//    Exception in thread "main" kotlinx.coroutines.JobCancellationException: BlockingCoroutine was cancelled; job="coroutine#1":BlockingCoroutine{Cancelled}@305fd85d
 }
 
-fun flowAA() = runBlocking {
+fun flowAC() = runBlocking {
     (1..5).asFlow().cancellable().collect { value ->
         if (value == 3) cancel()
         println(value)
     }
+
+//    1
+//    2
+//    3
+//    Exception in thread "main" kotlinx.coroutines.JobCancellationException: BlockingCoroutine was cancelled; job="coroutine#1":BlockingCoroutine{Cancelled}@4b553d26
 }
