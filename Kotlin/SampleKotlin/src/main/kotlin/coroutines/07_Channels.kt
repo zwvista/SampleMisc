@@ -25,6 +25,13 @@ fun channels1() = runBlocking {
     // here we print five received integers:
     repeat(5) { println(channel.receive()) }
     println("Done!")
+
+//    1
+//    4
+//    9
+//    16
+//    25
+//    Done!
 }
 
 fun channels2() = runBlocking {
@@ -36,6 +43,13 @@ fun channels2() = runBlocking {
     // here we print received values using `for` loop (until the channel is closed)
     for (y in channel) println(y)
     println("Done!")
+
+//    1
+//    4
+//    9
+//    16
+//    25
+//    Done!
 }
 
 fun CoroutineScope.produceSquares(): ReceiveChannel<Int> = produce {
@@ -46,6 +60,13 @@ fun channels3() = runBlocking {
     val squares = produceSquares()
     squares.consumeEach { println(it) }
     println("Done!")
+
+//    1
+//    4
+//    9
+//    16
+//    25
+//    Done!
 }
 
 fun CoroutineScope.produceNumbers() = produce<Int> {
@@ -65,6 +86,13 @@ fun channels4() = runBlocking {
     }
     println("Done!") // we are done
     coroutineContext.cancelChildren() // cancel children coroutines
+
+//    1
+//    4
+//    9
+//    16
+//    25
+//    Done!
 }
 
 fun CoroutineScope.numbersFrom(start: Int) = produce<Int> {
@@ -84,6 +112,17 @@ fun channels5() = runBlocking {
         cur = filter(cur, prime)
     }
     coroutineContext.cancelChildren() // cancel all children to let main finish
+
+//    2
+//    3
+//    5
+//    7
+//    11
+//    13
+//    17
+//    19
+//    23
+//    29
 }
 
 fun CoroutineScope.produceNumbers2() = produce<Int> {
@@ -105,6 +144,17 @@ fun channels6() = runBlocking {
     repeat(5) { launchProcessor(it, producer) }
     delay(950)
     producer.cancel() // cancel producer coroutine and thus kill them all
+
+//    Processor #0 received 1
+//    Processor #0 received 2
+//    Processor #1 received 3
+//    Processor #2 received 4
+//    Processor #3 received 5
+//    Processor #4 received 6
+//    Processor #0 received 7
+//    Processor #1 received 8
+//    Processor #2 received 9
+//    Processor #3 received 10
 }
 
 suspend fun sendString(channel: SendChannel<String>, s: String, time: Long) {
@@ -122,6 +172,13 @@ fun channels7() = runBlocking {
         println(channel.receive())
     }
     coroutineContext.cancelChildren() // cancel all children to let main finish
+
+//    foo
+//    foo
+//    BAR!
+//    foo
+//    foo
+//    BAR!
 }
 
 fun channels8() = runBlocking {
@@ -135,6 +192,12 @@ fun channels8() = runBlocking {
     // don't receive anything... just wait....
     delay(1000)
     sender.cancel() // cancel sender coroutine
+
+//    Sending 0
+//    Sending 1
+//    Sending 2
+//    Sending 3
+//    Sending 4
 }
 
 data class Ball(var hits: Int)
@@ -146,6 +209,11 @@ fun channels9() = runBlocking {
     table.send(Ball(0)) // serve the ball
     delay(1000) // delay 1 second
     coroutineContext.cancelChildren() // game over, cancel them
+
+//    ping Ball(hits=1)
+//    pong Ball(hits=2)
+//    ping Ball(hits=3)
+//    pong Ball(hits=4)
 }
 
 suspend fun player(name: String, table: Channel<Ball>) {
@@ -179,4 +247,11 @@ fun channelsA() = runBlocking {
     println("Next element is ready in 50ms after consumer pause in 150ms: $nextElement")
 
     tickerChannel.cancel() // indicate that no more elements are needed
+
+//    Initial element is available immediately: kotlin.Unit
+//    Next element is not ready in 50 ms: null
+//    Next element is ready in 100 ms: kotlin.Unit
+//    Consumer pauses for 150ms
+//    Next element is available immediately after large consumer delay: kotlin.Unit
+//    Next element is ready in 50ms after consumer pause in 150ms: kotlin.Unit
 }
