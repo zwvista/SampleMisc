@@ -4,7 +4,7 @@ import { PostService } from './post.service';
 import 'reflect-metadata';
 import {useInjection} from "inversify-react";
 import {Post2Service} from "./post2.service";
-import {Dispatch, SetStateAction, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 const Add = () => {
@@ -17,30 +17,27 @@ const Add = () => {
 
   const toNumber = (s: string) => Number(s) || 0;
 
-  const onChangeNumber = (setState: Dispatch<SetStateAction<string>> | null) => (t: string | null) => {
-    if (t && setState) setState(t);
-    setResult(String(toNumber(number1) + toNumber(number2) + toNumber(number3)));
-  };
-
   useEffect(() => {
     console.log(postService);
     console.log(post2Service);
-    onChangeNumber(null)(null);
   }, []);
+  useEffect(() => {
+    setResult(String(toNumber(number1) + toNumber(number2) + toNumber(number3)));
+  }, [number1, number2, number3]);
 
   return (
     <View>
       <View style={styles.inputWrap}>
         <Text style={styles.label}></Text>
-        <TextInput style={styles.textInput} keyboardType='numeric' value={number1} onChangeText={onChangeNumber(setNumber1)} />
+        <TextInput style={styles.textInput} keyboardType='numeric' value={number1} onChangeText={setNumber1} />
       </View>
       <View style={styles.inputWrap}>
         <Text style={styles.label}>+</Text>
-        <TextInput style={styles.textInput} keyboardType='numeric' value={number2} onChangeText={onChangeNumber(setNumber2)} />
+        <TextInput style={styles.textInput} keyboardType='numeric' value={number2} onChangeText={setNumber2} />
       </View>
       <View style={styles.inputWrap}>
         <Text style={styles.label}>+</Text>
-        <TextInput style={styles.textInput} keyboardType='numeric' value={number3} onChangeText={onChangeNumber(setNumber3)} />
+        <TextInput style={styles.textInput} keyboardType='numeric' value={number3} onChangeText={setNumber3} />
       </View>
       <View style={styles.inputWrap}>
         <Text style={styles.label}>=</Text>
