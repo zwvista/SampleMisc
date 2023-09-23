@@ -18,6 +18,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var pbItems: NSPopUpButton!
     @IBOutlet weak var button1: NSButton!
     @IBOutlet weak var check1: NSButton!
+    @IBOutlet var tv1: NSTextView!
     
     var vm = NumbersViewModel()
     var vm2 = ControlViewModel()
@@ -52,7 +53,10 @@ class ViewController: NSViewController {
 
         button1.tapPublisher.sink {
             print(self.vm2.letterIndex)
+            print(self.vm2.txt)
         } ~ subscriptions
+        
+        vm2.$txt <~> tv1.textProperty ~ subscriptions
     }
 
 }

@@ -13,4 +13,5 @@ class ControlViewModel: ObservableObject {
     @Published var letterIndex = 2
     @Published var itemIndex = 2
     @Published var isOn = true
+    @Published var txt = "TXT"
 }
