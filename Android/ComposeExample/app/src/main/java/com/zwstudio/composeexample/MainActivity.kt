@@ -1,15 +1,26 @@
 package com.zwstudio.composeexample
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,78 +36,60 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    AddNumbers()
+                    BottomNavigationExample()
                 }
             }
         }
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun LeftText(
-    text: String = "",
-) {
-    Text(
-        text = text,
-        modifier = Modifier.width(40.dp),
-        textAlign = TextAlign.Center,
+fun BottomNavigationExample() {
+    val screens = listOf("Home", "Add", "Feed", "Alert", "Jobs")
+    var selectedScreen by remember { mutableStateOf(screens.first()) }
+
+    Scaffold(
+        bottomBar = {
+            BottomNavigation {
+                screens.forEach { screen ->
+                    BottomNavigationItem(
+                        icon = { Icon(getIconForScreen(screen), contentDescription = screen) },
+                        label = { Text(screen) },
+                        selected = screen == selectedScreen,
+                        onClick = { selectedScreen = screen },
+                        modifier = Modifier.padding(8.dp)
+                    )
+                }
+            }
+        },
+        content = {
+            if (selectedScreen == "Add")
+                AddNumbers()
+            else
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(text = "Selected Screen: $selectedScreen")
+                }
+        }
     )
 }
 
 @Composable
-fun RightTextField(
-    value: String,
-    onValueChange: (String) -> Unit,
-    readOnly: Boolean = false,
-) {
-    TextField(
-        value = value,
-        onValueChange = onValueChange,
-        readOnly = readOnly,
-        modifier = Modifier.width(200.dp),
-        textStyle = LocalTextStyle.current.copy(textAlign = TextAlign.End)
-    )
-}
-
-@Composable
-fun AddNumbers() {
-    val vm = remember { NumbersViewModel() }
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Row {
-            LeftText()
-            RightTextField(
-                value = vm.number1.collectAsState().value,
-                onValueChange = { vm.number1.value = it },
-            )
-        }
-        Row {
-            LeftText()
-            RightTextField(
-                value = vm.number2.collectAsState().value,
-                onValueChange = { vm.number2.value = it }
-            )
-        }
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            LeftText("+")
-            RightTextField(
-                value = vm.number3.collectAsState().value,
-                onValueChange = { vm.number3.value = it }
-            )
-        }
-        Row {
-            LeftText("=")
-            RightTextField(
-                value = vm.result.collectAsState("").value,
-                onValueChange = {},
-                readOnly = true
-            )
-        }
+fun getIconForScreen(screen: String): ImageVector {
+    return when (screen) {
+        "Home" -> Icons.Default.Home
+        "Add" -> Icons.Default.Add
+        "Feed" -> Icons.Default.AccountBox
+        "Alert" -> Icons.Default.Notifications
+        "Jobs" -> Icons.Default.Done
+        else -> Icons.Default.Home
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable
