@@ -1,9 +1,10 @@
 package com.zwstudio.composeexample
 
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.combine
 
-class NumbersViewModel : ViewModel() {
+class AddNumbersViewModel : ViewModel() {
     val number1 = MutableStateFlow("1")
     val number2 = MutableStateFlow("2")
     val number3 = MutableStateFlow("3")
