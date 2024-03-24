@@ -23,9 +23,9 @@ namespace RxSamples
         [JsonProperty("id")]
         public int Id { get; set; }
         [JsonProperty("title")]
-        public string Title { get; set; }
+        public string Title { get; set; } = "";
         [JsonProperty("body")]
-        public string Body { get; set; }
+        public string Body { get; set; } = "";
 
         public override string ToString() =>
             $"Post {{userId = {UserId}, id = {Id}, title = \"{Title}\", body = \"{Body.Replace("\n", "\\n")}\"}}";
@@ -44,7 +44,7 @@ namespace RxSamples
         public async Task<Post> GetPostAsJson(int id)
         {
             var json = await client.GetStringAsync($"posts/{id}");
-            var item = await Task.Run(() => JsonConvert.DeserializeObject<Post>(json));
+            var item = await Task.Run(() => JsonConvert.DeserializeObject<Post>(json)!);
             return item;
         }
 
@@ -52,7 +52,7 @@ namespace RxSamples
         {
             IEnumerable<Post> items = new List<Post>();
             var json = await client.GetStringAsync("posts");
-            items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Post>>(json));
+            items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Post>>(json)!);
             return items.Take(n);
         }
 
@@ -63,7 +63,7 @@ namespace RxSamples
         {
             var response = await client.PostAsync("posts", GetStringContent(item));
             var json = await response.Content.ReadAsStringAsync();
-            var item2 = await Task.Run(() => JsonConvert.DeserializeObject<Post>(json));
+            var item2 = await Task.Run(() => JsonConvert.DeserializeObject<Post>(json)!);
             return item2;
         }
 
@@ -71,7 +71,7 @@ namespace RxSamples
         {
             var response = await client.PutAsync($"posts/{item.Id}", GetStringContent(item));
             var json = await response.Content.ReadAsStringAsync();
-            var item2 = await Task.Run(() => JsonConvert.DeserializeObject<Post>(json));
+            var item2 = await Task.Run(() => JsonConvert.DeserializeObject<Post>(json)!);
             return item2;
         }
 
@@ -95,11 +95,11 @@ namespace RxSamples
 
         public IObservable<Post> GetPostAsJson(int id) =>
             client.GetStringAsync($"posts/{id}").ToObservable()
-            .Select(json => JsonConvert.DeserializeObject<Post>(json));
+            .Select(json => JsonConvert.DeserializeObject<Post>(json)!);
 
         public IObservable<Post> GetPosts(int n) =>
             client.GetStringAsync("posts").ToObservable()
-            .SelectMany(json => JsonConvert.DeserializeObject<IEnumerable<Post>>(json))
+            .SelectMany(json => JsonConvert.DeserializeObject<IEnumerable<Post>>(json)!)
             .Take(n);
 
         private StringContent GetStringContent(Post item) =>
@@ -108,12 +108,12 @@ namespace RxSamples
         public IObservable<Post> CreatePost(Post item) =>
             client.PostAsync("posts", GetStringContent(item)).ToObservable()
             .SelectMany(response => response.Content.ReadAsStringAsync().ToObservable()
-                .Select(json => JsonConvert.DeserializeObject<Post>(json)));
+                .Select(json => JsonConvert.DeserializeObject<Post>(json)!));
 
         public IObservable<Post> UpdatePost(Post item) =>
             client.PutAsync($"posts/{item.Id}", GetStringContent(item)).ToObservable()
             .SelectMany(response => response.Content.ReadAsStringAsync().ToObservable()
-                .Select(json => JsonConvert.DeserializeObject<Post>(json)));
+                .Select(json => JsonConvert.DeserializeObject<Post>(json)!));
 
         public IObservable<string> DeletePost(int id) =>
             client.DeleteAsync($"posts/{id}").ToObservable()
@@ -122,46 +122,42 @@ namespace RxSamples
 
     public class PostDataStoreByRestSharp
     {
-        RestClient client = new RestClient("https://jsonplaceholder.typicode.com/");
-        public PostDataStoreByRestSharp()
-        {
-            client.UseNewtonsoftJson();
-        }
+        RestClient client = new RestClient("https://jsonplaceholder.typicode.com/", configureSerialization: s => s.UseNewtonsoftJson());
         public IObservable<string> GetPostAsString(int id)
         {
-            var request = new RestRequest($"posts/{id}", Method.GET);
-            return client.ExecuteAsync<string>(request).ToObservable().Select(o => o.Content);
+            var request = new RestRequest($"posts/{id}", Method.Get);
+            return client.ExecuteAsync<string>(request).ToObservable().Select(o => o.Content!);
         }
         public IObservable<Post> GetPostAsJson(int id)
         {
-            var request = new RestRequest($"posts/{id}", Method.GET);
-            return client.ExecuteAsync<Post>(request).ToObservable().Select(o => o.Data);
+            var request = new RestRequest($"posts/{id}", Method.Get);
+            return client.ExecuteAsync<Post>(request).ToObservable().Select(o => o.Data!);
         }
 
         public IObservable<Post> GetPosts(int n)
         {
-            var request = new RestRequest($"posts", Method.GET);
-            return client.ExecuteAsync<IEnumerable<Post>>(request).ToObservable().SelectMany(o => o.Data).Take(n);
+            var request = new RestRequest($"posts", Method.Get);
+            return client.ExecuteAsync<IEnumerable<Post>>(request).ToObservable().SelectMany(o => o.Data!).Take(n);
         }
 
         public IObservable<Post> CreatePost(Post item)
         {
-            var request = new RestRequest($"posts", Method.POST);
+            var request = new RestRequest($"posts", Method.Post);
             request.AddJsonBody(item);
-            return client.ExecuteAsync<Post>(request).ToObservable().Select(o => o.Data);
+            return client.ExecuteAsync<Post>(request).ToObservable().Select(o => o.Data!);
         }
 
         public IObservable<Post> UpdatePost(Post item)
         {
-            var request = new RestRequest($"posts/{item.Id}", Method.PUT);
+            var request = new RestRequest($"posts/{item.Id}", Method.Put);
             request.AddJsonBody(item);
-            return client.ExecuteAsync<Post>(request).ToObservable().Select(o => o.Data);
+            return client.ExecuteAsync<Post>(request).ToObservable().Select(o => o.Data!);
         }
 
         public IObservable<string> DeletePost(int id)
         {
-            var request = new RestRequest($"posts/{id}", Method.DELETE);
-            return client.ExecuteAsync<string>(request).ToObservable().Select(o => o.Content);
+            var request = new RestRequest($"posts/{id}", Method.Delete);
+            return client.ExecuteAsync<string>(request).ToObservable().Select(o => o.Content!);
         }
     }
 
@@ -214,7 +210,7 @@ namespace RxSamples
 
         private static void TestByTask()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var dataStore = new PostDataStoreByTask();
             Console.WriteLine(dataStore.GetPostAsString(1).Result);
             Console.WriteLine(dataStore.GetPostAsJson(1).Result);
@@ -238,7 +234,7 @@ namespace RxSamples
 
         private static void TestByRx()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var dataStore = new PostDataStoreByRx();
             dataStore.GetPostAsString(1).Subscribe(Console.WriteLine);
             dataStore.GetPostAsJson(1).Subscribe(Console.WriteLine);
@@ -263,7 +259,7 @@ namespace RxSamples
 
         private static void TestByRestSharp()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var dataStore = new PostDataStoreByRestSharp();
             dataStore.GetPostAsString(1).Subscribe(Console.WriteLine);
             dataStore.GetPostAsJson(1).Subscribe(Console.WriteLine);
@@ -288,7 +284,7 @@ namespace RxSamples
 
         private static void TestByRefit()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var dataStore = new PostDataStoreByRefit();
             Console.WriteLine(dataStore.GetPostAsString(1).Result);
             Console.WriteLine(dataStore.GetPostAsJson(1).Result);

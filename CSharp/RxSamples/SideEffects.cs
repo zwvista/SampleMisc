@@ -19,7 +19,7 @@ namespace RxSamples
 
         private static void SideEffects1()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var source = Observable.Range(0, 3);
             var result = source.Select(
             (idx, value) => new
@@ -37,7 +37,7 @@ namespace RxSamples
 
         private static void SideEffects2()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var source = Observable.Range(0, 3);
             var result = source.Scan(
                 new
@@ -73,7 +73,7 @@ namespace RxSamples
 
         private static void Do1()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var source = Observable
                 .Interval(TimeSpan.FromSeconds(1))
                 .Take(3);
@@ -95,7 +95,7 @@ namespace RxSamples
 
         private static void Do2()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var source = GetNumbers();
             var result = source.Where(i => i % 3 == 0)
                 .Take(3)
@@ -124,7 +124,7 @@ namespace RxSamples
 
         private static void AsObservable()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var repo = new LetterRepo();
             var good = repo.GetLetters();
             var evil = repo.GetLetters();

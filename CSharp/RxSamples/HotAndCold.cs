@@ -24,7 +24,7 @@ namespace RxSamples
 
         private static void SimpleColdSample()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var observable = Observable.Interval(TimeSpan.FromSeconds(1));
             using (observable.Subscribe(i => Console.WriteLine("first subscription : {0}", i)))
             {
@@ -45,7 +45,7 @@ namespace RxSamples
 
         private static void Publish1()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var observable = Observable.Interval(TimeSpan.FromSeconds(1)).Publish();
             observable.Connect();
             using (observable.Subscribe(i => Console.WriteLine("first subscription : {0}", i)))
@@ -58,7 +58,7 @@ namespace RxSamples
 
         private static void Publish2()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var period = TimeSpan.FromSeconds(1);
             var observable = Observable.Interval(TimeSpan.FromSeconds(1)).Publish();
             using (observable.Subscribe(i => Console.WriteLine("first subscription : {0}", i)))
@@ -74,7 +74,7 @@ namespace RxSamples
 
         private static void Publish3()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var period = TimeSpan.FromSeconds(1);
             var observable = Observable.Interval(period).Publish();
             observable.Subscribe(i => Console.WriteLine("subscription : {0}", i));
@@ -99,7 +99,7 @@ namespace RxSamples
 
         private static void Publish4()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var period = TimeSpan.FromSeconds(1);
             var observable = Observable.Interval(period)
             .Do(l => Console.WriteLine("Publishing {0}", l)) //Side effect to show it is running
@@ -118,7 +118,7 @@ namespace RxSamples
 
         private static void RefCount()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var period = TimeSpan.FromSeconds(1);
             var observable = Observable.Interval(period)
             .Do(l => Console.WriteLine("Publishing {0}", l)) //side effect to show it is running
@@ -137,7 +137,7 @@ namespace RxSamples
 
         private static void PublishLast()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var period = TimeSpan.FromSeconds(1);
             var observable = Observable.Interval(period)
             .Take(5)
@@ -156,7 +156,7 @@ namespace RxSamples
 
         private static void Replay()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var hot = Observable.Interval(TimeSpan.FromSeconds(1))
             .Take(3)
             .Publish();

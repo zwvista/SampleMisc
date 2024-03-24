@@ -41,7 +41,7 @@ namespace RxSamples
 
         private static void Subscribe()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             Console.WriteLine("Starting on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
             var source = Observable.Create<int>(
             o =>
@@ -63,7 +63,7 @@ namespace RxSamples
 
         private static void SubscribeOn()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             Console.WriteLine("Starting on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
             var source = Observable.Create<int>(
             o =>
@@ -87,7 +87,7 @@ namespace RxSamples
 
         private static void ObserveOn()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             Console.WriteLine("Starting on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
             var source = Observable.Create<int>(
             o =>
@@ -111,7 +111,7 @@ namespace RxSamples
 
         private static void SubscribeOnObserveOn()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             Console.WriteLine("Starting on threadId:{0}", Thread.CurrentThread.ManagedThreadId);
             var source = Observable.Create<int>(
             o =>
@@ -136,7 +136,7 @@ namespace RxSamples
 
         private static void ScheduleState1()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = NewThreadScheduler.Default;
             var myName = "Lee";
             scheduler.Schedule(
@@ -147,7 +147,7 @@ namespace RxSamples
 
         private static void ScheduleState2()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = Scheduler.Immediate;
             var myName = "Lee";
             scheduler.Schedule(
@@ -158,7 +158,7 @@ namespace RxSamples
 
         private static void ScheduleState3()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = NewThreadScheduler.Default;
             var myName = "Lee";
             scheduler.Schedule(myName,
@@ -173,7 +173,7 @@ namespace RxSamples
 
         private static void ScheduleState4()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = Scheduler.Immediate;
             var myName = "Lee";
             scheduler.Schedule(myName,
@@ -188,7 +188,7 @@ namespace RxSamples
 
         private static void ScheduleState5()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = NewThreadScheduler.Default;
             var list = new List<int>();
             scheduler.Schedule(list,
@@ -203,7 +203,7 @@ namespace RxSamples
 
         private static void ScheduleState6()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = Scheduler.Immediate;
             var list = new List<int>();
             scheduler.Schedule(list,
@@ -218,7 +218,7 @@ namespace RxSamples
 
         private static void ScheduleTime()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = Scheduler.Immediate;
             var delay = TimeSpan.FromSeconds(1);
             Console.WriteLine("Before schedule at {0:o}", DateTime.Now);
@@ -230,7 +230,7 @@ namespace RxSamples
 
         private static void ScheduleCancel1()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = NewThreadScheduler.Default;
             var delay = TimeSpan.FromSeconds(1);
             Console.WriteLine("Before schedule at {0:o}", DateTime.Now);
@@ -268,7 +268,7 @@ namespace RxSamples
 
         private static void ScheduleCancel2()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = NewThreadScheduler.Default;
             var list = new List<int>();
             Console.WriteLine("Enter to quit:");
@@ -282,7 +282,7 @@ namespace RxSamples
 
         private static void Recursion()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = NewThreadScheduler.Default;
             Action<Action> work = (Action self)
             =>
@@ -317,7 +317,7 @@ namespace RxSamples
         }
         private static void CurrentThreadExample()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             ScheduleTasks(Scheduler.CurrentThread);
             /*Output: 
             outer start. 
@@ -329,7 +329,7 @@ namespace RxSamples
         }
         private static void ImmediateExample()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             ScheduleTasks(Scheduler.Immediate);
             /*Output: 
             outer start. 
@@ -372,7 +372,7 @@ namespace RxSamples
 
         private static void NewThreadExample()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             Console.WriteLine("Starting on thread :{0}", Thread.CurrentThread.ManagedThreadId);
             NewThreadScheduler.Default.Schedule("A", OuterAction);
             NewThreadScheduler.Default.Schedule("B", OuterAction);
@@ -381,7 +381,7 @@ namespace RxSamples
 
         private static void ThreadPoolExample()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             Console.WriteLine("Starting on thread :{0}", Thread.CurrentThread.ManagedThreadId);
             ThreadPoolScheduler.Instance.Schedule("A", OuterAction);
             ThreadPoolScheduler.Instance.Schedule("B", OuterAction);
@@ -390,7 +390,7 @@ namespace RxSamples
 
         private static void TaskPoolExample()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             Console.WriteLine("Starting on thread :{0}", Thread.CurrentThread.ManagedThreadId);
             TaskPoolScheduler.Default.Schedule("A", OuterAction);
             TaskPoolScheduler.Default.Schedule("B", OuterAction);

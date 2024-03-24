@@ -21,7 +21,7 @@ namespace RxSamples
 
         private static void Any1()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             subject.Subscribe(Console.WriteLine, () => Console.WriteLine("Subject completed"));
             var any = subject.Any();
@@ -32,7 +32,7 @@ namespace RxSamples
 
         private static void Any2()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             subject.Subscribe(Console.WriteLine,
             ex => Console.WriteLine("subject OnError : {0}", ex),
@@ -46,7 +46,7 @@ namespace RxSamples
 
         private static void All()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             subject.Subscribe(Console.WriteLine, () => Console.WriteLine("Subject completed"));
             var all = subject.All(i => i < 5);
@@ -61,7 +61,7 @@ namespace RxSamples
 
         private static void Contains()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             subject.Subscribe(
             Console.WriteLine,
@@ -78,7 +78,7 @@ namespace RxSamples
 
         private static void DefaultIfEmpty1()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             subject.Subscribe(
             Console.WriteLine,
@@ -95,7 +95,7 @@ namespace RxSamples
 
         private static void DefaultIfEmpty2()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             subject.Subscribe(
             Console.WriteLine,
@@ -113,7 +113,7 @@ namespace RxSamples
 
         private static void ElementAt()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             subject.Subscribe(
             Console.WriteLine,
@@ -130,7 +130,7 @@ namespace RxSamples
 
         private static void SequenceEqual()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject1 = new Subject<int>();
             subject1.Subscribe(
             i => Console.WriteLine("subject1.OnNext({0})", i),
