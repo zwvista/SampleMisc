@@ -34,7 +34,7 @@ namespace RxSamples
                 () => Console.WriteLine("completed"));
         }
 
-        private static void OnTimerElapsed(object sender, ElapsedEventArgs e)
+        private static void OnTimerElapsed(object? sender, ElapsedEventArgs e)
         {
             Console.WriteLine(e.SignalTime);
         }

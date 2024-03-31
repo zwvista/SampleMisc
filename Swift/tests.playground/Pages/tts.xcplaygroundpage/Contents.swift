@@ -1,19 +1,22 @@
 import Cocoa
+import AVFoundation
 
 import PlaygroundSupport
 PlaygroundPage.current.needsIndefiniteExecution = true
 
-let voices = NSSpeechSynthesizer.availableVoices.map { v in (v, NSSpeechSynthesizer.attributes(forVoice: v)[NSSpeechSynthesizer.VoiceAttributeKey.localeIdentifier] as! String) }.sorted  { ($0.1, $0.0.rawValue) < ($1.1, $1.0.rawValue) }
+let voices = AVSpeechSynthesisVoice.speechVoices().map { v in (v.identifier, v.language) }.sorted  { ($0.1, $0.0) < ($1.1, $1.0) }
 for (k, v) in voices {
     print( "\(k) speaks \(v)" )
 }
 
-let synth = NSSpeechSynthesizer()
-synth.setVoice(NSSpeechSynthesizer.VoiceName(rawValue: "com.apple.speech.synthesis.voice.yuna"))
-synth.startSpeaking("저는 중국 사람이에요.")
+let speaker = AVSpeechSynthesizer()
+let dialogue = AVSpeechUtterance(string: "저는 중국 사람이에요.")
+dialogue.voice = AVSpeechSynthesisVoice(identifier: "com.apple.voice.compact.ko-KR.Yuna")
+speaker.speak(dialogue)
 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(4), execute: {
-    synth.setVoice(NSSpeechSynthesizer.VoiceName(rawValue: "com.apple.speech.synthesis.voice.kyoko"))
-    synth.startSpeaking("私は中国人です。")
+    let dialog2 = AVSpeechUtterance(string: "私は中国人です。")
+    dialog2.voice = AVSpeechSynthesisVoice(identifier: "com.apple.voice.compact.ja-JP.Kyoko")
+    speaker.speak(dialog2)
     // Put your code which should be executed with a delay here
 })
 
