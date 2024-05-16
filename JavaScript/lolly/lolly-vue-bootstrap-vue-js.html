@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vue JS - Lolly</title>
+<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css"/>
+<link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.css"/>
+<link rel="stylesheet" href="lolly.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.10/vue.min.js"></script>
+<script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.js"></script>
+</head>
+<body>
+<div id="app">
+<b-table :items="langList" :fields="fields"></b-table>
+<b-form @submit.prevent="formSubmit" action="search" method="post">
+	<b-form-row>
+		<b-col cols="1"><label class="control-label" for='lang'>Language:</label></b-col>
+    <b-col cols="3">
+			<b-form-select @change="langChange($event)" v-model="selectedLang" id='lang'>
+				<option v-for="lang in langList" :value="lang">{{lang.NAME}}</option>
+      </b-form-select>
+    </b-col>
+    <b-col cols="1"><label class="control-label" for='dict'>Dictionary:</label></b-col>
+    <b-col cols="3">
+			<b-form-select v-model="selectedDict" id='dict'>
+				<option v-for="dict in dictList" :value="dict">{{dict.NAME}}</option>
+			</b-form-select>
+		</b-col>
+	</b-form-row>
+ 	<b-form-row>
+		<b-col cols="1"><label class="control-label" for='word'>Word:</label></b-col>
+    <b-col cols="3">
+			<b-form-input v-model="word" id="word" />
+		</b-col>
+    <b-btn type="submit" variant="primary" id='search' @click="searchClick()">Search</b-btn>
+    <b-btn type="submit" variant="primary" id='redirectSearch' @click="redirectSearchClick()">Search(redirect)</b-btn>
+	</b-form-row>
+</b-form>
+<iframe id='dictframe' :src="dictUrl">
+</iframe>
+</div>
+<script>
+var app = new Vue({
+	el: '#app',
+	data: {
+    fields: [ {key: 'ID', label: 'id'}, {key: 'NAME', label: 'language'} ],
+    langList: [],
+    dictList: [],
+    selectedLang: null,
+    selectedDict: null,
+    word: '一人',
+    redirectSearch: false,
+    dictUrl: 'about:blank',
+  },
+  async mounted() {
+    const response = await fetch('https://zwvista.com/lolly/api.php/records/LANGUAGES?filter=ID,neq,0');
+    const data = await response.json();
+    this.langList = data.records;
+    this.selectedLang = this.langList[0];
+    await this.langChange(this.selectedLang);
+  },
+ 	methods: {
+    async langChange(value) {
+      const response = await fetch('https://zwvista.com/lolly/api.php/records/DICTIONARIES?filter=LANGIDFROM,eq,' + value.ID);
+      const data = await response.json();
+      this.dictList = data.records;
+      this.selectedDict = this.dictList[0];
+    },
+		formSubmit() {
+      let url = this.selectedDict.URL;
+      url = url.replace('{0}', encodeURIComponent(this.word));
+      if(this.redirectSearch)
+        window.location = url;
+      else
+        this.dictUrl = url;
+    },
+    searchClick() {
+      this.redirectSearch = false;
+    },
+    redirectSearchClick() {
+      this.redirectSearch = true;
+    },
+	}
+});
+</script>
+</body>
+</html>

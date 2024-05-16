@@ -175,7 +175,7 @@ export class FilteringService {
     const error = source.pipe(
       mergeMap(val => {
         if (val === 4) {
-          return throwError(`ERROR AT ${val}`);
+          return throwError(() => `ERROR AT ${val}`);
         }
         return of(val);
       }),

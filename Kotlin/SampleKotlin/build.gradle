@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.2.51'
+    id 'org.jetbrains.kotlin.jvm' version '1.8.0'
 }
 
 version '1.0-SNAPSHOT'
@@ -11,16 +11,21 @@ repositories {
     mavenCentral()
 }
 
-def retrofit_version = '2.4.0'
+def retrofit_version = '2.9.0'
+def fuel_version = '2.3.1'
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-    testImplementation group: 'junit', name: 'junit', version: '4.12'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.16'
-    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.1'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
+    implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-scalars:$retrofit_version"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1'
+    implementation "com.github.kittinunf.fuel:fuel:$fuel_version"
+    implementation "com.github.kittinunf.fuel:fuel-coroutines:$fuel_version"
+    implementation "com.github.kittinunf.fuel:fuel-gson:$fuel_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 }
 
 compileKotlin {

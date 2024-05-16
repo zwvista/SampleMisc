@@ -1,0 +1,13 @@
+workspace 'RxExample'
+
+use_frameworks!
+
+target 'RxExample' do
+platform :ios, '15.5'
+project 'RxExample'
+pod 'CodableAlamofire', :git => 'https://github.com/zwvista/CodableAlamofire'
+pod 'RxAlamofire', '~> 6'
+pod 'RxBinding', :git => 'https://github.com/zwvista/RxBinding'
+pod 'NSObject+Rx'
+pod 'CombineCocoa'
+end

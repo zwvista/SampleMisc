@@ -18,7 +18,7 @@ namespace RxSamples
 
         private static void Count()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var numbers = Observable.Range(0, 3);
             numbers.Dump("numbers");
             numbers.Count().Dump("count");
@@ -26,7 +26,7 @@ namespace RxSamples
 
         private static void MinMaxSumAvg()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var numbers = new Subject<int>();
             numbers.Dump("numbers");
             numbers.Max().Dump("Max");
@@ -41,7 +41,7 @@ namespace RxSamples
 
         private static void Scan()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var numbers = new Subject<int>();
             var scan = numbers.Scan(0, (acc, current) => acc + current);
             numbers.Dump("numbers");
@@ -54,7 +54,7 @@ namespace RxSamples
 
         private static void GroupBy1()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var source = Observable.Interval(TimeSpan.FromSeconds(0.1)).Take(10);
             var group = source.GroupBy(i => i % 3);
             group.Subscribe(
@@ -68,7 +68,7 @@ namespace RxSamples
 
         private static void GroupBy2()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var source = Observable.Interval(TimeSpan.FromSeconds(0.1)).Take(10);
             var group = source.GroupBy(i => i % 3);
             group.SelectMany(

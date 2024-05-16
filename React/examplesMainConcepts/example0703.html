@@ -1,0 +1,47 @@
+<html>
+
+<head>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <meta charset="utf-8"/>
+  <style>
+* {
+  font-family: sans-serif;
+  margin: 0;
+}
+button {
+  height: 40px;
+  width: 200px;
+}
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+  
+<script type="text/babel">
+function Mailbox(props) {
+  const unreadMessages = props.unreadMessages;
+  return (
+    <div>
+      <h1>Hello!</h1>
+      {unreadMessages.length > 0 &&
+        <h2>
+          You have {unreadMessages.length} unread messages.
+        </h2>
+      }
+    </div>
+  );
+}
+
+const messages = ['React', 'Re: React', 'Re:Re: React'];
+ReactDOM.render(
+  <Mailbox unreadMessages={messages} />,
+  document.getElementById('root')
+);
+</script>
+
+</body>
+
+</html>

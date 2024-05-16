@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ConnectableObservable, interval, ReplaySubject, Subject, timer } from 'rxjs';
+import {connectable, ConnectableObservable, interval, ReplaySubject, Subject, timer} from 'rxjs';
 import { mapTo, multicast, pluck, publish, refCount, share, shareReplay, take, tap, windowTime } from 'rxjs/operators';
 
 @Injectable()
@@ -10,12 +10,12 @@ export class ConnectableService {
   publish1() {
     // emit value every 1 second
     const source = interval(1000);
-    const example = source.pipe(
+    const example = connectable(source.pipe(
       // side effects will be executed once
-      tap(_ => console.log('Do Something!')),
-      // do nothing until connect() is called
-      publish()
-    ) as ConnectableObservable<number>;
+      tap(_ => console.log('Do Something!'))), ({
+        connector: () => new Subject<number>(),
+        resetOnDisconnect: false
+      }));
 
     /*
       source will not emit values until connect() is called

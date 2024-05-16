@@ -1,0 +1,67 @@
+PODS:
+  - Alamofire (5.4.4)
+  - CodableAlamofire (1.2.4):
+    - Alamofire (~> 5.4.0)
+  - CombineCocoa (0.4.0)
+  - "NSObject+Rx (5.2.2)":
+    - RxSwift (~> 6.2)
+  - RxAlamofire (6.1.1):
+    - RxAlamofire/Core (= 6.1.1)
+  - RxAlamofire/Core (6.1.1):
+    - Alamofire (~> 5.4)
+    - RxSwift (~> 6.0)
+  - RxBinding (0.51):
+    - RxCocoa (~> 6)
+    - RxSwift (~> 6)
+  - RxCocoa (6.2.0):
+    - RxRelay (= 6.2.0)
+    - RxSwift (= 6.2.0)
+  - RxRelay (6.2.0):
+    - RxSwift (= 6.2.0)
+  - RxSwift (6.2.0)
+
+DEPENDENCIES:
+  - CodableAlamofire (from `https://github.com/zwvista/CodableAlamofire`)
+  - CombineCocoa
+  - "NSObject+Rx"
+  - RxAlamofire (~> 6)
+  - RxBinding (from `https://github.com/zwvista/RxBinding`)
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - CombineCocoa
+    - "NSObject+Rx"
+    - RxAlamofire
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+
+EXTERNAL SOURCES:
+  CodableAlamofire:
+    :git: https://github.com/zwvista/CodableAlamofire
+  RxBinding:
+    :git: https://github.com/zwvista/RxBinding
+
+CHECKOUT OPTIONS:
+  CodableAlamofire:
+    :commit: cf9369fc18e1326fa8e042d53bb716db0c5d02c8
+    :git: https://github.com/zwvista/CodableAlamofire
+  RxBinding:
+    :commit: 5176ecc93ae6eff8fa8b1932a145235a75b519d8
+    :git: https://github.com/zwvista/RxBinding
+
+SPEC CHECKSUMS:
+  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  CodableAlamofire: 73f910ddd6b53292cf60260a88f4c40def9de394
+  CombineCocoa: 68a050228ce7c53c1c5ac2c57cccf92a7f5c5085
+  "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
+  RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
+  RxBinding: a09619842d943f157557541866f7ea832687e0ab
+  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
+  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
+  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+
+PODFILE CHECKSUM: c05e912f42331cbfc83360a8d57c5d63092cd0d1
+
+COCOAPODS: 1.11.3

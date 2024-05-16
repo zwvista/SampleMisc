@@ -9,7 +9,7 @@ export class ErrorHandlingService {
 
   catch_catchError1() {
     // emit error
-    const source = throwError('This is an error!');
+    const source = throwError(() => 'This is an error!');
     // gracefully handle error, returning observable with error message
     const example = source.pipe(catchError(val => of(`I caught: ${val}`)));
     // output: 'I caught: This is an error'
@@ -39,7 +39,7 @@ export class ErrorHandlingService {
       mergeMap(val => {
         // throw error for demonstration
         if (val > 5) {
-          return throwError('Error!');
+          return throwError(() => 'Error!');
         }
         return of(val);
       }),

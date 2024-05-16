@@ -24,7 +24,7 @@ namespace RxSamples
         }
 
         private static void Where() {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var oddNumbers = Observable.Range(0, 10)
                 .Where(i => i % 2 == 0)
                 .Subscribe(
@@ -33,7 +33,7 @@ namespace RxSamples
         }
 
         private static void Distinct() {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             var distinct = subject.Distinct();
             subject.Subscribe(
@@ -53,7 +53,7 @@ namespace RxSamples
 
         private static void DistinctUntilChanged()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             var distinct = subject.DistinctUntilChanged();
             subject.Subscribe(
@@ -73,7 +73,7 @@ namespace RxSamples
 
         private static void IgnoreElements()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             //Could use subject.Where(_=>false);
             var noElements = subject.IgnoreElements();
@@ -91,7 +91,7 @@ namespace RxSamples
 
         private static void SkipAndTake() 
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             Observable.Range(0, 10)
                 .Skip(3)
                 .Subscribe(Console.WriteLine, () => Console.WriteLine("Completed"));
@@ -105,7 +105,7 @@ namespace RxSamples
 
         private static void SkipWhile()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             subject
             .SkipWhile(i => i < 4)
@@ -123,7 +123,7 @@ namespace RxSamples
 
         private static void TakeWhile()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             subject
             .TakeWhile(i => i < 4)
@@ -141,7 +141,7 @@ namespace RxSamples
 
         private static void SkipLast()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             subject
             .SkipLast(2)
@@ -159,7 +159,7 @@ namespace RxSamples
 
         private static void TakeLast()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             subject
             .TakeLast(2)
@@ -177,7 +177,7 @@ namespace RxSamples
 
         private static void SkipUntil()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             var otherSubject = new Subject<Unit>();
             subject
@@ -197,7 +197,7 @@ namespace RxSamples
 
         private static void TakeUntil()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var subject = new Subject<int>();
             var otherSubject = new Subject<Unit>();
             subject

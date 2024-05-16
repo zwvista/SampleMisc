@@ -2,6 +2,8 @@
 fun main(args: Array<String>) {
     val s = "123-4567-89,987-6543-21"
     val r = Regex("""\d{3}-(\d{4})-\d{2}""")
+    val m = r.find(s);
+    m?.let { println("Found matches:") }
     val ms = r.findAll(s)
     for ((i, m) in ms.withIndex())
         for ((j, v) in m.groupValues.withIndex())
@@ -22,6 +24,7 @@ fun main(args: Array<String>) {
 }
 
 /*
+Found matches:
 group 0,0 : 123-4567-89
 group 0,1 : 4567
 group 1,0 : 987-6543-21
@@ -29,4 +32,4 @@ group 1,1 : 6543
 89-123-4567,21-987-6543
 321-7654-98,789-3456-12
 [, hello, world, ]
- */
+*/

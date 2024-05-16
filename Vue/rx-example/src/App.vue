@@ -18,17 +18,19 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { PostService } from './post.service';
+import { Post2Service } from './post2.service';
 import { inject } from 'vue-typescript-inject';
 import { combineLatest, fromEvent, Observable } from 'rxjs';
 import { map, pluck, startWith } from 'rxjs/operators';
 
 @Component({
   providers: [
-    PostService,
+    PostService, Post2Service
   ],
 })
 export default class App extends Vue {
   @inject() postService!: PostService;
+  @inject() post2Service!: Post2Service;
 
   number1 = '1';
   number2 = '2';
@@ -39,10 +41,10 @@ export default class App extends Vue {
   mounted() {
     const f = (id: string) => {
       const e = document.getElementById(id) as HTMLInputElement;
-      return fromEvent(e, 'input').pipe<string, string>(pluck('target', 'value'), startWith(e.value)) as Observable<string>;
+      return fromEvent(e, 'input').pipe<unknown, unknown>(pluck('target', 'value'), startWith(e.value)) as Observable<string>;
     };
     const g = (s: string) => Number(s) || 0;
-    combineLatest(f('number1'), f('number2'), f('number3'))
+    combineLatest([f('number1'), f('number2'), f('number3')])
       .pipe(map((results: string[]) => String(g(results[0]) + g(results[1]) + g(results[2]))))
       .subscribe(result => this.result2 = result);
     this.onChangeNumber();

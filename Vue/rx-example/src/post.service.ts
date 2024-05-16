@@ -7,7 +7,7 @@ import { Rxios } from '@/rxios';
 @injectable()
 export class PostService {
   private readonly http = new Rxios();
-  private readonly baseUrl = 'http://jsonplaceholder.typicode.com/';
+  private readonly baseUrl = 'https://jsonplaceholder.typicode.com/';
 
   constructor() {
     this.getPostAsString().subscribe();

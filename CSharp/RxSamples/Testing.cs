@@ -30,7 +30,7 @@ namespace RxSamples
 
         private static void Tick()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = new TestScheduler();
             var wasExecuted = false;
             scheduler.Schedule(() => wasExecuted = true);
@@ -41,7 +41,7 @@ namespace RxSamples
 
         private static void AdvanceTo()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = new TestScheduler();
             scheduler.Schedule(() => Console.WriteLine("A")); //Schedule immediately
             scheduler.Schedule(TimeSpan.FromTicks(10), () => Console.WriteLine("B"));
@@ -58,7 +58,7 @@ namespace RxSamples
 
         private static void AdvanceBy()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = new TestScheduler();
             scheduler.Schedule(() => Console.WriteLine("A")); //Schedule immediately
             scheduler.Schedule(TimeSpan.FromTicks(10), () => Console.WriteLine("B"));
@@ -75,7 +75,7 @@ namespace RxSamples
 
         private static void Start1()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = new TestScheduler();
             scheduler.Schedule(() => Console.WriteLine("A")); //Schedule immediately
             scheduler.Schedule(TimeSpan.FromTicks(10), () => Console.WriteLine("B"));
@@ -87,7 +87,7 @@ namespace RxSamples
 
         private static void Start2()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = new TestScheduler();
             scheduler.Schedule(() => Console.WriteLine("A"));
             scheduler.Schedule(TimeSpan.FromTicks(10), () => Console.WriteLine("B"));
@@ -102,7 +102,7 @@ namespace RxSamples
 
         private static void Stop()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = new TestScheduler();
             scheduler.Schedule(() => Console.WriteLine("A"));
             scheduler.Schedule(TimeSpan.FromTicks(10), () => Console.WriteLine("B"));
@@ -115,7 +115,7 @@ namespace RxSamples
 
         private static void Collisions()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = new TestScheduler();
             scheduler.Schedule(TimeSpan.FromTicks(10), () => Console.WriteLine("A"));
             scheduler.Schedule(TimeSpan.FromTicks(10), () => Console.WriteLine("B"));
@@ -127,7 +127,7 @@ namespace RxSamples
 
         private static void Interval()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var expectedValues = new long[] { 0, 1, 2, 3, 4 };
             var actualValues = new List<long>();
             var scheduler = new TestScheduler();
@@ -142,7 +142,7 @@ namespace RxSamples
 
         private static void Timeout()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = new TestScheduler();
             var never = Observable.Never<int>();
             var exceptionThrown = false;
@@ -156,7 +156,7 @@ namespace RxSamples
 
         private static void Interval2()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = new TestScheduler();
             var source = Observable.Interval(TimeSpan.FromSeconds(1), scheduler)
             .Take(4);
@@ -175,7 +175,7 @@ namespace RxSamples
 
         private static void Interval3()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = new TestScheduler();
             var source = Observable.Interval(TimeSpan.FromSeconds(1), scheduler)
             .Take(4);
@@ -194,7 +194,7 @@ namespace RxSamples
 
         private static void CreateColdObservable()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = new TestScheduler();
             var source = scheduler.CreateColdObservable(
             new Recorded<Notification<long>>(10000000, Notification.CreateOnNext(0L)),
@@ -218,7 +218,7 @@ namespace RxSamples
 
         private static void CreateHotObservable()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var scheduler = new TestScheduler();
             var source = scheduler.CreateHotObservable(
             new Recorded<Notification<long>>(10000000, Notification.CreateOnNext(0L)),

@@ -40,22 +40,19 @@ namespace RxExample
     public class TimeSpanUpDownViewModel : ReactiveObject
     {
         [Reactive]
-        public int Hour { get; set; }
-        [Reactive]
-        public int Minute { get; set; }
-        [Reactive]
-        public int Second { get; set; }
+        public DateTime Value { get; set; } = new DateTime(2000, 1, 1);
         public IObservable<int> ValueChanged;
         public void SetValue(int value)
         {
             value = Math.Max(0, Math.Min(86399, value));
-            Hour = value / 3600;
-            Minute = value / 60 % 60;
-            Second = value % 60;
+            var h = value / 3600;
+            var m = value / 60 % 60;
+            var s = value % 60;
+            Value = new DateTime(2000, 1, 1, h, m, s);
         }
         public TimeSpanUpDownViewModel()
         {
-            ValueChanged = this.WhenAnyValue(x => x.Hour, x => x.Minute, x => x.Second, (h, m, s) => h * 3600 + m * 60 + s);
+            ValueChanged = this.WhenAnyValue(x => x.Value, (DateTime v) => v.Hour * 3600 + v.Minute * 60 + v.Second);
         }
     }
 }

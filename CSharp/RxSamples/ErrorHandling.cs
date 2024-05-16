@@ -25,7 +25,7 @@ namespace RxSamples
         */
         private static void Catch1()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var source = new Subject<int>();
             var result = source.Catch(Observable.Empty<int>());
             result.Dump("Catch");
@@ -36,7 +36,7 @@ namespace RxSamples
 
         private static void Catch2()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var source = new Subject<int>();
             var result = source.Catch<int, TimeoutException>(tx => Observable.Return(-1));
             result.Dump("Catch");
@@ -47,7 +47,7 @@ namespace RxSamples
 
         private static void Catch3()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var source = new Subject<int>();
             var result = source.Catch<int, TimeoutException>(tx => Observable.Return(-1));
             result.Dump("Catch");
@@ -58,7 +58,7 @@ namespace RxSamples
 
         private static void Finally1()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var source = new Subject<int>();
             var result = source.Finally(() => Console.WriteLine("Finally action ran"));
             result.Dump("Finally");
@@ -70,7 +70,7 @@ namespace RxSamples
 
         private static void Finally2()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var source = new Subject<int>();
             var result = source.Finally(() => Console.WriteLine("Finally"));
             var subscription = result.Subscribe(
@@ -85,7 +85,7 @@ namespace RxSamples
 
         private static void Finally3()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var source = new Subject<int>();
             var result = source.Finally(() => Console.WriteLine("Finally"));
             result.Subscribe(
@@ -101,7 +101,7 @@ namespace RxSamples
 
         private static void Using()
         {
-            Console.WriteLine(MethodBase.GetCurrentMethod().Name);
+            Console.WriteLine(MethodBase.GetCurrentMethod()?.Name);
             var source = Observable.Interval(TimeSpan.FromSeconds(1));
             var result = Observable.Using(
             () => new TimeIt("Subscription Timer"),

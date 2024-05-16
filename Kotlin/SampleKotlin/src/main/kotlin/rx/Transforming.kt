@@ -1,8 +1,9 @@
 package rx
 
-import io.reactivex.Observable
-import io.reactivex.functions.Function
-import io.reactivex.subjects.ReplaySubject
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.functions.Function
+import io.reactivex.rxjava3.subjects.ReplaySubject
 import java.util.concurrent.TimeUnit
 
 
@@ -18,6 +19,7 @@ fun main(args: Array<String>) {
     exampleFlatMap()
     exampleFlatMapMultipleValues()
     exampleFlatMapNewType()
+    exampleFlatMapNewTypeSingle()
     exampleFlatMapFilter()
     exampleFlatMapAsynchronous()
     exampleConcatMap()
@@ -186,6 +188,20 @@ private fun exampleFlatMapNewType() {
 
     // flatMap: A
     // flatMap: Completed
+}
+
+private fun exampleFlatMapNewTypeSingle() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val values = Single.just(1)
+    values
+        .flatMap { i ->
+            Single.just(
+                Character.valueOf((i + 64).toChar())
+            )
+        }
+        .dump()
+
+    // flatMap: A
 }
 
 private fun exampleFlatMapFilter() {

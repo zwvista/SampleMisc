@@ -24,8 +24,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++17
 
-INCLUDEPATH += /Users/zhaowei/Documents/Programs/OSS/RxCpp/Rx/v2/src \
-    /Users/zhaowei/Documents/Programs/OSS/rxqt/include
+#INCLUDEPATH += /Users/zhaowei/Documents/Programs/OSS/RxCpp/Rx/v2/src \
+#    /Users/zhaowei/Documents/Programs/OSS/rxqt/include
+
+QMAKE_CXXFLAGS += /std:c++17 /permissive- /experimental:preprocessor
+
+INCLUDEPATH += \
+    C:\zw\vcpkg\installed\x86-windows\include\rxcpp \
+    C:\zw\vcpkg\installed\x86-windows\include
 
 SOURCES += \
         main.cpp \

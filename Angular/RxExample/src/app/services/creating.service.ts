@@ -13,7 +13,7 @@ export class CreatingService {
       Create an observable that emits 'Hello' and 'World' on
       subscription.
     */
-    const hello = Observable.create(function(observer) {
+    const hello = new Observable(function(observer) {
       observer.next('Hello');
       observer.next('World');
     });
@@ -26,16 +26,16 @@ export class CreatingService {
     /*
       Increment value every 1s, emit even numbers.
     */
-    const evenNumbers = Observable.create(function(observer) {
+    const evenNumbers = new Observable(function(observer) {
       let value = 0;
-      const interval = setInterval(() => {
+      const interval$ = setInterval(() => {
         if (value % 2 === 0) {
           observer.next(value);
         }
         value++;
       }, 1000);
 
-      return () => clearInterval(interval);
+      return () => clearInterval(interval$);
     });
     // output: 0...2...4...6...8
     const subscribe = evenNumbers.subscribe(val => console.log(val));
@@ -147,7 +147,7 @@ export class CreatingService {
 
   throw1() {
     // emits an error with specified value on subscription
-    const source = throwError('This is an error!');
+    const source = throwError(() => 'This is an error!');
     // output: 'Error: This is an error!'
     const subscribe = source.subscribe({
       next: val => console.log(val),

@@ -1,17 +1,15 @@
 package rx
 
-import io.reactivex.Observable
-import java.util.*
-
-
-
-
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 
 
 fun main(args: Array<String>) {
     exampleConcat()
+    exampleConcatSingle()
     exampleConcatDynamic()
     exampleConcatWith()
+    exampleConcatWithSingle()
 
     exampleCount()
 
@@ -33,6 +31,17 @@ private fun exampleConcat() {
     // 10
     // 11
     // 12
+}
+
+private fun exampleConcatSingle() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val seq1 = Single.just(0)
+    val seq2 = Single.just(10)
+    Single.concat(seq1, seq2)
+        .dump()
+
+    // 0
+    // 10
 }
 
 private fun exampleConcatDynamic() {
@@ -71,6 +80,20 @@ private fun exampleConcatWith() {
     // 10
     // 11
     // 12
+    // 20
+}
+
+private fun exampleConcatWithSingle() {
+    println(object{}.javaClass.enclosingMethod.name)
+    val seq1 = Single.just(0)
+    val seq2 = Single.just(10)
+    val seq3 = Single.just(20)
+    seq1.concatWith(seq2)
+        .concatWith(seq3)
+        .dump()
+
+    // 0
+    // 10
     // 20
 }
 

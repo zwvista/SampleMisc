@@ -16,6 +16,7 @@ import { FilteringService } from './services/filtering.service';
 import { TransformingService } from './services/transforming.service';
 import { ToService } from './services/to.service';
 import { UtilityService } from './services/utility.service';
+import {Post2Service} from './services/post2.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { UtilityService } from './services/utility.service';
     ErrorHandlingService,
     FilteringService,
     PostService,
+    Post2Service,
     TransformingService,
     ToService,
     UtilityService,

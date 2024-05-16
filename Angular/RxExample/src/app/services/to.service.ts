@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { lastValueFrom, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 @Injectable()
@@ -11,8 +11,7 @@ export class ToService {
     // return basic observable
     const sample = val => of(val).pipe(delay(5000));
     // convert basic observable to promise
-    const example = sample('First Example')
-      .toPromise()
+    const example = lastValueFrom(sample('First Example'))
       // output: 'First Example'
       .then(result => {
         console.log('From Promise:', result);
@@ -28,8 +27,8 @@ export class ToService {
     */
     const example = () => {
       return Promise.all([
-        sample('Promise 1').toPromise(),
-        sample('Promise 2').toPromise()
+        lastValueFrom(sample('Promise 1')),
+        lastValueFrom(sample('Promise 2'))
       ]);
     };
     // output: ["Promise 1", "Promise 2"]
