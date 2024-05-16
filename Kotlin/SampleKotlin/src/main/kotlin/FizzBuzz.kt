@@ -17,10 +17,10 @@ fun toFizzBuzzWhen1(n: Int) =
     }
 
 fun toFizzBuzzWhen2(n: Int) =
-    when (listOf(n % 3 == 0, n % 5 == 0)) {
-        listOf(true, true) -> "FizzBuzz"
-        listOf(true, false) -> "Fizz"
-        listOf(false, true) -> "Buzz"
+    when (Pair(n % 3 == 0, n % 5 == 0)) {
+        Pair(true, true) -> "FizzBuzz"
+        Pair(true, false) -> "Fizz"
+        Pair(false, true) -> "Buzz"
         else -> n.toString()
     }
 
