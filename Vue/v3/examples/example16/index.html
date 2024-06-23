@@ -1,0 +1,27 @@
+<html>
+
+<head>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <meta charset="utf-8"/>
+  <style>
+    select[multiple] {
+      width: 100px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div>Selected: {{ selected }}</div>
+
+    <select v-model="selected" multiple>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+  </div>
+  <script src="index.js">
+  </script>
+</body>
+
+</html>

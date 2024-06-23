@@ -1,0 +1,25 @@
+<html>
+
+<head>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <meta charset="utf-8"/>
+</head>
+
+<body>
+  <div id="app">
+    <div>Checked names: {{ checkedNames }}</div>
+
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames" />
+    <label for="jack">Jack</label>
+   
+    <input type="checkbox" id="john" value="John" v-model="checkedNames" />
+    <label for="john">John</label>
+   
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames" />
+    <label for="mike">Mike</label>
+  </div>
+  <script src="index.js">
+  </script>
+</body>
+
+</html>

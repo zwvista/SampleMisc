@@ -1,4 +1,3 @@
 ﻿using SampleCS;
 
-var pm = new PatternMatching();
-pm.Match1();
+PatternMatching.Match1();
