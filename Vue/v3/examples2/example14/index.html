@@ -1,0 +1,39 @@
+<html>
+
+<head>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <meta charset="utf-8"/>
+  <style>
+    .meta {
+      font-size: 0.8em;
+      color: #42b883;
+    }
+    ul {
+      list-style-type: none;
+      padding: 5px;
+      background: linear-gradient(315deg, #42d392 25%, #647eff);
+    }
+    li {
+      padding: 5px 20px;
+      margin: 10px;
+      background: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <fancy-list api-url="url" :per-page="10">
+      <template #item="{ body, username, likes }">
+        <div class="item">
+          <p>{{ body }}</p>
+          <p class="meta">by {{ username }} | {{ likes }} likes</p>
+        </div>
+      </template>
+    </fancy-list>
+  </div>
+  <script src="index.js">
+  </script>
+</body>
+
+</html>

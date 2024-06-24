@@ -5,9 +5,9 @@ createApp({
     const currentTab = ref('Home')
 
     const tabs = {
-      Home: 'vue:home',
-      Posts: 'vue:posts',
-      Archive: 'vue:archive',
+      Home: 'home',
+      Posts: 'posts',
+      Archive: 'archive',
     }
     return { currentTab, tabs }
   },

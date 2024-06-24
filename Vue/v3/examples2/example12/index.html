@@ -1,0 +1,48 @@
+<html>
+
+<head>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <meta charset="utf-8"/>
+  <style>
+    .card {
+      border: 1px solid black;
+      padding: 0;
+    }
+  
+    .card-header {
+      background-color: skyblue;
+      padding: 4px;
+    }
+  
+    .card-content {
+      padding: 4px;
+    }
+  
+    .card-footer {
+      background-color: lightgray;
+      padding: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <card>
+      <template #header>
+        <h1>This is the header</h1>
+      </template>
+  
+      <template #default>
+        <p>This is the content</p>
+      </template>
+  
+      <template #footer>
+        <em>This is the footer</em>
+      </template>
+    </card>
+  </div>
+  <script src="index.js">
+  </script>
+</body>
+
+</html>
