@@ -14,13 +14,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: RxExamplePage(title: 'Rx Example Page'),
+      home: RxExamplePage('Rx Example Page'),
     );
   }
 }
 
 class RxExamplePage extends StatefulWidget {
-  RxExamplePage({Key key, this.title}) : super(key: key);
+  RxExamplePage(this.title, {super.key});
 
   final String title;
 
@@ -30,9 +30,9 @@ class RxExamplePage extends StatefulWidget {
 
 class _RxExamplePageState extends State<RxExamplePage> {
   final vm = RxExampleViewModel();
-  TextEditingController number1Ctrl;
-  TextEditingController number2Ctrl;
-  TextEditingController number3Ctrl;
+  late TextEditingController number1Ctrl;
+  late TextEditingController number2Ctrl;
+  late TextEditingController number3Ctrl;
 
   _RxExamplePageState() {
     number1Ctrl = TextEditingController(text: vm.number1.lastResult);
@@ -79,7 +79,7 @@ class _RxExamplePageState extends State<RxExamplePage> {
                   StreamBuilder(
                     stream: vm.result,
                     builder: (context, snapshot) =>
-                        Text(vm.result.lastResult, textAlign: TextAlign.end),
+                        Text(vm.result.lastResult!, textAlign: TextAlign.end),
                   ),
                 ]),
               ]),
