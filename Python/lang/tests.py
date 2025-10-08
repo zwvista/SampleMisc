@@ -58,9 +58,30 @@ def test_unpack():
     print(a, b, d) # 1 2 5
 
 
+def test_dict1():
+    dict1 = {1: 'a', 2: 'b'}
+    s1 = dict1.get(3, 'z')
+    print(s1, dict1) # z {1: 'a', 2: 'b'}
+    s2 = dict1.setdefault(1, 'z')
+    print(s2, dict1) # a {1: 'a', 2: 'b'}
+    s3 = dict1.setdefault(3, 'z')
+    print(s3, dict1) # z {1: 'a', 2: 'b', 3: 'z'}
+
+
+def test_dict2():
+    dict1 = {1: 'a', 2: 'b'}
+    dict2 = {1: 'c', 3: 'd'}
+    dict3 = {**dict1, **dict2}
+    print(dict3) # {1: 'c', 2: 'b', 3: 'd'}
+    dict4 = {**dict2, **dict1}
+    print(dict4) # {1: 'a', 3: 'd', 2: 'b'}
+
+
 # test_next()
 # test_map_filter()
 # test_all_any()
 # test_reverse()
 # test_zip()
-test_unpack()
+# test_unpack()
+test_dict1()
+test_dict2()
