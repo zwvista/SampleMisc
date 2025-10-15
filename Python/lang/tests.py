@@ -1,3 +1,6 @@
+from functools import reduce
+
+
 def test_next():
     values = [3, 7, 10, 4, 8]
     values2 = [3, 7, 4, 8]
@@ -77,11 +80,23 @@ def test_dict2():
     print(dict4) # {1: 'a', 3: 'd', 2: 'b'}
 
 
+def test_reduce():
+    numbers = [1, 2, 3, 4, 5]
+    sum = reduce(lambda x, y: x + y, numbers)
+    sum2 = reduce(lambda x, y: x + y, numbers, 10)
+    print(sum, sum2) # 15 25
+    numbers = [3, 7, 2, 9, 1, 5]
+    max_value = reduce(lambda x, y: x if x > y else y, numbers)
+    min_value = reduce(lambda x, y: x if x < y else y, numbers)
+    print(max_value, min_value) # 9 1
+
+
 # test_next()
 # test_map_filter()
 # test_all_any()
 # test_reverse()
 # test_zip()
 # test_unpack()
-test_dict1()
-test_dict2()
+# test_dict1()
+# test_dict2()
+test_reduce()

@@ -4,7 +4,7 @@ from itertools import groupby
 
 def verticalWriting(txt, offset):
     l = lambda x: x[0] % offset
-    for (_, g) in groupby(sorted(enumerate(txt), key=l), key=l):
+    for _, g in groupby(sorted(enumerate(txt), key=l), key=l):
         print('|'.join(reversed(list(map(lambda x: x[1], g)))))
 
 verticalWriting(u"床前明月光疑是地上霜举头望明月低头思故乡", 5)
